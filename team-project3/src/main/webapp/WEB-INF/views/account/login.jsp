@@ -19,6 +19,11 @@
 <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet" type="text/css">
 <link href="/team-project3/resources/assets/css/pages/signin.css" rel="stylesheet" type="text/css">
 
+<script type="text/javascript">
+	<% if (request.getAttribute("loginfail") != null) { %>
+		alert('로그인 실패! \n아이디와 패스워드를 확인하세요');
+	<% } %>
+</script>
 </head>
 
 <body>
@@ -31,7 +36,7 @@
 	
 	<div class="content clearfix">
 		
-		<form action="#" method="post">
+		<form action="login.action" method="post">
 		
 			<h1>Center Login</h1>		
 			
@@ -40,13 +45,13 @@
 				<p>Please provide your details</p>
 				
 				<div class="field">
-					<label for="username">Username</label>
-					<input type="text" id="username" name="username" value="" placeholder="Username" class="login username-field" />
+					<label for="cenId">ID</label>
+					<input type="text" id="cenId" name="cenId" value="" placeholder="ID" class="login username-field" />
 				</div> <!-- /field -->
 				
 				<div class="field">
-					<label for="password">Password:</label>
-					<input type="password" id="password" name="password" value="" placeholder="Password" class="login password-field"/>
+					<label for="cenPasswd">Password:</label>
+					<input type="password" id="cenPasswd" name="cenPasswd" value="" placeholder="Password" class="login password-field"/>
 				</div> <!-- /password -->
 				
 			</div> <!-- /login-fields -->

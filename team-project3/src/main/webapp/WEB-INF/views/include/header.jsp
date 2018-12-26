@@ -20,11 +20,11 @@
 		<c:choose>
 	       	<c:when test="${ not empty sessionScope.loginuser }">
 	       	 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="icon-user"></i> ${ loginuser.memberId } <b class="caret"></b></a>
+                            class="icon-user"></i> ${ loginuser.cenId } <b class="caret"></b></a>
 		          <ul class="dropdown-menu">
 		              <li><a href="javascript:;">Profile</a></li>
 		              <li><a href="/team-project3/account/logout.action">Logout</a></li>
-		              <c:if test='${ not empty loginuser and loginuser.userType eq "admin" }'>
+		              <c:if test='${ not empty loginuser and loginuser.cenId eq "admin" }'>
 	                  	<li><a href="/team-project3/account/signup.action">Sign up</a></li>
 	                  </c:if>
 	            </ul>
@@ -32,7 +32,6 @@
 	       	</c:when>
 	       	<c:otherwise>
 	       	 <li><a href="/team-project3/account/login.action"> Login </a></li>
-	       	 <li><a href="/team-project3/account/signup.action">Sign up</a></li>
 	       	</c:otherwise>
 	    </c:choose>
         </ul>

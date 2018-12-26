@@ -19,7 +19,7 @@ public class CenterServiceImpl implements CenterService{
 		
 		CenterVo center2 = centerDao.selectCenterByIdAndPasswd(center);
 		
-		return null;
+		return center2;
 	}
 
 	@Override

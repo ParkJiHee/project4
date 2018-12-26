@@ -14,7 +14,7 @@
 	<!-- id : MethodName -->
 	<!-- <insert id="insertMember" parameterType="com.demoweb.vo.Member"> -->
 	
-	<insert id="insertMember" parameterType="Center">
+	<insert id="insertCenter" parameterType="Center">
 		INSERT INTO center (centerno, cenid, cenpasswd, cenphone) 
 		VALUES (center_sequence.nextval, #{ cenId }, #{ cenPasswd }, #{ cenPhone })
 	</insert>
