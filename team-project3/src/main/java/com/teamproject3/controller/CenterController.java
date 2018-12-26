@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -22,14 +23,14 @@ import com.teamproject3.service.CenterService;
 import com.teamproject3.vo.CenterVo;
 
 @Controller
-@RequestMapping(value = "/account/")
+//@RequestMapping(value = "/account/")
 public class CenterController {
 	//로그인
 		@Autowired
 		@Qualifier("centerService")//서비스의 의존성 주입
 		private CenterService centerService;
 
-		@RequestMapping(value="/login.action", method=RequestMethod.GET)
+		@RequestMapping(value= {"/", "/login.action"}, method=RequestMethod.GET)
 		public String showLoginForm() {
 			return "account/login";//-> /WEB-INF/views/account/login.jsp
 		}
@@ -53,7 +54,15 @@ public class CenterController {
 		//회원가입
 		/////////////////////////////////////////////////////////////////////////////////////
 		@RequestMapping(value="/signup.action", method=RequestMethod.GET)
-		public String showRegisterForm(@ModelAttribute("center")CenterVo center) {
+		public String showRegisterForm(@ModelAttribute("center")CenterVo center,
+				HttpSession session, HttpServletRequest req) {
+			
+			center = (CenterVo)session.getAttribute("loginuser");
+			if (center == null) {
+				session.setAttribute("loginuser", center);
+				return "redirect:/login.action";
+			}
+			
 			return "account/signup";
 		}
 		
@@ -77,6 +86,6 @@ public class CenterController {
 		@RequestMapping(value="/logout.action", method=RequestMethod.GET)
 		public String logOut(HttpSession session) {
 			session.removeAttribute("loginuser");
-			return "redirect:/home.action";
+			return "redirect:/login.action";
 		}
 }

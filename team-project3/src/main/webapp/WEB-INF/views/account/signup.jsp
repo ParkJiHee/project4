@@ -26,7 +26,9 @@
 <body>
 	
 	<!-- navbar.jsp -->
-	<jsp:include page="/WEB-INF/views/include/navbar.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
+		<jsp:param value="#00ba8b" name="bgcolor" />
+	</jsp:include>
 	<!-- navbar.jsp -->
 
 <div class="account-container register">

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="navbar navbar-fixed-top">
 	
@@ -17,19 +18,27 @@
 				Health Me				
 			</a>		
 			
-			<div class="nav-collapse">
-				<ul class="nav pull-right">
-					
-					<li class="">						
-						<a href="/team-project3/home.action" class="">
-							<i class="icon-chevron-left"></i>
-							Back to Homepage
-						</a>
-						
-					</li>
-				</ul>
+			
+			<c:choose>
+			   <c:when test="${ not empty param.bgcolor }">
+
+					<div class="nav-collapse">
+						<ul class="nav pull-right">
+
+							<li class=""><a href="/team-project3/home.action" class="">
+									<i class="icon-chevron-left"></i> Back to Homepage
+							</a></li>
+						</ul>
+
+					</div>
+					<!--/.nav-collapse -->
+
+				</c:when>
 				
-			</div><!--/.nav-collapse -->	
+			<c:otherwise>
+				
+			</c:otherwise>
+			</c:choose>	
 	
 		</div> <!-- /container -->
 		
