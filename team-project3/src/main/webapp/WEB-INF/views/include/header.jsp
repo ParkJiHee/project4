@@ -31,7 +31,7 @@
             </li>
 	       	</c:when>
 	       	<c:otherwise>
-	       	 <li><a href="#"> Login </a></li>
+	       	 <li><a href="/team-project3/account/login.action"> Login </a></li>
 	       	</c:otherwise>
 	    </c:choose>
         </ul>

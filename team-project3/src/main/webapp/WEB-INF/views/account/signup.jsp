@@ -23,46 +23,9 @@
 
 <body>
 	
-	<div class="navbar navbar-fixed-top">
-	
-	<div class="navbar-inner">
-		
-		<div class="container">
-			
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</a>
-			
-			<a class="brand" href="index.jsp">
-				Bootstrap Admin Template				
-			</a>		
-			
-			<div class="nav-collapse">
-				<ul class="nav pull-right">
-					<li class="">						
-						<a href="login.jsp" class="">
-							Already have an account? Login now
-						</a>
-						
-					</li>
-					<li class="">						
-						<a href="index.jsp" class="">
-							<i class="icon-chevron-left"></i>
-							Back to Homepage
-						</a>
-						
-					</li>
-				</ul>
-				
-			</div><!--/.nav-collapse -->	
-	
-		</div> <!-- /container -->
-		
-	</div> <!-- /navbar-inner -->
-	
-</div> <!-- /navbar -->
+	<!-- navbar.jsp -->
+	<jsp:include page="/WEB-INF/views/include/navbar.jsp"></jsp:include>
+	<!-- navbar.jsp -->
 
 
 
@@ -122,13 +85,6 @@
 	</div> <!-- /content -->
 	
 </div> <!-- /account-container -->
-
-
-<!-- Text Under Box -->
-<div class="login-extra">
-	Already have an account? <a href="login.jsp">Login to your account</a>
-</div> <!-- /login-extra -->
-
 
 <script src="/team-project3/resources/assets/js/jquery-1.7.2.min.js"></script>
 <script src="/team-project3/resources/assets/js/bootstrap.js"></script>
