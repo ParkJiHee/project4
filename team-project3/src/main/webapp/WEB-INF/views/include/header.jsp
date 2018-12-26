@@ -5,7 +5,7 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.jsp">Health Me </a>
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="/team-project3/home.action">Health Me </a>
       <div class="nav-collapse">
         <ul class="nav pull-right">
           <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
@@ -46,19 +46,43 @@
   <!-- /navbar-inner --> 
 </div>
 <!-- /navbar -->
-<div class="subnavbar">
-  <div class="subnavbar-inner">
-    <div class="container">
-      <ul class="mainnav">
-        <li class="active"><a href="index.jsp"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-        <li><a href="#"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
-        <li><a href="#"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
-        <li><a href="#"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
-        <li><a href="#"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
-      </ul>
-    </div>
-    <!-- /container --> 
-  </div>
-  <!-- /subnavbar-inner --> 
-</div>
-<!-- /subnavbar -->
+
+
+<c:choose>
+	<c:when test="${ not empty param.bgcolor }">
+
+		<div class="subnavbar">
+		  <div class="subnavbar-inner">
+		    <div class="container">
+		      <ul class="mainnav">
+		        <li class="active"><a href="/team-project3/home.action"><i class="icon-dashboard"></i><span>Home</span> </a> </li>
+		        <li></li>
+		      </ul>
+		    </div>
+		    <!-- /container --> 
+		  </div>
+		  <!-- /subnavbar-inner --> 
+		</div>
+		<!-- /subnavbar -->
+
+	</c:when>
+
+	<c:otherwise>
+		<div class="subnavbar">
+		  <div class="subnavbar-inner">
+		    <div class="container">
+		      <ul class="mainnav">
+		        <li class="active"><a href="index.jsp"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
+		        <li><a href="#"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
+		        <li><a href="#"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
+		        <li><a href="#"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
+		        <li><a href="#"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
+		      </ul>
+		    </div>
+		    <!-- /container --> 
+		  </div>
+		  <!-- /subnavbar-inner --> 
+		</div>
+		<!-- /subnavbar -->
+	</c:otherwise>
+</c:choose>
