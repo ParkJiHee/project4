@@ -39,6 +39,14 @@
 		<property name="centerMapper" ref="centerMapper"/>
 	</bean>
 	
+	<bean id="productService" class="com.teamproject3.service.ProductServiceImpl">
+		<property name="productDao" ref="productDao" />
+	</bean>
+	
+	<bean id="productDao" class="com.teamproject3.dao.OracleProductDao">
+		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
+		<!-- <property name="productMapper" ref="productMapper"/> -->
+	</bean>
 	
 	<!-- MyBatis -->
 	<bean id="sqlSessionFactory" 
