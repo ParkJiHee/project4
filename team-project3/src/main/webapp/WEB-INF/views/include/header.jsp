@@ -23,15 +23,16 @@
                             class="icon-user"></i> ${ loginuser.memberId } <b class="caret"></b></a>
 		          <ul class="dropdown-menu">
 		              <li><a href="javascript:;">Profile</a></li>
-		              <li><a href="javascript:;">Logout</a></li>
+		              <li><a href="/team-project3/account/logout.action">Logout</a></li>
 		              <c:if test='${ not empty loginuser and loginuser.userType eq "admin" }'>
-	                  	<li><a href="javascript:;">Sign up</a></li>
+	                  	<li><a href="/team-project3/account/signup.action">Sign up</a></li>
 	                  </c:if>
 	            </ul>
             </li>
 	       	</c:when>
 	       	<c:otherwise>
 	       	 <li><a href="/team-project3/account/login.action"> Login </a></li>
+	       	 <li><a href="/team-project3/account/signup.action">Sign up</a></li>
 	       	</c:otherwise>
 	    </c:choose>
         </ul>

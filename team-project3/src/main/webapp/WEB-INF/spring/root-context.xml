@@ -30,6 +30,15 @@
 	
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="centerService" class="com.teamproject3.service.CenterServiceImpl">
+		<property name="centerDao" ref="centerDao" />
+	</bean>
+	
+	<bean id="centerDao" class="com.teamproject3.dao.OracleCenterDao">
+		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
+		<property name="centerMapper" ref="centerMapper"/>
+	</bean>
+	
 	
 	<!-- MyBatis -->
 	<bean id="sqlSessionFactory" 
@@ -43,6 +52,11 @@
 		<constructor-arg ref="sqlSessionFactory" />	  
 	</bean>
 	<!-- end mybatis -->
+	
+	<bean id="centerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.teamproject3.mapper.CenterMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
 	
 	<!-- 트랜잭션 -->
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

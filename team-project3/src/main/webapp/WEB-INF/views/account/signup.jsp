@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
   
@@ -18,7 +18,9 @@
     
 <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet" type="text/css">
 <link href="/team-project3/resources/assets/css/pages/signin.css" rel="stylesheet" type="text/css">
-
+<style type="text/css">
+		.error { color: red; }
+</style>
 </head>
 
 <body>
@@ -27,13 +29,11 @@
 	<jsp:include page="/WEB-INF/views/include/navbar.jsp"></jsp:include>
 	<!-- navbar.jsp -->
 
-
-
 <div class="account-container register">
 	
 	<div class="content clearfix">
 		
-		<form action="#" method="post">
+		<form:form action="signup.action" method="post" modelAttribute="center">
 		
 			<h1>Signup for Free Account</h1>			
 			
@@ -42,29 +42,26 @@
 				<p>Create your free account:</p>
 				
 				<div class="field">
-					<label for="firstname">First Name:</label>
-					<input type="text" id="firstname" name="firstname" value="" placeholder="First Name" class="login" />
+					<label for="cenId">ID:</label>	
+					<form:input type="text" id="cenId" path="cenId" placeholder="jooho@example.com" class="login" />
+					<form:errors path="cenId" cssClass="error" class="login" />
 				</div> <!-- /field -->
 				
 				<div class="field">
-					<label for="lastname">Last Name:</label>	
-					<input type="text" id="lastname" name="lastname" value="" placeholder="Last Name" class="login" />
-				</div> <!-- /field -->
-				
-				
-				<div class="field">
-					<label for="email">Email Address:</label>
-					<input type="text" id="email" name="email" value="" placeholder="Email" class="login"/>
+					<label for="cenPhone">Phone Number:</label>
+					<form:input type="text" id="cenPhone" path="cenPhone" placeholder="Phone Number" class="login"/>
+					<form:errors path="cenPhone" cssClass="error" class="login" />
 				</div> <!-- /field -->
 				
 				<div class="field">
-					<label for="password">Password:</label>
-					<input type="password" id="password" name="password" value="" placeholder="Password" class="login"/>
+					<label for="cenPhone">Password:</label>
+					<form:input type="password" id="cenPasswd" path="cenPasswd" placeholder="Password" class="login"/>
+					<form:errors path="cenPasswd" cssClass="error" class="login" />
 				</div> <!-- /field -->
 				
 				<div class="field">
 					<label for="confirm_password">Confirm Password:</label>
-					<input type="password" id="confirm_password" name="confirm_password" value="" placeholder="Confirm Password" class="login"/>
+					<input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" class="login"/>
 				</div> <!-- /field -->
 				
 			</div> <!-- /login-fields -->
@@ -80,7 +77,7 @@
 				
 			</div> <!-- .actions -->
 			
-		</form>
+		</form:form>
 		
 	</div> <!-- /content -->
 	

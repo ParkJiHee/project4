@@ -1,5 +1,9 @@
 package com.teamproject3.service;
 
-public class CenterService {
+import com.teamproject3.vo.CenterVo;
 
+public interface CenterService {
+
+	CenterVo findMemberByIdAndPasswd(CenterVo center);
+	 void registerMember(CenterVo center);
 }

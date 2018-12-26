@@ -4,7 +4,7 @@
 <configuration>
 	
 	<typeAliases>
-		
+		<typeAlias type="com.teamproject3.vo.CenterVo" alias="Center"/>
 	</typeAliases>
 
 	<environments default="development">
@@ -32,6 +32,6 @@
 	</environments>
 
 	<mappers>
-		
+		<mapper resource="com/teamproject3/mapper/center-mapper.xml" />
 	</mappers>
 </configuration>
