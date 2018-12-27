@@ -5,6 +5,8 @@
 	
 	<typeAliases>
 		<typeAlias type="com.teamproject3.vo.CenterVo" alias="Center"/>
+		<typeAlias type="com.teamproject3.vo.MemberVo" alias="Member"/>
+		<typeAlias type="com.teamproject3.vo.MemberAttachVo" alias="MemberAttach"/>
 	</typeAliases>
 
 	<environments default="development">
@@ -33,5 +35,6 @@
 
 	<mappers>
 		<mapper resource="com/teamproject3/mapper/center-mapper.xml" />
+		<mapper resource="com/teamproject3/mapper/member-mapper.xml" />
 	</mappers>
 </configuration>
