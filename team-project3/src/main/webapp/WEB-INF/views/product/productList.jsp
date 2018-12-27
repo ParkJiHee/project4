@@ -8,7 +8,7 @@
   
 <head>
     <meta charset="utf-8">
-    <title>Account Upgrade - Bootstrap Admin Template</title>
+    <title>Prouduct List</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">    
@@ -52,7 +52,7 @@
 					<div class="widget-header">
 						<i class="icon-th-large"></i>
 						<h3>상품관리</h3>
-						<button class="button btn btn-primary" style=" margin-left:80%">상품등록</button>
+						<a href="/team-project3/product/productRegister.action" class="button btn btn-primary" style=" margin-left:80%">상품등록</a>
 					</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
