@@ -209,8 +209,7 @@ Bootstrap Admin Template by EGrappler.com
 
 #big_stats .stat
 {
-	width: 25%;
-	height: 90px;
+	width: 33%;
 	display: table-cell;
 	padding: 0;
 	position: relative;
@@ -223,6 +222,9 @@ div.stats  {
 	margin-right: 15px;
 	padding-bottom: 20px;
 	margin-bottom: 20px;
+}
+span.label_title {
+	padding-right:50px;
 }
 #big_stats  i { font-size:30px; display:block; line-height: 40px; color:#b2afaa;}
 #big_stats .stat:hover i {color:#19bc9c;}

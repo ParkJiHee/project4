@@ -43,76 +43,40 @@
                     <div class="stat"> 
                     	<h3 class="bigstats">회원 정보</h3>
                         <div class="stats">
-                        	<table>
-	                        	<tr>
-	                        		<td>이름</td>
-	                        		<td>www</td>
-	                        	</tr>
-	                        	<tr>
-	                        		<td>번호</td>
-	                        		<td>010-4567-7896</td>
-	                        	</tr>
-	                        </table>
+	                        <span class="label_title">이름</span>
+	                        <span>www</span><br>
+	                        <span class="label_title">번호</span>
+	                        <span>010-1234-4567</span>
                         </div>
                         
                         <h3 class="bigstats">결제 상품 정보</h3>
                         <div class="stats">
                         	<span class="service_name">헬스장만_다니자</span><br>
-                            <span class="label">상품가격</span>
+                            <span class="label_title">상품가격</span>
                             <span>100,000원</span>
                         </div>
                         
                         <h3 class="bigstats">상품결제 금액 확인<span class="btn small gray resetBtn">다시 입력</span></h3>
                         <div class="stats">
-                            <table data-template="receivables">
-                                <tbody>
-                                <tr>
-                                    <td>카드</td>
-                                    <td>
-                                        <p class="paymentPrice" data-msg="firstPaymentCard">0 원</p>
-                                        <input type="hidden" name="firstPaymentCard" value="0">
-                                        <input type="hidden" name="firstCardType" value="00">
-                                        <input type="hidden" name="beforeFirstPaymentCard" value="0">
-                                        <span class="btn_close cardReset" style="display: none;">close</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>현금</td>
-                                    <td>
-                                        <p class="paymentPrice" data-msg="cash">0 원</p>
-                                        <input type="hidden" name="cash" value="0">
-                                        <input type="hidden" name="beforeCash" value="0">
-                                        <input type="hidden" name="cashReceiptsYn" value="N">
-                                        <span class="btn_close cashReset" style="display: none;">close</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>이체</td>
-                                    <td>
-                                        <p class="paymentPrice" data-msg="bankTransfer">0 원</p>
-                                        <input type="hidden" name="bankTransfer" value="0">
-                                        <input type="hidden" name="beforeBankTransfer" value="0">
-                                        <span class="btn_close transferReset" style="display: none;">close</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>총 결제금액</td>
-                                    <td class="c_blue">
-                                        <p class="paymentPrice">0 원</p>
-                                        <input type="hidden" name="totalPayments" value="0">
-                                        <input type="hidden" name="beforeTotalPayments" value="0">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>미수금</td>
-                                    <td class="c_red">
-                                        <p>100,000 원</p>
-                                        <input type="hidden" name="receivables" value="100000">
-                                        <input type="hidden" name="beforeReceivables" value="100000">
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                        
+                        <table>
+                           <tr>
+                               <td>총 결제금액</td>
+                               <td class="c_blue">
+                                   <p class="paymentPrice">0 원</p>
+                                   <input type="hidden" name="totalPayments" value="0">
+                                   <input type="hidden" name="beforeTotalPayments" value="0">
+                               </td>
+                           </tr>
+                           <tr>
+                               <td>미수금</td>
+                               <td class="c_red">
+                                   <p>100,000 원</p>
+                                   <input type="hidden" name="receivables" value="100000">
+                                   <input type="hidden" name="beforeReceivables" value="100000">
+                               </td>
+                           </tr>
+                        </table>
                         </div>
                     </div>
                     
@@ -122,7 +86,7 @@
                     	<h3 class="bigstats">결제 진행</h3>
                     	<div class="stats">
                         <p>
-                            <span class="label">결제 담당자 선택</span>
+                            <span class="label_title">결제 담당자 선택</span><br>
                             <input type="hidden" value="N" id="extensionYn">
                             <select name="seqPaymentEmployee">
                                 <option value="">담당직원</option>
@@ -138,16 +102,16 @@
                             </select>
                         </p>
                         <p>
-                        <span class="label">이용 시작일 선택</span>
+                        <span class="label_title">이용 시작일 선택</span><br>
                         <input class="" type="date" name="purdateto" id="purdateto">
                      	</p>
                         <p>
-                        <span class="label">이용 만료일 선택</span>
+                        <span class="label_title">이용 만료일 선택</span><br>
                         <input class="" type="date" name="purdatefrom" id="purdatefrom">
                      	</p>
                   
                         <p>
-                            <span class="label">결제일자</span>
+                            <span class="label_title">결제일자</span><br>
                      
                         
                            <input class="" type="date" name="purregdate" id="purregdate">
@@ -156,7 +120,7 @@
                      
                   </p>
                         <div class="input_cost">
-                            <span class="btn green costBtn">불러오기</span>
+                            <span class="btn green costBtn">불러오기</span><br>
                             <input type="text" placeholder="금액을 입력하여 주십시오." id="inputCost">
                             <button class="delBtn btn small gray">지우기</button>
                         </div>
@@ -178,7 +142,12 @@
                         </div>
                        </div>
                         <!-- //숫자 입력 패드 -->
-                        <h3 class="bigstats">상품결제 수단 선택</h3>
+                        
+                    </div>
+                    <!-- .stat -->
+                    
+                    <div class="stat">
+                    	<h3 class="bigstats">상품결제 수단 선택</h3>
                         <div class="stats">
                         <div class="flex_align payment">
                             <button class="firstPaymentCard">카드</button>
@@ -187,15 +156,11 @@
                             <button class="bankTransfer">이체</button>
                         </div>
                         <p>
-                            <span class="label">결제 메모</span>
+                            <span class="label_title">결제 메모</span>
                             <textarea name="comment"></textarea>
                         </p>
                         
                         </div>
-                    </div>
-                    <!-- .stat -->
-                    
-                    <div class="stat">
                     	<h3 class="bigstats">포함된 이용권 정보</h3>
                     	<div class="stats">
                         <div class="service_box_list">
@@ -227,7 +192,7 @@
                                     <span>헬스장 이용권</span>
                                 </p>
                                 <p class="txt_info">
-                                    <span class="label sub_tit">기간 </span>
+                                    <span class="label_title sub_tit">기간 </span>
                                     <span class="day_setting_new periodNumber" data-msg="periodNsumber">1개월</span>
                                 </p>
                             </div>
