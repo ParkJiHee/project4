@@ -81,8 +81,8 @@
 		      </ul>
 		      
 		      <ul class="nav pull-right">
-		      	<li><a href="#" class="btn btn-primary" style="text-align: center; color: white;"
-		      	onclick="window.open('/team-project3/login.action','회원등록','width=430,height=500,location=no,status=no,scrollbars=yes');"><span>회원등록</span></a></li>
+		      	<li><a class="btn btn-primary" style="text-align: center; color: white;" data-toggle="modal" data-target="#myModal">
+		      		<i class="icon-plus"></i><span>회원등록</span></a></li>
 		      </ul>
 		    </div>
 		    <!-- /container --> 
