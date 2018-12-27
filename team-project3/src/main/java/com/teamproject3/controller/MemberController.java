@@ -26,6 +26,6 @@ public class MemberController {
 			return "redirect:/login.action";
 		}
 		
-		return "member/index";
+		return "member/memberlist";
 	}
 }

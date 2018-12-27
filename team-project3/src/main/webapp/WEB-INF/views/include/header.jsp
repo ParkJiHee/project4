@@ -49,7 +49,7 @@
 
 
 <c:choose>
-	<c:when test="${ not empty param.bgcolor }">
+	<c:when test='${ not empty param.bgcolor and param.bgcolor eq "#f9f6f1"}'>
 
 		<div class="subnavbar">
 		  <div class="subnavbar-inner">
@@ -66,14 +66,39 @@
 		<!-- /subnavbar -->
 
 	</c:when>
+	
+	<c:when test='${ not empty param.bgcolor and param.bgcolor eq "memberlist" }'>
+
+		<div class="subnavbar">
+		  <div class="subnavbar-inner">
+		    <div class="container">
+		      <ul class="mainnav">
+		        <li><a href="/team-project3/home.action"><i class="icon-dashboard"></i><span>Home</span> </a> </li>
+		        <li class="active"><a href="/team-project3/member/memberlist.action"><i class="icon-list-alt"></i><span>고객관리</span> </a> </li>
+		        <li><a href="#"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
+		        <li><a href="#"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
+		        <li><a href="#"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
+		      </ul>
+		      
+		      <ul class="nav pull-right">
+		      	<li><a href="#" class="btn btn-primary" style="text-align: center; color: white;"><span>회원등록</span></a></li>
+		      </ul>
+		    </div>
+		    <!-- /container --> 
+		  </div>
+		  <!-- /subnavbar-inner --> 
+		</div>
+		<!-- /subnavbar -->
+
+	</c:when>
 
 	<c:otherwise>
 		<div class="subnavbar">
 		  <div class="subnavbar-inner">
 		    <div class="container">
 		      <ul class="mainnav">
-		        <li class="active"><a href="index.jsp"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-		        <li><a href="#"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
+		        <li class="active"><a href="index.jsp"><i class="icon-dashboard"></i><span>Home</span> </a> </li>
+		        <li><a href="#"><i class="icon-list-alt"></i><span>고객관리</span> </a> </li>
 		        <li><a href="#"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
 		        <li><a href="#"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
 		        <li><a href="#"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
