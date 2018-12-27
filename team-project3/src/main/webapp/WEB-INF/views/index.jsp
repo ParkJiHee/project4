@@ -97,9 +97,9 @@
 						<i class="shortcut-icon icon-bookmark"></i>
 						<span class="shortcut-label">Bookmarks</span> 
 					</a>
-					<a href="javascript:;" class="shortcut">
+					<a href="/team-project3/purchase/purRegister.action" class="shortcut">
 						<i class="shortcut-icon icon-signal"></i>
-						<span class="shortcut-label">Reports</span> 
+						<span class="shortcut-label">상품결제</span> 
 					</a>
 					<a href="javascript:;" class="shortcut"> 
 						<i class="shortcut-icon icon-comment"></i>
