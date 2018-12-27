@@ -14,17 +14,10 @@
 <link href="/team-project3/resources/assets/css/font-awesome.css" rel="stylesheet">
 <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet">
 <link href="/team-project3/resources/assets/css/pages/dashboard.css" rel="stylesheet">
-<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
 </head>
 <body>
 
-<!-- header.jsp -->
-	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
-<!-- end header.jsp -->
-
+<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 
 <div class="main">
   <div class="main-inner">
@@ -60,22 +53,44 @@
                         <div class="stats">
                         
                         <table>
-                           <tr>
-                               <td>총 결제금액</td>
-                               <td class="c_blue">
-                                   <p class="paymentPrice">0 원</p>
-                                   <input type="hidden" name="totalPayments" value="0">
-                                   <input type="hidden" name="beforeTotalPayments" value="0">
-                               </td>
-                           </tr>
-                           <tr>
-                               <td>미수금</td>
-                               <td class="c_red">
-                                   <p>100,000 원</p>
-                                   <input type="hidden" name="receivables" value="100000">
-                                   <input type="hidden" name="beforeReceivables" value="100000">
-                               </td>
-                           </tr>
+                           <tbody>
+                               <tr>
+                                   <td>카드</td>
+                                   <td style="text-align: right;">
+                                       <p class="paymentPrice" data-msg="firstPaymentCard">0 원</p>
+                                       <input type="hidden" name="firstPaymentCard" value="0">
+                                       <input type="hidden" name="firstCardType" value="00">
+                                       <input type="hidden" name="beforeFirstPaymentCard" value="0">
+                                       <span class="btn_close cardReset" style="display: none;">close</span>
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <td>현금</td>
+                                   <td style="text-align: right;">
+                                       <p class="paymentPrice" data-msg="cash">0 원</p>
+                                       <input type="hidden" name="cash" value="0">
+                                       <input type="hidden" name="beforeCash" value="0">
+                                       <input type="hidden" name="cashReceiptsYn" value="N">
+                                       <span class="btn_close cashReset" style="display: none;">close</span>
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <td>총 결제금액</td>
+                                   <td class="c_blue" style="text-align: right;">
+                                       <p class="paymentPrice">0 원</p>
+                                       <input type="hidden" name="totalPayments" value="0">
+                                       <input type="hidden" name="beforeTotalPayments" value="0">
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <td>미수금</td>
+                                   <td class="c_red" style="text-align: right;">
+                                       <p>100,000 원</p>
+                                       <input type="hidden" name="receivables" value="100000">
+                                       <input type="hidden" name="beforeReceivables" value="100000">
+                                   </td>
+                               </tr>
+                            </tbody>
                         </table>
                         </div>
                     </div>
