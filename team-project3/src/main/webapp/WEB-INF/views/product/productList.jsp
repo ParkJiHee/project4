@@ -52,6 +52,7 @@
 					<div class="widget-header">
 						<i class="icon-th-large"></i>
 						<h3>상품관리</h3>
+						<button class="button btn btn-success" style=" margin-left:80%">상품등록</button>
 					</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
@@ -75,8 +76,8 @@
 						        
 								
 								<div class="plan-actions">				
-									<a href="javascript:;" class="btn">상세</a>
-									<a href="javascript:;" class="btn">삭제</a>				
+									<a href="javascript:;" class="btn btn-info">상세</a>
+									<a href="javascript:;" class="btn btn-danger">삭제</a>				
 								</div> <!-- /plan-actions -->
 					
 							</div> <!-- /plan -->
@@ -89,61 +90,51 @@
 						        <div class="plan-header">
 					                
 						        	<div class="plan-title">
-						        		Flex Package	        		
+						        		2개월 이용권	        		
 					        		</div> <!-- /plan-title -->
 					                
 						            <div class="plan-price">
-					                	$5<span class="term">Per Agent</span>
+					                	<span class="term">30만원</span>
 									</div> <!-- /plan-price -->
 									
-						        </div> <!-- /plan-header -->	          
+						        </div> <!-- /plan-header -->	        
 						        
-						        <div class="plan-features">
-									<ul>					
-										<li><strong>Perfect</strong> for mid size companies with round the clock support </li>
-										<li>Flexible package</li>
-										<li>Email & Chat support</li>
-										<li>Multimedia support</li>
-									</ul>
-								</div> <!-- /plan-features -->
+						        
 								
 								<div class="plan-actions">				
-									<a href="javascript:;" class="btn">Signup Now</a>				
+									<a href="javascript:;" class="btn">상세</a>
+									<a href="javascript:;" class="btn">삭제</a>				
 								</div> <!-- /plan-actions -->
 					
 							</div> <!-- /plan -->
 					    </div> <!-- /plan-container -->
+					    
 					    
 					    <div class="plan-container">
 					        <div class="plan">
 						        <div class="plan-header">
 					                
 						        	<div class="plan-title">
-						        		Virtual Agent	        		
+						        		3개월 이용권	        		
 					        		</div> <!-- /plan-title -->
 					                
 						            <div class="plan-price">
-					                	$30<span class="term">Per Month</span>
+					                	<span class="term">35만원</span>
 									</div> <!-- /plan-price -->
 									
-						        </div> <!-- /plan-header -->	       
+						        </div> <!-- /plan-header -->	        
 						        
-						        <div class="plan-features">
-									<ul>
-										<li><strong>Perfect</strong> for big companies with round the clock support and knwledge base.</li>
-										<li>Easy to setup and use</li>
-										<li>Mobile agent and multimedia support</li>
-										<li>Universal inbox and cases</li>
-									</ul>
-								</div> <!-- /plan-features -->
+						        
 								
 								<div class="plan-actions">				
-									<a href="javascript:;" class="btn">Signup Now</a>				
+									<a href="javascript:;" class="btn">상세</a>
+									<a href="javascript:;" class="btn">삭제</a>				
 								</div> <!-- /plan-actions -->
 					
 							</div> <!-- /plan -->
-							
 					    </div> <!-- /plan-container -->
+				
+				
 				
 				
 					</div> <!-- /pricing-plans -->
