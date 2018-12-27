@@ -109,9 +109,9 @@
 						<i class="shortcut-icon icon-user"></i>
 						<span class="shortcut-label">고객관리</span> 
 					</a>
-					<a href="javascript:;" class="shortcut">
+					<a href="/team-project3/product/productList.action" class="shortcut">
 						<i class="shortcut-icon icon-file"></i>
-						<span class="shortcut-label">Notes</span> 
+						<span class="shortcut-label">상품관리</span> 
 					</a>
 					<a href="javascript:;" class="shortcut">
 						<i class="shortcut-icon icon-picture"></i>
