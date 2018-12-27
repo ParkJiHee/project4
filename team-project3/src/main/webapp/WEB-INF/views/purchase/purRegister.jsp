@@ -42,28 +42,28 @@
                   <div id="big_stats" class="cf">
                     <div class="stat"> 
                     	<h3 class="bigstats">회원 정보</h3>
-                        <p>
-                        <table>
-                        	<tr>
-                        		<td>이름</td>
-                        		<td>www</td>
-                        	</tr>
-                        	<tr>
-                        		<td>번호</td>
-                        		<td>010-4567-7896</td>
-                        	</tr>
-                        </table>
-                        </p><hr>
+                        <div class="stats">
+                        	<table>
+	                        	<tr>
+	                        		<td>이름</td>
+	                        		<td>www</td>
+	                        	</tr>
+	                        	<tr>
+	                        		<td>번호</td>
+	                        		<td>010-4567-7896</td>
+	                        	</tr>
+	                        </table>
+                        </div>
                         
-                        <h3>결제 상품 정보</h3>
-                        <span class="service_name">헬스장만_다니자</span>
-                        <p class="txt_info">
+                        <h3 class="bigstats">결제 상품 정보</h3>
+                        <div class="stats">
+                        	<span class="service_name">헬스장만_다니자</span><br>
                             <span class="label">상품가격</span>
                             <span>100,000원</span>
-                        </p><hr>
+                        </div>
                         
-                        <h3>상품결제 금액 확인<span class="btn small gray resetBtn">다시 입력</span></h3>
-                        <div class="widget-table">
+                        <h3 class="bigstats">상품결제 금액 확인<span class="btn small gray resetBtn">다시 입력</span></h3>
+                        <div class="stats">
                             <table data-template="receivables">
                                 <tbody>
                                 <tr>
@@ -119,7 +119,8 @@
                     <!-- .stat -->
                     
                     <div class="stat"> 
-                    	<h3>결제 진행</h3>
+                    	<h3 class="bigstats">결제 진행</h3>
+                    	<div class="stats">
                         <p>
                             <span class="label">결제 담당자 선택</span>
                             <input type="hidden" value="N" id="extensionYn">
@@ -175,9 +176,10 @@
                             <span>00</span>
                             <span>000</span>
                         </div>
-                        <hr>
+                       </div>
                         <!-- //숫자 입력 패드 -->
-                        <h3>상품결제 수단 선택</h3>
+                        <h3 class="bigstats">상품결제 수단 선택</h3>
+                        <div class="stats">
                         <div class="flex_align payment">
                             <button class="firstPaymentCard">카드</button>
                             <button class="cash">현금</button>
@@ -189,12 +191,13 @@
                             <textarea name="comment"></textarea>
                         </p>
                         
-                        
+                        </div>
                     </div>
                     <!-- .stat -->
                     
                     <div class="stat">
-                    	<h3>포함된 이용권 정보</h3>
+                    	<h3 class="bigstats">포함된 이용권 정보</h3>
+                    	<div class="stats">
                         <div class="service_box_list">
                             <div class="box_service pass" data-attribute="pass" data-seq-partner-pass="172" data-service-type="PLACE">
                                 <input type="hidden" name="combineYn" value="">
@@ -224,14 +227,12 @@
                                     <span>헬스장 이용권</span>
                                 </p>
                                 <p class="txt_info">
-                                    <span class="label sub_tit">기간 및 횟수</span>
-                                    <span class="day_setting_new periodNumber" data-msg="periodNumber">1개월 / 무제한</span>
-                                </p>
-                                <p class="btn_info fr">
-                                   <a href="#" class="btn green changeBtn">기간 및 횟수 변경</a>
+                                    <span class="label sub_tit">기간 </span>
+                                    <span class="day_setting_new periodNumber" data-msg="periodNsumber">1개월</span>
                                 </p>
                             </div>
                         </div>
+                    </div>
                     </div>
                     <!-- .stat -->
                     
