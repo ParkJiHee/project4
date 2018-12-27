@@ -52,7 +52,7 @@
 					<div class="widget-header">
 						<i class="icon-th-large"></i>
 						<h3>상품관리</h3>
-						<button class="button btn btn-success" style=" margin-left:80%">상품등록</button>
+						<button class="button btn btn-primary" style=" margin-left:80%">상품등록</button>
 					</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
@@ -76,7 +76,7 @@
 						        
 								
 								<div class="plan-actions">				
-									<a href="javascript:;" class="btn btn-info">상세</a>
+									<a href="javascript:;" class="btn btn-success">상세</a>
 									<a href="javascript:;" class="btn btn-danger">삭제</a>				
 								</div> <!-- /plan-actions -->
 					
