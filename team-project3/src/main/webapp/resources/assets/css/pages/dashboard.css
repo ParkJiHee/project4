@@ -198,7 +198,6 @@ Bootstrap Admin Template by EGrappler.com
 #big_stats 
 { 
 	width: 100%; 
-	display: table;
 	margin-top: 1.5em;
 	
 	
@@ -210,15 +209,14 @@ Bootstrap Admin Template by EGrappler.com
 
 #big_stats .stat
 {
-	width: 25%;
+	width: auto;
 	height: 90px;
-	text-align: center;
 	display: table-cell;
 	padding: 0;
 	position: relative;
 	
-	border-right: 1px solid #CCC;
-	border-left: 1px solid #FFF;
+	border-right: 10px solid #CCC;
+	border-left: 10px solid #FFF;
 }
 #big_stats  i { font-size:30px; display:block; line-height: 40px; color:#b2afaa;}
 #big_stats .stat:hover i {color:#19bc9c;}
@@ -236,7 +234,7 @@ margin-bottom: 26px;}
 	border-right: none;
 }
 
-#big_stats .stat h4
+#big_stats .stat h3
 {
 	font-size: 11px;
 	font-weight: bold;

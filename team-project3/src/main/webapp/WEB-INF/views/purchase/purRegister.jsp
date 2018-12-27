@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Dashboard - Bootstrap Admin Template</title>
+<title>상품결제</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="/team-project3/resources/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -30,240 +30,225 @@
   <div class="main-inner">
     <div class="container">
       <div class="row">
-        <div class="span6">
+        <div class="span11">
           <div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-alt"></i>
-              <h3> Today's Stats</h3>
+              <h3>상품결제</h3>
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
               <div class="widget big-stats-container">
                 <div class="widget-content">
-                  <h6 class="bigstats">A fully responsive premium quality admin template built on Twitter Bootstrap by <a href="http://www.egrappler.com" target="_blank">EGrappler.com</a>.  These are some dummy lines to fill the area.</h6>
                   <div id="big_stats" class="cf">
-                    <div class="stat"> <i class="icon-anchor"></i> <span class="value">851</span> </div>
+                    <div class="stat"> 
+                    	<h3 class="bigstats">회원 정보</h3>
+                        <p>
+                        <table>
+                        	<tr>
+                        		<td>이름</td>
+                        		<td>www</td>
+                        	</tr>
+                        	<tr>
+                        		<td>번호</td>
+                        		<td>010-4567-7896</td>
+                        	</tr>
+                        </table>
+                        </p><hr>
+                        
+                        <h3>결제 상품 정보</h3>
+                        <span class="service_name">헬스장만_다니자</span>
+                        <p class="txt_info">
+                            <span class="label">상품가격</span>
+                            <span>100,000원</span>
+                        </p><hr>
+                        
+                        <h3>상품결제 금액 확인<span class="btn small gray resetBtn">다시 입력</span></h3>
+                        <div class="widget-table">
+                            <table data-template="receivables">
+                                <tbody>
+                                <tr>
+                                    <td>카드</td>
+                                    <td>
+                                        <p class="paymentPrice" data-msg="firstPaymentCard">0 원</p>
+                                        <input type="hidden" name="firstPaymentCard" value="0">
+                                        <input type="hidden" name="firstCardType" value="00">
+                                        <input type="hidden" name="beforeFirstPaymentCard" value="0">
+                                        <span class="btn_close cardReset" style="display: none;">close</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>현금</td>
+                                    <td>
+                                        <p class="paymentPrice" data-msg="cash">0 원</p>
+                                        <input type="hidden" name="cash" value="0">
+                                        <input type="hidden" name="beforeCash" value="0">
+                                        <input type="hidden" name="cashReceiptsYn" value="N">
+                                        <span class="btn_close cashReset" style="display: none;">close</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>이체</td>
+                                    <td>
+                                        <p class="paymentPrice" data-msg="bankTransfer">0 원</p>
+                                        <input type="hidden" name="bankTransfer" value="0">
+                                        <input type="hidden" name="beforeBankTransfer" value="0">
+                                        <span class="btn_close transferReset" style="display: none;">close</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>총 결제금액</td>
+                                    <td class="c_blue">
+                                        <p class="paymentPrice">0 원</p>
+                                        <input type="hidden" name="totalPayments" value="0">
+                                        <input type="hidden" name="beforeTotalPayments" value="0">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>미수금</td>
+                                    <td class="c_red">
+                                        <p>100,000 원</p>
+                                        <input type="hidden" name="receivables" value="100000">
+                                        <input type="hidden" name="beforeReceivables" value="100000">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
                     <!-- .stat -->
                     
-                    <div class="stat"> <i class="icon-thumbs-up-alt"></i> <span class="value">423</span> </div>
+                    <div class="stat"> 
+                    	<h3>결제 진행</h3>
+                        <p>
+                            <span class="label">결제 담당자 선택</span>
+                            <input type="hidden" value="N" id="extensionYn">
+                            <select name="seqPaymentEmployee">
+                                <option value="">담당직원</option>
+                                
+                                    <option value="3649">ING 봉화점 (테스트)</option>
+                                
+                                    <option value="3490">강지선 (제이필라 테스트)</option>
+                                
+                                    <option value="2060">기본 관리자(수정)</option>
+                                
+                                    <option value="3692">김선민 (퀸 승마 테스트)</option>
+                                
+                            </select>
+                        </p>
+                        <p>
+                        <span class="label">이용 시작일 선택</span>
+                        <input class="" type="date" name="purdateto" id="purdateto">
+                     	</p>
+                        <p>
+                        <span class="label">이용 만료일 선택</span>
+                        <input class="" type="date" name="purdatefrom" id="purdatefrom">
+                     	</p>
+                  
+                        <p>
+                            <span class="label">결제일자</span>
+                     
+                        
+                           <input class="" type="date" name="purregdate" id="purregdate">
+                        
+                        
+                     
+                  </p>
+                        <div class="input_cost">
+                            <span class="btn green costBtn">불러오기</span>
+                            <input type="text" placeholder="금액을 입력하여 주십시오." id="inputCost">
+                            <button class="delBtn btn small gray">지우기</button>
+                        </div>
+
+                        <!-- 숫자 입력 패드 -->
+                        <div class="flex_align input_cost_num">
+                            <span>1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                            <span>6</span>
+                            <span>7</span>
+                            <span>8</span>
+                            <span>9</span>
+                            <span>0</span>
+                            <span>00</span>
+                            <span>000</span>
+                        </div>
+                        <hr>
+                        <!-- //숫자 입력 패드 -->
+                        <h3>상품결제 수단 선택</h3>
+                        <div class="flex_align payment">
+                            <button class="firstPaymentCard">카드</button>
+                            <button class="cash">현금</button>
+                            <!-- <button class="cashReceipts">현금영수증</button> -->
+                            <button class="bankTransfer">이체</button>
+                        </div>
+                        <p>
+                            <span class="label">결제 메모</span>
+                            <textarea name="comment"></textarea>
+                        </p>
+                        
+                        
+                    </div>
                     <!-- .stat -->
                     
-                    <div class="stat"> <i class="icon-twitter-sign"></i> <span class="value">922</span> </div>
+                    <div class="stat">
+                    	<h3>포함된 이용권 정보</h3>
+                        <div class="service_box_list">
+                            <div class="box_service pass" data-attribute="pass" data-seq-partner-pass="172" data-service-type="PLACE">
+                                <input type="hidden" name="combineYn" value="">
+                                <input type="hidden" name="extensionYn" value="N">
+                                <input type="hidden" name="seqPartnerProductPass" value="15657">
+                                <input type="hidden" name="seqPartnerPaymentPass" value="">
+                                <input type="hidden" name="seqPartnerProductUsage" value="">
+                                <input type="hidden" name="useStartDt" value="">
+                                <input type="hidden" name="useEndDt" value="">
+                                <input type="hidden" name="usePeriodStr" value="1개월">
+                                <input type="hidden" name="usePeriod" value="1">
+                                <input type="hidden" name="usePeriodOrgin" value="1">
+                                <input type="hidden" name="usePeriodType" value="M">
+                                <input type="hidden" name="useNumberStr" value="무제한">
+                                <input type="hidden" name="useNumberType" value="F">
+                                <input type="hidden" name="useNumber" value="100000000">
+                                <input type="hidden" name="useNumberOrgin" value="100000000">
+                                <input type="hidden" name="usedNumber" value="0">
+
+                                <input type="hidden" name="limitNumber" value="">   
+                                <input type="hidden" name="serviceType" value="PLACE">
+                                <input type="hidden" name="seqPartnerPass" value="172">
+
+                                <strong class="sub_tit">장소 이용권</strong>
+                                <strong class="c_red fr" data-msg="isCombine"></strong>
+                                <p class="txt_info">
+                                    <span>헬스장 이용권</span>
+                                </p>
+                                <p class="txt_info">
+                                    <span class="label sub_tit">기간 및 횟수</span>
+                                    <span class="day_setting_new periodNumber" data-msg="periodNumber">1개월 / 무제한</span>
+                                </p>
+                                <p class="btn_info fr">
+                                   <a href="#" class="btn green changeBtn">기간 및 횟수 변경</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                     <!-- .stat -->
                     
-                    <div class="stat"> <i class="icon-bullhorn"></i> <span class="value">25%</span> </div>
-                    <!-- .stat --> 
                   </div>
                 </div>
-                <!-- /widget-content --> 
+
+                <div class="button_area">
+                    <a href="/manager/member/memberSelectProduct/439649" id="btnCancel" class="btn gray">취소</a>
+                    <a href="#" id="btnPaymentProduct" class="btn dark">결제하기</a>
+                </div>
                 
               </div>
             </div>
-          </div>
-          <!-- /widget -->
-          <div class="widget widget-nopad">
-            <div class="widget-header"> <i class="icon-list-alt"></i>
-              <h3> Recent News</h3>
-            </div>
-            <!-- /widget-header -->
-            <div class="widget-content">
-              <div id='calendar'>
-              </div>
-            </div>
-            <!-- /widget-content --> 
-          </div>
-          <!-- /widget -->
-          <div class="widget">
-            <div class="widget-header"> <i class="icon-file"></i>
-              <h3> Content</h3>
-            </div>
-            <!-- /widget-header -->
-            <div class="widget-content">
-              <ul class="messages_layout">
-                <li class="from_user left"> <a href="#" class="avatar"><img src="/team-project3/resources/assets/img/message_avatar1.png"/></a>
-                  <div class="message_wrap"> <span class="arrow"></span>
-                    <div class="info"> <a class="name">John Smith</a> <span class="time">1 hour ago</span>
-                      <div class="options_arrow">
-                        <div class="dropdown pull-right"> <a class="dropdown-toggle " id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#"> <i class=" icon-caret-down"></i> </a>
-                          <ul class="dropdown-menu " role="menu" aria-labelledby="dLabel">
-                            <li><a href="#"><i class=" icon-share-alt icon-large"></i> Reply</a></li>
-                            <li><a href="#"><i class=" icon-trash icon-large"></i> Delete</a></li>
-                            <li><a href="#"><i class=" icon-share icon-large"></i> Share</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="text"> As an interesting side note, as a head without a body, I envy the dead. There's one way and only one way to determine if an animal is intelligent. Dissect its brain! Man, I'm sore all over. I feel like I just went ten rounds with mighty Thor. </div>
-                  </div>
-                </li>
-                <li class="by_myself right"> <a href="#" class="avatar"><img src="/team-project3/resources/assets/img/message_avatar2.png"/></a>
-                  <div class="message_wrap"> <span class="arrow"></span>
-                    <div class="info"> <a class="name">Bender (myself) </a> <span class="time">4 hours ago</span>
-                      <div class="options_arrow">
-                        <div class="dropdown pull-right"> <a class="dropdown-toggle " id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#"> <i class=" icon-caret-down"></i> </a>
-                          <ul class="dropdown-menu " role="menu" aria-labelledby="dLabel">
-                            <li><a href="#"><i class=" icon-share-alt icon-large"></i> Reply</a></li>
-                            <li><a href="#"><i class=" icon-trash icon-large"></i> Delete</a></li>
-                            <li><a href="#"><i class=" icon-share icon-large"></i> Share</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="text"> All I want is to be a monkey of moderate intelligence who wears a suit… that's why I'm transferring to business school! I had more, but you go ahead. Man, I'm sore all over. I feel like I just went ten rounds with mighty Thor. File not found. </div>
-                  </div>
-                </li>
-                <li class="from_user left"> <a href="#" class="avatar"><img src="/team-project3/resources/assets/img/message_avatar1.png"/></a>
-                  <div class="message_wrap"> <span class="arrow"></span>
-                    <div class="info"> <a class="name">Celeste Holm </a> <span class="time">1 Day ago</span>
-                      <div class="options_arrow">
-                        <div class="dropdown pull-right"> <a class="dropdown-toggle " id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#"> <i class=" icon-caret-down"></i> </a>
-                          <ul class="dropdown-menu " role="menu" aria-labelledby="dLabel">
-                            <li><a href="#"><i class=" icon-share-alt icon-large"></i> Reply</a></li>
-                            <li><a href="#"><i class=" icon-trash icon-large"></i> Delete</a></li>
-                            <li><a href="#"><i class=" icon-share icon-large"></i> Share</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="text"> And I'd do it again! And perhaps a third time! But that would be it. Are you crazy? I can't swallow that. And I'm his friend Jesus. No, I'm Santa Claus! And from now on you're all named Bender Jr. </div>
-                  </div>
-                </li>
-                <li class="from_user left"> <a href="#" class="avatar"><img src="/team-project3/resources/assets/img/message_avatar2.png"/></a>
-                  <div class="message_wrap"> <span class="arrow"></span>
-                    <div class="info"> <a class="name">Mark Jobs </a> <span class="time">2 Days ago</span>
-                      <div class="options_arrow">
-                        <div class="dropdown pull-right"> <a class="dropdown-toggle " id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#"> <i class=" icon-caret-down"></i> </a>
-                          <ul class="dropdown-menu " role="menu" aria-labelledby="dLabel">
-                            <li><a href="#"><i class=" icon-share-alt icon-large"></i> Reply</a></li>
-                            <li><a href="#"><i class=" icon-trash icon-large"></i> Delete</a></li>
-                            <li><a href="#"><i class=" icon-share icon-large"></i> Share</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="text"> That's the ONLY thing about being a slave. Now, now. Perfectly symmetrical violence never solved anything. Uh, is the puppy mechanical in any way? As an interesting side note, as a head without a body, I envy the dead. </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <!-- /widget-content --> 
-          </div>
-          <!-- /widget --> 
-        </div>
-        <!-- /span6 -->
-        <div class="span6">
-          <div class="widget">
-            <div class="widget-header"> <i class="icon-bookmark"></i>
-              <h3>Important Shortcuts</h3>
-            </div>
-            <!-- /widget-header -->
-            <div class="widget-content">
-              <div class="shortcuts"> <a href="javascript:;" class="shortcut"><i class="shortcut-icon icon-list-alt"></i><span
-                                        class="shortcut-label">Apps</span> </a><a href="javascript:;" class="shortcut"><i
-                                            class="shortcut-icon icon-bookmark"></i><span class="shortcut-label">Bookmarks</span> </a><a href="javascript:;" class="shortcut"><i class="shortcut-icon icon-signal"></i> <span class="shortcut-label">Reports</span> </a><a href="javascript:;" class="shortcut"> <i class="shortcut-icon icon-comment"></i><span class="shortcut-label">Comments</span> </a><a href="javascript:;" class="shortcut"><i class="shortcut-icon icon-user"></i><span
-                                                class="shortcut-label">Users</span> </a><a href="javascript:;" class="shortcut"><i
-                                                    class="shortcut-icon icon-file"></i><span class="shortcut-label">Notes</span> </a><a href="javascript:;" class="shortcut"><i class="shortcut-icon icon-picture"></i> <span class="shortcut-label">Photos</span> </a><a href="javascript:;" class="shortcut"> <i class="shortcut-icon icon-tag"></i><span class="shortcut-label">Tags</span> </a> </div>
-              <!-- /shortcuts --> 
-            </div>
-            <!-- /widget-content --> 
-          </div>
-          <!-- /widget -->
-          <div class="widget">
-            <div class="widget-header"> <i class="icon-signal"></i>
-              <h3> Area Chart Example</h3>
-            </div>
-            <!-- /widget-header -->
-            <div class="widget-content">
-              <canvas id="area-chart" class="chart-holder" height="250" width="538"> </canvas>
-              <!-- /area-chart --> 
-            </div>
-            <!-- /widget-content --> 
-          </div>
-          <!-- /widget -->
-          <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-th-list"></i>
-              <h3>A Table Example</h3>
-            </div>
-            <!-- /widget-header -->
-            <div class="widget-content">
-              <table class="table table-striped table-bordered">
-                <thead>
-                  <tr>
-                    <th> Free Resource </th>
-                    <th> Download</th>
-                    <th class="td-actions"> </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td> Fresh Web Development Resources </td>
-                    <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
-                  </tr>
-                  <tr>
-                    <td> Fresh Web Development Resources </td>
-                    <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
-                  </tr>
-                  <tr>
-                    <td> Fresh Web Development Resources </td>
-                    <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
-                  </tr>
-                  <tr>
-                    <td> Fresh Web Development Resources </td>
-                    <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
-                  </tr>
-                  <tr>
-                    <td> Fresh Web Development Resources </td>
-                    <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
-                  </tr>
-                
-                </tbody>
-              </table>
-            </div>
-            <!-- /widget-content --> 
-          </div>
-          <!-- /widget --> 
-          <div class="widget widget-nopad">
-            <div class="widget-header"> <i class="icon-list-alt"></i>
-              <h3> Recent News</h3>
-            </div>
-            <!-- /widget-header -->
-            <div class="widget-content">
-              <ul class="news-items">
-                <li>
-                  
-                  <div class="news-item-date"> <span class="news-item-day">29</span> <span class="news-item-month">Aug</span> </div>
-                  <div class="news-item-detail"> <a href="http://www.egrappler.com/thursday-roundup-40/" class="news-item-title" target="_blank">Thursday Roundup # 40</a>
-                    <p class="news-item-preview"> This is our web design and development news series where we share our favorite design/development related articles, resources, tutorials and awesome freebies. </p>
-                  </div>
-                  
-                </li>
-                <li>
-                  
-                  <div class="news-item-date"> <span class="news-item-day">15</span> <span class="news-item-month">Jun</span> </div>
-                  <div class="news-item-detail"> <a href="http://www.egrappler.com/retina-ready-responsive-app-landing-page-website-template-app-landing/" class="news-item-title" target="_blank">Retina Ready Responsive App Landing Page Website Template – App Landing</a>
-                    <p class="news-item-preview"> App Landing is a retina ready responsive app landing page website template perfect for software and application developers and small business owners looking to promote their iPhone, iPad, Android Apps and software products.</p>
-                  </div>
-                  
-                </li>
-                <li>
-                  
-                  <div class="news-item-date"> <span class="news-item-day">29</span> <span class="news-item-month">Oct</span> </div>
-                  <div class="news-item-detail"> <a href="http://www.egrappler.com/open-source-jquery-php-ajax-contact-form-templates-with-captcha-formify/" class="news-item-title" target="_blank">Open Source jQuery PHP Ajax Contact Form Templates With Captcha: Formify</a>
-                    <p class="news-item-preview"> Formify is a contribution to lessen the pain of creating contact forms. The collection contains six different forms that are commonly used. These open source contact forms can be customized as well to suit the need for your website/application.</p>
-                  </div>
-                  
-                </li>
-              </ul>
-            </div>
-            <!-- /widget-content --> 
           </div>
           <!-- /widget -->
         </div>
-        <!-- /span6 --> 
+        <!-- /span6 -->
       </div>
       <!-- /row --> 
     </div>
@@ -276,50 +261,50 @@
   <div class="extra-inner">
     <div class="container">
       <div class="row">
-                    <div class="span3">
-                        <h4>
-                            About Free Admin Template</h4>
-                        <ul>
-                            <li><a href="javascript:;">EGrappler.com</a></li>
-                            <li><a href="javascript:;">Web Development Resources</a></li>
-                            <li><a href="javascript:;">Responsive HTML5 Portfolio Templates</a></li>
-                            <li><a href="javascript:;">Free Resources and Scripts</a></li>
-                        </ul>
-                    </div>
-                    <!-- /span3 -->
-                    <div class="span3">
-                        <h4>
-                            Support</h4>
-                        <ul>
-                            <li><a href="javascript:;">Frequently Asked Questions</a></li>
-                            <li><a href="javascript:;">Ask a Question</a></li>
-                            <li><a href="javascript:;">Video Tutorial</a></li>
-                            <li><a href="javascript:;">Feedback</a></li>
-                        </ul>
-                    </div>
-                    <!-- /span3 -->
-                    <div class="span3">
-                        <h4>
-                            Something Legal</h4>
-                        <ul>
-                            <li><a href="javascript:;">Read License</a></li>
-                            <li><a href="javascript:;">Terms of Use</a></li>
-                            <li><a href="javascript:;">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                    <!-- /span3 -->
-                    <div class="span3">
-                        <h4>
-                            Open Source jQuery Plugins</h4>
-                        <ul>
-                            <li><a href="">Open Source jQuery Plugins</a></li>
-                            <li><a href="">HTML5 Responsive Tempaltes</a></li>
-                            <li><a href="">Free Contact Form Plugin</a></li>
-                            <li><a href="">Flat UI PSD</a></li>
-                        </ul>
-                    </div>
-                    <!-- /span3 -->
-                </div>
+          <div class="span3">
+              <h4>
+                  About Free Admin Template</h4>
+              <ul>
+                  <li><a href="javascript:;">EGrappler.com</a></li>
+                  <li><a href="javascript:;">Web Development Resources</a></li>
+                  <li><a href="javascript:;">Responsive HTML5 Portfolio Templates</a></li>
+                  <li><a href="javascript:;">Free Resources and Scripts</a></li>
+              </ul>
+          </div>
+          <!-- /span3 -->
+          <div class="span3">
+              <h4>
+                  Support</h4>
+              <ul>
+                  <li><a href="javascript:;">Frequently Asked Questions</a></li>
+                  <li><a href="javascript:;">Ask a Question</a></li>
+                  <li><a href="javascript:;">Video Tutorial</a></li>
+                  <li><a href="javascript:;">Feedback</a></li>
+              </ul>
+          </div>
+          <!-- /span3 -->
+          <div class="span3">
+              <h4>
+                  Something Legal</h4>
+              <ul>
+                  <li><a href="javascript:;">Read License</a></li>
+                  <li><a href="javascript:;">Terms of Use</a></li>
+                  <li><a href="javascript:;">Privacy Policy</a></li>
+              </ul>
+          </div>
+          <!-- /span3 -->
+          <div class="span3">
+              <h4>
+                  Open Source jQuery Plugins</h4>
+              <ul>
+                  <li><a href="">Open Source jQuery Plugins</a></li>
+                  <li><a href="">HTML5 Responsive Tempaltes</a></li>
+                  <li><a href="">Free Contact Form Plugin</a></li>
+                  <li><a href="">Flat UI PSD</a></li>
+              </ul>
+          </div>
+          <!-- /span3 -->
+        </div>
       <!-- /row --> 
     </div>
     <!-- /container --> 
@@ -351,127 +336,6 @@
 <script language="javascript" type="text/javascript" src="/team-project3/resources/assets/js/full-calendar/fullcalendar.min.js"></script>
  
 <script src="/team-project3/resources/assets/js/base.js"></script> 
-<script>     
-
-        var lineChartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [
-				{
-				    fillColor: "rgba(220,220,220,0.5)",
-				    strokeColor: "rgba(220,220,220,1)",
-				    pointColor: "rgba(220,220,220,1)",
-				    pointStrokeColor: "#fff",
-				    data: [65, 59, 90, 81, 56, 55, 40]
-				},
-				{
-				    fillColor: "rgba(151,187,205,0.5)",
-				    strokeColor: "rgba(151,187,205,1)",
-				    pointColor: "rgba(151,187,205,1)",
-				    pointStrokeColor: "#fff",
-				    data: [28, 48, 40, 19, 96, 27, 100]
-				}
-			]
-
-        }
-
-        var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
-
-
-        var barChartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [
-				{
-				    fillColor: "rgba(220,220,220,0.5)",
-				    strokeColor: "rgba(220,220,220,1)",
-				    data: [65, 59, 90, 81, 56, 55, 40]
-				},
-				{
-				    fillColor: "rgba(151,187,205,0.5)",
-				    strokeColor: "rgba(151,187,205,1)",
-				    data: [28, 48, 40, 19, 96, 27, 100]
-				}
-			]
-
-        }    
-
-        $(document).ready(function() {
-        var date = new Date();
-        var d = date.getDate();
-        var m = date.getMonth();
-        var y = date.getFullYear();
-        var calendar = $('#calendar').fullCalendar({
-          header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-          },
-          selectable: true,
-          selectHelper: true,
-          select: function(start, end, allDay) {
-            var title = prompt('Event Title:');
-            if (title) {
-              calendar.fullCalendar('renderEvent',
-                {
-                  title: title,
-                  start: start,
-                  end: end,
-                  allDay: allDay
-                },
-                true // make the event "stick"
-              );
-            }
-            calendar.fullCalendar('unselect');
-          },
-          editable: true,
-          events: [
-            {
-              title: 'All Day Event',
-              start: new Date(y, m, 1)
-            },
-            {
-              title: 'Long Event',
-              start: new Date(y, m, d+5),
-              end: new Date(y, m, d+7)
-            },
-            {
-              id: 999,
-              title: 'Repeating Event',
-              start: new Date(y, m, d-3, 16, 0),
-              allDay: false
-            },
-            {
-              id: 999,
-              title: 'Repeating Event',
-              start: new Date(y, m, d+4, 16, 0),
-              allDay: false
-            },
-            {
-              title: 'Meeting',
-              start: new Date(y, m, d, 10, 30),
-              allDay: false
-            },
-            {
-              title: 'Lunch',
-              start: new Date(y, m, d, 12, 0),
-              end: new Date(y, m, d, 14, 0),
-              allDay: false
-            },
-            {
-              title: 'Birthday Party',
-              start: new Date(y, m, d+1, 19, 0),
-              end: new Date(y, m, d+1, 22, 30),
-              allDay: false
-            },
-            {
-              title: 'EGrappler.com',
-              start: new Date(y, m, 28),
-              end: new Date(y, m, 29),
-              url: 'http://EGrappler.com/'
-            }
-          ]
-        });
-      });
-    </script><!-- /Calendar -->
 </body>
 </html>
 
