@@ -34,9 +34,6 @@
       <div class="row">
         
         <div class="span12">
-	      
-	      	<div class="info-box">
-               <div class="row-fluid stats-box">
                   
                   <div class="widget-content">
 						
@@ -44,17 +41,78 @@
 						
 						<div class="tabbable">
 						<ul class="nav nav-tabs">
-						  <li>
-						    <a href="#formcontrols" data-toggle="tab">Form Controls</a>
-						  </li>
-						  <li  class="active"><a href="#jscontrols" data-toggle="tab">JS Controls</a></li>
+						  <li><a href="#formcontrols" data-toggle="tab">전체 회원</a></li>
+						  <li><a href="#jscontrols" data-toggle="tab">미결제 회원</a></li>
+						  <li class="active"><a href="#formcontrols" data-toggle="tab">이용 회원</a></li>
+						  <li><a href="#formcontrols" data-toggle="tab">만료 회원</a></li>
+						  <li><a href="#formcontrols" data-toggle="tab">만료 3일전</a></li>
+						  <li><a href="#formcontrols" data-toggle="tab">만료 7일전</a></li>
+						  <li><a href="#formcontrols" data-toggle="tab">미납 회원</a></li>
+						  <li><a href="#formcontrols" data-toggle="tab">환불</a></li>
+						  <li><a href="#formcontrols" data-toggle="tab">중지 회원</a></li>
 						</ul>
 						
 						<br>
 						
 							<div class="tab-content">
-								<div class="tab-pane" id="formcontrols">
+								<div class="tab-pane active" id="formcontrols">
+								
 								<form id="edit-profile" class="form-horizontal">
+								
+									<fieldset class="nav pull-right">
+										<div class="input-append">
+											<input type="text" name="search" placeholder="Search by Keyword">
+											<button class="btn" type="button"><i class="icon-search"></i></button>
+											<!-- <a class="btn btn-small" href="#"><i class="icon-search"></i></a> -->
+										</div>
+									</fieldset>
+									
+									<fieldset>
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+									</fieldset>
+									
+									<hr>
+									
 									<fieldset>
 										
 										<div class="control-group">											
@@ -64,163 +122,82 @@
 												<p class="help-block">Your username is for logging in and cannot be changed.</p>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
-										
-										
-										<div class="control-group">											
-											<label class="control-label" for="firstname">First Name</label>
-											<div class="controls">
-												<input type="text" class="span6" id="firstname" value="John">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										
-										
-										<div class="control-group">											
-											<label class="control-label" for="lastname">Last Name</label>
-											<div class="controls">
-												<input type="text" class="span6" id="lastname" value="Donga">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										
-										
-										<div class="control-group">											
-											<label class="control-label" for="email">Email Address</label>
-											<div class="controls">
-												<input type="text" class="span4" id="email" value="john.donga@egrappler.com">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										
-										
-										<br /><br />
-										
-										<div class="control-group">											
-											<label class="control-label" for="password1">Password</label>
-											<div class="controls">
-												<input type="password" class="span4" id="password1" value="thisispassword">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										
-										
-										<div class="control-group">											
-											<label class="control-label" for="password2">Confirm</label>
-											<div class="controls">
-												<input type="password" class="span4" id="password2" value="thisispassword">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										
-                                        
-                                        
-                                        <div class="control-group">											
-											<label class="control-label">Checkboxes</label>
-											
-                                            
-                                            <div class="controls">
-                                            <label class="checkbox inline">
-                                              <input type="checkbox"> Option 01
-                                            </label>
-                                            
-                                            <label class="checkbox inline">
-                                              <input type="checkbox"> Option 02
-                                            </label>
-                                          </div>		<!-- /controls -->		
-										</div> <!-- /control-group -->
-                                        
-                                        
-                                        
-                                        <div class="control-group">											
-											<label class="control-label">Radio Buttons</label>
-											
-                                            
-                                            <div class="controls">
-                                            <label class="radio inline">
-                                              <input type="radio"  name="radiobtns"> Option 01
-                                            </label>
-                                            
-                                            <label class="radio inline">
-                                              <input type="radio" name="radiobtns"> Option 02
-                                            </label>
-                                          </div>	<!-- /controls -->			
-										</div> <!-- /control-group -->
-                                        
-                                        
-                                        
-                                        
-                                        <div class="control-group">											
-											<label class="control-label" for="radiobtns">Combined Textbox</label>
-											
-                                            <div class="controls">
-                                               <div class="input-prepend input-append">
-                                                  <span class="add-on">$</span>
-                                                  <input class="span2" id="appendedPrependedInput" type="text">
-                                                  <span class="add-on">.00</span>
-                                                </div>
-                                              </div>	<!-- /controls -->			
-										</div> <!-- /control-group -->
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        <div class="control-group">											
-											<label class="control-label" for="radiobtns">Textbox with Buttons </label>
-											
-                                            <div class="controls">
-                                               <div class="input-append">
-                                                  <input class="span2 m-wrap" id="appendedInputButton" type="text">
-                                                  <button class="btn" type="button">Go!</button>
-                                                </div>
-                                              </div>	<!-- /controls -->			
-										</div> <!-- /control-group -->
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        <div class="control-group">											
-											<label class="control-label" for="radiobtns">Dropdown in a button group</label>
-											
-                                            <div class="controls">
-                                              <div class="btn-group">
-                                              <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> User</a>
-                                              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                                              <ul class="dropdown-menu">
-                                                <li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
-                                                <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
-                                                <li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#"><i class="i"></i> Make admin</a></li>
-                                              </ul>
-                                            </div>
-                                              </div>	<!-- /controls -->			
-										</div> <!-- /control-group -->
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        <div class="control-group">											
-											<label class="control-label" for="radiobtns">Button sizes</label>
-											
-                                            <div class="controls">
-                                              <a class="btn btn-large" href="#"><i class="icon-star"></i> Star</a>
-                                                <a class="btn btn-small" href="#"><i class="icon-star"></i> Star</a>
-                                                <a class="btn btn-mini" href="#"><i class="icon-star"></i> Star</a>
-                                              </div>	<!-- /controls -->			
-										</div> <!-- /control-group -->
-                                        
-										
 											
 										 <br />
 										
-											
-										<div class="form-actions">
-											<button type="submit" class="btn btn-primary">Save</button> 
-											<button class="btn">Cancel</button>
-										</div> <!-- /form-actions -->
+			<div class="span3">
+	      		
+	      		<div class="widget">
+	      			
+	      			<div class="widget-content">
+	      				
+			      		<h1>3 Columns</h1>
+			      		
+			      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+			      		
+		      		</div> <!-- /widget-content -->
+		      		
+	      		</div> <!-- /widget -->
+	      		
+      		</div> <!-- /span3 -->
+      		 	
+	      	
+	      	<div id="target-4" class="span3">
+	      		
+	      		<div class="widget">
+	      			
+	      			<div class="widget-content">
+	      				
+			      		<h1>3 Columns</h1>
+			      		
+			      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+			      		
+		      		</div> <!-- /widget-content -->
+		      		
+	      		</div> <!-- /widget -->
+	      		
+      		</div> <!-- /span3 -->
+      		 	
+	      	
+	      	<div class="span3">
+	      		
+	      		<div class="widget">
+	      			
+	      			<div class="widget-content">
+	      				
+			      		<h1>3 Columns</h1>
+			      		
+			      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+			      		
+		      		</div> <!-- /widget-content -->
+		      		
+	      		</div> <!-- /widget -->
+	      		
+      		</div> <!-- /span3 -->
+      		 	
+	      	
+	      	<div class="span3">
+	      		
+	      		<div class="widget">
+	      			
+	      			<div class="widget-content">
+	      				
+			      		<h1>3 Columns</h1>
+			      		
+			      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+			      		
+		      		</div> <!-- /widget-content -->
+		      		
+	      		</div> <!-- /widget -->
+	      		
+      		</div> <!-- /span3 -->
+										
+										
 									</fieldset>
 								</form>
 								</div>
 								
-								<div class="tab-pane active" id="jscontrols">
+								<div class="tab-pane" id="jscontrols">
 									<form id="edit-profile2" class="form-vertical">
 										<fieldset>
 											
@@ -411,13 +388,6 @@
 						
 					</div> <!-- /widget-content -->
                   
-                  
-               </div>
-               
-               
-             </div>
-               
-               
          </div>
         
       </div>
