@@ -18,6 +18,17 @@
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    
+    <!-- <script type="text/javascript">
+    //location.href=
+	    var membersignup = document.querySelector('#membersignup');
+	    membersignup.addEventListener('click', function(event) {
+	 	   openedWindow = window.open(
+	 				'/team-project3/login.action',	//새 브라우저에 표시할 html 
+	 				'hello', //브라우저에 이름을 지정
+	 				'width=600,height=300'); //새 브라우저의 속성
+	 	});
+    </script> -->
 </head>
 <body>
 
@@ -37,9 +48,7 @@
                   
                   <div class="widget-content">
 						
-						
-						
-						<div class="tabbable">
+					<div class="tabbable">
 						<ul class="nav nav-tabs">
 						  <li><a href="#formcontrols" data-toggle="tab">전체 회원</a></li>
 						  <li><a href="#jscontrols" data-toggle="tab">미결제 회원</a></li>
