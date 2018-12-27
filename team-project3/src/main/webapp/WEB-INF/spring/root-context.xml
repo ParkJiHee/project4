@@ -48,6 +48,15 @@
 		<!-- <property name="productMapper" ref="productMapper"/> -->
 	</bean>
 	
+	<bean id="purchaseService" class="com.teamproject3.service.PurchaseServiceImpl">
+		<property name="purchaseDao" ref="purchaseDao" />
+	</bean>
+	
+	<bean id="purchaseDao" class="com.teamproject3.dao.OraclePurchaseDao">
+		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
+		<!-- <property name="productMapper" ref="productMapper"/> -->
+	</bean>
+	
 	<!-- MyBatis -->
 	<bean id="sqlSessionFactory" 
 		  class="org.mybatis.spring.SqlSessionFactoryBean">
