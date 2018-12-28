@@ -1,4 +1,4 @@
-﻿*.java.hsp
+*.java.hsp
 *.sonarj
 *.sw*
 .DS_Store
@@ -25,6 +25,7 @@ buildSrc/build
 target/
 target/test-classes/
 target/classes/
+target/m2e-wtp
 
 # Eclipse artifacts, including WTP generated manifests
 .classpath
