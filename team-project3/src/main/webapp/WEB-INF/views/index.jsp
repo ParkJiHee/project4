@@ -93,17 +93,17 @@
 						<i class="shortcut-icon icon-list-alt"></i> 
 						<span class="shortcut-label">스케줄</span>
 					</a>
-					<a href="javascript:;" class="shortcut">
+					<a href=/team-project3/financial/accountant.action class="shortcut">
 						<i class="shortcut-icon icon-bookmark"></i>
-						<span class="shortcut-label">Bookmarks</span> 
+						<span class="shortcut-label">회계관리</span> 
 					</a>
 					<a href="/team-project3/purchase/purRegister.action" class="shortcut">
 						<i class="shortcut-icon icon-signal"></i>
 						<span class="shortcut-label">상품결제</span> 
 					</a>
-					<a href="javascript:;" class="shortcut"> 
+					<a href=/team-project3/financial/possiblemember.action class="shortcut"> 
 						<i class="shortcut-icon icon-comment"></i>
-						<span class="shortcut-label">Comments</span>
+						<span class="shortcut-label">잠재고객관리</span>
 					</a>
 					<a href="/team-project3/member/memberlist.action" class="shortcut">
 						<i class="shortcut-icon icon-user"></i>

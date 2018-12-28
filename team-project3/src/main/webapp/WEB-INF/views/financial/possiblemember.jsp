@@ -1,3 +1,4 @@
+<%@page import="com.teamproject3.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -173,7 +174,6 @@
 		<hr>
 		<div id="menu2">
 		<a href="#" id="call" class="btn btn-warning">전화연락</a>
-		<a href="#" id="visit" class="btn btn-warning">방문상담</a>
 		<a href="#" id="listdel" class="btn btn-danger">목록에서제거</a>
 		</div>
 		
@@ -189,7 +189,7 @@
         <button type="button" class="close" data-dismiss="modal">취소</button>
       </div> --%>
       <div class="modal-body">
-        	<form action="#" id="newregister" method="post" enctype="multipart/form-data">			
+        	<form action="#" id="newregister" method="post" enctype="multipart/form-data"  modelAttribute="membervo" >			
 			
 			<div class="form-horizontal">
 
@@ -398,7 +398,7 @@
 				<c:choose>
 					<c:when test="${ empty data }">
 						<tbody>
-							<td colspan="15" style="text-align:center">테이블 자료가 없습니다.</td>
+							<td colspan="15" style="text-align:center">목록이 없습니다</td>
 						</tbody>
 					</c:when>
 					<c:otherwise>
