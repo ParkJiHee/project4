@@ -15,11 +15,41 @@
         rel="stylesheet">
     <link href="/team-project3/resources/assets/css/font-awesome.css" rel="stylesheet">
     <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet">
+    <link href="/team-project3/resources/assets/css/pages/dashboard.css" rel="stylesheet">
     
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <style>
+    	#file { width:0; height:0; } 
+    </style>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+    $(function(){          
+    	$('#btn-upload').click(function(e){
+    		e.preventDefault();
+    		
+    		if($('#image').val() > 0 ){
+    			$('#image').val();
+    		}
+    		else{
+    		$("input:file").click();
+    		var ext = $("input:file").val().split(".").pop().toLowerCase();
+    		if(ext.length > 0){
+    			if($.inArray(ext, ["gif","png","jpg","jpeg"]) == -1) { 
+    				alert("gif,png,jpg 파일만 업로드 할수 있습니다.");
+    				return false;  
+    			}                  
+    		}
+    		var file = $("input:file").val().toLowerCase();
+    		var image = file
+    		$('#image').val(image);
+    		}
+    	}); 
+    });     
+ 	</script>
 </head>
 <body>
     <div class="navbar navbar-fixed-top">
@@ -88,12 +118,13 @@
         <!-- /subnavbar-inner -->
     </div>
     <!-- /subnavbar -->
+
     <div class="main">
         <div class="main-inner">
             <div class="container">
             
 			
-            	  <div class="dropdown">등록일 &nbsp;
+           <div class="dropdown">등록일 &nbsp;
 			<select name="product" size="1" style="width: 95px">
 				<option value="ironman">결제구분</option>
 				<option value="deadpool" name="deadpool">결제고객</option>
@@ -128,13 +159,173 @@
 			
 			<input type="text" width="5px" name="membersearch" placeholder="회원명">
 			<button type="submit" id="search" name="search" class="btn btn-small btn-success">검색</button>
-			
-			<button type="submit" id="newregister" name="newmember" class="btn btn-primary">신규고객등록</button>
-
+			<button type="button" id="register" name="register" class="btn btn-small btn-success" data-toggle="modal" data-target="#myModal">신규고객등록</button>
 		</div>
+		
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+ <!--      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">취소</button>
+      </div> -->
+      <div class="modal-body">
+        		<form action="#" method="post" enctype="multipart/form-data">			
+			
+			<div class="form-horizontal">
+			
+			
+				
+				<fieldset>
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">
+				<img src="/team-project3/resources/assets/img/user.png"/></label>
+				<input type='file' id='file' name='file' />
+				<input type="text" name="image" id="image" readonly/>
+			<button id='btn-upload' class="btn btn-info" onfocus="this.blur();">이미지찾기</button>
+				</div>
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">*회원명</label>
+					<div class="controls">
+						<input type="text" name="firstname" id="firstname" placeholder="이름 입력">
+						<br>
+						<label class="radio inline">
+                            <input type="radio" name="radiobtns" checked="checked"> 남성
+                       </label>
+                       
+                       <label class="radio inline">
+                            <input type="radio" name="radiobtns"> 여성
+                       </label>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">*휴대전화번호</label>
+					<div class="controls">
+						<input type="text" name="firstname" id="firstname" class="span1 m-wrap">
+						<input type="text" name="firstname" id="firstname" class="span1 m-wrap">
+						<input type="text" name="firstname" id="firstname" class="span1 m-wrap">
+						<label class="checkbox inline">
+                           <input type="checkbox" checked="checked"> SNS 수신 동의
+                        </label>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">*회원 번호</label>
+					<div class="controls">
+						<input type="text" name="firstname" id="firstname">
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">회원 바코드 번호</label>
+					<div class="controls">
+						<input type="text" name="firstname" id="firstname">
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">*유입 상태</label>
+					<div class="controls">
+						<label class="radio inline">
+                            <input type="radio" name="radiobtns" checked="checked"> 방문
+                       </label>
+                       
+                       <label class="radio inline">
+                            <input type="radio" name="radiobtns"> 전화
+                       </label>
+                       
+                       <label class="radio inline">
+                            <input type="radio" name="radiobtns"> 온라인
+                       </label>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<hr>
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">고객관리 담당자</label>
+					<div class="controls">
+						<select name="search_expire" data-function="search" style="width: auto;">
+							<option >검색조건 선택</option>
+							<option value="search_service_expire">이용권 만료일 검색</option>
+							<option value="search_locker_expire">락커 만료일 검색</option>
+							<option value="search_visit_expire">방문 만료일 검색</option>
+						</select>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">고객 유입 경로</label>
+					<div class="controls">
+						<select name="search_expire" data-function="search" style="width: auto;">
+							<option >검색조건 선택</option>
+							<option value="search_service_expire">이용권 만료일 검색</option>
+							<option value="search_locker_expire">락커 만료일 검색</option>
+							<option value="search_visit_expire">방문 만료일 검색</option>
+						</select>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">생년월일</label>
+					<div class="controls">
+						<input type="date" name="firstname" id="firstname">
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">주소</label>
+					<div class="controls">
+						<input type="text" name="firstname" id="firstname" class="span3 m-wrap" placeholder="주소를 입력하세요">
+						<input type="text" name="firstname" id="firstname" class="span3 m-wrap" placeholder="상세주소 입력">
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+			
+				<div class="control-group">											
+					<label class="control-label" for="firstname">이메일</label>
+					<div class="controls">
+						<input type="text" name="firstname" id="firstname" class="span2 m-wrap">
+						@
+						<input type="text" name="firstname" id="firstname" class="span1 m-wrap">
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">메모</label>
+					<div class="controls">
+						<textarea rows="3" cols="30"></textarea>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+			</fieldset>
+			</div>
+			
+			<div class="form-actions">
+				
+				<button class="btn btn-default" data-dismiss="modal">닫기</button>
+				<button type="submit" class="btn btn-primary">잠재고객 등록</button>
+				<button class="btn btn-default" data-dismiss="modal">등록후 상품 판매</button>
+				
+			</div> <!-- .actions -->
+			
+		</form>		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+ 
             
-            
-               <%-- 전체 월별 리스트 --%>
+      <%-- 전체 월별 리스트 --%>
 		<div id="list">
 			<table class="table table-bordered table-condensed table-hover"
 				id="reservationList">
