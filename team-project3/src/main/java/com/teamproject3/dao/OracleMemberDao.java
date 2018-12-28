@@ -14,8 +14,7 @@ public class OracleMemberDao implements MemberDao{
 
 	@Override
 	public void insertMember(MemberVo member) {
-		// TODO Auto-generated method stub
-		
+		memberMapper.insertMember(member);
 	}
 
 	@Override

@@ -32,8 +32,8 @@
       <beans:property name="basenames">
          <beans:list>
             <!-- 폴더이름.파일이름 -->
-            <beans:value>message.message</beans:value>
             <beans:value>message.validation</beans:value>
+            <beans:value>message.member_validation</beans:value>
          </beans:list>
       </beans:property>
    </beans:bean>

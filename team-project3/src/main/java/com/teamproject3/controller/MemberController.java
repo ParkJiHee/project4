@@ -59,8 +59,7 @@ public class MemberController {
 		return "member/memberlist";
 	}*/
 	
-	// 댓글 메서드
-	@RequestMapping(value = "/membersignup.action", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/membersignup.action", method = RequestMethod.POST)
 	@ResponseBody
 	public String memberSignup(@Valid@ModelAttribute("member")MemberVo member, BindingResult br,
 			MultipartHttpServletRequest req) {
@@ -98,5 +97,39 @@ public class MemberController {
 			return "success";
 		}
 		
+	}*/
+	
+	@RequestMapping(value = "/membersignup.action", method = RequestMethod.POST)
+	@ResponseBody
+	public String memberSignup(MemberVo member) {
+		
+		/*MultipartFile attach = req.getFile("attach");
+
+		ArrayList<MemberAttachVo> attachments = new ArrayList<>();
+		if (attach != null && !attach.isEmpty()) {
+			// 파일저장
+			String savedFileName = com.teamproject3.common.Util.makeUniqueFileName(attach.getOriginalFilename()); // 고유 파일명 만들기
+			String path = req.getServletContext().getRealPath("/resources/member-upload/" + savedFileName); // 저장 경로 만들기
+
+			try {
+				attach.transferTo(new File(path)); // 파일 저장하기
+
+				// 데이터베이스에 저장할 데이터로 vo 객체 만들기
+				MemberAttachVo attachment = new MemberAttachVo();
+				attachment.setSavedFileName(savedFileName);
+				attachment.setUserFileName(attach.getOriginalFilename());
+
+				attachments.add(attachment);
+			} catch (Exception ex) {
+			}
+		}
+
+		member.setAttachments(attachments);
+		memberService.SignupMember(member);*/
+		
+		memberService.SignupMember(member);
+		
+		return "success";
+
 	}
 }

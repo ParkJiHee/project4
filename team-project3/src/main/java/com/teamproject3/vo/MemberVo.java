@@ -3,13 +3,28 @@ package com.teamproject3.vo;
 import java.sql.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
 public class MemberVo {
 	private int memberNo;
+	
+	@NotEmpty(message = "{name.required}") //이름을 입력해주세요
 	private String memName;
-	private String memGender;
+	
+	@NotEmpty(message = "{gender.required}") //성별을 체크해주세요
+	private char memGender;
+	
+	@NotEmpty(message = "{phone.required}") //휴대전화번호를 입력해주세요
+	@Pattern(regexp = "[0-9]{2,3}-[0-9]{4}-[0-9]{4}", message = "{phone.invalid}") // [0~9]숫자 범위, {2,3}2개에서 3개 갯수 //문자열
+	// 형식을 표현 및 검증하는 구문 -> 정규 표현식
 	private String memPhone;
+	
 	private Date memBrith;
+	private int age;
 	private String memAddress;
+	
+	@NotEmpty(message = "{route.required}") //유입상태를 체크해주세요
 	private String memRoute;
 	private String memEail;
 	private Date memVisitDate;
@@ -17,16 +32,24 @@ public class MemberVo {
 	private char deleted;
 	
 	// 첨부파일
-		private List<MemberAttachVo> attachments;
+	private List<MemberAttachVo> attachments;
 
-		public List<MemberAttachVo> getAttachments() {
-			return attachments;
-		}
+	public List<MemberAttachVo> getAttachments() {
+		return attachments;
+	}
 
-		public void setAttachments(List<MemberAttachVo> attachments) {
-			this.attachments = attachments;
-		}
+	public void setAttachments(List<MemberAttachVo> attachments) {
+		this.attachments = attachments;
+	}
 	
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -39,10 +62,10 @@ public class MemberVo {
 	public void setMemName(String memName) {
 		this.memName = memName;
 	}
-	public String getMemGender() {
+	public char getMemGender() {
 		return memGender;
 	}
-	public void setMemGender(String memGender) {
+	public void setMemGender(char memGender) {
 		this.memGender = memGender;
 	}
 	public String getMemPhone() {
