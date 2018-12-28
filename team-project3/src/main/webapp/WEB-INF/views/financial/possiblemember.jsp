@@ -23,6 +23,7 @@
     <![endif]-->
     <style>
     	#file { width:0; height:0; } 
+    	#menu2 { text-align: right}
     </style>
     
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -39,10 +40,21 @@
     				return false;  
     			}                  
     		}
+    		<%-- $("input:file").val().toLowerCase(); <!-- 기존방법, 파일명 남기는 부분은 컨트롤러에서--> --%>
     		var file = $("input:file").val().toLowerCase();
     		var image = file
     		$('#image').val(image);
     	}); 
+    	
+    	$('#possible').on('click', function(event) {
+    		 event.preventDefault();
+        	 event.stopPropagation();
+        	 $('#newregister').submit();
+		});
+    	
+    	$('#').on('click', function(event) {
+			
+		})
     });     
  	</script>
 </head>
@@ -157,22 +169,30 @@
 			<button type="button" id="register" name="register" class="btn btn-small btn-success" data-toggle="modal" data-target="#myModal">신규고객등록</button>
 		</div>
 		
+		<%-- 두번째 메뉴 --%>
+		<hr>
+		<div id="menu2">
+		<a href="#" id="call" class="btn btn-warning">전화연락</a>
+		<a href="#" id="visit" class="btn btn-warning">방문상담</a>
+		<a href="#" id="listdel" class="btn btn-danger">목록에서제거</a>
+		</div>
+		
+		<br>
+		
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
- <!--      <div class="modal-header">
+ <%--      <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">취소</button>
-      </div> -->
+      </div> --%>
       <div class="modal-body">
-        		<form action="#" method="post" enctype="multipart/form-data">			
+        	<form action="#" id="newregister" method="post" enctype="multipart/form-data">			
 			
 			<div class="form-horizontal">
-			
-			
-				
+
 				<fieldset>
 				
 				<div class="control-group">											
@@ -303,7 +323,7 @@
 			<div class="form-actions">
 				
 				<button class="btn btn-default" data-dismiss="modal">닫기</button>
-				<button type="submit" class="btn btn-primary">잠재고객 등록</button>
+				<button type="submit" id="possible"class="btn btn-primary">잠재고객 등록</button>
 				<button class="btn btn-default" data-dismiss="modal">등록후 상품 판매</button>
 				
 			</div> <!-- .actions -->
@@ -326,7 +346,7 @@
 				id="reservationList">
 				<thead>
 					<tr>
-						<th style="width: 5%"></th>
+						<th style="width: 1%"><input type="checkbox" /></th>
 						<th style="width: 7%">등록일</th>
 						<th style="width: 5%">최근연락일</th>
 						<th style="width: 6%">고객관리담당자</th>
@@ -383,7 +403,13 @@
 					</c:when>
 					<c:otherwise>
 						<tbody>
-
+							<%-- <!-- if not empty연락상태 -->
+							if 전화{
+							전화: ${ date } ${담당자}
+							}
+							else if( ? )
+							?: ${ date } ${ 담당자 }
+							--%>
 						</tbody>
 					</c:otherwise>
 				</c:choose>
