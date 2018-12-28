@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +36,7 @@
   </div>
     <div class="content clearfix">
 		
-		<form id="membersignupform" enctype="multipart/form-data">			
+		<form:form id="membersignupform" method="post" modelAttribute="member" enctype="multipart/form-data">			
 			<input type="hidden" name="centerNo" value="${ loginuser.centerNo }">
 			<div class="form-horizontal">
 			
@@ -53,14 +54,18 @@
 				<div class="control-group">											
 					<label class="control-label" for="memName">*회원명</label>
 					<div class="controls">
-						<input type="text" name="memName" id="memName" placeholder="이름 입력"/>
+						<form:input type="text" path="memName" id="memName" placeholder="이름 입력"/>
+						<form:errors path="memName" cssClass="error"/>
 						
 						<label class="radio inline">
-                            <input type="radio" name="memGender" value="m" checked="checked"/> 남성
+                            <form:input type="radio" path="memGender" value="m" checked="checked"/> 남성
                        </label>
                        
                        <label class="radio inline">
-                            <input type="radio" name="memGender" value="w"/> 여성
+                            <form:input type="radio" path="memGender" value="w"/> 여성
+                       </label>
+                       <label class="radio inline">
+                            <form:errors path="memGender" cssClass="error"/>
                        </label>
 					</div> <!-- /controls -->				
 				</div> <!-- /control-group -->
@@ -74,7 +79,8 @@
 						<label class="checkbox inline">
                            <input type="checkbox" checked="checked"> SNS 수신 동의
                         </label>
-                        <input type="hidden" name="memPhone" id="memPhone"/>
+                        <form:input type="hidden" path="memPhone" id="memPhone"/>
+						<form:errors path="memPhone" cssClass="error"/>
 					</div> <!-- /controls -->				
 				</div> <!-- /control-group -->
 				
@@ -82,17 +88,20 @@
 					<label class="control-label" for="memRoute">*유입 상태</label>
 					<div class="controls">
 						<label class="radio inline">
-                            <input type="radio" name="memRoute" value="방문" checked="checked"/> 방문
+                            <form:input type="radio" path="memRoute" value="방문" checked="checked"/> 방문
                        </label>
                        
                        <label class="radio inline">
-                            <input type="radio" name="memRoute" value="전화"/> 전화
+                            <form:input type="radio" path="memRoute" value="전화"/> 전화
                        </label>
                        
                        <label class="radio inline">
-                            <input type="radio" name="memRoute" value="온라인"/> 온라인
+                            <form:input type="radio" path="memRoute" value="온라인"/> 온라인
                        </label>
                        
+                       <label class="radio inline">
+                            <form:errors path="memRoute" cssClass="error"/>
+                       </label>
 					</div> <!-- /controls -->				
 				</div> <!-- /control-group -->
 				
@@ -139,17 +148,15 @@
 			</fieldset>
 			</div>
 			
-			
-			
-		</form>		
-		
-		<div class="form-actions">
+			<div class="form-actions">
 				
 				<button class="btn btn-default" data-dismiss="modal">닫기</button>
-				<a href="javascript:" id="signup" class="btn btn-primary" data-dismiss="modal">잠재고객 등록</a>
+				<button id="signup" class="btn btn-primary" data-dismiss="modal">잠재고객 등록</button>
 				<button class="btn btn-default" data-dismiss="modal">등록후 상품 판매</button>
 				
 			</div> <!-- .actions -->
+			
+		</form:form>		
 	</div> <!-- /content -->
   </div>
   <!-- end Modal -->
@@ -623,18 +630,19 @@ $(function() {
 		
 		var data = $('#membersignupform').serializeArray(); // [{boardno:'xxx'}, {writer:'yyy'}, ]
 		
-		console.log("gkgk");
-		
 		$.ajax({
 			"url": "membersignup.action",
-			"type": "POST",
+			"method": "POST",
 			"data": data,
 			"success": function(data, status, xhr) {
 				if (data === "success") {
 					alert('회원을 등록했습니다.');
-				} else {
+				} else if (data === "error") {
 					alert('회원 등록 실패');
 				}
+				
+				$('#membersignupform').val("");
+
 			},
 			"error": function(xhr, status, err) {
 				alert('회원 등록 실패');
