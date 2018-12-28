@@ -1,7 +1,5 @@
 package com.teamproject3.vo;
 
-import java.util.List;
-
 public class ProductVo {
 
 	private int productNo;

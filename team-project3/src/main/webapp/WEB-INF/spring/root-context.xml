@@ -45,7 +45,7 @@
 	
 	<bean id="productDao" class="com.teamproject3.dao.OracleProductDao">
 		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
-		<!-- <property name="productMapper" ref="productMapper"/> -->
+		<property name="productMapper" ref="productMapper"/>
 	</bean>
 	
 	<bean id="purchaseService" class="com.teamproject3.service.PurchaseServiceImpl">
@@ -82,6 +82,11 @@
 	
 	<bean id="centerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.teamproject3.mapper.CenterMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+	
+	<bean id="productMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.teamproject3.mapper.ProductMapper" />
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</bean>
 	

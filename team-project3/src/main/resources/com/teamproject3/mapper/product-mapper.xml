@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- namespace : package-name.class-name -->
+<mapper namespace="com.teamproject3.mapper.ProductMapper">
+	
+	<!-- SQL과 Object 매핑 -->
+	<!-- 
+		SQL    : #{ propertyName }, #{ propertyName } ... propertyName : 클래스.getPropertyName()
+		Object : 클래스
+	-->
+	<!-- id : MethodName -->
+	<!-- <insert id="insertMember" parameterType="com.demoweb.vo.Member"> -->
+	
+	<insert id="insertProduct" parameterType="Product">
+		INSERT INTO product (productno, proname, proexplain, proprice) 
+		VALUES (product_sequence.nextval, #{ productName }, #{ productExplain }, #{ productPrice })
+	</insert>
+	
+	<resultMap type="Product" id="productMap">
+		<id column="productno" property="productNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
+		<result column="proname" property="productName" />
+		<result column="proprice" property="productPrice" />
+	</resultMap>
+	<select id="selectAllProduct" resultMap="productMap">
+		SELECT productno, proname, proprice
+		FROM product
+	</select>
+	
+	<select id="selectProductByProductNo" parameterType="int">
+		SELECT productno, proname, proexplain, proprice
+		FROM product
+		WHERE productno = #{ productNo } AND deleted = '0'
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

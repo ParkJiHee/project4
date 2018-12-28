@@ -3,6 +3,7 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
   
@@ -21,12 +22,6 @@
     
     <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet">
    
-
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
 
   </head>
 
@@ -47,8 +42,8 @@
 	      		<div class="widget ">
 	      			
 	      			<div class="widget-header">
-	      				<i class="icon-user"></i>
-	      				<h3>Your Account</h3>
+	      				<i class="icon-edit"></i>
+	      				<h3>상품 등록</h3>
 	  				</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
@@ -62,30 +57,32 @@
 						
 							<div class="tab-content">
 								<div class="tab-pane active" id="formcontrols">
-								<form id="edit-profile" class="form-horizontal">
+								<form id="edit-profile" class="form-horizontal" 
+									action="/team-project3/product/productRegister.action" method="post">
 									<fieldset>
 										
 										<div class="control-group">											
-											<label class="control-label" for="username">센터 이름</label>
+											<label class="control-label">센터 이름</label>
 											<div class="controls">
-												<input type="text" class="span6 disabled" id="username" value="Example" disabled>
+												<input type="text" class="span6 disabled" name="cenId" value="${ loginuser.cenId }" disabled>
 												<p class="help-block">센터 번호는 로그인과 동시에 저장됩니다. 바꿀 수 없습니다.</p>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
 										
 										<div class="control-group">											
-											<label class="control-label" for="productname">상품 이름</label>
+											<label class="control-label">상품 이름</label>
 											<div class="controls">
-												<input type="text" class="span6" id="productname">
+												<input type="text" class="span6" name="productName">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
 										
 										<div class="control-group">											
-											<label class="control-label" for="productcontent">상품 설명</label>
+											<label class="control-label">상품 설명</label>
 											<div class="controls">
-												<input type="text" class="span6" id="productcontent">
+												<!-- <input type="text" class="span6" id="productcontent"> -->
+												<textarea rows="5" class="span6" name="productExplain"></textarea>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
                                         
@@ -93,11 +90,11 @@
                                         
                                         
                                         <div class="control-group">											
-											<label class="control-label" for="productprice">상품 금액</label>
+											<label class="control-label">상품 금액</label>
 											
                                             <div class="controls">
                                                <div class="input-prepend input-append">
-                                                  <input class="span2" id="appendedPrependedInput" type="text">
+                                                  <input class="span2" name="productPrice" type="text">
                                                   <span class="add-on">원</span>
                                                 </div>
                                               </div>	<!-- /controls -->			
