@@ -19,9 +19,11 @@ public class MemberServiceImpl implements MemberService{
 		
 		memberDao.insertMember(member);
 		
-		for(MemberAttachVo attach : member.getAttachments()) {
-			attach.setAttachNo(member.getMemberNo());
-			memberDao.insertMemberAttach(attach);
+		if (member.getAttachments() != null) {
+			for(MemberAttachVo attach : member.getAttachments()) {
+				attach.setAttachNo(member.getMemberNo());
+				memberDao.insertMemberAttach(attach);
+			}
 		}
 		
 	}

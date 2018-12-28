@@ -146,7 +146,7 @@
 		<div class="form-actions">
 				
 				<button class="btn btn-default" data-dismiss="modal">닫기</button>
-				<a href="javascript:" id="signup" class="btn btn-primary" data-dismiss="modal">잠재고객 등록</a>
+				<button id="signup" class="btn btn-primary" data-dismiss="modal">잠재고객 등록</button>
 				<button class="btn btn-default" data-dismiss="modal">등록후 상품 판매</button>
 				
 			</div> <!-- .actions -->
@@ -588,7 +588,6 @@
 <script src="/team-project3/resources/assets/js/excanvas.min.js"></script> 
 <script src="/team-project3/resources/assets/js/chart.min.js" type="text/javascript"></script> 
 <script src="/team-project3/resources/assets/js/bootstrap.js"></script>
-<script language="javascript" type="text/javascript" src="/team-project3/resources/assets/js/full-calendar/fullcalendar.min.js"></script>
 <script src="/team-project3/resources/assets/js/base.js"></script> 
 <script type="text/javascript">
 
@@ -618,12 +617,10 @@ $(function() {
 	
 	$('#signup').on('click', function(event) {
 		
-		event.preventDefault(); //이벤트를 발생시킨 객체의 기본 동작 수행 차단
-		event.stopPropagation(); //상위 객체로의 이벤트 전달 차단
+		//event.preventDefault(); //이벤트를 발생시킨 객체의 기본 동작 수행 차단
+		//event.stopPropagation(); //상위 객체로의 이벤트 전달 차단
 		
 		var data = $('#membersignupform').serializeArray(); // [{boardno:'xxx'}, {writer:'yyy'}, ]
-		
-		console.log("gkgk");
 		
 		$.ajax({
 			"url": "membersignup.action",
