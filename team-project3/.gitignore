@@ -24,6 +24,7 @@ buildSrc/build
 /src/asciidoc/build
 target/
 target/test-classes/
+target/classes/
 
 # Eclipse artifacts, including WTP generated manifests
 .classpath

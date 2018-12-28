@@ -58,17 +58,18 @@
 					<div class="widget-content">
 						
 						<div class="pricing-plans plans-3">
-							
+						
+						<c:forEach var="product" items="${ products }">
 						<div class="plan-container">
 					        <div class="plan">
 						        <div class="plan-header">
 					                
 						        	<div class="plan-title">
-						        		1개월 이용권	        		
+						        		${ product.productName }	        		
 					        		</div> <!-- /plan-title -->
 					                
 						            <div class="plan-price">
-					                	<span class="term">25만원</span>
+					                	<span class="term">${ product.productPrice }</span>
 									</div> <!-- /plan-price -->
 									
 						        </div> <!-- /plan-header -->	        
@@ -82,61 +83,8 @@
 					
 							</div> <!-- /plan -->
 					    </div> <!-- /plan-container -->
+					    </c:forEach>
 					    
-					    
-					    
-					    <div class="plan-container">
-					        <div class="plan green">
-						        <div class="plan-header">
-					                
-						        	<div class="plan-title">
-						        		2개월 이용권	        		
-					        		</div> <!-- /plan-title -->
-					                
-						            <div class="plan-price">
-					                	<span class="term">30만원</span>
-									</div> <!-- /plan-price -->
-									
-						        </div> <!-- /plan-header -->	        
-						        
-						        
-								
-								<div class="plan-actions">				
-									<a href="javascript:;" class="btn">상세</a>
-									<a href="javascript:;" class="btn">삭제</a>				
-								</div> <!-- /plan-actions -->
-					
-							</div> <!-- /plan -->
-					    </div> <!-- /plan-container -->
-					    
-					    
-					    <div class="plan-container">
-					        <div class="plan">
-						        <div class="plan-header">
-					                
-						        	<div class="plan-title">
-						        		3개월 이용권	        		
-					        		</div> <!-- /plan-title -->
-					                
-						            <div class="plan-price">
-					                	<span class="term">35만원</span>
-									</div> <!-- /plan-price -->
-									
-						        </div> <!-- /plan-header -->	        
-						        
-						        
-								
-								<div class="plan-actions">				
-									<a href="javascript:;" class="btn">상세</a>
-									<a href="javascript:;" class="btn">삭제</a>				
-								</div> <!-- /plan-actions -->
-					
-							</div> <!-- /plan -->
-					    </div> <!-- /plan-container -->
-				
-				
-				
-				
 					</div> <!-- /pricing-plans -->
 						
 					</div> <!-- /widget-content -->

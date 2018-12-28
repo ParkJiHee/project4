@@ -2,6 +2,7 @@ package com.teamproject3.service;
 
 import java.util.List;
 
+import com.teamproject3.dao.OracleProductDao;
 import com.teamproject3.dao.ProductDao;
 import com.teamproject3.vo.ProductVo;
 
@@ -25,33 +26,18 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductVo> findAllProduct() {
 		
-//		ProductDao productDao = new OracleProductDao();
-//		List<ProductVo> products = productDao.selectAllProduct();
-//		return products;
-		return null;
+		List<ProductVo> products = productDao.selectAllProduct();
+		return products;
 		
 	}
 
 	@Override
 	public ProductVo findProductByProductNo(int productNo) {
 		
-//		HobbyDao hobbyDao = new OracleHobbyDao();
-//		HobbyVo hobby = hobbyDao.selectHobbyByHobbyNo(hobbyNo);
-//		
-//		if (hobby != null) {
-//			List<HobbyAttach> attachments = hobbyDao.selectHobbyAttachByHobbyNo(hobbyNo);
-//			hobby.setAttachments(attachments);
-//					
-//		}
-//		
-		return null;
+		ProductVo product = productDao.selectProductByProductNo(productNo);
 		
-	}
-
-	@Override
-	public int findProductCount() {
-		int count = productDao.selectProductCount();
-		return count;
+		return product;
+		
 	}
 	
 	@Override

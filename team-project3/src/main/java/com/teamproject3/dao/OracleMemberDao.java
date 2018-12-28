@@ -1,6 +1,8 @@
 package com.teamproject3.dao;
 
 import com.teamproject3.mapper.MemberMapper;
+import com.teamproject3.vo.MemberAttachVo;
+import com.teamproject3.vo.MemberVo;
 
 public class OracleMemberDao implements MemberDao{
 	
@@ -8,6 +10,18 @@ public class OracleMemberDao implements MemberDao{
 
 	public void setMemberMapper(MemberMapper memberMapper) {
 		this.memberMapper = memberMapper;
+	}
+
+	@Override
+	public void insertMember(MemberVo member) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void insertMemberAttach(MemberAttachVo attach) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

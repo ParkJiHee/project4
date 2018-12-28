@@ -12,10 +12,6 @@ public interface ProductService {
 	List<ProductVo> findAllProduct();
 
 	ProductVo findProductByProductNo(int ProductNo);
-
-	//List<ProductVo> findAllProductByPage(int from, int to);
-
-	int findProductCount();
 	
 	void deleteProduct(int productNo);
 
