@@ -19,7 +19,7 @@ import com.teamproject3.vo.MemberVo;
 @RequestMapping(value="/financial/")
 public class PossibleController {
 	
-	@RequestMapping(value= {"/", "/possiblemember.action"},  method = RequestMethod.POST )
+	@RequestMapping(value= {"/", "/possiblemember.action"},  method = RequestMethod.GET )
 	public String newregister(@ModelAttribute("membervo") MemberVo member,
 			MultipartHttpServletRequest req) {
 		
