@@ -31,10 +31,6 @@
     	$('#btn-upload').click(function(e){
     		e.preventDefault();
     		
-    		if($('#image').val() > 0 ){
-    			$('#image').val();
-    		}
-    		else{
     		$("input:file").click();
     		var ext = $("input:file").val().split(".").pop().toLowerCase();
     		if(ext.length > 0){
@@ -46,7 +42,6 @@
     		var file = $("input:file").val().toLowerCase();
     		var image = file
     		$('#image').val(image);
-    		}
     	}); 
     });     
  	</script>
