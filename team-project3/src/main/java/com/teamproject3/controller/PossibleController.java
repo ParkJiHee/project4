@@ -20,8 +20,7 @@ import com.teamproject3.vo.MemberVo;
 public class PossibleController {
 	
 	@RequestMapping(value= {"/", "/possiblemember.action"},  method = RequestMethod.GET )
-	public String newregister(@ModelAttribute("membervo") MemberVo member,
-			MultipartHttpServletRequest req) {
+	public String newregister() {//@ModelAttribute("membervo") MemberVo member,) {
 		
 //		member = (MemberVo)session.getAttribute("loginuser");
 //		if (member == null) {
@@ -59,6 +58,6 @@ public class PossibleController {
 		System.out.println("2======"+studyvo);*/
 		
 		
-		return "financial/possiblemember.action";
+		return "financial/possiblemember";
 	}
 }

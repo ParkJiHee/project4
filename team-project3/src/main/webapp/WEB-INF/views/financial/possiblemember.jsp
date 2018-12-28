@@ -174,6 +174,7 @@
 		<hr>
 		<div id="menu2">
 		<a href="#" id="call" class="btn btn-warning">전화연락</a>
+		<a href="#" id="call" class="btn btn-warning">방문상담</a>
 		<a href="#" id="listdel" class="btn btn-danger">목록에서제거</a>
 		</div>
 		
