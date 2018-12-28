@@ -38,13 +38,15 @@ public class OracleProductDao implements ProductDao{
 	
 	@Override
 	public void deleteProduct(int productNo) {
-		// TODO Auto-generated method stub
+
+		productMapper.deleteProduct(productNo);
 		
 	}
 	
 	@Override
 	public void updateProduct(ProductVo product) {
-		// TODO Auto-generated method stub
+		
+		productMapper.updateProduct(product);
 		
 	}
 	

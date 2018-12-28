@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.teamproject3.service.ProductService;
 import com.teamproject3.vo.CenterVo;
@@ -41,7 +42,7 @@ public class ProductController {
 		
 		// 게시글을 등록하는 페이지로 가는 컨트롤러
 		@RequestMapping(value = "/productRegister.action", method= RequestMethod.GET)
-		public String pregisterForm(HttpSession session, HttpServletRequest req, CenterVo center) {
+		public String productregisterForm(HttpSession session, HttpServletRequest req, CenterVo center) {
 			
 			center = (CenterVo)session.getAttribute("loginuser");
 			if (center == null) {
@@ -54,68 +55,44 @@ public class ProductController {
 		
 		// 등록한 내용 제출하는 컨트롤러
 		@RequestMapping(value = "/productRegister.action", method= RequestMethod.POST)
-		public String write(ProductVo product, HttpServletRequest req, CenterVo center) {
+		public String productregister(ProductVo product, HttpServletRequest req, CenterVo center) {
 			
 			productService.writeProduct(product);
 			
 			return "redirect:productList.action";
 		}
 		
-//		// 게시글의 디테일 페이지로 가는 컨트롤러
-//		@RequestMapping(value = "/hobbydetail.action", method= RequestMethod.GET)
-//		public String hdetail(
-//				@RequestParam("hobbyno")int hobbyNo,
-//				@RequestParam("pageno")int pageNo,
-//				Model model) {
-//			
-//			HobbyVo hobby = hobbyService.findHobbyByHobbyNo(hobbyNo);
-//			if (hobby == null) {
-//				return "redirect:list.action";
-//			}
-//			
-//			//조회수 증가 처리
-//			hobbyService.increaseHobbyReadCount(hobbyNo);
-//			hobby.setH_readCount(hobby.getH_readCount() + 1);
-//			
-//			model.addAttribute("hobby", hobby);
-//			model.addAttribute("hobbyno", hobbyNo);
-//			model.addAttribute("pageno", pageNo);
-//			
-//			return "hobby/hobbydetail";
-//		}
+		// 게시글의 디테일 페이지로 가는 컨트롤러
+		@RequestMapping(value = "/productUpdate.action", method= RequestMethod.GET)
+		public String productupdate(
+				@RequestParam("productno")int productNo, Model model) {
+			
+			ProductVo product = productService.findProductByProductNo(productNo);
+			if (product == null) {
+				return "redirect:productList.action";
+			}
+			
+			model.addAttribute("product", product);
+			model.addAttribute("productno", productNo);
+			
+			return "product/productUpdate";
+		}
 		
-//		// 글수정 메서드
-//		@RequestMapping(value = "/hobbyupdate.action", method = RequestMethod.GET)
-//		public String updateHobby(@RequestParam(value = "hobbyno", required = false) Integer hobbyNo,
-//				@RequestParam(value = "pageno", required = false, defaultValue = "1") Integer pageNo, Model model) {
-//
-//			HobbyVo hobby = hobbyService.findHobbyByHobbyNo(hobbyNo);
-//
-//			model.addAttribute("hobby", hobby);
-//			model.addAttribute("pageno", pageNo);
-//
-//			return "hobby/hobbyupdate";
-//		}
-//		
-//		// 글수정 메서드
-//		@RequestMapping(value = "/hobbyupdate.action", method = RequestMethod.POST) 
-//		public String updatepost(@RequestParam(value = "hobbyno", required = false) Integer hobbyNo,
-//				@RequestParam(value = "pageno", required = false, defaultValue = "1") Integer pageNo,
-//				@ModelAttribute("hobby") HobbyVo hobby, BindingResult br, Model model) {
-//
-//			hobby.setHobbyNo(hobbyNo);
-//			hobbyService.updateHobby(hobby);
-//
-//			return String.format("redirect:hobbydetail.action?hobbyno=%s&pageno=%s", hobbyNo, pageNo);
-//		}
-//
-//		// 글삭제 메서드
-//		@RequestMapping(value = "/hobbydelete.action", method = RequestMethod.GET)
-//		public String deleteHobby(@RequestParam(value = "hobbyno", required = false) Integer hobbyNo,
-//				@RequestParam(value = "pageno", required = false, defaultValue = "1") Integer pageNo, Model model) {
-//
-//			hobbyService.deleteHobby(hobbyNo);
-//
-//			return ("redirect:list.action?pageno=" + pageNo);
-//		}
+		// 글수정 메서드
+		@RequestMapping(value = "/productUpdate.action", method = RequestMethod.POST) 
+		public String updatepost(ProductVo product, Model model) {
+
+			productService.updateProduct(product);
+
+			return "redirect:productList.action";
+		}
+
+		// 글삭제 메서드
+		@RequestMapping(value = "/productDelete.action", method = RequestMethod.GET)
+		public String deleteproduct(@RequestParam("productno") int productNo, Model model) {
+
+			productService.deleteProduct(productNo);
+
+			return "redirect:productList.action";
+		}
 }

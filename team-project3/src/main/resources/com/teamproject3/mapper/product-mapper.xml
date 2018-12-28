@@ -29,11 +29,28 @@
 		FROM product
 	</select>
 	
-	<select id="selectProductByProductNo" parameterType="int">
+	<resultMap type="Product" id="productnoMap">
+		<id column="productno" property="productNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
+		<result column="proname" property="productName" />
+		<result column="proexplain" property="productExplain" />
+		<result column="proprice" property="productPrice" />
+	</resultMap>
+	<select id="selectProductByProductNo" parameterType="int" resultMap="productnoMap">
 		SELECT productno, proname, proexplain, proprice
 		FROM product
 		WHERE productno = #{ productNo } AND deleted = '0'
 	</select>
+	
+	<update id="updateProduct" parameterType="Product">
+		UPDATE product
+		SET proname = #{ productName }, proexplain = #{ productExplain }, proprice = #{ productPrice }
+		WHERE productno = #{ productNo }
+	</update>
+	
+	<delete id="deleteProduct" parameterType="int">
+		DELETE FROM product
+		WHERE productno = #{ productNo }
+	</delete>
 	
 </mapper>
 
