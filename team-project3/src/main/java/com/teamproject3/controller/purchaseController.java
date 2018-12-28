@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.teamproject3.service.ProductService;
 import com.teamproject3.service.PurchaseService;
 import com.teamproject3.vo.ProductVo;
+import com.teamproject3.vo.PurchaseVo;
 
 @Controller
 @RequestMapping(value = "/purchase/")
@@ -33,15 +34,19 @@ public class purchaseController {
 //	@RequestMapping(value = "/purRegister.action", method = RequestMethod.GET)
 //	public String purRegisterForm(
 //			@RequestParam(value = "productno", required = false) Integer productNo,
-//			@ModelAttribute("ProductVo")ProductVo productVo, Model model) {
+//			@ModelAttribute("productVo")ProductVo productVo, Model model) {
 //		productVo = productService.findProductByProductNo(productNo);
+//		model.addAttribute("productVo", productVo);
 //		return "purchase/purRegister";
 //	}
-
+//
 //	@RequestMapping(value = "/purRegister.action", method = RequestMethod.POST)
 //	public String purRegister(
-//			@ModelAttribute("purchaseno")int purchaseNo, Model model) {
+//			@RequestParam(value = "purchaseno", required = false)Integer purchaseNo, 
+//			@ModelAttribute("purchaseVo")PurchaseVo purchaseVo, Model model) {
 //		
+//		purchaseVo.setPurchaseNo(purchaseNo);
+//		purchaseService.registerPurchase(purchaseVo);
 //		return "purchase/purRegister";
 //	}
 	
