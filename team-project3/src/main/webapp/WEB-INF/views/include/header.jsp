@@ -98,8 +98,8 @@
 		  <div class="subnavbar-inner">
 		    <div class="container">
 		      <ul class="mainnav">
-		        <li class="active"><a href="index.jsp"><i class="icon-dashboard"></i><span>Home</span> </a> </li>
-		        <li><a href="#"><i class="icon-list-alt"></i><span>고객관리</span> </a> </li>
+		        <li class="active"><a href="/team-project3/home.action"><i class="icon-dashboard"></i><span>Home</span> </a> </li>
+		        <li><a href="/team-project3/member/memberlist.action"><i class="icon-list-alt"></i><span>고객관리</span> </a> </li>
 		        <li><a href="#"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
 		        <li><a href="#"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
 		        <li><a href="#"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
