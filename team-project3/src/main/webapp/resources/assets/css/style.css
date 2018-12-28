@@ -11,6 +11,7 @@ Bootstrap Admin Template by EGrappler.com
 body {
 	background: #f9f6f1;
 	font: 13px/1.7em 'Open Sans';
+	color: #333333;
 }
     
 p { 
@@ -744,7 +745,7 @@ html .fc, .fc table {
 }
 .fc-content {
 	clear: both;
-	background: #f9f9f9
+	background: #3A87AD 
 }
 .fc-view {
 	width: 100%;

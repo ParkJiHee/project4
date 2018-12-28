@@ -5,18 +5,62 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/team-project3/resources/assets/js/full-calendar/fullcalendar.css" />
+<style type="text/css">
+    body {
+        margin:40px 10px;
+        padding:0;
+        font-family:"Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+        font-size:14px;
+        
+    }
+
+    #loading {
+        display:none;
+        position:absolute;
+        top:10px;
+        right:10px;
+    }
+
+    #calendar {
+        max-width:900px;
+        margin:0 auto;
+    }
+
+    div.barKategorie {
+        float:left;
+        margin:5px;
+        padding-top:5px;
+        padding-bottom:5px;
+        padding-left:5px;
+        padding-right:10px;
+        border-radius:5px;
+        font-weight:bold;
+    }
+</style>
+
 <link rel="stylesheet" type="text/css" href="/team-project3/resources/assets/js/full-calendar/fullcalendar.min.css" />
+
+<script src="/team-project3/resources/assets/js/full-calendar/moment.min.js"></script>
+
 
 <script src="/team-project3/resources/assets/js/jquery-1.7.2.min.js"></script> 
 <script src="/team-project3/resources/assets/js/chart.min.js" type="text/javascript"></script>
 <script src="/team-project3/resources/assets/js/excanvas.min.js"></script> 
 <script src="/team-project3/resources/assets/js/bootstrap.js"></script>
 
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link href="/team-project3/resources/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/team-project3/resources/assets/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
+        rel="stylesheet">
+<link href="/team-project3/resources/assets/css/font-awesome.css" rel="stylesheet">
+<link href="/team-project3/resources/assets/css/style.css" rel="stylesheet">
+<link href="/team-project3/resources/assets/css/pages/dashboard.css" rel="stylesheet">
  
 <script language="javascript" type="text/javascript" src="/team-project3/resources/assets/js/full-calendar/fullcalendar.min.js"></script>
-
-<!-- <script type="text/javascript">
+<!-- 
+ <script type="text/javascript">
  $(function(){
  calendarEvent();
 });
@@ -57,8 +101,8 @@ function calendarEvent(eventData){
    timeFormat : "HH:mm",
  });
 } 
-</script> -->
-<script>
+</script>   -->
+  <script>
 var lineChartData = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
@@ -109,7 +153,7 @@ var calendar = $('#calendar').fullCalendar({
   header: {
     left: 'prev,next today',
     center: 'title',
-    right: 'month,agendaWeek,agendaDay'
+    right: 'month'  /* ,agendaWeek,agendaDay  */
   },
   selectable: true,
   selectHelper: true,
@@ -178,11 +222,15 @@ var calendar = $('#calendar').fullCalendar({
 });
 });
 </script>
-
-
-
+ -->
 </head>
 <body>
+<!-- header.jsp -->
+	<jsp:include page="/WEB-INF/views/include/header.jsp">
+		<jsp:param value="#f9f6f1" name="bgcolor" />
+	</jsp:include>
+<!-- end header.jsp -->
+
 <div id="calendar"></div>
 
 </body>

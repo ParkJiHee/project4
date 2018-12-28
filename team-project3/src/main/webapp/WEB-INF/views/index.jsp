@@ -89,9 +89,9 @@
             <!-- /widget-header -->
             <div class="widget-content">
 				<div class="shortcuts">
-					<a href="javascript:;" class="shortcut"> 
+					<a href="/team-project3/schedule/schedule.action" class="shortcut"> 
 						<i class="shortcut-icon icon-list-alt"></i> 
-						<span class="shortcut-label">Apps</span>
+						<span class="shortcut-label">스케줄</span>
 					</a>
 					<a href="javascript:;" class="shortcut">
 						<i class="shortcut-icon icon-bookmark"></i>
