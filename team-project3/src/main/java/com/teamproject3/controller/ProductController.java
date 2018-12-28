@@ -1,12 +1,18 @@
 package com.teamproject3.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.teamproject3.service.ProductService;
+import com.teamproject3.vo.CenterVo;
+import com.teamproject3.vo.ProductVo;
 
 
 
@@ -25,20 +31,20 @@ public class ProductController {
 			return "product/productList";
 		}
 		
-//		// 게시글을 등록하는 페이지로 가는 컨트롤러
-//		@RequestMapping(value = "/hobbyregister.action", method= RequestMethod.GET)
-//		public String hregisterForm(@ModelAttribute("hobbyvo")HobbyVo hobbyvo,
-//				HttpSession session, HttpServletRequest req, MemberVo member) {
-//			
-//			member = (MemberVo)session.getAttribute("loginuser");
-//			if (member == null) {
-//				session.setAttribute("loginuser", member);
-//				return "redirect:/account/login.action";
-//			}
-//			
-//			return "hobby/hobbyregister";
-//		}
-//		
+		// 게시글을 등록하는 페이지로 가는 컨트롤러
+		@RequestMapping(value = "/productRegister.action", method= RequestMethod.GET)
+		public String pregisterForm(@ModelAttribute("productvo")ProductVo productvo,
+				HttpSession session, HttpServletRequest req, CenterVo center) {
+			
+			center = (CenterVo)session.getAttribute("loginuser");
+			if (center == null) {
+				session.setAttribute("loginuser", center);
+				return "redirect:/login.action";
+			}
+			
+			return "product/productRegister";
+		}
+		
 //		@RequestMapping(value = "/hobbyregister.action", method= RequestMethod.POST)
 //		public String write(
 //				@Valid@ModelAttribute("hobbyvo")HobbyVo hobby, BindingResult br,

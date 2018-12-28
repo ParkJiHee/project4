@@ -81,7 +81,8 @@
 		      </ul>
 		      
 		      <ul class="nav pull-right">
-		      	<li><a href="#" class="btn btn-primary" style="text-align: center; color: white;"><span>회원등록</span></a></li>
+		      	<li><a class="btn btn-primary" style="text-align: center; color: white;" data-toggle="modal" data-target="#myModal">
+		      		<i class="icon-plus"></i><span>회원등록</span></a></li>
 		      </ul>
 		    </div>
 		    <!-- /container --> 

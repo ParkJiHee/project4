@@ -39,6 +39,15 @@
 		<property name="centerMapper" ref="centerMapper"/>
 	</bean>
 	
+	<bean id="memberService" class="com.teamproject3.service.MemberServiceImpl">
+		<property name="memberDao" ref="memberDao" />
+	</bean>
+	
+	<bean id="memberDao" class="com.teamproject3.dao.OracleMemberDao">
+		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
+		<property name="memberMapper" ref="memberMapper"/>
+	</bean>
+	
 	<bean id="productService" class="com.teamproject3.service.ProductServiceImpl">
 		<property name="productDao" ref="productDao" />
 	</bean>
@@ -82,6 +91,11 @@
 	
 	<bean id="centerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.teamproject3.mapper.CenterMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+	
+	<bean id="memberMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.teamproject3.mapper.MemberMapper" />
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</bean>
 	

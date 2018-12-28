@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +12,9 @@
         rel="stylesheet">
 <link href="/team-project3/resources/assets/css/font-awesome.css" rel="stylesheet">
 <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet">
+<link href="/team-project3/resources/assets/css/pages/signin.css" rel="stylesheet">
 <link href="/team-project3/resources/assets/css/pages/dashboard.css" rel="stylesheet">
-<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+
 </head>
 <body>
 
@@ -26,6 +23,154 @@
 		<jsp:param value="memberlist" name="bgcolor" />
 	</jsp:include>
 <!-- end header.jsp -->
+
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog" style="top: 30%;">
+  <div class="modal-header" style="background-color: #00ba8b;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title" style="color: white;">회원 등록</h3>
+  </div>
+    <div class="content clearfix">
+		
+		<form action="#" method="post">			
+			
+			<div class="form-horizontal">
+			
+			<img src="/team-project3/resources/assets/img/user.png"/>
+						
+				<p>Create your free account:</p>
+				
+				<fieldset>
+				<div class="control-group">											
+					<label class="control-label" for="firstname">*회원명</label>
+					<div class="controls">
+						<input type="text" name="firstname" id="firstname" placeholder="이름 입력">
+						
+						<label class="radio inline">
+                            <input type="radio" name="radiobtns" checked="checked"> 남성
+                       </label>
+                       
+                       <label class="radio inline">
+                            <input type="radio" name="radiobtns"> 여성
+                       </label>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">*휴대전화번호</label>
+					<div class="controls">
+						<input type="text" name="firstname" id="firstname" class="span1 m-wrap">
+						<input type="text" name="firstname" id="firstname" class="span1 m-wrap">
+						<input type="text" name="firstname" id="firstname" class="span1 m-wrap">
+						<label class="checkbox inline">
+                           <input type="checkbox" checked="checked"> SNS 수신 동의
+                        </label>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">*회원 번호</label>
+					<div class="controls">
+						<input type="text" name="firstname" id="firstname">
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">회원 바코드 번호</label>
+					<div class="controls">
+						<input type="text" name="firstname" id="firstname">
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">*유입 상태</label>
+					<div class="controls">
+						<label class="radio inline">
+                            <input type="radio" name="radiobtns" checked="checked"> 방문
+                       </label>
+                       
+                       <label class="radio inline">
+                            <input type="radio" name="radiobtns"> 전화
+                       </label>
+                       
+                       <label class="radio inline">
+                            <input type="radio" name="radiobtns"> 온라인
+                       </label>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<hr>
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">고객관리 담당자</label>
+					<div class="controls">
+						<select name="search_expire" data-function="search" style="width: auto;">
+							<option >검색조건 선택</option>
+							<option value="search_service_expire">이용권 만료일 검색</option>
+							<option value="search_locker_expire">락커 만료일 검색</option>
+							<option value="search_visit_expire">방문 만료일 검색</option>
+						</select>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">고객 유입 경로</label>
+					<div class="controls">
+						<select name="search_expire" data-function="search" style="width: auto;">
+							<option >검색조건 선택</option>
+							<option value="search_service_expire">이용권 만료일 검색</option>
+							<option value="search_locker_expire">락커 만료일 검색</option>
+							<option value="search_visit_expire">방문 만료일 검색</option>
+						</select>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">생년월일</label>
+					<div class="controls">
+						<input type="date" name="firstname" id="firstname">
+						<input type="text" name="firstname" id="firstname" class="span1 m-wrap" placeholder="나이 입력">
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">주소</label>
+					<div class="controls">
+						<input type="text" name="firstname" id="firstname" class="span3 m-wrap" placeholder="주소를 입력하세요">
+						<input type="text" name="firstname" id="firstname" class="span3 m-wrap" placeholder="상세주소 입력">
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+			
+				<div class="control-group">											
+					<label class="control-label" for="firstname">이메일</label>
+					<div class="controls">
+						<input type="text" name="firstname" id="firstname" class="span2 m-wrap">
+						@
+						<input type="text" name="firstname" id="firstname" class="span1 m-wrap">
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="firstname">메모</label>
+					<div class="controls">
+						<textarea rows="3" cols="30"></textarea>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+			</fieldset>
+			</div>
+			
+			<div class="form-actions">
+				
+				<button class="btn btn-default" data-dismiss="modal">닫기</button>
+				<button type="submit" class="btn btn-primary">잠재고객 등록</button>
+				<button class="btn btn-default" data-dismiss="modal">등록후 상품 판매</button>
+				
+			</div> <!-- .actions -->
+			
+		</form>		
+	</div> <!-- /content -->
+  </div>
+  <!-- end Modal -->
 
 
 <div class="main">
@@ -37,9 +182,7 @@
                   
                   <div class="widget-content">
 						
-						
-						
-						<div class="tabbable">
+					<div class="tabbable">
 						<ul class="nav nav-tabs">
 						  <li><a href="#formcontrols" data-toggle="tab">전체 회원</a></li>
 						  <li><a href="#jscontrols" data-toggle="tab">미결제 회원</a></li>
@@ -114,84 +257,73 @@
 									<hr>
 									
 									<fieldset>
-										
-										<div class="control-group">											
-											<label class="control-label" for="username">Username</label>
-											<div class="controls">
-												<input type="text" class="span6 disabled" id="username" value="Example" disabled>
-												<p class="help-block">Your username is for logging in and cannot be changed.</p>
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
 											
-										 <br />
-										
-			<div class="span3">
-	      		
-	      		<div class="widget">
-	      			
-	      			<div class="widget-content">
-	      				
-			      		<h1>3 Columns</h1>
-			      		
-			      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-			      		
-		      		</div> <!-- /widget-content -->
-		      		
-	      		</div> <!-- /widget -->
-	      		
-      		</div> <!-- /span3 -->
-      		 	
-	      	
-	      	<div id="target-4" class="span3">
-	      		
-	      		<div class="widget">
-	      			
-	      			<div class="widget-content">
-	      				
-			      		<h1>3 Columns</h1>
-			      		
-			      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-			      		
-		      		</div> <!-- /widget-content -->
-		      		
-	      		</div> <!-- /widget -->
-	      		
-      		</div> <!-- /span3 -->
-      		 	
-	      	
-	      	<div class="span3">
-	      		
-	      		<div class="widget">
-	      			
-	      			<div class="widget-content">
-	      				
-			      		<h1>3 Columns</h1>
-			      		
-			      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-			      		
-		      		</div> <!-- /widget-content -->
-		      		
-	      		</div> <!-- /widget -->
-	      		
-      		</div> <!-- /span3 -->
-      		 	
-	      	
-	      	<div class="span3">
-	      		
-	      		<div class="widget">
-	      			
-	      			<div class="widget-content">
-	      				
-			      		<h1>3 Columns</h1>
-			      		
-			      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-			      		
-		      		</div> <!-- /widget-content -->
-		      		
-	      		</div> <!-- /widget -->
-	      		
-      		</div> <!-- /span3 -->
-										
+										<div class="span3">
+								      		
+								      		<div class="widget">
+								      			
+								      			<div class="widget-content">
+								      				
+										      		<h1>3 Columns</h1>
+										      		
+										      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+										      		
+									      		</div> <!-- /widget-content -->
+									      		
+								      		</div> <!-- /widget -->
+								      		
+							      		</div> <!-- /span3 -->
+							      		 	
+								      	
+								      	<div id="target-4" class="span3">
+								      		
+								      		<div class="widget">
+								      			
+								      			<div class="widget-content">
+								      				
+										      		<h1>3 Columns</h1>
+										      		
+										      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+										      		
+									      		</div> <!-- /widget-content -->
+									      		
+								      		</div> <!-- /widget -->
+								      		
+							      		</div> <!-- /span3 -->
+							      		 	
+								      	
+								      	<div class="span3">
+								      		
+								      		<div class="widget">
+								      			
+								      			<div class="widget-content">
+								      				
+										      		<h1>3 Columns</h1>
+										      		
+										      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+										      		
+									      		</div> <!-- /widget-content -->
+									      		
+								      		</div> <!-- /widget -->
+								      		
+							      		</div> <!-- /span3 -->
+							      		 	
+								      	
+								      	<div class="span3">
+								      		
+								      		<div class="widget">
+								      			
+								      			<div class="widget-content">
+								      				
+										      		<h1>3 Columns</h1>
+										      		
+										      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+										      		
+									      		</div> <!-- /widget-content -->
+									      		
+								      		</div> <!-- /widget -->
+								      		
+							      		</div> <!-- /span3 -->
 										
 									</fieldset>
 								</form>
