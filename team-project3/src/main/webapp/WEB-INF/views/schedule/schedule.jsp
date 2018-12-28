@@ -102,7 +102,7 @@ function calendarEvent(eventData){
  });
 } 
 </script>   -->
-  <script>
+   <script>
 var lineChartData = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
@@ -153,8 +153,9 @@ var calendar = $('#calendar').fullCalendar({
   header: {
     left: 'prev,next today',
     center: 'title',
-    right: 'month'  /* ,agendaWeek,agendaDay  */
+    right: 'agendaWeek'  /* month,agendaWeek,agendaDay  */
   },
+  defaultView: "agendaWeek",
   selectable: true,
   selectHelper: true,
   select: function(start, end, allDay) {
@@ -221,8 +222,8 @@ var calendar = $('#calendar').fullCalendar({
   ]
 });
 });
-</script>
- -->
+</script> 
+
 </head>
 <body>
 <!-- header.jsp -->
