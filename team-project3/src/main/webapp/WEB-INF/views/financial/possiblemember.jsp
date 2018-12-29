@@ -1,4 +1,5 @@
-<%@page import="com.teamproject3.vo.MemberVo"%>
+<%@page import="com.teamproject3.vo.MemberVo" %>
+<%@page import="com.teamproject3.vo.PurchaseVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -25,9 +26,11 @@
     <style>
     	#file { width:0; height:0; } 
     	#menu2 { text-align: right}
+    	#reservationList td { text-align:center;}
     </style>
     
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <script type="text/javascript">
     $(function(){          
     	$('#btn-upload').click(function(e){
@@ -55,8 +58,112 @@
     	
     	$('#').on('click', function(event) {
 			
-		})
-    });     
+		});
+    	
+    	
+    	 <%-- 체크 --%>
+    	 $('#checkAll').click(function(event) { 
+    		 if($("#checkAll").prop("checked")) { 
+    			 $("input[type=checkbox]").prop("checked",true);  
+    		}else {  
+    			 $("input[type=checkbox]").prop("checked",false); 
+    		} 
+    	 });
+    	 
+    	 
+    	 <%--테이블 --%>
+    	 $('#listdel').on('click', function (event) {
+    		 var checkRow="";
+    		 if(checkRow == ''){
+    			    alert("제거할 대상을 선택하세요.");
+    			    return false;
+    		}
+    		 console.log("### checkRow => {}"+checkRow);
+
+    		 if(confirm("정보를 삭제 하시겠습니까?")){
+    		      
+    			 
+    		      //삭제처리 후 다시 불러올 리스트 url      
+/*     		      var url = document.location.href;
+    		      var page = $("#page").val();
+    		      var saleType = $("#saleType").val();
+    		      var schtype = $("#schtype").val();
+    		      var schval = $("#schval").val();
+    		      location.href="${rc.contextPath}/test_proc.do?idx="+checkRow+"&goUrl="+url+"&page="+page+"&saleType="+saleType+"schtype="+schtype+"schval="+schval;      
+ */    		  }
+		});
+    	 
+    	 $('#call').on('click', function (event) {
+    		 var call= "";
+    		 if(call == ''){
+    			    alert("대상을 선택하세요.");
+    			    return false;
+    		}
+		});
+    	 
+    	 $('#visit').on('click', function (event) {
+    		 var visit= "";
+    		 if(visit == ''){
+    			    alert("대상을 선택하세요.");
+    			    return false;
+    		}
+		});
+    	 
+    	 
+		
+		
+    });   
+    
+    <%-- 우편번호 --%>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("sample6_extraAddress").value = extraAddr;
+                
+                } else {
+                    document.getElementById("sample6_extraAddress").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+        <%-- 우편번호 끝--%>
+    
  	</script>
 </head>
 <body>
@@ -102,9 +209,9 @@
                     </li>
                     <li><a href="reports.jsp"><i class="icon-list-alt"></i><span>상품등록</span> </a>
                     </li>
-                    <li><a href="guidely.jsp"><i class="icon-bar-chart"></i><span>회계관리</span>
+                    <li><a href="/team-project3/financial/accountant.action"><i class="icon-bar-chart"></i><span>회계관리</span>
                     </a></li>
-                    <li class="active"><a href="charts.jsp"><i class="icon-facetime-video"></i><span>잠재고객관리</span> </a>
+                    <li class="active"><a href="/team-project3/financial/possiblemember.action"><i class="icon-facetime-video"></i><span>잠재고객관리</span> </a>
                     </li>
                     <li><a href="shortcodes.jsp"><i class="icon-code"></i><span>스케줄관리</span> </a>
                     </li>
@@ -174,8 +281,8 @@
 		<hr>
 		<div id="menu2">
 		<a href="#" id="call" class="btn btn-warning">전화연락</a>
-		<a href="#" id="call" class="btn btn-warning">방문상담</a>
-		<a href="#" id="listdel" class="btn btn-danger">목록에서제거</a>
+		<a href="#" id="visit" class="btn btn-warning">방문상담</a>
+		<a href="" id="listdel" class="btn btn-danger">목록에서제거</a>
 		</div>
 		
 		<br>
@@ -298,8 +405,11 @@
 				<div class="control-group">											
 					<label class="control-label" for="firstname">주소</label>
 					<div class="controls">
-						<input type="text" name="firstname" id="firstname" class="span3 m-wrap" placeholder="주소를 입력하세요">
-						<input type="text" name="firstname" id="firstname" class="span3 m-wrap" placeholder="상세주소 입력">
+						<input type="text" id="sample6_postcode" placeholder="우편번호"> 
+						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br> 
+						<input type="text" id="sample6_address" placeholder="주소"><br> 
+						<input type="text" id="sample6_detailAddress" placeholder="상세주소"> 
+						<input type="text" id="sample6_extraAddress" placeholder="참고항목">
 					</div> <!-- /controls -->				
 				</div> <!-- /control-group -->
 			
@@ -325,7 +435,7 @@
 				
 				<button class="btn btn-default" data-dismiss="modal">닫기</button>
 				<button type="submit" id="possible"class="btn btn-primary">잠재고객 등록</button>
-				<button class="btn btn-default" data-dismiss="modal">등록후 상품 판매</button>
+				<button type="submit" id="reg"class="btn btn-default">등록후 상품 판매</button>
 				
 			</div> <!-- .actions -->
 			
@@ -347,14 +457,16 @@
 				id="reservationList">
 				<thead>
 					<tr>
-						<th style="width: 1%"><input type="checkbox" /></th>
+						<th style="width: 1%"><input type="checkbox" name="checkAll" id="checkAll" />
+						</th>
+
 						<th style="width: 7%">등록일</th>
 						<th style="width: 5%">최근연락일</th>
 						<th style="width: 6%">고객관리담당자</th>
 						<th style="width: 8%">고객정보</th>
 
 						<th style="width: 5%">고객정보</th>
-						<th style="width: 4%">유입경로</th>
+						<th style="width: 7%">유입경로</th>
 						<th style="width: 6%">등록목적</th>
 						<th style="width: 8%">유입상태</th>
 						<th style="width: 6%">방문예정일</th>
@@ -396,14 +508,50 @@
 					</tr>
 				</thead>
 
-				<c:choose>
+<%-- 				<c:choose>
 					<c:when test="${ empty data }">
 						<tbody>
 							<td colspan="15" style="text-align:center">목록이 없습니다</td>
 						</tbody>
 					</c:when>
-					<c:otherwise>
+					<c:otherwise> --%>
 						<tbody>
+							<tr>
+								<td><input type="checkbox" name="checkRow" id="checkRow"/></td>
+								<td>d</td>
+								<td>d</td>
+								<td>d</td>
+								<td>d</td>
+								<td>d</td>
+									
+								<td>
+								<button type="button" class="btn btn-small btn-success" 
+								data-toggle="modal" data-target="#input">입력하기
+								</button>
+								</td>
+								<td>d</td>
+								<td>
+								<button type="button" class="btn btn-small btn-success" 
+								data-toggle="modal" data-target="#reserve">예약하기
+								</button>
+								</td>						
+								<td>d</td>
+								<c:choose>
+								
+								<c:when test="${ purchasevo.purStatement eq true }">
+								<td style="color:orange">미결제</td>
+								</c:when>
+								
+								<c:otherwise>
+								<td>결제</td>
+								</c:otherwise>
+								
+								</c:choose>
+								<td>d</td>
+								<td>d</td>
+							</tr>
+
+
 							<%-- <!-- if not empty연락상태 -->
 							if 전화{
 							전화: ${ date } ${담당자}
@@ -412,11 +560,157 @@
 							?: ${ date } ${ 담당자 }
 							--%>
 						</tbody>
-					</c:otherwise>
+					<%-- </c:otherwise>
 				</c:choose>
-			</table>
+ --%>			</table>
 		</div>
-               
+	
+<!-- Modal -->
+<div id="input" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">등록목적</h4>
+      </div>
+      <div class="modal-body">
+      <form>
+       	<input type="checkbox"> 시설이용
+       	<input type="checkbox"> 개인레슨
+       	<input type="checkbox"> 그룹수업
+       	<input type="checkbox"> 다이어트 <br>
+       	<input type="checkbox"> 재활운동
+       	<input type="checkbox"> 체형교정
+       	<input type="checkbox"> 체력증가
+       	<input type="checkbox"> 건강유지 <br>
+       	<input type="checkbox"> 기타 <input type="text">
+       	
+      <div class="form-actions" style="text-align:center">
+		<button type="submit" id="possible"class="btn btn-primary">저장</button>				
+		<button class="btn" data-dismiss="modal">닫기</button>	
+	</div> <!-- .actions -->   
+		</form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<%--Modal --%>  
+<div id="reserve" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">방문 예정일</h4>
+      </div>
+      <div class="modal-body">
+      <form>
+		방문 예정일  &nbsp;&nbsp;<input type='date' /> <br>
+		시간  &nbsp;&nbsp;
+			<select name="product" size="1" style="width: 60px">
+				<option value="ironman">00</option>
+				<option value="deadpool" name="deadpool">01</option>
+				<option value="spiderman">02</option>
+				<option value="spiderman">03</option>
+				<option value="spiderman">04</option>
+				<option value="spiderman">05</option>
+				<option value="spiderman">06</option>
+				<option value="spiderman">07</option>
+				<option value="spiderman">08</option>
+				<option value="spiderman">09</option>
+				<option value="spiderman">10</option>
+				<option value="spiderman">11</option>
+				<option value="spiderman">12</option>
+				<option value="spiderman">13</option>
+				<option value="spiderman">14</option>
+				<option value="spiderman">15</option>
+				<option value="spiderman">16</option>
+				<option value="spiderman">17</option>
+				<option value="spiderman">18</option>
+				<option value="spiderman">19</option>
+				<option value="spiderman">20</option>
+				<option value="spiderman">21</option>
+				<option value="spiderman">22</option>
+				<option value="spiderman">23</option>
+			</select>&nbsp; 시 
+			
+			<select name="salesvalue" size="1" style="width: 60px">
+				<option value="salesvalue">00</option>
+				<option value="deadpool">05</option>
+				<option value="spiderman">10</option>
+				<option value="spiderman">15</option>
+				<option value="spiderman">20</option>
+				<option value="spiderman">25</option>
+				<option value="spiderman">30</option>
+				<option value="spiderman">35</option>
+				<option value="spiderman">40</option>
+				<option value="spiderman">45</option>
+				<option value="spiderman">50</option>
+				<option value="spiderman">55</option>	
+			</select> &nbsp;-&nbsp;
+			
+			<select name="product" size="1" style="width: 60px">
+				<option value="ironman">00</option>
+				<option value="deadpool" name="deadpool">01</option>
+				<option value="spiderman">02</option>
+				<option value="spiderman">03</option>
+				<option value="spiderman">04</option>
+				<option value="spiderman">05</option>
+				<option value="spiderman">06</option>
+				<option value="spiderman">07</option>
+				<option value="spiderman">08</option>
+				<option value="spiderman">09</option>
+				<option value="spiderman">10</option>
+				<option value="spiderman">11</option>
+				<option value="spiderman">12</option>
+				<option value="spiderman">13</option>
+				<option value="spiderman">14</option>
+				<option value="spiderman">15</option>
+				<option value="spiderman">16</option>
+				<option value="spiderman">17</option>
+				<option value="spiderman">18</option>
+				<option value="spiderman">19</option>
+				<option value="spiderman">20</option>
+				<option value="spiderman">21</option>
+				<option value="spiderman">22</option>
+				<option value="spiderman">23</option>
+			</select>&nbsp; 시 
+			
+			<select name="salesvalue" size="1" style="width: 60px">
+				<option value="salesvalue">00</option>
+				<option value="deadpool">05</option>
+				<option value="spiderman">10</option>
+				<option value="spiderman">15</option>
+				<option value="spiderman">20</option>
+				<option value="spiderman">25</option>
+				<option value="spiderman">30</option>
+				<option value="spiderman">35</option>
+				<option value="spiderman">40</option>
+				<option value="spiderman">45</option>
+				<option value="spiderman">50</option>
+				<option value="spiderman">55</option>	
+			</select>
+		
+      <div class="form-actions" style="text-align:center">
+		<button type="submit" id="possible"class="btn btn-primary">저장</button>				
+		<button class="btn" data-dismiss="modal">닫기</button>	
+	</div> <!-- .actions -->   
+		</form>
+      </div>
+    </div>
+
+  </div>
+</div>
+<%-- modal end --%>
+
+
+   
             </div>
             <!-- /container -->
         </div>

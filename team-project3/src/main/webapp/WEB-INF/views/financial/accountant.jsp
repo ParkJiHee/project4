@@ -110,12 +110,12 @@
 					<li><a href="reports.jsp"> <i class="icon-list-alt"></i> <span>상품등록</span>
 					</a></li>
 
-					<li class="active"><a href="account.jsp"> <i
+					<li class="active"><a href="/team-project3/financial/accountant.action"> <i
 							class="icon-bar-chart"></i> <span>회계관리</span>
 					</a></li>
 
 
-					<li><a href="charts.jsp"> <i class="icon-facetime-video"></i>
+					<li><a href="/team-project3/financial/possiblemember.action"> <i class="icon-facetime-video"></i>
 							<span>잠재고객관리</span>
 					</a></li>
 
