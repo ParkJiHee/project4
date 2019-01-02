@@ -6,6 +6,8 @@ public interface PurchaseService {
 
 	void purchaseRegister(PurchaseVo purchaseVo);
 
+	void purchaseSelect(PurchaseVo purchaseVo);
+
 //	void registerPurchase(PurchaseVo purchaseVo);
 	
 }

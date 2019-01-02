@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.teamproject3.service.MemberService;
 import com.teamproject3.service.ProductService;
 import com.teamproject3.service.PurchaseService;
 import com.teamproject3.vo.ProductVo;
@@ -24,11 +25,20 @@ public class purchaseController {
 	@Autowired
 	@Qualifier("productService")//서비스의 의존성 주입
 	private ProductService productService;
+	@Autowired
+	@Qualifier("memberService")//서비스의 의존성 주입
+	private MemberService memberService;
 
 	@RequestMapping(value = "/purRegister.action", method = RequestMethod.GET)
 	public String purRegister() {
 		
 		return "purchase/purRegister";
+	}
+	
+	@RequestMapping(value = "/purSelect.action", method = RequestMethod.GET)
+	public String purSelect() {
+		
+		return "purchase/purSelect";
 	}
 	
 //	@RequestMapping(value = "/purRegister.action", method = RequestMethod.GET)
