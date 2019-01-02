@@ -62,7 +62,7 @@
 										   
 		SELECT memberno, memname, memphone 
 		FROM member
-		WHERE centerno = #{ centerNo } ORDER BY memberno desc
+		WHERE memberno = #{ memberNo } ORDER BY memberno desc
 		
 	</select>
 	

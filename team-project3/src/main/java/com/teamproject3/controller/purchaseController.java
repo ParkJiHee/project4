@@ -33,13 +33,16 @@ public class purchaseController {
 	private MemberService memberService;
 
 	@RequestMapping(value = "/purRegister.action", method = RequestMethod.GET)
-	public String purRegister(@RequestParam("productno")int productNo, Model model) {
+	public String purRegister(@RequestParam("productno")int productNo,
+							@RequestParam("memberno")int memberNo, Model model) {
 		
 		ProductVo product = productService.findProductByProductNo(productNo);
 		if (product == null) {
 			return "redirect:purSelect.action";
 		}
+		MemberVo member = memberService.findMember(memberNo);
 		
+		model.addAttribute("member", member);
 		model.addAttribute("product", product);
 		model.addAttribute("productno", productNo);
 		
