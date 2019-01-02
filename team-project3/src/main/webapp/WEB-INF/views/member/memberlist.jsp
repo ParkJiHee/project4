@@ -233,12 +233,125 @@
 									<hr>
 									
 									<style>
-									
-									.span3:hover {
-										transform: scale(1.2);
+									.overlay {
+									   transition: .5s ease;
+									  opacity: 0;
+									  position: absolute;
+									  top: 50%;
+									  left: 50%;
+									  transform: translate(-50%, -50%);
+									  -ms-transform: translate(-50%, -50%);
+									  text-align: center;
 									}
 									
+									.span3:hover .overlay{
+										opacity: 1;
+									}
+									
+									.span3:hover .widget-content{
+										opacity: 0.3;
+									}
+									
+									.text {
+									  background-color: #4CAF50;
+									  color: white;
+									  font-size: 16px;
+									  padding: 16px 32px;
+									}
 									</style>
+									
+									<fieldset>
+											<c:forEach var="member" items="${ members }">
+										<div class="span3">
+								      		
+								      		<div class="widget">
+							
+								      			<div class="widget-content" class="image">
+								      			<input type="hidden" id="memberNo" value="${ member.memberNo }"/>
+								      			<div class="media">
+													  <div class="media-left">
+													  
+													  <c:forEach var="attach" items="${ member.attachments }">
+													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
+													    class="media-object" style="width:60px">
+													  </c:forEach>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">${ member.memName }</h4>
+													    <p> ${ member.age }세/ ${ member.memGender } / ${ member.memPhone}</p>
+													    <p>등록일 : ${ member.memVisitDate }</p>	
+											      		<p>만료일 : <fmt:formatDate value="${ member.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
+		                								</p>
+													  </div>
+												</div>
+									      		</div> <!-- /widget-content -->
+									      		
+									      		<div class="overlay">
+													<div class="text">Hello World</div>
+												</div>
+								      		</div> <!-- /widget -->
+							      		</div> <!-- /span3 -->
+										</c:forEach>
+									</fieldset>
+								</form>
+								</div>
+								
+								<div class="tab-pane" id="nopaymembers">
+									<form id="edit-profile2" class="form-horizontal">	
+									<fieldset class="nav pull-right">
+										<div class="input-append">
+											<input type="text" name="search" placeholder="Search by Keyword">
+											<button class="btn" type="button"><i class="icon-search"></i></button>
+											<!-- <a class="btn btn-small" href="#"><i class="icon-search"></i></a> -->
+										</div>
+									</fieldset>
+									
+									<fieldset>
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+									</fieldset>
+									
+									<hr>
 									
 									<fieldset>
 											<c:forEach var="member" items="${ members }">
@@ -274,182 +387,6 @@
 										</c:forEach>
 									</fieldset>
 								</form>
-								</div>
-								
-								<div class="tab-pane" id="nopaymembers">
-									<form id="edit-profile2" class="form-vertical">
-										<fieldset>
-										                                          
-											<div class="control-group">
-												<label class="control-label">Alerts</label>
-												<div class="controls">
-													 <div class="alert">
-                                              <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                              <strong>Warning!</strong> Best check yo self, you're not looking too good.
-                                            </div>
-                                            
-                                            
-                                                <div class="alert alert-success">
-                                                  <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                  <strong>Warning!</strong> Best check yo self, you're not looking too good.
-                                                </div>
-                                            
-                                                     
-                                                     <div class="alert alert-info">
-                                              <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                              <strong>Warning!</strong> Best check yo self, you're not looking too good.
-                                            </div>
-                                            		 
-                                                     
-                                                     
-                                                     	
-                                            
-                                            
-                                            		 
-                                                     <div class="alert alert-block">
-                                                      <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                      <h4>Warning!</h4>
-                                                      Best check yo self, you're not...
-                                                    </div>
-												</div> <!-- /controls -->	
-                                                
-                                                
-                                                
-                                                
-                                                
-											</div> <!-- /control-group -->
-                                            
-                                            
-                                            
-                                            
-                                            <div class="control-group">
-												<label class="control-label">Progress Bar</label>
-												<div class="controls">
-													 <div class="progress">
-                                                      <div class="bar" style="width: 60%;"></div>
-                                                    </div>
-                                                    
-                                                    
-                                                    <div class="progress progress-striped">
-                                                      <div class="bar" style="width: 20%;"></div>
-                                                    </div>
-                                                    
-                                                    
-                                                    <div class="progress progress-striped active">
-                                                      <div class="bar" style="width: 40%;"></div>
-                                                    </div>
-												</div> <!-- /controls -->	
-											</div> <!-- /control-group -->
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            <div class="control-group">
-												<label class="control-label">Accordion</label>
-												<div class="controls">
-                                                
-													 <div class="accordion" id="accordion2">
-                                                      <div class="accordion-group">
-                                                        <div class="accordion-heading">
-                                                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                                                            Collapsible Group Item #1
-                                                          </a>
-                                                        </div>
-                                                        <div id="collapseOne" class="accordion-body collapse in">
-                                                          <div class="accordion-inner">
-                                                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-
-
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                      <div class="accordion-group">
-                                                        <div class="accordion-heading">
-                                                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                                                            Collapsible Group Item #2
-                                                          </a>
-                                                        </div>
-                                                        <div id="collapseTwo" class="accordion-body collapse">
-                                                          <div class="accordion-inner">
-                                                            Anim pariatur cliche...
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-												</div> <!-- /controls -->	
-											</div> <!-- /control-group -->
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            <div class="control-group">
-												<label class="control-label">Progress Bar</label>
-												<div class="controls">
-													 <!-- Button to trigger modal -->
-                                                    <a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-                                                     
-                                                    <!-- Modal -->
-                                                    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                      <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                        <h3 id="myModalLabel">Thank you for visiting EGrappler.com</h3>
-                                                      </div>
-                                                      <div class="modal-body">
-                                                        <p>One fine body…</p>
-                                                      </div>
-                                                      <div class="modal-footer">
-                                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                                                        <button class="btn btn-primary">Save changes</button>
-                                                      </div>
-                                                    </div>
-												</div> <!-- /controls -->	
-											</div> <!-- /control-group -->
-                                            
-                                         
-
-
-
-
-
-                                            
-                                            
-                                            
-                                            
-                                            
-                                          
-                                            
-                                            
-                                            
-                                            
-                                             <div class="control-group">
-												<label class="control-label">Social Buttons</label>
-												<div class="controls">
-													 <button class="btn btn-facebook-alt"><i class="icon-facebook-sign"></i> Facebook</button>
-                                                    <button class="btn btn-twitter-alt"><i class="icon-twitter-sign"></i> Twitter</button>
-                                                    <button class="btn btn-google-alt"><i class="icon-google-plus-sign"></i> Google+</button>
-                                                    <button class="btn btn-linkedin-alt"><i class="icon-linkedin-sign"></i> Linked In</button>
-                                                    <button class="btn btn-pinterest-alt"><i class="icon-pinterest-sign"></i> Pinterest</button>
-                                                    <button class="btn btn-github-alt"><i class="icon-github-sign"></i> Github</button>
-												</div> <!-- /controls -->	
-											</div> <!-- /control-group -->
-											
-											<br />
-											
-											<div class="form-actions">
-												<button type="submit" class="btn btn-primary">Save</button> <button class="btn">Cancel</button>
-                                                <button class="btn btn-info">Info</button>
-                                                <button class="btn btn-danger">Danger</button>
-                                                <button class="btn btn-warning">Warning</button>
-                                                <button class="btn btn-invert">Invert</button>
-                                                <button class="btn btn-success">Success</button>
-											</div>
-										</fieldset>
-									</form>
 								</div>
 								
 								<div class="tab-pane" id="uesmembers">
