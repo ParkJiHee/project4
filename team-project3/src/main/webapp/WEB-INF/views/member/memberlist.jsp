@@ -30,7 +30,7 @@
 <!-- end header.jsp -->
 
 <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog" style="top: 30%;">
+  <div class="modal fade" id="myModal" role="dialog" style="top: 30%; z-index: -100;">
   <div class="modal-dialog">
   <div class="modal-content">
   <div class="modal-header" style="background-color: #00ba8b;">
@@ -231,6 +231,14 @@
 									</fieldset>
 									
 									<hr>
+									
+									<style>
+									
+									.span3:hover {
+										transform: scale(1.2);
+									}
+									
+									</style>
 									
 									<fieldset>
 											<c:forEach var="member" items="${ members }">

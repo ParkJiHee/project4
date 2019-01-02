@@ -68,7 +68,6 @@
 	</c:when>
 	
 	<c:when test='${ not empty param.bgcolor and param.bgcolor eq "memberlist" }'>
-
 		<div class="subnavbar">
 		  <div class="subnavbar-inner">
 		    <div class="container">
@@ -79,9 +78,18 @@
 		        <li><a href="#"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
 		        <li><a href="#"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
 		      </ul>
-		      
+				<script type="text/javascript">
+					window.addEventListener('load', function(event) {
+						$('#show-register-modal').on('click', function(event) {
+							var register_modal = $('#myModal');
+							register_modal.css({'z-index': '1050'});
+							register_modal.modal('show');
+						});
+						
+					});
+				</script>		      
 		      <ul class="nav pull-right">
-		      	<li><a class="btn btn-primary" style="text-align: center; color: white;" data-toggle="modal" data-target="#myModal">
+		      	<li><a class="btn btn-primary" style="text-align: center; color: white;"id="show-register-modal">
 		      		<i class="icon-plus"></i><span>회원등록</span></a></li>
 		      </ul>
 		    </div>
