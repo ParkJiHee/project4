@@ -725,7 +725,7 @@ $(function() {
 					}
 					
 					var memberNo = parseInt($('#memberNo').val());
-					location.href="/team-project3/purchase/purSelect.action?memberno="+(memberNo+1);
+					location.href="/team-project3/purchase/purSelect.action?memberno="+(memberNo+1)+"&centerno=${ loginuser.centerNo }";
 				},
 				"error": function(xhr, status, err) {
 					alert('회원 등록 실패');

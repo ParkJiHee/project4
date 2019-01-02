@@ -56,6 +56,15 @@
 		WHERE centerno = #{ centerNo } ORDER BY memberno desc
 		
 	</select>
+
+	<select id="selectMember" parameterType="int"
+										   resultType="Member">
+										   
+		SELECT memberno, memname, memphone 
+		FROM member
+		WHERE centerno = #{ centerNo } ORDER BY memberno desc
+		
+	</select>
 	
 </mapper>
 

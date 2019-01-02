@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.teamproject3.service.MemberService;
 import com.teamproject3.service.ProductService;
 import com.teamproject3.service.PurchaseService;
+import com.teamproject3.vo.MemberVo;
 import com.teamproject3.vo.ProductVo;
 import com.teamproject3.vo.PurchaseVo;
 
@@ -46,11 +47,14 @@ public class purchaseController {
 	}
 	
 	@RequestMapping(value = "/purSelect.action", method = RequestMethod.GET)
-	public String purSelect(@RequestParam("centerno")int centerNo, Model model) {
+	public String purSelect(@RequestParam("centerno")int centerNo,
+							@RequestParam("memberno")int memberNo, Model model) {
 		
 		List<ProductVo> products = productService.findAllProduct(centerNo);
+		MemberVo member = memberService.findMember(memberNo);
 		
 		model.addAttribute("products", products);
+		model.addAttribute("member", member);
 		
 		return "purchase/purSelect";
 	}

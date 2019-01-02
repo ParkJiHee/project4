@@ -15,4 +15,6 @@ public interface MemberDao {
 
 	List<MemberVo> selectAllMembers(int centerNo);
 
+	MemberVo selectMember(int memberNo);
+
 }

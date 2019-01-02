@@ -40,5 +40,13 @@ public class MemberServiceImpl implements MemberService{
 		
 		return members;
 	}
+
+	@Override
+	public MemberVo findMember(int memberNo) {
+		MemberVo member = memberDao.selectMember(memberNo);
+		
+		return member;
+	}
+	
 	
 }
