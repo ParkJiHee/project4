@@ -44,9 +44,9 @@
                         
                         <h3 class="bigstats">결제 상품 정보</h3>
                         <div class="stats">
-                        	<span class="service_name">헬스장만_다니자</span><br>
+                        	<span class="service_name">${ product.productName }</span><br>
                             <span class="label_title">상품가격</span>
-                            <span>100,000원</span>
+                            <span>${ product.productPrice }원</span>
                         </div>
                         
                         <h3 class="bigstats">상품결제 금액 확인<span class="btn small gray resetBtn">다시 입력</span></h3>
@@ -85,7 +85,7 @@
                                <tr>
                                    <td>미수금</td>
                                    <td class="c_red" style="text-align: right;">
-                                       <p>100,000 원</p>
+                                       <p>${ product.productPrice }원</p>
                                        <input type="hidden" name="receivables" value="100000">
                                        <input type="hidden" name="beforeReceivables" value="100000">
                                    </td>
@@ -176,43 +176,6 @@
                         </p>
                         
                         </div>
-                    	<h3 class="bigstats">포함된 이용권 정보</h3>
-                    	<div class="stats">
-                        <div class="service_box_list">
-                            <div class="box_service pass" data-attribute="pass" data-seq-partner-pass="172" data-service-type="PLACE">
-                                <input type="hidden" name="combineYn" value="">
-                                <input type="hidden" name="extensionYn" value="N">
-                                <input type="hidden" name="seqPartnerProductPass" value="15657">
-                                <input type="hidden" name="seqPartnerPaymentPass" value="">
-                                <input type="hidden" name="seqPartnerProductUsage" value="">
-                                <input type="hidden" name="useStartDt" value="">
-                                <input type="hidden" name="useEndDt" value="">
-                                <input type="hidden" name="usePeriodStr" value="1개월">
-                                <input type="hidden" name="usePeriod" value="1">
-                                <input type="hidden" name="usePeriodOrgin" value="1">
-                                <input type="hidden" name="usePeriodType" value="M">
-                                <input type="hidden" name="useNumberStr" value="무제한">
-                                <input type="hidden" name="useNumberType" value="F">
-                                <input type="hidden" name="useNumber" value="100000000">
-                                <input type="hidden" name="useNumberOrgin" value="100000000">
-                                <input type="hidden" name="usedNumber" value="0">
-
-                                <input type="hidden" name="limitNumber" value="">   
-                                <input type="hidden" name="serviceType" value="PLACE">
-                                <input type="hidden" name="seqPartnerPass" value="172">
-
-                                <strong class="sub_tit">장소 이용권</strong>
-                                <strong class="c_red fr" data-msg="isCombine"></strong>
-                                <p class="txt_info">
-                                    <span>헬스장 이용권</span>
-                                </p>
-                                <p class="txt_info">
-                                    <span class="label_title sub_tit">기간 </span>
-                                    <span class="day_setting_new periodNumber" data-msg="periodNsumber">1개월</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
                     </div>
                     <!-- .stat -->
                     
