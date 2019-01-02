@@ -15,8 +15,8 @@
 	<!-- <insert id="insertMember" parameterType="com.demoweb.vo.Member"> -->
 	
 	<insert id="insertProduct" parameterType="Product">
-		INSERT INTO product (productno, proname, proexplain, proprice) 
-		VALUES (product_sequence.nextval, #{ productName }, #{ productExplain }, #{ productPrice })
+		INSERT INTO product (centerno, productno, proname, proexplain, proprice) 
+		VALUES (#{ centerNo }, product_sequence.nextval, #{ productName }, #{ productExplain }, #{ productPrice })
 	</insert>
 	
 	<resultMap type="Product" id="productMap">
@@ -27,6 +27,7 @@
 	<select id="selectAllProduct" resultMap="productMap">
 		SELECT productno, proname, proprice
 		FROM product
+		WHERE centerno = #{ centerNo }
 	</select>
 	
 	<resultMap type="Product" id="productnoMap">

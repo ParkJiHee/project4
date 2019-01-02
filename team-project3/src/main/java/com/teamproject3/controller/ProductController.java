@@ -31,9 +31,9 @@ public class ProductController {
 
 		// 헤더에서 클릭하면 취미리스트 페이지로 가는 컨트롤러
 		@RequestMapping(value = "/productList.action", method = RequestMethod.GET)
-		public String productlist(Model model) {
+		public String productlist(@RequestParam("centerno")int centerNo, Model model) {
 			
-			List<ProductVo> products = productService.findAllProduct();
+			List<ProductVo> products = productService.findAllProduct(centerNo);
 			
 			model.addAttribute("products", products);
 			

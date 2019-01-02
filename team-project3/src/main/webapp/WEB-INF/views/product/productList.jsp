@@ -67,9 +67,8 @@
 						        	<div class="plan-title">
 						        		${ product.productName }	        		
 					        		</div> <!-- /plan-title -->
-					                
 						            <div class="plan-price">
-					                	<span class="term">${ product.productPrice } 원</span>
+					                	<h3>${ product.productPrice } 원</h3>
 									</div> <!-- /plan-price -->
 									
 						        </div> <!-- /plan-header -->	        
