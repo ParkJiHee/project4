@@ -55,11 +55,11 @@ public class ProductController {
 		
 		// 등록한 내용 제출하는 컨트롤러
 		@RequestMapping(value = "/productRegister.action", method= RequestMethod.POST)
-		public String productregister(ProductVo product, HttpServletRequest req, CenterVo center) {
+		public String productregister(ProductVo product, HttpServletRequest req) {
 			
 			productService.writeProduct(product);
 			
-			return "redirect:productList.action";
+			return "redirect:productList.action?centerno=" + product.getCenterNo();
 		}
 		
 		// 게시글의 디테일 페이지로 가는 컨트롤러
@@ -84,7 +84,7 @@ public class ProductController {
 
 			productService.updateProduct(product);
 
-			return "redirect:productList.action";
+			return "redirect:productList.action?centerno=" + product.getCenterNo();
 		}
 
 		// 글삭제 메서드

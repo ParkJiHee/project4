@@ -114,7 +114,7 @@
 											
 										<div class="form-actions">
 											<button type="submit" class="btn btn-primary">상품 등록</button> 
-											<a href="/team-project3/product/productList.action" class="btn">취소</a>
+											<a href="/team-project3/product/productList.action?centerno=${ loginuser.centerNo }" class="btn">취소</a>
 										</div> <!-- /form-actions -->
 									</fieldset>
 								</form>
