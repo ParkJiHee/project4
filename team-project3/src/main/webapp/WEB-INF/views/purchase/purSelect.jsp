@@ -51,7 +51,7 @@
 						
 					<div class="widget-header">
 						<i class="icon-th-large"></i>
-						<h3>상품관리</h3>
+						<h3>상품결제</h3>
 						<a href="/team-project3/product/productRegister.action" class="button btn btn-primary" style=" margin-left:80%">상품등록</a>
 					</div> <!-- /widget-header -->
 					
@@ -67,8 +67,9 @@
 						        	<div class="plan-title">
 						        		${ product.productName }	        		
 					        		</div> <!-- /plan-title -->
+					                
 						            <div class="plan-price">
-					                	<h3>${ product.productPrice } 원</h3>
+					                	<span class="term">${ product.productPrice } 원</span>
 									</div> <!-- /plan-price -->
 									
 						        </div> <!-- /plan-header -->	        
@@ -76,8 +77,7 @@
 						        
 								
 								<div class="plan-actions">				
-									<a href="/team-project3/product/productUpdate.action?productno=${ product.productNo }" class="btn btn-success">수정</a>
-									<a href="/team-project3/product/productDelete.action?productno=${ product.productNo }" class="btn btn-danger">삭제</a>				
+									<a href="#" class="btn btn-success">결제</a>
 								</div> <!-- /plan-actions -->
 					
 							</div> <!-- /plan -->

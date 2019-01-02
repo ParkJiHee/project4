@@ -8,7 +8,7 @@ public interface ProductDao {
 
 	void insertProduct(ProductVo product);
 
-	List<ProductVo> selectAllProduct();
+	List<ProductVo> selectAllProduct(int centerNo);
 	
 	ProductVo selectProductByProductNo(int productNo);
 
