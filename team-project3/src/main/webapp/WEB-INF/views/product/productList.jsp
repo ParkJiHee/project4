@@ -77,7 +77,7 @@
 								
 								<div class="plan-actions">				
 									<a href="/team-project3/product/productUpdate.action?productno=${ product.productNo }" class="btn btn-success">수정</a>
-									<a href="/team-project3/product/productDelete.action?productno=${ product.productNo }" class="btn btn-danger">삭제</a>				
+									<a href="/team-project3/product/productDelete.action?centerno=${ loginuser.centerNo }&productno=${ product.productNo }" class="btn btn-danger">삭제</a>				
 								</div> <!-- /plan-actions -->
 					
 							</div> <!-- /plan -->

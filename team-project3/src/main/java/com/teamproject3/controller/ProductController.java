@@ -80,7 +80,7 @@ public class ProductController {
 		
 		// 글수정 메서드
 		@RequestMapping(value = "/productUpdate.action", method = RequestMethod.POST) 
-		public String updatepost(ProductVo product, Model model) {
+		public String updatepost(ProductVo product) {
 
 			productService.updateProduct(product);
 
@@ -89,10 +89,10 @@ public class ProductController {
 
 		// 글삭제 메서드
 		@RequestMapping(value = "/productDelete.action", method = RequestMethod.GET)
-		public String deleteproduct(@RequestParam("productno") int productNo, Model model) {
+		public String deleteproduct(@RequestParam("centerno")int centerNo, @RequestParam("productno") int productNo) {
 
 			productService.deleteProduct(productNo);
 
-			return "redirect:productList.action";
+			return "redirect:productList.action?centerno=" + centerNo;
 		}
 }
