@@ -1,5 +1,7 @@
 package com.teamproject3.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -36,7 +38,11 @@ public class purchaseController {
 	}
 	
 	@RequestMapping(value = "/purSelect.action", method = RequestMethod.GET)
-	public String purSelect() {
+	public String purSelect(@RequestParam("centerno")int centerNo, Model model) {
+		
+		List<ProductVo> products = productService.findAllProduct(centerNo);
+		
+		model.addAttribute("products", products);
 		
 		return "purchase/purSelect";
 	}
