@@ -38,6 +38,14 @@ public class OracleMemberDao implements MemberDao{
 		
 		return members;
 	}
+
+	@Override
+	public MemberVo selectMember(int memberNo) {
+		
+		MemberVo member = memberMapper.selectMember(memberNo);
+		
+		return member;
+	}
 	
 
 }

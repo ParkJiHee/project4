@@ -12,5 +12,6 @@ public interface MemberService {
 
 	List<MemberVo> findAllMembers(int centerNo);
 
+	MemberVo findMember(int memberNo);
 
 }

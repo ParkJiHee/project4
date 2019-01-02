@@ -37,14 +37,16 @@
                     	<h3 class="bigstats">회원 정보</h3>
                         <div class="stats">
 	                        <span class="label_title">이름</span>
-	                        <span>www</span><br>
+	                        <span>${ member.memName }</span><br>
 	                        <span class="label_title">번호</span>
-	                        <span>010-1234-4567</span>
+	                        <span>${ member.memPhone }</span>
                         </div>
                         
                         <h3 class="bigstats">결제 상품 정보</h3>
                         <div class="stats">
                         	<span class="service_name">${ product.productName }</span><br>
+                            <span class="label_title">상품설명</span>
+                            <span>${ product.productExplain }</span><br>
                             <span class="label_title">상품가격</span>
                             <span>${ product.productPrice }원</span>
                         </div>
@@ -55,7 +57,7 @@
                         <table>
                            <tbody>
                                <tr>
-                                   <td>카드</td>
+                                   <td >카드</td>
                                    <td style="text-align: right;">
                                        <p class="paymentPrice" data-msg="firstPaymentCard">0 원</p>
                                        <input type="hidden" name="firstPaymentCard" value="0">
@@ -83,7 +85,7 @@
                                    </td>
                                </tr>
                                <tr>
-                                   <td>미수금</td>
+                                   <td >미수금</td>
                                    <td class="c_red" style="text-align: right;">
                                        <p>${ product.productPrice }원</p>
                                        <input type="hidden" name="receivables" value="100000">
@@ -182,7 +184,7 @@
                   </div>
                 </div>
 
-                <div class="button_area">
+                <div class="button_area" align="center">
                     <a href="/manager/member/memberSelectProduct/439649" id="btnCancel" class="btn gray">취소</a>
                     <a href="#" id="btnPaymentProduct" class="btn dark">결제하기</a>
                 </div>
