@@ -1,6 +1,7 @@
 package com.teamproject3.service;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -26,6 +27,18 @@ public class MemberServiceImpl implements MemberService{
 			}
 		}
 		
+	}
+
+	@Override
+	public List<MemberVo> findAllMembers(int centerNo) {
+		List<MemberVo> members = memberDao.selectAllMembers(centerNo);
+		
+		for(MemberVo member : members) {
+			List<MemberAttachVo> attachments = memberDao.selectMemberAttachByMemberNo(member.getMemberNo());
+			member.setAttachments(attachments);
+		}
+		
+		return members;
 	}
 	
 }

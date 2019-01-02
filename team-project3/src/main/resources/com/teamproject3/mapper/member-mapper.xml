@@ -47,6 +47,16 @@
 		WHERE cenid = #{ cenId } AND cenpasswd = #{ cenPasswd }
 	</select> -->
 	
+	<select id="selectAllMembers" parameterType="int"
+										   resultType="Member">
+										   
+		SELECT memberno, memname, memgender, memphone, 
+		membrith, memaddress, memroute, mememail, memvisitdate, age
+		FROM member
+		WHERE centerno = #{ centerNo }
+		
+	</select>
+	
 </mapper>
 
 

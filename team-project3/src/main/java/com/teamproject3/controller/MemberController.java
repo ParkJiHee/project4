@@ -2,6 +2,7 @@ package com.teamproject3.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,61 +44,12 @@ public class MemberController {
 			return "redirect:/login.action";
 		}
 		
+		List<MemberVo> members = memberService.findAllMembers(center.getCenterNo());
+		
+		model.addAttribute("members", members);
+		
 		return "member/memberlist";
 	}
-	
-	/*@RequestMapping(value = "/memberlist.action", method = RequestMethod.POST)
-	public String memberListPost(Locale locale, Model model,
-			HttpSession session, HttpServletRequest req, CenterVo center) {
-		
-		center = (CenterVo)session.getAttribute("loginuser");
-		if (center == null) {
-			session.setAttribute("loginuser", center);
-			return "redirect:/login.action";
-		}
-		
-		return "member/memberlist";
-	}*/
-	
-	/*@RequestMapping(value = "/membersignup.action", method = RequestMethod.POST)
-	@ResponseBody
-	public String memberSignup(@Valid@ModelAttribute("member")MemberVo member, BindingResult br,
-			MultipartHttpServletRequest req) {
-		
-		MultipartFile attach = req.getFile("attach");
-
-		ArrayList<MemberAttachVo> attachments = new ArrayList<>();
-		if (attach != null && !attach.isEmpty()) {
-			// 파일저장
-			String savedFileName = com.teamproject3.common.Util.makeUniqueFileName(attach.getOriginalFilename()); // 고유 파일명 만들기
-			String path = req.getServletContext().getRealPath("/resources/member-upload/" + savedFileName); // 저장 경로 만들기
-
-			try {
-				attach.transferTo(new File(path)); // 파일 저장하기
-
-				// 데이터베이스에 저장할 데이터로 vo 객체 만들기
-				MemberAttachVo attachment = new MemberAttachVo();
-				attachment.setSavedFileName(savedFileName);
-				attachment.setUserFileName(attach.getOriginalFilename());
-
-				attachments.add(attachment);
-			} catch (Exception ex) {
-			}
-		}
-
-		member.setAttachments(attachments);
-
-		if(br.hasErrors()) {
-			
-			return "error";
-			
-		}else {
-			memberService.SignupMember(member);
-	
-			return "success";
-		}
-		
-	}*/
 	
 	@RequestMapping(value = "/membersignup.action", method = RequestMethod.POST)
 	@ResponseBody

@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +31,8 @@
 
 <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog" style="top: 30%;">
+  <div class="modal-dialog">
+  <div class="modal-content">
   <div class="modal-header" style="background-color: #00ba8b;">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h3 class="modal-title" style="color: white;">회원 등록</h3>
@@ -128,29 +132,21 @@
 						<input type="text" name="memEail" id="memEail" class="span3 m-wrap">
 					</div> <!-- /controls -->				
 				</div> <!-- /control-group -->
-				
-				<!-- <div class="control-group">											
-					<label class="control-label" for="firstname">메모</label>
-					<div class="controls">
-						<textarea rows="3" cols="30"></textarea>
-					</div>				
-				</div> --> 
-				
 			</fieldset>
 			</div>
 			
-			
-			
 		</form>		
 		
-		<div class="form-actions">
+		<div class="modal-footer form-actions">
 				
 				<button class="btn btn-default" data-dismiss="modal">닫기</button>
 				<button id="signup" class="btn btn-primary" data-dismiss="modal">잠재고객 등록</button>
-				<button class="btn btn-default" data-dismiss="modal">등록후 상품 판매</button>
+				<button id="signupsell" class="btn btn-default" data-dismiss="modal">등록후 상품 판매</button>
 				
 			</div> <!-- .actions -->
 	</div> <!-- /content -->
+	</div>
+	</div>
   </div>
   <!-- end Modal -->
 
@@ -166,24 +162,22 @@
 						
 					<div class="tabbable">
 						<ul class="nav nav-tabs">
-						  <li><a href="#formcontrols" data-toggle="tab">전체 회원</a></li>
-						  <li><a href="#jscontrols" data-toggle="tab">미결제 회원</a></li>
-						  <li class="active"><a href="#formcontrols" data-toggle="tab">이용 회원</a></li>
-						  <li><a href="#formcontrols" data-toggle="tab">만료 회원</a></li>
-						  <li><a href="#formcontrols" data-toggle="tab">만료 3일전</a></li>
-						  <li><a href="#formcontrols" data-toggle="tab">만료 7일전</a></li>
-						  <li><a href="#formcontrols" data-toggle="tab">미납 회원</a></li>
-						  <li><a href="#formcontrols" data-toggle="tab">환불</a></li>
-						  <li><a href="#formcontrols" data-toggle="tab">중지 회원</a></li>
+						  <li class="active"><a href="#allmembers" data-toggle="tab">전체 회원</a></li>
+						  <li><a href="#nopaymembers" data-toggle="tab">미결제 회원</a></li>
+						  <li><a href="#uesmembers" data-toggle="tab">이용 회원</a></li>
+						  <li><a href="#finishmembers" data-toggle="tab">만료 회원</a></li>
+						  <li><a href="#finish3days" data-toggle="tab">만료 3일전</a></li>
+						  <li><a href="#finish7days" data-toggle="tab">만료 7일전</a></li>
+						  <li><a href="#defaultmembers" data-toggle="tab">미납 회원</a></li>
+						  <li><a href="#refundmembers" data-toggle="tab">환불</a></li>
+						  <li><a href="#stopmembers" data-toggle="tab">중지 회원</a></li>
 						</ul>
 						
 						<br>
 						
 							<div class="tab-content">
-								<div class="tab-pane active" id="formcontrols">
-								
-								<form id="edit-profile" class="form-horizontal">
-								
+								<div class="tab-pane active" id="allmembers">		
+								<form id="edit-profile" class="form-horizontal">	
 									<fieldset class="nav pull-right">
 										<div class="input-append">
 											<input type="text" name="search" placeholder="Search by Keyword">
@@ -239,86 +233,43 @@
 									<hr>
 									
 									<fieldset>
-											
+											<c:forEach var="member" items="${ members }">
 										<div class="span3">
 								      		
 								      		<div class="widget">
 								      			
 								      			<div class="widget-content">
-								      				
-										      		<h1>3 Columns</h1>
-										      		
-										      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-										      		
+								      			<div class="media">
+													  <div class="media-left">
+													  <c:forEach var="attach" items="${ member.attachments }">
+													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
+													    class="media-object" style="width:60px">
+													  </c:forEach>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">${ member.memName }</h4>
+													    <p> ${ member.age }세/ ${ member.memGender } / ${ member.memPhone}</p>
+													    <p>등록일 : ${ member.memVisitDate }</p>	
+											      		<p>만료일 : <fmt:formatDate value="${ member.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
+		                								</p>
+											      		
+													  </div>
+												</div>
 									      		</div> <!-- /widget-content -->
 									      		
 								      		</div> <!-- /widget -->
 								      		
 							      		</div> <!-- /span3 -->
-							      		 	
-								      	
-								      	<div id="target-4" class="span3">
-								      		
-								      		<div class="widget">
-								      			
-								      			<div class="widget-content">
-								      				
-										      		<h1>3 Columns</h1>
-										      		
-										      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-										      		
-									      		</div> <!-- /widget-content -->
-									      		
-								      		</div> <!-- /widget -->
-								      		
-							      		</div> <!-- /span3 -->
-							      		 	
-								      	
-								      	<div class="span3">
-								      		
-								      		<div class="widget">
-								      			
-								      			<div class="widget-content">
-								      				
-										      		<h1>3 Columns</h1>
-										      		
-										      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-										      		
-									      		</div> <!-- /widget-content -->
-									      		
-								      		</div> <!-- /widget -->
-								      		
-							      		</div> <!-- /span3 -->
-							      		 	
-								      	
-								      	<div class="span3">
-								      		
-								      		<div class="widget">
-								      			
-								      			<div class="widget-content">
-								      				
-										      		<h1>3 Columns</h1>
-										      		
-										      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-										      		
-									      		</div> <!-- /widget-content -->
-									      		
-								      		</div> <!-- /widget -->
-								      		
-							      		</div> <!-- /span3 -->
-										
+										</c:forEach>
 									</fieldset>
 								</form>
 								</div>
 								
-								<div class="tab-pane" id="jscontrols">
+								<div class="tab-pane" id="nopaymembers">
 									<form id="edit-profile2" class="form-vertical">
 										<fieldset>
-											
-                                            
-                                            
-                                           
-                                                                                        
+										                                          
 											<div class="control-group">
 												<label class="control-label">Alerts</label>
 												<div class="controls">
@@ -491,6 +442,116 @@
 									</form>
 								</div>
 								
+								<div class="tab-pane" id="uesmembers">
+									<form id="edit-profile3" class="form-horizontal">	
+									<fieldset class="nav pull-right">
+										<div class="input-append">
+											<input type="text" name="search" placeholder="Search by Keyword">
+											<button class="btn" type="button"><i class="icon-search"></i></button>
+											<!-- <a class="btn btn-small" href="#"><i class="icon-search"></i></a> -->
+										</div>
+									</fieldset>
+									
+									<fieldset>
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+									</fieldset>
+									
+									<hr>
+									
+									<c:forEach var="member" items="${ members }">
+									<fieldset>
+											
+										<div class="span3">
+								      		
+								      		<div class="widget">
+								      			
+								      			<div class="widget-content">
+								      			<div class="media">
+													  <div class="media-left">
+													  <c:forEach var="attach" items="${ member.attachments }">
+													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
+													    class="media-object" style="width:60px">
+													  </c:forEach>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">3 Columns</h4>
+													    <p> ${ member.age }세/ ${ member.memGender } / ${ member.memPhone}</p>
+													    <p>등록일 : ${ member.memVisitDate }</p>	
+											      		<p>만료일 : <fmt:formatDate value="${ member.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
+		                								</p>
+											      		
+													  </div>
+												</div>
+									      		</div> <!-- /widget-content -->
+									      		
+								      		</div> <!-- /widget -->
+								      		
+							      		</div> <!-- /span3 -->
+										
+									</fieldset>
+								</c:forEach>
+								</form>
+								</div>
+								
+								<div class="tab-pane" id="finishmembers">
+								</div>
+								
+								<div class="tab-pane" id="finish3days">
+								</div>
+								
+								<div class="tab-pane" id="finish7days">
+								</div>
+								
+								<div class="tab-pane" id="defaultmembers">
+								</div>
+								
+								<div class="tab-pane" id="refundmembers">
+								</div>
+								
+								<div class="tab-pane" id="stopmembers">
+								</div>
+								
 							</div>
 						  
 						  
@@ -588,7 +649,8 @@
 <script src="/team-project3/resources/assets/js/excanvas.min.js"></script> 
 <script src="/team-project3/resources/assets/js/chart.min.js" type="text/javascript"></script> 
 <script src="/team-project3/resources/assets/js/bootstrap.js"></script>
-<script src="/team-project3/resources/assets/js/base.js"></script> 
+<script src="/team-project3/resources/assets/js/base.js"></script>
+  
 <script type="text/javascript">
 
 $(function() {
@@ -632,12 +694,40 @@ $(function() {
 				} else {
 					alert('회원 등록 실패');
 				}
+				
+				location.href="/team-project3/member/memberlist.action"
 			},
 			"error": function(xhr, status, err) {
 				alert('회원 등록 실패');
 			}
 		});
 	}); 
+	
+	$('#signupsell').on('click', function(event) {
+			
+			//event.preventDefault(); //이벤트를 발생시킨 객체의 기본 동작 수행 차단
+			//event.stopPropagation(); //상위 객체로의 이벤트 전달 차단
+			
+			var data = $('#membersignupform').serializeArray(); // [{boardno:'xxx'}, {writer:'yyy'}, ]
+			
+			$.ajax({
+				"url": "membersignup.action",
+				"type": "POST",
+				"data": data,
+				"success": function(data, status, xhr) {
+					if (data === "success") {
+						alert('회원을 등록했습니다.');
+					} else {
+						alert('회원 등록 실패');
+					}
+					
+					location.href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }";
+				},
+				"error": function(xhr, status, err) {
+					alert('회원 등록 실패');
+				}
+			});
+		}); 
 	
 });
 </script>
