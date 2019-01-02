@@ -53,7 +53,7 @@
 		SELECT memberno, memname, memgender, memphone, 
 		membrith, memaddress, memroute, mememail, memvisitdate, age
 		FROM member
-		WHERE centerno = #{ centerNo }
+		WHERE centerno = #{ centerNo } ORDER BY memberno desc
 		
 	</select>
 	

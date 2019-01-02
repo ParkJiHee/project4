@@ -237,10 +237,12 @@
 										<div class="span3">
 								      		
 								      		<div class="widget">
-								      			
+							
 								      			<div class="widget-content">
+								      			<input type="hidden" id="memberNo" value="${ member.memberNo }"/>
 								      			<div class="media">
 													  <div class="media-left">
+													  
 													  <c:forEach var="attach" items="${ member.attachments }">
 													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
 													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
@@ -506,6 +508,7 @@
 								      		<div class="widget">
 								      			
 								      			<div class="widget-content">
+								      			<input type="hidden" id="memberNo" value="${ member.memberNo }"/>
 								      			<div class="media">
 													  <div class="media-left">
 													  <c:forEach var="attach" items="${ member.attachments }">
@@ -721,7 +724,8 @@ $(function() {
 						alert('회원 등록 실패');
 					}
 					
-					location.href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }";
+					var memberNo = parseInt($('#memberNo').val());
+					location.href="/team-project3/purchase/purSelect.action?memberno="+(memberNo+1);
 				},
 				"error": function(xhr, status, err) {
 					alert('회원 등록 실패');
