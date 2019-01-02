@@ -225,6 +225,7 @@ div.stats  {
 }
 span.label_title {
 	padding-right:50px;
+	font-weight: bold;
 }
 #big_stats  i { font-size:30px; display:block; line-height: 40px; color:#b2afaa;}
 #big_stats .stat:hover i {color:#19bc9c;}

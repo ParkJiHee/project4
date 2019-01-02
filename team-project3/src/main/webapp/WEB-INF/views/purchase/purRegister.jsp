@@ -44,7 +44,8 @@
                         
                         <h3 class="bigstats">결제 상품 정보</h3>
                         <div class="stats">
-                        	<span class="service_name">${ product.productName }</span><br>
+                       		<span class="label_title">상품명</span>&nbsp;&nbsp;&nbsp;
+                        	<span>${ product.productName }</span><br>
                             <span class="label_title">상품설명</span>
                             <span>${ product.productExplain }</span><br>
                             <span class="label_title">상품가격</span>
@@ -104,19 +105,7 @@
                     	<div class="stats">
                         <p>
                             <span class="label_title">결제 담당자 선택</span><br>
-                            <input type="hidden" value="N" id="extensionYn">
-                            <select name="seqPaymentEmployee">
-                                <option value="">담당직원</option>
-                                
-                                    <option value="3649">ING 봉화점 (테스트)</option>
-                                
-                                    <option value="3490">강지선 (제이필라 테스트)</option>
-                                
-                                    <option value="2060">기본 관리자(수정)</option>
-                                
-                                    <option value="3692">김선민 (퀸 승마 테스트)</option>
-                                
-                            </select>
+                            <span>${ loginuser.cenId }</span>
                         </p>
                         <p>
                         <span class="label_title">이용 시작일 선택</span><br>
@@ -166,14 +155,12 @@
                     <div class="stat">
                     	<h3 class="bigstats">상품결제 수단 선택</h3>
                         <div class="stats">
-                        <div class="flex_align payment">
-                            <button class="firstPaymentCard">카드</button>
+                        <div class="payment">
+                            <button class="card">카드</button>
                             <button class="cash">현금</button>
-                            <!-- <button class="cashReceipts">현금영수증</button> -->
-                            <button class="bankTransfer">이체</button>
                         </div>
                         <p>
-                            <span class="label_title">결제 메모</span>
+                            <span class="label_title">결제 메모</span><br>
                             <textarea name="comment"></textarea>
                         </p>
                         
