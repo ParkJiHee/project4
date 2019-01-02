@@ -7,7 +7,7 @@ import com.teamproject3.vo.ProductVo;
 public interface ProductMapper {
 	void insertProduct(ProductVo product);
 
-	List<ProductVo> selectAllProduct();
+	List<ProductVo> selectAllProduct(int centerNo);
 
 	ProductVo selectProductByProductNo(int productNo);
 

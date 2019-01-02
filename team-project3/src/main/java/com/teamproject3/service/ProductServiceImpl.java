@@ -23,9 +23,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductVo> findAllProduct() {
+	public List<ProductVo> findAllProduct(int centerNo) {
 		
-		List<ProductVo> products = productDao.selectAllProduct();
+		List<ProductVo> products = productDao.selectAllProduct(centerNo);
 		return products;
 		
 	}
