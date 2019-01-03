@@ -52,7 +52,7 @@
 					<div class="widget-header">
 						<i class="icon-th-large"></i>
 						<h3>상품관리</h3>
-						<a href="/team-project3/product/productRegister.action" class="button btn btn-primary" style=" margin-left:80%">상품등록</a>
+						<a href="/team-project3/product/productRegister.action" class="btn btn-primary" style="margin-left:80%;position:relative">상품등록</a>
 					</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
