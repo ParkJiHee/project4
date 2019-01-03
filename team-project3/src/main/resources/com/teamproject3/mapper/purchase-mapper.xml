@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- namespace : package-name.class-name -->
+<mapper namespace="com.teamproject3.mapper.PurchaseMapper">
+	
+	<!-- SQL과 Object 매핑 -->
+	<!-- 
+		SQL    : #{ propertyName }, #{ propertyName } ... propertyName : 클래스.getPropertyName()
+		Object : 클래스
+	-->
+	<!-- id : MethodName -->
+	<!-- <insert id="insertMember" parameterType="com.demoweb.vo.Member"> -->
+	
+	<insert id="insertPurchase" parameterType="Purchase">
+		INSERT INTO purchase (purchaseno, productno, memberno, purname, purregdate, 
+				purmemo, purprice, purdateto, purdatefrom, purmethod) 
+		VALUES (purchase_sequence.nextval, #{ productNo }, #{ memberNo }, #{ purName }, #{ purRegdate }, 
+				#{ purMemo }, #{ purPrice }, #{ purDateto }, #{ purDatefrom }, #{ purMethod })				
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,15 +5,16 @@ import java.util.Date;
 public class PurchaseVo {
 	
 	private int purchaseNo;
-	private Date purRegate;
+	private Date purRegdate;
 	private boolean purStatement;
 	private String purMemo;
 	private int purPrice;
 	private String purName;
 	private Date purDateto;
 	private Date putDatefrom;
-	private int pur_productNo;
-	private int put_memberNo;
+	private int purproductNo;
+	private int putmemberNo;
+	private String purMethod;
 	
 	public int getPurchaseNo() {
 		return purchaseNo;
@@ -21,11 +22,11 @@ public class PurchaseVo {
 	public void setPurchaseNo(int purchaseNo) {
 		this.purchaseNo = purchaseNo;
 	}
-	public Date getPurRegate() {
-		return purRegate;
+	public Date getPurRegdate() {
+		return purRegdate;
 	}
-	public void setPurRegate(Date purRegate) {
-		this.purRegate = purRegate;
+	public void setPurRegdate(Date purRegdate) {
+		this.purRegdate = purRegdate;
 	}
 	public boolean isPurStatement() {
 		return purStatement;
@@ -63,17 +64,23 @@ public class PurchaseVo {
 	public void setPutDatefrom(Date putDatefrom) {
 		this.putDatefrom = putDatefrom;
 	}
-	public int getPur_productNo() {
-		return pur_productNo;
+	public int getPurproductNo() {
+		return purproductNo;
 	}
-	public void setPur_productNo(int pur_productNo) {
-		this.pur_productNo = pur_productNo;
+	public void setPurproductNo(int purproductNo) {
+		this.purproductNo = purproductNo;
 	}
-	public int getPut_memberNo() {
-		return put_memberNo;
+	public int getPutmemberNo() {
+		return putmemberNo;
 	}
-	public void setPut_memberNo(int put_memberNo) {
-		this.put_memberNo = put_memberNo;
+	public void setPutmemberNo(int putmemberNo) {
+		this.putmemberNo = putmemberNo;
+	}
+	public String getPurMethod() {
+		return purMethod;
+	}
+	public void setPurMethod(String purMethod) {
+		this.purMethod = purMethod;
 	}
 	
 }

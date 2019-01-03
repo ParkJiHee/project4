@@ -63,7 +63,7 @@
 	
 	<bean id="purchaseDao" class="com.teamproject3.dao.OraclePurchaseDao">
 		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
-		 <!-- <property name="purchaseMapper" ref="purchaseMapper"/> -->
+		 <property name="purchaseMapper" ref="purchaseMapper"/>
 	</bean>
 	
 	

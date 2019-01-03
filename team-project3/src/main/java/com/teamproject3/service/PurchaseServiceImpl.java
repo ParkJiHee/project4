@@ -11,11 +11,7 @@ public class PurchaseServiceImpl implements PurchaseService{
 	}
 
 	@Override
-	public void purchaseRegister(PurchaseVo purchase) {
-
-	}
-	@Override
-	public void purchaseSelect(PurchaseVo purchase) {
-		
+	public void registerPurchase(PurchaseVo purchaseVo) {
+		purchaseDao.insertPurchase(purchaseVo);
 	}
 }
