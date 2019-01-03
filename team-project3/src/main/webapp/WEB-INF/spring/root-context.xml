@@ -76,6 +76,7 @@
 		<!-- <property name="productMapper" ref="productMapper"/> -->
 	</bean>
 	
+	
 	<!-- MyBatis -->
 	<bean id="sqlSessionFactory" 
 		  class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -103,6 +104,7 @@
 		<property name="mapperInterface" value="com.teamproject3.mapper.ProductMapper" />
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</bean>
+	
 	
 	<!-- 트랜잭션 -->
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

@@ -1,5 +1,7 @@
 <%@page import="com.teamproject3.vo.MemberVo" %>
 <%@page import="com.teamproject3.vo.PurchaseVo"%>
+<%@page import="com.teamproject3.vo.VisitPurposeVo" %>
+<%@page import="com.teamproject3.vo.ScheduledDateVo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -56,9 +58,6 @@
         	 $('#newregister').submit();
 		});
     	
-    	$('#').on('click', function(event) {
-			
-		});
     	
     	
     	 <%-- 체크 --%>
@@ -108,12 +107,10 @@
     			    return false;
     		}
 		});
-    	 
-    	 
+    	 		
 		
-		
-    });   
-    
+    });<%-- end script --%>   
+	   
     <%-- 우편번호 --%>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -163,76 +160,41 @@
         }).open();
     }
         <%-- 우편번호 끝--%>
+      
+        
+        function checkboxarr() {
+    		/* var checkarr = [];
+    		$("input[name='purpose']:checked").each(function(i){
+    			checkarr.push($(this).val());
+    		}); */
+    		
+    		//var valueArrTest = checkarr;
+    		
+    		var data = $("#register-frm").serialize();
+    		
+    		jQuery.ajaxSettings.traditional = true;
+    		
+    		$.ajax({
+    			"url": "registerpurpose.action",
+    			"method": "POST",
+    			"data": data,
+    			"success": function(data, status, xhr) {
+    	
+    				if(valueArrTest == success){
+    					alert('저장했습니다');
+    				}else{ alert('저장 실패'); }
+    			},
+    			"error": function(xhr, status, err) {
+    				
+    			}
+    		});
+    	}
     
  	</script>
 </head>
 <body>
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                </a><a class="brand" href="index.jsp">Bootstrap Admin Template </a>
-                <div class="nav-collapse">
-                    <ul class="nav pull-right">
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="icon-cog"></i> Account <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="javascript:;">Settings</a></li>
-                                <li><a href="javascript:;">Help</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="icon-user"></i> EGrappler.com <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="javascript:;">Profile</a></li>
-                                <li><a href="javascript:;">Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="navbar-search pull-right">
-                    <input type="text" class="search-query" placeholder="Search">
-                    </form>
-                </div>
-                <!--/.nav-collapse -->
-            </div>
-            <!-- /container -->
-        </div>
-        <!-- /navbar-inner -->
-    </div>
-    <!-- /navbar -->
-    <div class="subnavbar">
-        <div class="subnavbar-inner">
-            <div class="container">
-                <ul class="mainnav">
-                    <li><a href="index.jsp"><i class="icon-dashboard"></i><span>고객관리</span> </a>
-                    </li>
-                    <li><a href="reports.jsp"><i class="icon-list-alt"></i><span>상품등록</span> </a>
-                    </li>
-                    <li><a href="/team-project3/financial/accountant.action"><i class="icon-bar-chart"></i><span>회계관리</span>
-                    </a></li>
-                    <li class="active"><a href="/team-project3/financial/possiblemember.action"><i class="icon-facetime-video"></i><span>잠재고객관리</span> </a>
-                    </li>
-                    <li><a href="shortcodes.jsp"><i class="icon-code"></i><span>스케줄관리</span> </a>
-                    </li>
-                    <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-long-arrow-down"></i><span>상품관리</span> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        	<li><a href="icons.jsp">Icons</a></li>
-                            <li><a href="faq.jsp">FAQ</a></li>
-                            <li><a href="pricing.jsp">Pricing Plans</a></li>
-                            <li><a href="login.jsp">Login</a></li>
-                            <li><a href="signup.jsp">Signup</a></li>
-                            <li><a href="error.jsp">404</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <!-- /container -->
-        </div>
-        <!-- /subnavbar-inner -->
-    </div>
-    <!-- /subnavbar -->
+
+  <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 
     <div class="main">
         <div class="main-inner">
@@ -241,19 +203,19 @@
 			
            <div class="dropdown">등록일 &nbsp;
 			<select name="product" size="1" style="width: 95px">
-				<option value="ironman">결제구분</option>
+				<option>결제구분</option>
 				<option value="deadpool" name="deadpool">결제고객</option>
 				<option value="spiderman">미결제 고객</option>
 				
 			</select> <select name="salesvalue" size="1" style="width: 90px">
-				<option value="salesvalue">고객관리 담당자선택</option>
+				<option>고객관리 담당자선택</option>
 				<option value="deadpool">신규결제</option>
 				<option value="spiderman">재 결제</option>
 				<option value="spiderman">카드취소</option>
 				<option value="spiderman">이체/현금 환불</option>
 				
 			</select> <select name="manager" size="1" style="width: 85px">
-				<option value="ironman">유입경로선택</option>
+				<option>유입경로선택</option>
 				<option value="deadpool">전단지</option>
 				<option value="spiderman">간판</option>
 				<option value="spiderman">회원추천 및 소개</option>
@@ -267,15 +229,19 @@
 				
 				
 			</select> <select name="payment" size="1" style="width: 90px">
-				<option value="ironman">정렬</option>
+				<option>정렬</option>
 				<option value="deadpool">등록일순</option>
 				<option value="spiderman">최근 연락일순</option>
 			</select> 
 			
 			<input type="text" width="5px" name="membersearch" placeholder="회원명">
-			<button type="submit" id="search" name="search" class="btn btn-small btn-success">검색</button>
+				<button type="submit" id="search" name="search" class="btn btn-small btn-success">검색</button>
 			<button type="button" id="register" name="register" class="btn btn-small btn-success" data-toggle="modal" data-target="#myModal">신규고객등록</button>
+		
 		</div>
+	
+		<jsp:include page="/WEB-INF/views/financial/newregister.jsp"/>
+		
 		
 		<%-- 두번째 메뉴 --%>
 		<hr>
@@ -286,170 +252,7 @@
 		</div>
 		
 		<br>
-		
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
- <%--      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">취소</button>
-      </div> --%>
-      <div class="modal-body">
-        	<form action="#" id="newregister" method="post" enctype="multipart/form-data"  modelAttribute="membervo" >			
-			
-			<div class="form-horizontal">
-
-				<fieldset>
-				
-				<div class="control-group">											
-					<label class="control-label" for="firstname">
-				<img src="/team-project3/resources/assets/img/user.png"/></label>
-				<input type='file' id='file' name='file' />
-				<input type="text" name="image" id="image" readonly/>
-			<button id='btn-upload' class="btn btn-info" onfocus="this.blur();">이미지찾기</button>
-				</div>
-				
-				<div class="control-group">											
-					<label class="control-label" for="firstname">*회원명</label>
-					<div class="controls">
-						<input type="text" name="firstname" id="firstname" placeholder="이름 입력">
-						<br>
-						<label class="radio inline">
-                            <input type="radio" name="radiobtns" checked="checked"> 남성
-                       </label>
-                       
-                       <label class="radio inline">
-                            <input type="radio" name="radiobtns"> 여성
-                       </label>
-					</div> <!-- /controls -->				
-				</div> <!-- /control-group -->
-				
-				<div class="control-group">											
-					<label class="control-label" for="firstname">*휴대전화번호</label>
-					<div class="controls">
-						<input type="text" name="firstname" id="firstname" class="span1 m-wrap">
-						<input type="text" name="firstname" id="firstname" class="span1 m-wrap">
-						<input type="text" name="firstname" id="firstname" class="span1 m-wrap">
-						<label class="checkbox inline">
-                           <input type="checkbox" checked="checked"> SNS 수신 동의
-                        </label>
-					</div> <!-- /controls -->				
-				</div> <!-- /control-group -->
-				
-				<div class="control-group">											
-					<label class="control-label" for="firstname">*회원 번호</label>
-					<div class="controls">
-						<input type="text" name="firstname" id="firstname">
-					</div> <!-- /controls -->				
-				</div> <!-- /control-group -->
-				
-				<div class="control-group">											
-					<label class="control-label" for="firstname">회원 바코드 번호</label>
-					<div class="controls">
-						<input type="text" name="firstname" id="firstname">
-					</div> <!-- /controls -->				
-				</div> <!-- /control-group -->
-				
-				<div class="control-group">											
-					<label class="control-label" for="firstname">*유입 상태</label>
-					<div class="controls">
-						<label class="radio inline">
-                            <input type="radio" name="radiobtns" checked="checked"> 방문
-                       </label>
-                       
-                       <label class="radio inline">
-                            <input type="radio" name="radiobtns"> 전화
-                       </label>
-                       
-                       <label class="radio inline">
-                            <input type="radio" name="radiobtns"> 온라인
-                       </label>
-					</div> <!-- /controls -->				
-				</div> <!-- /control-group -->
-				
-				<hr>
-				
-				<div class="control-group">											
-					<label class="control-label" for="firstname">고객관리 담당자</label>
-					<div class="controls">
-						<select name="search_expire" data-function="search" style="width: auto;">
-							<option >검색조건 선택</option>
-							<option value="search_service_expire">이용권 만료일 검색</option>
-							<option value="search_locker_expire">락커 만료일 검색</option>
-							<option value="search_visit_expire">방문 만료일 검색</option>
-						</select>
-					</div> <!-- /controls -->				
-				</div> <!-- /control-group -->
-				
-				<div class="control-group">											
-					<label class="control-label" for="firstname">고객 유입 경로</label>
-					<div class="controls">
-						<select name="search_expire" data-function="search" style="width: auto;">
-							<option >검색조건 선택</option>
-							<option value="search_service_expire">이용권 만료일 검색</option>
-							<option value="search_locker_expire">락커 만료일 검색</option>
-							<option value="search_visit_expire">방문 만료일 검색</option>
-						</select>
-					</div> <!-- /controls -->				
-				</div> <!-- /control-group -->
-				
-				<div class="control-group">											
-					<label class="control-label" for="firstname">생년월일</label>
-					<div class="controls">
-						<input type="date" name="firstname" id="firstname">
-					</div> <!-- /controls -->				
-				</div> <!-- /control-group -->
-				
-				<div class="control-group">											
-					<label class="control-label" for="firstname">주소</label>
-					<div class="controls">
-						<input type="text" id="sample6_postcode" placeholder="우편번호"> 
-						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br> 
-						<input type="text" id="sample6_address" placeholder="주소"><br> 
-						<input type="text" id="sample6_detailAddress" placeholder="상세주소"> 
-						<input type="text" id="sample6_extraAddress" placeholder="참고항목">
-					</div> <!-- /controls -->				
-				</div> <!-- /control-group -->
-			
-				<div class="control-group">											
-					<label class="control-label" for="firstname">이메일</label>
-					<div class="controls">
-						<input type="text" name="firstname" id="firstname" class="span2 m-wrap">
-						@
-						<input type="text" name="firstname" id="firstname" class="span1 m-wrap">
-					</div> <!-- /controls -->				
-				</div> <!-- /control-group -->
-				
-				<div class="control-group">											
-					<label class="control-label" for="firstname">메모</label>
-					<div class="controls">
-						<textarea rows="3" cols="30"></textarea>
-					</div> <!-- /controls -->				
-				</div> <!-- /control-group -->
-			</fieldset>
-			</div>
-			
-			<div class="form-actions">
-				
-				<button class="btn btn-default" data-dismiss="modal">닫기</button>
-				<button type="submit" id="possible"class="btn btn-primary">잠재고객 등록</button>
-				<button type="submit" id="reg"class="btn btn-default">등록후 상품 판매</button>
-				
-			</div> <!-- .actions -->
-			
-		</form>		
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
- 
+		 
             
       <%-- 전체 월별 리스트 --%>
 		<div id="list">
@@ -476,35 +279,6 @@
 						<th style="width: 8%">미결제사유</th>
 						<!-- 2.0v 2017-08-07 수정 -->
 						<th style="width: 5%">연락상태</th>
-
-						<!-- <th style="width: 4%">기간</th> -->
-						<!-- <th style="width: 4%">횟수</th> -->
-
-
-						<!-- 통계용 -->
-						<!-- 결제수단 -->
-						<!-- <th style="display:none" data-statistics="payCardCnt">신용카드 결제 건수</th>
-						<th style="display:none" data-statistics="payCardSales">신용카드 매출</th>
-						<th style="display:none" data-statistics="payBankCnt">이체 결제 건수</th>
-						<th style="display:none" data-statistics="payBankSales">이체 결제 매출</th>
-						<th style="display:none" data-statistics="payCashCnt">현금 결제 건수</th>
-						<th style="display:none" data-statistics="payCashSales">현금 결제 매출</th>
-						
-						상품분류
-						<th style="display:none" data-statistics="newRegistPayCnt">신규결제 건수</th>
-						<th style="display:none" data-statistics="newRegistPaySales">신규결제 매출</th>
-						<th style="display:none" data-statistics="reRegistPayCnt">재결제 건수</th>
-						<th style="display:none" data-statistics="reRegistPaySales">재결제 매출</th>
-						<th style="display:none" data-statistics="productRefundCardCnt">카드취소 건수</th>
-						<th style="display:none" data-statistics="productRefundCardSales">카드취소 환불</th>
-						<th style="display:none" data-statistics="productRefundCashCnt">현금 환불 건수</th>
-						<th style="display:none" data-statistics="productRefundCashSales">현금 환불</th>
-						<th style="display:none" data-statistics="productRefundBankCnt">이체 환불 건수</th>
-						<th style="display:none" data-statistics="productRefundBankSales">이체 환불</th>
-						
-						
-						<th style="display:none" data-statistics="receivablesCnt">미수잔액 건수</th>
-						<th style="display:none" data-statistics="receivablesSales">미수잔액 금액</th> -->
 					</tr>
 				</thead>
 
@@ -523,30 +297,54 @@
 								<td>d</td>
 								<td>d</td>
 								<td>d</td>
-									
+								
+								<c:choose>
+								<c:when test="${ empty data }">	
 								<td>
 								<button type="button" class="btn btn-small btn-success" 
 								data-toggle="modal" data-target="#input">입력하기
 								</button>
 								</td>
+								</c:when>
+								
+								<c:otherwise>
+								<td id="registerpurpose">
+								
+								</td>
+								</c:otherwise>
+								</c:choose>
+								
 								<td>d</td>
+								
+								<c:choose>
+								<c:when test="${ empty data }">
 								<td>
 								<button type="button" class="btn btn-small btn-success" 
 								data-toggle="modal" data-target="#reserve">예약하기
 								</button>
-								</td>						
-								<td>d</td>
-								<c:choose>
+								</td>		
+								</c:when>
 								
-								<c:when test="${ purchasevo.purStatement eq true }">
+								<c:otherwise>
+								<td id="schsuccess">
+								${ scheduleddatevo.visit } / ${ scheduleddatevo.hourfrom } : ${ scheduleddatevo.minuetfrom } ~ ${ scheduleddatevo.hourto } : ${ scheduleddatevo.minuetto } <br>
+								<a data-toggle="modal" data-target="#reserve">예약일수정</a><%-- update --%>
+								</td>
+								</c:otherwise>
+								</c:choose>
+												
+								<td>d</td>
+								
+								<c:choose>
+								<c:when test="${ purchasevo.purStatement eq false }">
 								<td style="color:orange">미결제</td>
 								</c:when>
 								
 								<c:otherwise>
-								<td>결제</td>
+								<td style="color:blue">결제</td>
 								</c:otherwise>
-								
 								</c:choose>
+								
 								<td>d</td>
 								<td>d</td>
 							</tr>
@@ -565,149 +363,10 @@
  --%>			</table>
 		</div>
 	
-<!-- Modal -->
-<div id="input" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+	<jsp:include page="/WEB-INF/views/financial/registerpurpose.jsp"/>
+	
+	<jsp:include page="/WEB-INF/views/financial/visit.jsp"/>
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">등록목적</h4>
-      </div>
-      <div class="modal-body">
-      <form>
-       	<input type="checkbox"> 시설이용
-       	<input type="checkbox"> 개인레슨
-       	<input type="checkbox"> 그룹수업
-       	<input type="checkbox"> 다이어트 <br>
-       	<input type="checkbox"> 재활운동
-       	<input type="checkbox"> 체형교정
-       	<input type="checkbox"> 체력증가
-       	<input type="checkbox"> 건강유지 <br>
-       	<input type="checkbox"> 기타 <input type="text">
-       	
-      <div class="form-actions" style="text-align:center">
-		<button type="submit" id="possible"class="btn btn-primary">저장</button>				
-		<button class="btn" data-dismiss="modal">닫기</button>	
-	</div> <!-- .actions -->   
-		</form>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-<%--Modal --%>  
-<div id="reserve" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">방문 예정일</h4>
-      </div>
-      <div class="modal-body">
-      <form>
-		방문 예정일  &nbsp;&nbsp;<input type='date' /> <br>
-		시간  &nbsp;&nbsp;
-			<select name="product" size="1" style="width: 60px">
-				<option value="ironman">00</option>
-				<option value="deadpool" name="deadpool">01</option>
-				<option value="spiderman">02</option>
-				<option value="spiderman">03</option>
-				<option value="spiderman">04</option>
-				<option value="spiderman">05</option>
-				<option value="spiderman">06</option>
-				<option value="spiderman">07</option>
-				<option value="spiderman">08</option>
-				<option value="spiderman">09</option>
-				<option value="spiderman">10</option>
-				<option value="spiderman">11</option>
-				<option value="spiderman">12</option>
-				<option value="spiderman">13</option>
-				<option value="spiderman">14</option>
-				<option value="spiderman">15</option>
-				<option value="spiderman">16</option>
-				<option value="spiderman">17</option>
-				<option value="spiderman">18</option>
-				<option value="spiderman">19</option>
-				<option value="spiderman">20</option>
-				<option value="spiderman">21</option>
-				<option value="spiderman">22</option>
-				<option value="spiderman">23</option>
-			</select>&nbsp; 시 
-			
-			<select name="salesvalue" size="1" style="width: 60px">
-				<option value="salesvalue">00</option>
-				<option value="deadpool">05</option>
-				<option value="spiderman">10</option>
-				<option value="spiderman">15</option>
-				<option value="spiderman">20</option>
-				<option value="spiderman">25</option>
-				<option value="spiderman">30</option>
-				<option value="spiderman">35</option>
-				<option value="spiderman">40</option>
-				<option value="spiderman">45</option>
-				<option value="spiderman">50</option>
-				<option value="spiderman">55</option>	
-			</select> &nbsp;-&nbsp;
-			
-			<select name="product" size="1" style="width: 60px">
-				<option value="ironman">00</option>
-				<option value="deadpool" name="deadpool">01</option>
-				<option value="spiderman">02</option>
-				<option value="spiderman">03</option>
-				<option value="spiderman">04</option>
-				<option value="spiderman">05</option>
-				<option value="spiderman">06</option>
-				<option value="spiderman">07</option>
-				<option value="spiderman">08</option>
-				<option value="spiderman">09</option>
-				<option value="spiderman">10</option>
-				<option value="spiderman">11</option>
-				<option value="spiderman">12</option>
-				<option value="spiderman">13</option>
-				<option value="spiderman">14</option>
-				<option value="spiderman">15</option>
-				<option value="spiderman">16</option>
-				<option value="spiderman">17</option>
-				<option value="spiderman">18</option>
-				<option value="spiderman">19</option>
-				<option value="spiderman">20</option>
-				<option value="spiderman">21</option>
-				<option value="spiderman">22</option>
-				<option value="spiderman">23</option>
-			</select>&nbsp; 시 
-			
-			<select name="salesvalue" size="1" style="width: 60px">
-				<option value="salesvalue">00</option>
-				<option value="deadpool">05</option>
-				<option value="spiderman">10</option>
-				<option value="spiderman">15</option>
-				<option value="spiderman">20</option>
-				<option value="spiderman">25</option>
-				<option value="spiderman">30</option>
-				<option value="spiderman">35</option>
-				<option value="spiderman">40</option>
-				<option value="spiderman">45</option>
-				<option value="spiderman">50</option>
-				<option value="spiderman">55</option>	
-			</select>
-		
-      <div class="form-actions" style="text-align:center">
-		<button type="submit" id="possible"class="btn btn-primary">저장</button>				
-		<button class="btn" data-dismiss="modal">닫기</button>	
-	</div> <!-- .actions -->   
-		</form>
-      </div>
-    </div>
-
-  </div>
-</div>
-<%-- modal end --%>
 
 
    
