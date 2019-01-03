@@ -63,7 +63,7 @@
 	
 	<bean id="purchaseDao" class="com.teamproject3.dao.OraclePurchaseDao">
 		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
-		<!-- <property name="productMapper" ref="productMapper"/> -->
+		 <!-- <property name="purchaseMapper" ref="purchaseMapper"/> -->
 	</bean>
 	
 	
@@ -74,6 +74,22 @@
 	<bean id="scheduleDao" class="com.teamproject3.dao.OracleScheduleDao">
 		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
 		<!-- <property name="productMapper" ref="productMapper"/> -->
+	</bean>
+	
+	<bean id="accountantService" class="com.teamproject3.service.AccountantServiceImpl">
+		<property name="accountantDao" ref="accountantDao" />
+	</bean>
+	
+	<bean id="accountantDao" class="com.teamproject3.dao.OracleAccountantDao">
+		 <property name="accountantMapper" ref="accountantMapper"/>
+	</bean>
+	
+	<bean id="possibleService" class="com.teamproject3.service.PossibleServiceImpl">
+		<property name="possibleDao" ref="possibleDao"/>
+	</bean>
+	
+	<bean id="possibleDao" class="com.teamproject3.dao.OraclePossibleDao">
+		<property name="possibleMapper" ref="possibleMapper"/>
 	</bean>
 	
 	
@@ -105,6 +121,19 @@
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</bean>
 	
+	<bean id="accountantMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.teamproject3.mapper.AccountantMapper"/>
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="possibleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.teamproject3.mapper.PossibleMapper"/>
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="purchaseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.teamproject3.mapper.PurchaseMapper"/>
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
 	
 	<!-- 트랜잭션 -->
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

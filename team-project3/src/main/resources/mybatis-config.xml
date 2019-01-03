@@ -3,11 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	
+		<!-- 0102추가 -->
+	 <settings>
+        <setting name="cacheEnabled" value="false" />
+        <setting name="jdbcTypeForNull" value="NULL" />
+    </settings>
+	
+	
 	<typeAliases>
 		<typeAlias type="com.teamproject3.vo.CenterVo" alias="Center"/>
 		<typeAlias type="com.teamproject3.vo.MemberVo" alias="Member"/>
 		<typeAlias type="com.teamproject3.vo.MemberAttachVo" alias="MemberAttach"/>
 		<typeAlias type="com.teamproject3.vo.ProductVo" alias="Product"/>
+		<typeAlias type="com.teamproject3.vo.ScheduledDateVo" alias="Posschedule"/>
+		<typeAlias type="com.teamproject3.vo.VisitPurposeVo" alias="Posvisit"/>
 	</typeAliases>
 
 	<environments default="development">
@@ -38,6 +47,7 @@
 		<mapper resource="com/teamproject3/mapper/center-mapper.xml" />
 		<mapper resource="com/teamproject3/mapper/member-mapper.xml" />
 		<mapper resource="com/teamproject3/mapper/product-mapper.xml" />
+		<mapper resource="com/teamproject3/mapper/possible-mapper.xml" />
 	</mappers>
 	
 
