@@ -17,6 +17,7 @@
 		<typeAlias type="com.teamproject3.vo.ProductVo" alias="Product"/>
 		<typeAlias type="com.teamproject3.vo.ScheduledDateVo" alias="Posschedule"/>
 		<typeAlias type="com.teamproject3.vo.VisitPurposeVo" alias="Posvisit"/>
+		<typeAlias type="com.teamproject3.vo.PurchaseVo" alias="Purchase"/>
 	</typeAliases>
 
 	<environments default="development">

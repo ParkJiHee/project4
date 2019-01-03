@@ -148,18 +148,18 @@
 				<hr>
 				
 				<div class="control-group">											
-					<label class="control-label" for="memBrith">생년월일</label>
+					<label class="control-label" for="memBrith">*생년월일</label>
 					<div class="controls">
 						<input type="date" name="memBrith" id="memBrith"/>
-						<input type="text" name="age" id="age" class="span1 m-wrap" placeholder="나이 입력">
+						<input type="text" name="age" id="age" class="span1 m-wrap" placeholder="나이">
 					</div> <!-- /controls -->				
 				</div> <!-- /control-group -->
 				
 				<div class="control-group">											
 					<label class="control-label" for="memAddress">주소</label>
 					<div class="controls">
-						<input type="text" id="address1" class="span3 m-wrap" placeholder="주소를 입력하세요">
-						<input type="text" id="address2" class="span3 m-wrap" placeholder="상세주소 입력">
+						<input type="text" id="address1" value="" class="span3 m-wrap" placeholder="주소를 입력하세요">
+						<input type="text" id="address2" value="" class="span3 m-wrap" placeholder="상세주소 입력">
 						<input type="hidden" name="memAddress" id="memAddress"/>
 					</div> <!-- /controls -->				
 				</div> <!-- /control-group -->
@@ -167,7 +167,7 @@
 				<div class="control-group">											
 					<label class="control-label" for="memEail">이메일</label>
 					<div class="controls">
-						<input type="text" name="memEail" id="memEail" class="span3 m-wrap">
+						<input type="text" name="memEail" id="memEail" value="" class="span3 m-wrap">
 					</div> <!-- /controls -->				
 				</div> <!-- /control-group -->
 			</fieldset>
@@ -269,6 +269,14 @@
 									</fieldset>
 									
 									<hr>
+									
+									<fieldset>
+										<div class="widget">
+									      	<div class="widget-content">
+									      		<p>전체 회원</p>
+									      	</div>
+								      	</div>
+									</fieldset>
 									
 									<fieldset id = memberlistcheck>
 											<c:forEach var="member" items="${ members }">

@@ -31,7 +31,7 @@
 		<result column="memroute" property="memRoute" /> <!-- not null -->
 		<result column="mememail" property="memEail" /> 
 		<result column="memvisitdate" property="memVisitDate" /><!-- not null -->
-		<result column="centerno" property="centerNo" />
+		<result column="centerno" property="centerNo" /><!-- not null -->
 		<result column="deleted" property="deleted" />
 		<result column="age" property="age" />
 	</resultMap>

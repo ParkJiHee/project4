@@ -60,15 +60,16 @@
 	      	<div class="span12">
 	      
 	      	<div class="info-box">
-               <div class="row-fluid stats-box">
+               <div class="row-fluid stats-box" style="margin: 10px 0px;">
                  
                  <div class="span4">
-                    <div class="stats-box-all-info">
-                    	<img src="/team-project3/resources/assets/img/user.png"/>&emsp;이름 : ${ member.memName }
-                    </div>
-                    <div class="stats-box-all-info">
-                    	<p> ${ member.age }세 / ${ member.memBrith }</p> 
-                    </div>
+                    <div class="stats-box-all-info">				
+                    	<img class="control-label" src="/team-project3/resources/assets/img/user.png"/>&emsp;&emsp;이름 : ${ member.memName }
+						<div class="controls">
+							<p>${ member.age }세 / ${ member.memBrith }</p>
+						</div>				
+					</div>
+                    
                   </div>
                   
                   <div class="span4">

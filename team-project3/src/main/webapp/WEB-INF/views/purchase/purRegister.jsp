@@ -158,7 +158,7 @@
                     <div class="stat">
                     	<h3 class="bigstats">상품결제 수단 선택</h3>
                         <div class="stats">
-                        <div class="purMethod">
+                        <div class="Method">
                             <input type="button" name="purMethod" id="card" value="카드">&nbsp;
                             <input type="button" name="purMethod" id="cash" value="현금">
                         </div>
@@ -170,7 +170,9 @@
                         </div>
                     </div>
                     <!-- .stat -->
-                    
+                    <div class="stat">
+                    	<input type="hidden" name="purStatement" value="1">
+                    </div>
                   </div>
                 </div>
 
