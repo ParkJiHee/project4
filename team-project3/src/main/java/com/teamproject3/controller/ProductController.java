@@ -4,13 +4,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,9 +29,9 @@ public class ProductController {
 
 		// 헤더에서 클릭하면 취미리스트 페이지로 가는 컨트롤러
 		@RequestMapping(value = "/productList.action", method = RequestMethod.GET)
-		public String productlist(Model model) {
+		public String productlist(@RequestParam("centerno")int centerNo, Model model) {
 			
-			List<ProductVo> products = productService.findAllProduct();
+			List<ProductVo> products = productService.findAllProduct(centerNo);
 			
 			model.addAttribute("products", products);
 			
@@ -55,11 +53,11 @@ public class ProductController {
 		
 		// 등록한 내용 제출하는 컨트롤러
 		@RequestMapping(value = "/productRegister.action", method= RequestMethod.POST)
-		public String productregister(ProductVo product, HttpServletRequest req, CenterVo center) {
+		public String productregister(ProductVo product, HttpServletRequest req) {
 			
 			productService.writeProduct(product);
 			
-			return "redirect:productList.action";
+			return "redirect:productList.action?centerno=" + product.getCenterNo();
 		}
 		
 		// 게시글의 디테일 페이지로 가는 컨트롤러
@@ -80,19 +78,19 @@ public class ProductController {
 		
 		// 글수정 메서드
 		@RequestMapping(value = "/productUpdate.action", method = RequestMethod.POST) 
-		public String updatepost(ProductVo product, Model model) {
+		public String updatepost(ProductVo product) {
 
 			productService.updateProduct(product);
 
-			return "redirect:productList.action";
+			return "redirect:productList.action?centerno=" + product.getCenterNo();
 		}
 
 		// 글삭제 메서드
 		@RequestMapping(value = "/productDelete.action", method = RequestMethod.GET)
-		public String deleteproduct(@RequestParam("productno") int productNo, Model model) {
+		public String deleteproduct(@RequestParam("centerno")int centerNo, @RequestParam("productno") int productNo) {
 
 			productService.deleteProduct(productNo);
 
-			return "redirect:productList.action";
+			return "redirect:productList.action?centerno=" + centerNo;
 		}
 }

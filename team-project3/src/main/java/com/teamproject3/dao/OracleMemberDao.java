@@ -1,5 +1,7 @@
 package com.teamproject3.dao;
 
+import java.util.List;
+
 import com.teamproject3.mapper.MemberMapper;
 import com.teamproject3.vo.MemberAttachVo;
 import com.teamproject3.vo.MemberVo;
@@ -21,6 +23,28 @@ public class OracleMemberDao implements MemberDao{
 	public void insertMemberAttach(MemberAttachVo attach) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<MemberAttachVo> selectMemberAttachByMemberNo(int memberNo) {
+		
+		return null;
+	}
+
+	@Override
+	public List<MemberVo> selectAllMembers(int centerNo) {
+		
+		List<MemberVo> members = memberMapper.selectAllMembers(centerNo);
+		
+		return members;
+	}
+
+	@Override
+	public MemberVo selectMember(int memberNo) {
+		
+		MemberVo member = memberMapper.selectMember(memberNo);
+		
+		return member;
 	}
 	
 

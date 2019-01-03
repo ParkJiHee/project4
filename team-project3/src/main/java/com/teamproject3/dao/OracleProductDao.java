@@ -21,9 +21,9 @@ public class OracleProductDao implements ProductDao{
 	}
 	
 	@Override
-	public List<ProductVo> selectAllProduct() {
+	public List<ProductVo> selectAllProduct(int centerNo) {
 		
-		List<ProductVo> products = productMapper.selectAllProduct();
+		List<ProductVo> products = productMapper.selectAllProduct(centerNo);
 		
 		return products;
 	}

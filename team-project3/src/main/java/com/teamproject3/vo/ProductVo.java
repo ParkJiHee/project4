@@ -6,6 +6,7 @@ public class ProductVo {
 	private String productName;
 	private String productExplain;
 	private int productPrice;
+	private int centerNo;
 	
 	
 	public int getProductNo() {
@@ -31,6 +32,12 @@ public class ProductVo {
 	}
 	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
+	}
+	public int getCenterNo() {
+		return centerNo;
+	}
+	public void setCenterNo(int centerNo) {
+		this.centerNo = centerNo;
 	}
 	
 

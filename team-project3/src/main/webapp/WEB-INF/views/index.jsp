@@ -97,7 +97,7 @@
 						<i class="shortcut-icon icon-bookmark"></i>
 						<span class="shortcut-label">회계관리</span> 
 					</a>
-					<a href="/team-project3/purchase/purRegister.action" class="shortcut">
+					<a href="/team-project3/purchase/purSelect.action?centerno=${ loginuser.centerNo }" class="shortcut">
 						<i class="shortcut-icon icon-signal"></i>
 						<span class="shortcut-label">상품결제</span> 
 					</a>
@@ -109,7 +109,7 @@
 						<i class="shortcut-icon icon-user"></i>
 						<span class="shortcut-label">고객관리</span> 
 					</a>
-					<a href="/team-project3/product/productList.action" class="shortcut">
+					<a href="/team-project3/product/productList.action?centerno=${ loginuser.centerNo }" class="shortcut">
 						<i class="shortcut-icon icon-file"></i>
 						<span class="shortcut-label">상품관리</span> 
 					</a>

@@ -62,10 +62,18 @@
 									<fieldset>
 										
 										<div class="control-group">											
+											<label class="control-label">센터 번호</label>
+											<div class="controls">
+												<input type="text" readonly="readonly" class="span6" name="centerNo" value="${ loginuser.centerNo }">
+												<p class="help-block">센터 번호는 로그인과 동시에 저장됩니다. 바꿀 수 없습니다.</p>
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										
+										<div class="control-group">											
 											<label class="control-label">센터 이름</label>
 											<div class="controls">
 												<input type="text" class="span6 disabled" name="cenId" value="${ loginuser.cenId }" disabled>
-												<p class="help-block">센터 번호는 로그인과 동시에 저장됩니다. 바꿀 수 없습니다.</p>
+												<p class="help-block">센터 이름은 로그인과 동시에 저장됩니다. 바꿀 수 없습니다.</p>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -106,7 +114,7 @@
 											
 										<div class="form-actions">
 											<button type="submit" class="btn btn-primary">상품 등록</button> 
-											<a href="/team-project3/product/productList.action" class="btn">취소</a>
+											<a href="/team-project3/product/productList.action?centerno=${ loginuser.centerNo }" class="btn">취소</a>
 										</div> <!-- /form-actions -->
 									</fieldset>
 								</form>

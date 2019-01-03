@@ -37,16 +37,19 @@
                     	<h3 class="bigstats">회원 정보</h3>
                         <div class="stats">
 	                        <span class="label_title">이름</span>
-	                        <span>www</span><br>
+	                        <span>${ member.memName }</span><br>
 	                        <span class="label_title">번호</span>
-	                        <span>010-1234-4567</span>
+	                        <span>${ member.memPhone }</span>
                         </div>
                         
                         <h3 class="bigstats">결제 상품 정보</h3>
                         <div class="stats">
-                        	<span class="service_name">헬스장만_다니자</span><br>
+                       		<span class="label_title">상품명</span>&nbsp;&nbsp;&nbsp;
+                        	<span>${ product.productName }</span><br>
+                            <span class="label_title">상품설명</span>
+                            <span>${ product.productExplain }</span><br>
                             <span class="label_title">상품가격</span>
-                            <span>100,000원</span>
+                            <span>${ product.productPrice }원</span>
                         </div>
                         
                         <h3 class="bigstats">상품결제 금액 확인<span class="btn small gray resetBtn">다시 입력</span></h3>
@@ -55,7 +58,7 @@
                         <table>
                            <tbody>
                                <tr>
-                                   <td>카드</td>
+                                   <td >카드</td>
                                    <td style="text-align: right;">
                                        <p class="paymentPrice" data-msg="firstPaymentCard">0 원</p>
                                        <input type="hidden" name="firstPaymentCard" value="0">
@@ -83,9 +86,9 @@
                                    </td>
                                </tr>
                                <tr>
-                                   <td>미수금</td>
+                                   <td >미수금</td>
                                    <td class="c_red" style="text-align: right;">
-                                       <p>100,000 원</p>
+                                       <p>${ product.productPrice }원</p>
                                        <input type="hidden" name="receivables" value="100000">
                                        <input type="hidden" name="beforeReceivables" value="100000">
                                    </td>
@@ -102,19 +105,7 @@
                     	<div class="stats">
                         <p>
                             <span class="label_title">결제 담당자 선택</span><br>
-                            <input type="hidden" value="N" id="extensionYn">
-                            <select name="seqPaymentEmployee">
-                                <option value="">담당직원</option>
-                                
-                                    <option value="3649">ING 봉화점 (테스트)</option>
-                                
-                                    <option value="3490">강지선 (제이필라 테스트)</option>
-                                
-                                    <option value="2060">기본 관리자(수정)</option>
-                                
-                                    <option value="3692">김선민 (퀸 승마 테스트)</option>
-                                
-                            </select>
+                            <span>${ loginuser.cenId }</span>
                         </p>
                         <p>
                         <span class="label_title">이용 시작일 선택</span><br>
@@ -164,62 +155,23 @@
                     <div class="stat">
                     	<h3 class="bigstats">상품결제 수단 선택</h3>
                         <div class="stats">
-                        <div class="flex_align payment">
-                            <button class="firstPaymentCard">카드</button>
+                        <div class="payment">
+                            <button class="card">카드</button>
                             <button class="cash">현금</button>
-                            <!-- <button class="cashReceipts">현금영수증</button> -->
-                            <button class="bankTransfer">이체</button>
                         </div>
                         <p>
-                            <span class="label_title">결제 메모</span>
+                            <span class="label_title">결제 메모</span><br>
                             <textarea name="comment"></textarea>
                         </p>
                         
                         </div>
-                    	<h3 class="bigstats">포함된 이용권 정보</h3>
-                    	<div class="stats">
-                        <div class="service_box_list">
-                            <div class="box_service pass" data-attribute="pass" data-seq-partner-pass="172" data-service-type="PLACE">
-                                <input type="hidden" name="combineYn" value="">
-                                <input type="hidden" name="extensionYn" value="N">
-                                <input type="hidden" name="seqPartnerProductPass" value="15657">
-                                <input type="hidden" name="seqPartnerPaymentPass" value="">
-                                <input type="hidden" name="seqPartnerProductUsage" value="">
-                                <input type="hidden" name="useStartDt" value="">
-                                <input type="hidden" name="useEndDt" value="">
-                                <input type="hidden" name="usePeriodStr" value="1개월">
-                                <input type="hidden" name="usePeriod" value="1">
-                                <input type="hidden" name="usePeriodOrgin" value="1">
-                                <input type="hidden" name="usePeriodType" value="M">
-                                <input type="hidden" name="useNumberStr" value="무제한">
-                                <input type="hidden" name="useNumberType" value="F">
-                                <input type="hidden" name="useNumber" value="100000000">
-                                <input type="hidden" name="useNumberOrgin" value="100000000">
-                                <input type="hidden" name="usedNumber" value="0">
-
-                                <input type="hidden" name="limitNumber" value="">   
-                                <input type="hidden" name="serviceType" value="PLACE">
-                                <input type="hidden" name="seqPartnerPass" value="172">
-
-                                <strong class="sub_tit">장소 이용권</strong>
-                                <strong class="c_red fr" data-msg="isCombine"></strong>
-                                <p class="txt_info">
-                                    <span>헬스장 이용권</span>
-                                </p>
-                                <p class="txt_info">
-                                    <span class="label_title sub_tit">기간 </span>
-                                    <span class="day_setting_new periodNumber" data-msg="periodNsumber">1개월</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
                     </div>
                     <!-- .stat -->
                     
                   </div>
                 </div>
 
-                <div class="button_area">
+                <div class="button_area" align="center">
                     <a href="/manager/member/memberSelectProduct/439649" id="btnCancel" class="btn gray">취소</a>
                     <a href="#" id="btnPaymentProduct" class="btn dark">결제하기</a>
                 </div>

@@ -14,4 +14,8 @@ public class PurchaseServiceImpl implements PurchaseService{
 	public void purchaseRegister(PurchaseVo purchase) {
 
 	}
+	@Override
+	public void purchaseSelect(PurchaseVo purchase) {
+		
+	}
 }
