@@ -17,4 +17,6 @@ public interface MemberDao {
 
 	MemberVo selectMember(int memberNo);
 
+	int selectAllMemberCount(int centerNo);
+
 }

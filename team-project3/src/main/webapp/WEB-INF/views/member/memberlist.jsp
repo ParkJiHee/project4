@@ -148,7 +148,7 @@
 				<hr>
 				
 				<div class="control-group">											
-					<label class="control-label" for="memBrith">*생년월일</label>
+					<label class="control-label" for="memBrith">생년월일</label>
 					<div class="controls">
 						<input type="date" name="memBrith" id="memBrith"/>
 						<input type="text" name="age" id="age" class="span1 m-wrap" placeholder="나이">
@@ -158,8 +158,8 @@
 				<div class="control-group">											
 					<label class="control-label" for="memAddress">주소</label>
 					<div class="controls">
-						<input type="text" id="address1" value="" class="span3 m-wrap" placeholder="주소를 입력하세요">
-						<input type="text" id="address2" value="" class="span3 m-wrap" placeholder="상세주소 입력">
+						<input type="text" id="address1" class="span3 m-wrap" placeholder="주소를 입력하세요">
+						<input type="text" id="address2" class="span3 m-wrap" placeholder="상세주소 입력">
 						<input type="hidden" name="memAddress" id="memAddress"/>
 					</div> <!-- /controls -->				
 				</div> <!-- /control-group -->
@@ -270,15 +270,18 @@
 									
 									<hr>
 									
-									<fieldset>
-										<div class="widget">
-									      	<div class="widget-content">
-									      		<p>전체 회원</p>
-									      	</div>
-								      	</div>
-									</fieldset>
-									
 									<fieldset id = memberlistcheck>
+									
+									<div class="control-group" style="margin: 0px;">
+									      		<h3 id="membercount" class="control-label" style="margin: 10px; width: 65%; text-align: left;">${ countno }명의 회원 중 0명이 선택되었습니다.</h3>
+									      		<div class="controls">
+										      		<input type="checkbox" id ="allcheck"> 전체 선택
+										      		<button class="btn btn-primary" style="margin: 10px">SMS 보내기</button>
+										      		<button class="btn btn-danger">회원 삭제</button>
+										      	</div>
+									      	</div>
+									      	<br>
+									
 											<c:forEach var="member" items="${ members }">
 										<div class="span3">
 								      		
@@ -1284,6 +1287,11 @@ $(function() {
     });
 	
 	$('#signup').on('click', function(event) {
+		var content = $('#age').val();
+		var num = 0;
+		if(content.length == 0){
+			$('#age').val(num);
+		}
 		
 		//event.preventDefault(); //이벤트를 발생시킨 객체의 기본 동작 수행 차단
 		//event.stopPropagation(); //상위 객체로의 이벤트 전달 차단
@@ -1336,13 +1344,35 @@ $(function() {
 			});
 		}); 
 	
+	var count = 0;
 	$('#memberlistcheck').on('click','.membercheck', function(event){
 		var memberno = $(this).attr('data-memberno');
-		
 		if($(this).prop('checked')){
+			count = count + 1;
+			var message = '${ countno }명의 회원 중 '+count+'명이 선택되었습니다.';
+			$('#membercount').text(message);
 			$('#member'+memberno).css('opacity','1');
 		}else{
+			count = count - 1;
+			var message = '${ countno }명의 회원 중 '+count+'명이 선택되었습니다.';
+			$('#membercount').text(message);
 			$('#member'+memberno).css('opacity','0');
+		}
+	});
+	
+	$('#allcheck').on('click',function(event){
+		if($(this).prop('checked')){
+			count = ${ countno };
+			var message = '${ countno }명의 회원 중 '+count+'명이 선택되었습니다.';
+			$('#membercount').text(message);
+			$('.overlay2').css('opacity','1');
+			$('.membercheck').prop('checked', true);
+		}else{
+			count = 0;
+			var message = '${ countno }명의 회원 중 '+count+'명이 선택되었습니다.';
+			$('#membercount').text(message);
+			$('.overlay2').css('opacity','0');
+			$('.membercheck').prop('checked', false);
 		}
 	});
 	

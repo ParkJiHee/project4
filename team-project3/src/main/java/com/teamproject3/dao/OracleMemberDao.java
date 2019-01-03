@@ -46,6 +46,12 @@ public class OracleMemberDao implements MemberDao{
 		
 		return member;
 	}
+
+	@Override
+	public int selectAllMemberCount(int centerNo) {
+		int count = memberMapper.selectAllMemberCount(centerNo);
+		return count;
+	}
 	
 
 }

@@ -11,4 +11,5 @@ public interface MemberMapper {
 	void insertMemberAttach(MemberAttachVo attach);
 	List<MemberVo> selectAllMembers(int centerNo);
 	MemberVo selectMember(int memberNo);
+	int selectAllMemberCount(int centerNo);
 }

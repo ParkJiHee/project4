@@ -14,4 +14,6 @@ public interface MemberService {
 
 	MemberVo findMember(int memberNo);
 
+	int findAllMemberCount(int centerNo);
+
 }

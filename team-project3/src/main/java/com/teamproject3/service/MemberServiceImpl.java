@@ -47,6 +47,12 @@ public class MemberServiceImpl implements MemberService{
 		
 		return member;
 	}
+
+	@Override
+	public int findAllMemberCount(int centerNo) {
+		int count = memberDao.selectAllMemberCount(centerNo);
+		return count;
+	}
 	
 	
 }
