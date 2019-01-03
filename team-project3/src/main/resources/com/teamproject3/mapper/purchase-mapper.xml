@@ -16,9 +16,9 @@
 	
 	<insert id="insertPurchase" parameterType="Purchase">
 		INSERT INTO purchase (purchaseno, productno, memberno, purname, purregdate, 
-				purmemo, purprice, purdateto, purdatefrom, purmethod) 
+				purmemo, purprice, purdateto, purdatefrom, purmethod, purstatement) 
 		VALUES (purchase_sequence.nextval, #{ productNo }, #{ memberNo }, #{ purName }, #{ purRegdate }, 
-				#{ purMemo }, #{ purPrice }, #{ purDateto }, #{ purDatefrom }, #{ purMethod })				
+				#{ purMemo }, #{ purPrice }, #{ purDateto }, #{ purDatefrom }, #{ purMethod }, #{ purStatement })				
 	</insert>
 	
 </mapper>
