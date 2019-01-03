@@ -16,8 +16,46 @@
 <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet">
 <link href="/team-project3/resources/assets/css/pages/signin.css" rel="stylesheet">
 <link href="/team-project3/resources/assets/css/pages/dashboard.css" rel="stylesheet">
+
 <style type="text/css">
-		.error { color: red; }
+.error { color: red; }
+.overlay {
+	transition: .5s ease;
+	opacity: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+	z-index: 1;
+}
+
+.span3 .overlay2 {
+	transition: .5s ease;
+	position: absolute;
+	opacity: 0;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.span3:hover .overlay {
+	opacity: 1;
+}
+
+.span3:hover .widget-content {
+	background-color: #BDBDBD;
+	opacity: 0.7;
+}
+
+.span3 .text {
+	color: black;
+	font-size: 40px;
+	padding: 16px 32px;
+}
 </style>
 
 </head>
@@ -232,42 +270,14 @@
 									
 									<hr>
 									
-									<style>
-									.overlay {
-									   transition: .5s ease;
-									  opacity: 0;
-									  position: absolute;
-									  top: 50%;
-									  left: 50%;
-									  transform: translate(-50%, -50%);
-									  -ms-transform: translate(-50%, -50%);
-									  text-align: center;
-									}
-									
-									.span3:hover .overlay{
-										opacity: 1;
-									}
-									
-									.span3:hover .widget-content{
-										opacity: 0.3;
-									}
-									
-									.text {
-									  background-color: #4CAF50;
-									  color: white;
-									  font-size: 16px;
-									  padding: 16px 32px;
-									}
-									</style>
-									
-									<fieldset>
+									<fieldset id = memberlistcheck>
 											<c:forEach var="member" items="${ members }">
 										<div class="span3">
 								      		
 								      		<div class="widget">
 							
-								      			<div class="widget-content" class="image">
-								      			<input type="hidden" id="memberNo" value="${ member.memberNo }"/>
+								      			<div class="widget-content">
+								      			<input type="hidden" name="memberNo" value="${ member.memberNo }"/>
 								      			<div class="media">
 													  <div class="media-left">
 													  
@@ -288,8 +298,19 @@
 									      		</div> <!-- /widget-content -->
 									      		
 									      		<div class="overlay">
-													<div class="text">Hello World</div>
+														<label class="checkbox inline">
+								                           <input type="checkbox" class="membercheck" data-memberno="${ member.memberNo }"> 회원선택
+								                        </label>
+								                        <div class="inline">
+															<a style="margin: 10px;" href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }&centerno=${ loginuser.centerNo }" class="btn btn-primary"><i class="icon-shopping-cart"></i><span>상품판매</span> </a>
+															<a href="/team-project3/member/memberdetail.action" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
+														</div>
 												</div>
+												
+												<div class="overlay2" id="member${ member.memberNo }">
+													<div class = text><i class="icon-ok-circle"></i></div>
+												</div>
+												
 								      		</div> <!-- /widget -->
 							      		</div> <!-- /span3 -->
 										</c:forEach>
@@ -298,7 +319,7 @@
 								</div>
 								
 								<div class="tab-pane" id="nopaymembers">
-									<form id="edit-profile2" class="form-horizontal">	
+									<form id="edit-profile" class="form-horizontal">	
 									<fieldset class="nav pull-right">
 										<div class="input-append">
 											<input type="text" name="search" placeholder="Search by Keyword">
@@ -353,14 +374,14 @@
 									
 									<hr>
 									
-									<fieldset>
+									<fieldset id = memberlistcheck>
 											<c:forEach var="member" items="${ members }">
 										<div class="span3">
 								      		
 								      		<div class="widget">
 							
 								      			<div class="widget-content">
-								      			<input type="hidden" id="memberNo" value="${ member.memberNo }"/>
+								      			<input type="hidden" name="memberNo" value="${ member.memberNo }"/>
 								      			<div class="media">
 													  <div class="media-left">
 													  
@@ -376,13 +397,25 @@
 													    <p>등록일 : ${ member.memVisitDate }</p>	
 											      		<p>만료일 : <fmt:formatDate value="${ member.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
 		                								</p>
-											      		
 													  </div>
 												</div>
 									      		</div> <!-- /widget-content -->
 									      		
+									      		<div class="overlay">
+														<label class="checkbox inline">
+								                           <input type="checkbox" class="membercheck" data-memberno="${ member.memberNo }"> 회원선택
+								                        </label>
+								                        <div class="inline">
+															<a style="margin: 10px;" href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }&centerno=${ loginuser.centerNo }" class="btn btn-primary"><i class="icon-shopping-cart"></i><span>상품판매</span> </a>
+															<a href="/team-project3/member/memberdetail.action" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
+														</div>
+												</div>
+												
+												<div class="overlay2" id="member${ member.memberNo }">
+													<div class = text><i class="icon-ok-circle"></i></div>
+												</div>
+												
 								      		</div> <!-- /widget -->
-								      		
 							      		</div> <!-- /span3 -->
 										</c:forEach>
 									</fieldset>
@@ -390,7 +423,7 @@
 								</div>
 								
 								<div class="tab-pane" id="uesmembers">
-									<form id="edit-profile3" class="form-horizontal">	
+									<form id="edit-profile" class="form-horizontal">	
 									<fieldset class="nav pull-right">
 										<div class="input-append">
 											<input type="text" name="search" placeholder="Search by Keyword">
@@ -445,17 +478,17 @@
 									
 									<hr>
 									
-									<c:forEach var="member" items="${ members }">
-									<fieldset>
-											
+									<fieldset id = memberlistcheck>
+											<c:forEach var="member" items="${ members }">
 										<div class="span3">
 								      		
 								      		<div class="widget">
-								      			
+							
 								      			<div class="widget-content">
-								      			<input type="hidden" id="memberNo" value="${ member.memberNo }"/>
+								      			<input type="hidden" name="memberNo" value="${ member.memberNo }"/>
 								      			<div class="media">
 													  <div class="media-left">
+													  
 													  <c:forEach var="attach" items="${ member.attachments }">
 													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
 													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
@@ -463,41 +496,658 @@
 													  </c:forEach>
 													  </div>
 													  <div class="media-body">
-													    <h4 class="media-heading">3 Columns</h4>
+													    <h4 class="media-heading">${ member.memName }</h4>
 													    <p> ${ member.age }세/ ${ member.memGender } / ${ member.memPhone}</p>
 													    <p>등록일 : ${ member.memVisitDate }</p>	
 											      		<p>만료일 : <fmt:formatDate value="${ member.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
 		                								</p>
-											      		
 													  </div>
 												</div>
 									      		</div> <!-- /widget-content -->
 									      		
+									      		<div class="overlay">
+														<label class="checkbox inline">
+								                           <input type="checkbox" class="membercheck" data-memberno="${ member.memberNo }"> 회원선택
+								                        </label>
+								                        <div class="inline">
+															<a style="margin: 10px;" href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }&centerno=${ loginuser.centerNo }" class="btn btn-primary"><i class="icon-shopping-cart"></i><span>상품판매</span> </a>
+															<a href="/team-project3/member/memberdetail.action" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
+														</div>
+												</div>
+												
+												<div class="overlay2" id="member${ member.memberNo }">
+													<div class = text><i class="icon-ok-circle"></i></div>
+												</div>
+												
 								      		</div> <!-- /widget -->
-								      		
 							      		</div> <!-- /span3 -->
-										
+										</c:forEach>
 									</fieldset>
-								</c:forEach>
 								</form>
 								</div>
 								
 								<div class="tab-pane" id="finishmembers">
+									<form id="edit-profile" class="form-horizontal">	
+									<fieldset class="nav pull-right">
+										<div class="input-append">
+											<input type="text" name="search" placeholder="Search by Keyword">
+											<button class="btn" type="button"><i class="icon-search"></i></button>
+											<!-- <a class="btn btn-small" href="#"><i class="icon-search"></i></a> -->
+										</div>
+									</fieldset>
+									
+									<fieldset>
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+									</fieldset>
+									
+									<hr>
+									
+									<fieldset id = memberlistcheck>
+											<c:forEach var="member" items="${ members }">
+										<div class="span3">
+								      		
+								      		<div class="widget">
+							
+								      			<div class="widget-content">
+								      			<input type="hidden" name="memberNo" value="${ member.memberNo }"/>
+								      			<div class="media">
+													  <div class="media-left">
+													  
+													  <c:forEach var="attach" items="${ member.attachments }">
+													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
+													    class="media-object" style="width:60px">
+													  </c:forEach>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">${ member.memName }</h4>
+													    <p> ${ member.age }세/ ${ member.memGender } / ${ member.memPhone}</p>
+													    <p>등록일 : ${ member.memVisitDate }</p>	
+											      		<p>만료일 : <fmt:formatDate value="${ member.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
+		                								</p>
+													  </div>
+												</div>
+									      		</div> <!-- /widget-content -->
+									      		
+									      		<div class="overlay">
+														<label class="checkbox inline">
+								                           <input type="checkbox" class="membercheck" data-memberno="${ member.memberNo }"> 회원선택
+								                        </label>
+								                        <div class="inline">
+															<a style="margin: 10px;" href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }&centerno=${ loginuser.centerNo }" class="btn btn-primary"><i class="icon-shopping-cart"></i><span>상품판매</span> </a>
+															<a href="/team-project3/member/memberdetail.action" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
+														</div>
+												</div>
+												
+												<div class="overlay2" id="member${ member.memberNo }">
+													<div class = text><i class="icon-ok-circle"></i></div>
+												</div>
+												
+								      		</div> <!-- /widget -->
+							      		</div> <!-- /span3 -->
+										</c:forEach>
+									</fieldset>
+								</form>
 								</div>
 								
 								<div class="tab-pane" id="finish3days">
+									<form id="edit-profile" class="form-horizontal">	
+									<fieldset class="nav pull-right">
+										<div class="input-append">
+											<input type="text" name="search" placeholder="Search by Keyword">
+											<button class="btn" type="button"><i class="icon-search"></i></button>
+											<!-- <a class="btn btn-small" href="#"><i class="icon-search"></i></a> -->
+										</div>
+									</fieldset>
+									
+									<fieldset>
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+									</fieldset>
+									
+									<hr>
+									
+									<fieldset id = memberlistcheck>
+											<c:forEach var="member" items="${ members }">
+										<div class="span3">
+								      		
+								      		<div class="widget">
+							
+								      			<div class="widget-content">
+								      			<input type="hidden" name="memberNo" value="${ member.memberNo }"/>
+								      			<div class="media">
+													  <div class="media-left">
+													  
+													  <c:forEach var="attach" items="${ member.attachments }">
+													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
+													    class="media-object" style="width:60px">
+													  </c:forEach>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">${ member.memName }</h4>
+													    <p> ${ member.age }세/ ${ member.memGender } / ${ member.memPhone}</p>
+													    <p>등록일 : ${ member.memVisitDate }</p>	
+											      		<p>만료일 : <fmt:formatDate value="${ member.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
+		                								</p>
+													  </div>
+												</div>
+									      		</div> <!-- /widget-content -->
+									      		
+									      		<div class="overlay">
+														<label class="checkbox inline">
+								                           <input type="checkbox" class="membercheck" data-memberno="${ member.memberNo }"> 회원선택
+								                        </label>
+								                        <div class="inline">
+															<a style="margin: 10px;" href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }&centerno=${ loginuser.centerNo }" class="btn btn-primary"><i class="icon-shopping-cart"></i><span>상품판매</span> </a>
+															<a href="/team-project3/member/memberdetail.action" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
+														</div>
+												</div>
+												
+												<div class="overlay2" id="member${ member.memberNo }">
+													<div class = text><i class="icon-ok-circle"></i></div>
+												</div>
+												
+								      		</div> <!-- /widget -->
+							      		</div> <!-- /span3 -->
+										</c:forEach>
+									</fieldset>
+								</form>
 								</div>
 								
 								<div class="tab-pane" id="finish7days">
+									<form id="edit-profile" class="form-horizontal">	
+									<fieldset class="nav pull-right">
+										<div class="input-append">
+											<input type="text" name="search" placeholder="Search by Keyword">
+											<button class="btn" type="button"><i class="icon-search"></i></button>
+											<!-- <a class="btn btn-small" href="#"><i class="icon-search"></i></a> -->
+										</div>
+									</fieldset>
+									
+									<fieldset>
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+									</fieldset>
+									
+									<hr>
+									
+									<fieldset id = memberlistcheck>
+											<c:forEach var="member" items="${ members }">
+										<div class="span3">
+								      		
+								      		<div class="widget">
+							
+								      			<div class="widget-content">
+								      			<input type="hidden" name="memberNo" value="${ member.memberNo }"/>
+								      			<div class="media">
+													  <div class="media-left">
+													  
+													  <c:forEach var="attach" items="${ member.attachments }">
+													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
+													    class="media-object" style="width:60px">
+													  </c:forEach>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">${ member.memName }</h4>
+													    <p> ${ member.age }세/ ${ member.memGender } / ${ member.memPhone}</p>
+													    <p>등록일 : ${ member.memVisitDate }</p>	
+											      		<p>만료일 : <fmt:formatDate value="${ member.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
+		                								</p>
+													  </div>
+												</div>
+									      		</div> <!-- /widget-content -->
+									      		
+									      		<div class="overlay">
+														<label class="checkbox inline">
+								                           <input type="checkbox" class="membercheck" data-memberno="${ member.memberNo }"> 회원선택
+								                        </label>
+								                        <div class="inline">
+															<a style="margin: 10px;" href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }&centerno=${ loginuser.centerNo }" class="btn btn-primary"><i class="icon-shopping-cart"></i><span>상품판매</span> </a>
+															<a href="/team-project3/member/memberdetail.action" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
+														</div>
+												</div>
+												
+												<div class="overlay2" id="member${ member.memberNo }">
+													<div class = text><i class="icon-ok-circle"></i></div>
+												</div>
+												
+								      		</div> <!-- /widget -->
+							      		</div> <!-- /span3 -->
+										</c:forEach>
+									</fieldset>
+								</form>
 								</div>
 								
 								<div class="tab-pane" id="defaultmembers">
+									<form id="edit-profile" class="form-horizontal">	
+									<fieldset class="nav pull-right">
+										<div class="input-append">
+											<input type="text" name="search" placeholder="Search by Keyword">
+											<button class="btn" type="button"><i class="icon-search"></i></button>
+											<!-- <a class="btn btn-small" href="#"><i class="icon-search"></i></a> -->
+										</div>
+									</fieldset>
+									
+									<fieldset>
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+									</fieldset>
+									
+									<hr>
+									
+									<fieldset id = memberlistcheck>
+											<c:forEach var="member" items="${ members }">
+										<div class="span3">
+								      		
+								      		<div class="widget">
+							
+								      			<div class="widget-content">
+								      			<input type="hidden" name="memberNo" value="${ member.memberNo }"/>
+								      			<div class="media">
+													  <div class="media-left">
+													  
+													  <c:forEach var="attach" items="${ member.attachments }">
+													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
+													    class="media-object" style="width:60px">
+													  </c:forEach>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">${ member.memName }</h4>
+													    <p> ${ member.age }세/ ${ member.memGender } / ${ member.memPhone}</p>
+													    <p>등록일 : ${ member.memVisitDate }</p>	
+											      		<p>만료일 : <fmt:formatDate value="${ member.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
+		                								</p>
+													  </div>
+												</div>
+									      		</div> <!-- /widget-content -->
+									      		
+									      		<div class="overlay">
+														<label class="checkbox inline">
+								                           <input type="checkbox" class="membercheck" data-memberno="${ member.memberNo }"> 회원선택
+								                        </label>
+								                        <div class="inline">
+															<a style="margin: 10px;" href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }&centerno=${ loginuser.centerNo }" class="btn btn-primary"><i class="icon-shopping-cart"></i><span>상품판매</span> </a>
+															<a href="/team-project3/member/memberdetail.action" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
+														</div>
+												</div>
+												
+												<div class="overlay2" id="member${ member.memberNo }">
+													<div class = text><i class="icon-ok-circle"></i></div>
+												</div>
+												
+								      		</div> <!-- /widget -->
+							      		</div> <!-- /span3 -->
+										</c:forEach>
+									</fieldset>
+								</form>
 								</div>
 								
 								<div class="tab-pane" id="refundmembers">
+									<form id="edit-profile" class="form-horizontal">	
+									<fieldset class="nav pull-right">
+										<div class="input-append">
+											<input type="text" name="search" placeholder="Search by Keyword">
+											<button class="btn" type="button"><i class="icon-search"></i></button>
+											<!-- <a class="btn btn-small" href="#"><i class="icon-search"></i></a> -->
+										</div>
+									</fieldset>
+									
+									<fieldset>
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+									</fieldset>
+									
+									<hr>
+									
+									<fieldset id = memberlistcheck>
+											<c:forEach var="member" items="${ members }">
+										<div class="span3">
+								      		
+								      		<div class="widget">
+							
+								      			<div class="widget-content">
+								      			<input type="hidden" name="memberNo" value="${ member.memberNo }"/>
+								      			<div class="media">
+													  <div class="media-left">
+													  
+													  <c:forEach var="attach" items="${ member.attachments }">
+													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
+													    class="media-object" style="width:60px">
+													  </c:forEach>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">${ member.memName }</h4>
+													    <p> ${ member.age }세/ ${ member.memGender } / ${ member.memPhone}</p>
+													    <p>등록일 : ${ member.memVisitDate }</p>	
+											      		<p>만료일 : <fmt:formatDate value="${ member.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
+		                								</p>
+													  </div>
+												</div>
+									      		</div> <!-- /widget-content -->
+									      		
+									      		<div class="overlay">
+														<label class="checkbox inline">
+								                           <input type="checkbox" class="membercheck" data-memberno="${ member.memberNo }"> 회원선택
+								                        </label>
+								                        <div class="inline">
+															<a style="margin: 10px;" href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }&centerno=${ loginuser.centerNo }" class="btn btn-primary"><i class="icon-shopping-cart"></i><span>상품판매</span> </a>
+															<a href="/team-project3/member/memberdetail.action" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
+														</div>
+												</div>
+												
+												<div class="overlay2" id="member${ member.memberNo }">
+													<div class = text><i class="icon-ok-circle"></i></div>
+												</div>
+												
+								      		</div> <!-- /widget -->
+							      		</div> <!-- /span3 -->
+										</c:forEach>
+									</fieldset>
+								</form>
 								</div>
 								
 								<div class="tab-pane" id="stopmembers">
+									<form id="edit-profile" class="form-horizontal">	
+									<fieldset class="nav pull-right">
+										<div class="input-append">
+											<input type="text" name="search" placeholder="Search by Keyword">
+											<button class="btn" type="button"><i class="icon-search"></i></button>
+											<!-- <a class="btn btn-small" href="#"><i class="icon-search"></i></a> -->
+										</div>
+									</fieldset>
+									
+									<fieldset>
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+										
+										<select name="search_expire" data-function="search" style="width: auto;">
+										<option >검색조건 선택</option>
+										<option value="search_service_expire">이용권 만료일 검색</option>
+										<option value="search_locker_expire">락커 만료일 검색</option>
+										<option value="search_visit_expire">방문 만료일 검색</option>
+										</select>
+									</fieldset>
+									
+									<hr>
+									
+									<fieldset id = memberlistcheck>
+											<c:forEach var="member" items="${ members }">
+										<div class="span3">
+								      		
+								      		<div class="widget">
+							
+								      			<div class="widget-content">
+								      			<input type="hidden" name="memberNo" value="${ member.memberNo }"/>
+								      			<div class="media">
+													  <div class="media-left">
+													  
+													  <c:forEach var="attach" items="${ member.attachments }">
+													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
+													    class="media-object" style="width:60px">
+													  </c:forEach>
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">${ member.memName }</h4>
+													    <p> ${ member.age }세/ ${ member.memGender } / ${ member.memPhone}</p>
+													    <p>등록일 : ${ member.memVisitDate }</p>	
+											      		<p>만료일 : <fmt:formatDate value="${ member.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
+		                								</p>
+													  </div>
+												</div>
+									      		</div> <!-- /widget-content -->
+									      		
+									      		<div class="overlay">
+														<label class="checkbox inline">
+								                           <input type="checkbox" class="membercheck" data-memberno="${ member.memberNo }"> 회원선택
+								                        </label>
+								                        <div class="inline">
+															<a style="margin: 10px;" href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }&centerno=${ loginuser.centerNo }" class="btn btn-primary"><i class="icon-shopping-cart"></i><span>상품판매</span> </a>
+															<a href="/team-project3/member/memberdetail.action" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
+														</div>
+												</div>
+												
+												<div class="overlay2" id="member${ member.memberNo }">
+													<div class = text><i class="icon-ok-circle"></i></div>
+												</div>
+												
+								      		</div> <!-- /widget -->
+							      		</div> <!-- /span3 -->
+										</c:forEach>
+									</fieldset>
+								</form>
 								</div>
 								
 							</div>
@@ -677,6 +1327,16 @@ $(function() {
 				}
 			});
 		}); 
+	
+	$('#memberlistcheck').on('click','.membercheck', function(event){
+		var memberno = $(this).attr('data-memberno');
+		
+		if($(this).prop('checked')){
+			$('#member'+memberno).css('opacity','1');
+		}else{
+			$('#member'+memberno).css('opacity','0');
+		}
+	});
 	
 });
 </script>

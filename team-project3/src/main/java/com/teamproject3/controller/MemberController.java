@@ -84,4 +84,21 @@ public class MemberController {
 		return "success";
 
 	}
+	
+	@RequestMapping(value = "/memberdetail.action", method = RequestMethod.GET)
+	public String memberDetailForm(Locale locale, Model model,
+			HttpSession session, HttpServletRequest req, CenterVo center) {
+		
+		center = (CenterVo)session.getAttribute("loginuser");
+		if (center == null) {
+			session.setAttribute("loginuser", center);
+			return "redirect:/login.action";
+		}
+		
+		List<MemberVo> members = memberService.findAllMembers(center.getCenterNo());
+		
+		model.addAttribute("members", members);
+		
+		return "member/memberdetail";
+	}
 }
