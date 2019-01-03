@@ -60,7 +60,8 @@
 	<select id="selectMember" parameterType="int"
 										   resultType="Member">
 										   
-		SELECT memberno, memname, memphone 
+		SELECT memberno, memname, memgender, memphone, 
+		membrith, memaddress, memroute, mememail, memvisitdate, age
 		FROM member
 		WHERE memberno = #{ memberNo } ORDER BY memberno desc
 		

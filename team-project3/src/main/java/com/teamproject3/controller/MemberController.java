@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -87,7 +88,8 @@ public class MemberController {
 	
 	@RequestMapping(value = "/memberdetail.action", method = RequestMethod.GET)
 	public String memberDetailForm(Locale locale, Model model,
-			HttpSession session, HttpServletRequest req, CenterVo center) {
+			HttpSession session, HttpServletRequest req, CenterVo center,
+			@RequestParam("memberno")int memberNo) {
 		
 		center = (CenterVo)session.getAttribute("loginuser");
 		if (center == null) {
@@ -95,9 +97,9 @@ public class MemberController {
 			return "redirect:/login.action";
 		}
 		
-		List<MemberVo> members = memberService.findAllMembers(center.getCenterNo());
+		MemberVo member = memberService.findMember(memberNo);
 		
-		model.addAttribute("members", members);
+		model.addAttribute("member", member);
 		
 		return "member/memberdetail";
 	}

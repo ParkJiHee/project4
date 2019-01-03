@@ -27,8 +27,7 @@
 		    list-style: none;
 		    margin: 0px;
 		    padding: 0px;
-		  
-		    max-width: 250px;
+		    max-width: 350px;
 		    width: 100%;
 		}
 		
@@ -65,21 +64,21 @@
                  
                  <div class="span4">
                     <div class="stats-box-all-info">
-                    	<img src="/team-project3/resources/assets/img/user.png"/> 이름 : 
+                    	<img src="/team-project3/resources/assets/img/user.png"/>&emsp;이름 : ${ member.memName }
                     </div>
                     <div class="stats-box-all-info">
-                    	<p> "나이"세 / 등록일</p> 
+                    	<p> ${ member.age }세 / ${ member.memBrith }</p> 
                     </div>
                   </div>
                   
                   <div class="span4">
-                    <div class="stats-box-all-info"><i class="icon-thumbs-up"  style="color:#F30"></i> 성별 : </div>
-                    <div class="stats-box-all-info"><i class="icon-map-marker"></i> 주소 : </div>
+                    <div class="stats-box-all-info"><i class="icon-thumbs-up"  style="color:#F30"></i> 성별 : ${ member.memGender }</div>
+                    <div class="stats-box-all-info"><i class="icon-map-marker"></i> 주소 : ${ member.memAddress }</div>
                   </div>
                   
                   <div class="span4">
-                  <div class="stats-box-all-info"><i class="icon-phone"></i> 전화번호 : </div>
-                    <div class="stats-box-all-info"><i class="icon-envelope-alt"></i> 이메일 : </div>
+                  <div class="stats-box-all-info"><i class="icon-phone"></i> 전화번호 : ${ member.memPhone }</div>
+                    <div class="stats-box-all-info"><i class="icon-envelope-alt"></i> 이메일 : ${ member.memEail }</div>
                  </div>
              </div>
          </div>
@@ -98,16 +97,19 @@
 						<h3>개인 정보</h3>
 					</div> <!-- /widget-header -->
 					
-					<div class="widget-content" style="height:400px;">
+					<div class="widget-content" style="height:300px;">
 							
 							<ul class="mylist">
-						        <li>목록 아이템 1</li>
-						        <li>목록 아이템 2</li>
-						        <li>목록 아이템 3</li>
-						        <li>목록 아이템 4</li>
-						        <li>목록 아이템 5</li>
+						        <li><span>회원 번호</span> &emsp;&emsp;&emsp;&emsp;${ member.memberNo }</li>
+						        <li><span>첫 등록일</span> &emsp;&emsp;&emsp;&emsp;${ member.memVisitDate }</li>
+						        <li><span>담당자</span> &emsp;&emsp;&emsp;&emsp;${ loginuser.cenId }</li>
+						        <li><span>락커번호</span> &emsp;&emsp;&emsp;&emsp;ㅇㅇㅇㅇ</li>
+						        <li><span>바코드번호</span> &emsp;&emsp;&emsp;&emsp;ㅇㅇㅇㅇ</li>
 						    </ul>
 						
+						<br>
+						<h3>메모</h3>
+						<hr>
 					</div> <!-- /widget-content -->
 						
 				</div> <!-- /widget -->
@@ -124,8 +126,71 @@
 						<h3>입장 관리</h3>
 					</div> <!-- /widget-header -->
 					
-					<div class="widget-content" style="overflow-y: scroll; height:400px;">
-						
+					<div class="widget-content" style="overflow-y: scroll; height:300px;">
+						<div class="span3">
+	      		
+				      		<div class="widget">
+				      			
+				      			<div class="widget-content">
+				      				
+						      		<h1>3 Columns</h1>
+						      		
+						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+						      		
+					      		</div> <!-- /widget-content -->
+					      		
+				      		</div> <!-- /widget -->
+				      		
+			      		</div> <!-- /span3 -->
+			      		
+			      		<div class="span3">
+	      		
+				      		<div class="widget">
+				      			
+				      			<div class="widget-content">
+				      				
+						      		<h1>3 Columns</h1>
+						      		
+						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+						      		
+					      		</div> <!-- /widget-content -->
+					      		
+				      		</div> <!-- /widget -->
+				      		
+			      		</div> <!-- /span3 -->
+			      		
+			      		<div class="span3">
+	      		
+				      		<div class="widget">
+				      			
+				      			<div class="widget-content">
+				      				
+						      		<h1>3 Columns</h1>
+						      		
+						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+						      		
+					      		</div> <!-- /widget-content -->
+					      		
+				      		</div> <!-- /widget -->
+				      		
+			      		</div> <!-- /span3 -->
+			      		
+			      		<div class="span3">
+	      		
+				      		<div class="widget">
+				      			
+				      			<div class="widget-content">
+				      				
+						      		<h1>3 Columns</h1>
+						      		
+						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+						      		
+					      		</div> <!-- /widget-content -->
+					      		
+				      		</div> <!-- /widget -->
+				      		
+			      		</div> <!-- /span3 -->
+			      		
 					</div> <!-- /widget-content -->
 						
 				</div> <!-- /widget -->
@@ -141,8 +206,70 @@
 						<h3>이용권 목록</h3>
 					</div> <!-- /widget-header -->
 					
-					<div class="widget-content" style="overflow-y: scroll; height:400px;">
-						
+					<div class="widget-content" style="overflow-y: scroll; height:300px;">
+						<div class="span3">
+	      		
+				      		<div class="widget">
+				      			
+				      			<div class="widget-content">
+				      				
+						      		<h1>3 Columns</h1>
+						      		
+						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+						      		
+					      		</div> <!-- /widget-content -->
+					      		
+				      		</div> <!-- /widget -->
+				      		
+			      		</div> <!-- /span3 -->
+			      		
+			      		<div class="span3">
+	      		
+				      		<div class="widget">
+				      			
+				      			<div class="widget-content">
+				      				
+						      		<h1>3 Columns</h1>
+						      		
+						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+						      		
+					      		</div> <!-- /widget-content -->
+					      		
+				      		</div> <!-- /widget -->
+				      		
+			      		</div> <!-- /span3 -->
+			      		
+			      		<div class="span3">
+	      		
+				      		<div class="widget">
+				      			
+				      			<div class="widget-content">
+				      				
+						      		<h1>3 Columns</h1>
+						      		
+						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+						      		
+					      		</div> <!-- /widget-content -->
+					      		
+				      		</div> <!-- /widget -->
+				      		
+			      		</div> <!-- /span3 -->
+			      		
+			      		<div class="span3">
+	      		
+				      		<div class="widget">
+				      			
+				      			<div class="widget-content">
+				      				
+						      		<h1>3 Columns</h1>
+						      		
+						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
+						      		
+					      		</div> <!-- /widget-content -->
+					      		
+				      		</div> <!-- /widget -->
+				      		
+			      		</div> <!-- /span3 -->
 					</div> <!-- /widget-content -->
 						
 				</div> <!-- /widget -->
@@ -253,48 +380,9 @@
 <script src="/team-project3/resources/assets/js/chart.min.js" type="text/javascript"></script>
 <script src="/team-project3/resources/assets/js/bootstrap.js"></script>
 <script src="/team-project3/resources/assets/js/base.js"></script>
+
 <script>
 
-    var pieData = [
-				{
-				    value: 30,
-				    color: "#F38630"
-				},
-				{
-				    value: 50,
-				    color: "#E0E4CC"
-				},
-				{
-				    value: 100,
-				    color: "#69D2E7"
-				}
-
-			];
-
-    var myPie = new Chart(document.getElementById("pie-chart").getContext("2d")).Pie(pieData);
-
-    var barChartData = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-				{
-				    fillColor: "rgba(220,220,220,0.5)",
-				    strokeColor: "rgba(220,220,220,1)",
-				    data: [65, 59, 90, 81, 56, 55, 40]
-				},
-				{
-				    fillColor: "rgba(151,187,205,0.5)",
-				    strokeColor: "rgba(151,187,205,1)",
-				    data: [28, 48, 40, 19, 96, 27, 100]
-				}
-			]
-
-    }
-
-    var myLine = new Chart(document.getElementById("bar-chart").getContext("2d")).Bar(barChartData);
-	var myLine = new Chart(document.getElementById("bar-chart1").getContext("2d")).Bar(barChartData);
-	var myLine = new Chart(document.getElementById("bar-chart2").getContext("2d")).Bar(barChartData);
-	var myLine = new Chart(document.getElementById("bar-chart3").getContext("2d")).Bar(barChartData);
-	
 	</script>
 
 

@@ -303,7 +303,7 @@
 								                        </label>
 								                        <div class="inline">
 															<a style="margin: 10px;" href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }&centerno=${ loginuser.centerNo }" class="btn btn-primary"><i class="icon-shopping-cart"></i><span>상품판매</span> </a>
-															<a href="/team-project3/member/memberdetail.action" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
+															<a href="/team-project3/member/memberdetail.action?memberno=${ member.memberNo }" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
 														</div>
 												</div>
 												
