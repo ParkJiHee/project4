@@ -30,27 +30,14 @@
 		
 		if (id === 'new') { 
 		 frm.attr("action", "/team-project3/financial/possiblemember.action");
-		} else {
-			//frm.attr("action", "/team-project3/financial/possiblemember.action");
-			return;
+		} else if( id === 'prod'){
+			frm.attr("action", "/team-project3/purchase/purRegister.action?productno=${ product.productNo }&memberno=${ member.memberNo }");
 		}
 		 frm.submit();
 	})
 		
- })
+ }) <%-- 메인 function끝 --%>
  
- 
- function btn_click(btn) {
-	
-	 if(btn == "possible"){
-		 $('#newregister').attr("action", "/team-project3/financial/possiblemember.action");
-		 $('#newregister').submit();
-	 
-	 }else if(btn == "product"){
-		 
-		 newregister.action = "";
-	 }
-};
  
  </script>
 </head>
