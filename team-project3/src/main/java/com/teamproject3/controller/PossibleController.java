@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.number.NumberFormatter;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,7 +27,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.teamproject3.service.MemberService;
 import com.teamproject3.service.PossibleService;
+import com.teamproject3.service.ProductService;
+import com.teamproject3.ui.ThePager;
 import com.teamproject3.vo.MemberVo;
 import com.teamproject3.vo.VisitPurposeVo;
 
@@ -46,10 +51,41 @@ public class PossibleController {
 	@Autowired
 	@Qualifier("possibleService")
 	private PossibleService possibleService;
+	
+	@Autowired
+	@Qualifier("productService")
+	private ProductService productService;
+	
+	@Autowired
+	@Qualifier("memberService")
+	private MemberService memberService;
 
 	
 	@RequestMapping(value= {"/", "/possiblemember.action"},  method = RequestMethod.GET )
-	public String view() {//@ModelAttribute("membervo") MemberVo member,) {
+	public String view( //@ModelAttribute("membervo") MemberVo member,)
+			@RequestParam(value = "pageno", required = false, defaultValue = "1") Integer pageNo,
+			Model model ) {	//int memberNo
+			
+	int pageSize = 10; // 한 페이지에 표시되는 데이터 개수
+	int from = (pageNo - 1) * pageSize + 1; // 해당 페이지에 포함된 시작 글번호
+	int to = from + pageSize; // 해당 페이지에 포함된 마지막 글번호 + 1
+	int pagerSize = 5; // 한 번에 표시되는 페이지 번호 개수
+	String linkUrl = "study.action"; // 페이지 번호를 눌렀을 때 이동할 경로
+
+	List<MemberVo> members = possibleService.findAllMemberByPage(from, to);
+	//VisitPurposeVo purpose = possibleService.findPurposeListByMemberNo(memberNo);
+	
+//	int purposeCount = possibleService.findMemberCount();
+
+//	ThePager pager = new ThePager(purposeCount, pageNo, pageSize, pagerSize, linkUrl);
+
+	// JSP에서 읽을 수 있도록 request객체에 조회된 데이터 저장 (forward 이동이기 때문에)
+	model.addAttribute("members", members);
+//	model.addAttribute("purpose", purpose);
+//	model.addAttribute("pager", pager);
+//	model.addAttribute("pageno", pageNo);
+
+	
 		
 //		member = (MemberVo)session.getAttribute("loginuser");
 //		if (member == null) {
@@ -57,9 +93,8 @@ public class PossibleController {
 //			return "redirect:/account/login.action";
 //		}
 //		
-//		return "studylist/studyregister";
-			
-		return "financial/possiblemember";
+
+	return "financial/possiblemember";
 	}
 	
 	@RequestMapping(value= {"/", "/possiblemember.action"}, method = RequestMethod.POST)
@@ -98,7 +133,6 @@ public class PossibleController {
 		return "financial/possiblemember";
 	}
 	
-	
 	// 댓글 메서드
 		@RequestMapping(value = "/registerpurpose.action", method = {RequestMethod.GET, RequestMethod.POST})
 		@ResponseBody
@@ -112,12 +146,12 @@ public class PossibleController {
 		}
 
 //		// 댓글 리스트
-//		@RequestMapping(value = "/get-comment-list.action", method = RequestMethod.POST)
-//		public String listpurpose(int memberNo) {
+//		@RequestMapping(value = "/get-input-list.action", method = RequestMethod.GET)
+//		public String listpurpose(int memberNo, Model model) {
 //
-////			List<StudyComment> comments = studyService.findCommentLsitByStudyNo(studyNo);
-////			model.addAttribute("comments", comments);
-//
+//			List<VisitPurposeVo> purposes = possibleService.findPurposeListByMemberNo(memberNo);
+//			model.addAttribute("purpose", purposes);
+//			model.addAttribute("memberNo", memberNo);
 //			return "financial/possiblemember";
 //		}
 

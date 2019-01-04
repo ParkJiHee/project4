@@ -14,18 +14,7 @@
 <link href="/team-project3/resources/assets/css/font-awesome.css" rel="stylesheet">
 <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet">
 <link href="/team-project3/resources/assets/css/pages/dashboard.css" rel="stylesheet">
-<script type="text/javascript">
-	$(document).ready( function() {
-	    $('#card').click(function(){
-	    	alert('카드선택');
-	    	/* $('#purMethod').val('카드'); */
-	    });
-	    $('#cash').click(function(){
-	    	$(this).val('현금선택을 하셨습니다.');
-	    	/* $('#purMethod').val('현금'); */
-	    });
-	});
-</script>
+
 </head>
 <body>
 
@@ -69,18 +58,15 @@
                             <span>${ product.productPrice }원</span>
                         </div>
                         
-                        <h3 class="bigstats">상품결제 금액 확인<span class="btn small gray resetBtn">다시 입력</span></h3>
+                        <h3 class="bigstats">상품결제 금액 확인&nbsp;<span class="btn btn-warning">다시 입력</span></h3>
                         <div class="stats">
                         
                         <table>
                            <tbody>
                                <tr>
-                                   <td >카드</td>
-                                   <td style="text-align: right;">
+                                   <td>카드</td>
+                                   <td style="text-align: right; width: 200px;">
                                        <p class="paymentPrice" data-msg="firstPaymentCard">0 원</p>
-                                       <!-- <input type="hidden" name="firstPaymentCard" value="0">
-                                       <input type="hidden" name="firstCardType" value="00">
-                                       <input type="hidden" name="beforeFirstPaymentCard" value="0"> -->
                                        <span class="btn_close cardReset" style="display: none;">close</span>
                                    </td>
                                </tr>
@@ -88,9 +74,6 @@
                                    <td>현금</td>
                                    <td style="text-align: right;">
                                        <p class="paymentPrice" data-msg="cash">0 원</p>
-                                       <!-- <input type="hidden" name="cash" value="0">
-                                       <input type="hidden" name="beforeCash" value="0">
-                                       <input type="hidden" name="cashReceiptsYn" value="N"> -->
                                        <span class="btn_close cashReset" style="display: none;">close</span>
                                    </td>
                                </tr>
@@ -98,16 +81,12 @@
                                    <td>총 결제금액</td>
                                    <td class="c_blue" style="text-align: right;">
                                        <p class="paymentPrice">0 원</p>
-                                       <!-- <input type="hidden" name="totalPayments" value="0">
-                                       <input type="hidden" name="beforeTotalPayments" value="0"> -->
                                    </td>
                                </tr>
                                <tr>
                                    <td >미수금</td>
                                    <td class="c_red" style="text-align: right;">
                                        <p>${ product.productPrice }원</p>
-                                       <!-- <input type="hidden" name="receivables" value="100000">
-                                       <input type="hidden" name="beforeReceivables" value="100000"> -->
                                    </td>
                                </tr>
                             </tbody>
@@ -143,13 +122,14 @@
                      
                   </p>
                         <div class="input_cost">
-                            <span class="btn green costBtn">불러오기</span><br>
-                            <input type="text" placeholder="금액을 입력하여 주십시오." name="purPrice" id="purPrice">
-                            <button class="delBtn btn small gray">지우기</button>
+                        	<span class="label_title">금액입력</span><br>
+                            <input type="text" placeholder="금액을 입력하여 주십시오." name="purPrice" id="pay" value=""><br>
+                            <input type="button" class="btn btn-primary" onclick="insert_pay();" value="불러오기">&nbsp;&nbsp;
+                            <input type="button" class="btn btn-warning" onclick="reset_pay();" value="지우기">
                         </div>
 
                         <!-- 숫자 입력 패드 -->
-                        <div class="flex_align input_cost_num">
+                        <!-- <div class="flex_align input_cost_num">
                             <span>1</span>
                             <span>2</span>
                             <span>3</span>
@@ -162,7 +142,7 @@
                             <span>0</span>
                             <span>00</span>
                             <span>000</span>
-                        </div>
+                        </div> -->
                        </div>
                         <!-- //숫자 입력 패드 -->
                         
@@ -173,9 +153,9 @@
                     	<h3 class="bigstats">상품결제 수단 선택</h3>
                         <div class="stats">
                         <div class="Method">
-                            <input type="button" id="card" value="카드">&nbsp;
-                            <input type="button" id="cash" value="현금">&nbsp;
-                            <input type="hidden" name="purMethod" id="purMethod" value="카드">
+                            <input type="button" id="card" class="btn btn-success" onclick="btn_card_click();" value="카드">&nbsp;
+                            <input type="button" id="cash" class="btn btn-success" onclick="btn_cash_click();" value="현금">&nbsp;
+                            <input type="hidden" name="purMethod" id="purMethod" value="">
                         </div>
                         <p>
                             <span class="label_title">결제 메모</span><br>
@@ -183,17 +163,16 @@
                         </p>
                         
                         </div>
+                        <input type="hidden" name="statement" value="1">
                     </div>
                     <!-- .stat -->
-                    <div class="stat">
-                    	<input type="hidden" name="statement" value="1">
-                    </div>
                   </div>
                 </div>
 
                 <div class="form-actions" align="center">
-                	<button type="submit" class="btn btn-primary">상품 등록</button>
-                    <a href="/team-project3/purchase/purSelect.action?memberno=memberNo&centerno=${ loginuser.centerNo }" class="btn btn-warning">취소</a>
+                	<button type="submit" class="btn btn-success">상품 등록</button>
+                	<input type="button" value="취소"  class="btn btn-warning" onclick="history.back(-1);">
+                	<input type="reset" class="btn btn-danger" onclick="reset_pay" value="초기화">
                 </div>
                 
               </div>
@@ -288,8 +267,23 @@
 <script src="/team-project3/resources/assets/js/chart.min.js" type="text/javascript"></script> 
 <script src="/team-project3/resources/assets/js/bootstrap.js"></script>
 <script language="javascript" type="text/javascript" src="/team-project3/resources/assets/js/full-calendar/fullcalendar.min.js"></script>
- 
 <script src="/team-project3/resources/assets/js/base.js"></script> 
+<script type="text/javascript">
+	function btn_card_click(){
+		alert('카드를 선택하셨습니다.');
+		$('#purMethod').val('카드');
+	};
+	function btn_cash_click(){
+		alert('현금을 선택하셨습니다.');
+		$('#purMethod').val('현금');
+	};
+	function insert_pay(){
+		$('#pay').val('${ product.productPrice }');
+	};
+	function reset_pay(){
+		$('#pay').val('');
+	}
+</script>
 </body>
 </html>
 

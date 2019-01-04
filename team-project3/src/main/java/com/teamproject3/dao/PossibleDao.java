@@ -14,6 +14,11 @@ public interface PossibleDao {
 
 	void registerpurpose(List<VisitPurposeVo> vpv);
 
+	VisitPurposeVo selectPurposeByMemberNo(int memberNo);
+
+	List<MemberVo> selectAllMemberByPage(int from, int to);
+
+
 //	void insertMemberAttach(MemberAttachVo attach);
 
 }

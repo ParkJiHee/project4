@@ -68,4 +68,10 @@ public class MemberServiceImpl implements MemberService{
 		int memberNo = memberDao.selectSignupMember(centerNo);
 		return memberNo;
 	}
+
+	@Override
+	public void updateMember(MemberVo memberVo) {
+		memberDao.updateMember(memberVo);
+		
+	}
 }
