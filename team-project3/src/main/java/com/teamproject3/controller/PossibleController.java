@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.number.NumberFormatter;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,7 +27,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.teamproject3.service.MemberService;
 import com.teamproject3.service.PossibleService;
+import com.teamproject3.service.ProductService;
 import com.teamproject3.vo.MemberVo;
 import com.teamproject3.vo.VisitPurposeVo;
 
@@ -46,6 +50,14 @@ public class PossibleController {
 	@Autowired
 	@Qualifier("possibleService")
 	private PossibleService possibleService;
+	
+	@Autowired
+	@Qualifier("productService")
+	private ProductService productService;
+	
+	@Autowired
+	@Qualifier("memberService")
+	private MemberService memberService;
 
 	
 	@RequestMapping(value= {"/", "/possiblemember.action"},  method = RequestMethod.GET )
@@ -111,14 +123,14 @@ public class PossibleController {
 			return "success";
 		}
 
-//		// 댓글 리스트
-//		@RequestMapping(value = "/get-comment-list.action", method = RequestMethod.POST)
-//		public String listpurpose(int memberNo) {
-//
-////			List<StudyComment> comments = studyService.findCommentLsitByStudyNo(studyNo);
-////			model.addAttribute("comments", comments);
-//
-//			return "financial/possiblemember";
-//		}
+		// 댓글 리스트
+		@RequestMapping(value = "/get-input-list.action", method = RequestMethod.GET)
+		public String listpurpose(int memberNo, Model model) {
+
+			ArrayList<VisitPurposeVo> purposes = possibleService.findPurposeListByMemberNo(memberNo);
+			model.addAttribute("purpose", purposes);
+			model.addAttribute("memberNo", memberNo);
+			return "financial/possiblemember";
+		}
 
 }

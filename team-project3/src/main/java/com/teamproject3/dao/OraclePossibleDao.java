@@ -1,5 +1,6 @@
 package com.teamproject3.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.teamproject3.mapper.MemberMapper;
@@ -34,6 +35,13 @@ public class OraclePossibleDao implements PossibleDao {
 		possibleMapper.insertPurpose(purpose);	
 		
 	}
+	@Override
+	public ArrayList<VisitPurposeVo> selectPurposeByMemberNo(int memberNo) {
+		ArrayList<VisitPurposeVo> purpose = possibleMapper.selectPurposeByMemberNo(memberNo);
+			
+		return purpose;
+	}
+
 
 
 }

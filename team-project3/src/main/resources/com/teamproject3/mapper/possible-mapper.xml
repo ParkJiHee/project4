@@ -18,5 +18,14 @@
 		</foreach>
 	</insert>
  
+ 
+ 	<resultMap type="Posvisit" id="registerpurposeMap">
+ 		<id column="memberno" property="memberNo" />
+ 		<result column="purpose" property="purpose" />
+ 	</resultMap>
 
+	<select id="selectPurposeByMemberNo" parameterType="int"
+		resultType="Posvisit">	<!-- 상세보기 +resultMap 추가 -->
+		SELECT memberno, purpose from purpose
+	</select>
 </mapper>

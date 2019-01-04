@@ -14,6 +14,9 @@ public interface PossibleDao {
 
 	void registerpurpose(List<VisitPurposeVo> vpv);
 
+	ArrayList<VisitPurposeVo> selectPurposeByMemberNo(int memberNo);
+
+
 //	void insertMemberAttach(MemberAttachVo attach);
 
 }

@@ -32,6 +32,7 @@
 		 frm.attr("action", "/team-project3/financial/possiblemember.action");
 		} else if( id === 'prod'){
 			frm.attr("action", "/team-project3/purchase/purRegister.action?productno=${ product.productNo }&memberno=${ member.memberNo }");
+			<%--나중에 --%>
 		}
 		 frm.submit();
 	})

@@ -107,6 +107,40 @@
     			    return false;
     		}
 		});
+    	 
+    	 
+    	 
+    	 $('#saved').on('click', function (event) {
+    			var data = $("#register-frm").serialize();
+        		
+        		jQuery.ajaxSettings.traditional = true;
+        		
+        		$.ajax({
+        			"url": "registerpurpose.action",
+        			"method": "POST",
+        			"data": data,
+        			"success": function(data, status, xhr) {
+        	
+        				if(data == "success"){
+        					alert('저장했습니다');
+        					$('#purposelist').load(
+        						"get-input-list.action", 
+        						{ "memberNo" : 66 },
+        						function (a,b,c) {
+        							alert('확인ㄴ')
+									
+								}
+        					);
+        				}else{ alert('저장 실패'); }
+        				
+        				<%-- 화면갱신 --%>
+        				
+        			},
+        			"error": function(xhr, status, err) {
+        				
+        			}
+        		});
+		})
 		
     });<%-- end script --%>   
 	   
@@ -161,7 +195,7 @@
         <%-- 우편번호 끝--%>
       
         
-        function checkboxarr() {
+    <%--     function checkboxarr() {
     		/* var checkarr = [];
     		$("input[name='purpose']:checked").each(function(i){
     			checkarr.push($(this).val());
@@ -182,12 +216,15 @@
     				if(valueArrTest == success){
     					alert('저장했습니다');
     				}else{ alert('저장 실패'); }
+    				
+    				화면갱신
+    				$('#purposelist').load("get-input-list.action", { "memberNo" : ${meber.memberNo} });
     			},
     			"error": function(xhr, status, err) {
     				
     			}
     		});
-    	}
+    	} --%>
     
  	</script>
 </head>
@@ -288,6 +325,9 @@
 						</tbody>
 					</c:when>
 					<c:otherwise> --%>
+					
+					
+					<c:forEach var="member" items="membervo.memberno">
 						<tbody>
 							<tr>
 								<td><input type="checkbox" name="checkRow" id="checkRow"/></td>
@@ -298,18 +338,23 @@
 								<td>d</td>
 								
 								<c:choose>
-								<c:when test="${ empty data }">	
+								<c:when test="${ not empty visitpurposevo.purpose }">	
+								<td id="purposelist">
+								 ${ visitpurposevo.purpose }
+								</td>
+								
+								</c:when>
+								
+								<c:otherwise>
+							<%-- 	<c:forEach var="purpose" items="visitpurposevo.purpose" > --%>
+								
 								<td>
 								<button type="button" class="btn btn-small btn-success" 
 								data-toggle="modal" data-target="#input">입력하기
 								</button>
 								</td>
-								</c:when>
+								<%-- </c:forEach> --%>
 								
-								<c:otherwise>
-								<td id="registerpurpose">
-								
-								</td>
 								</c:otherwise>
 								</c:choose>
 								
@@ -357,6 +402,7 @@
 							?: ${ date } ${ 담당자 }
 							--%>
 						</tbody>
+					</c:forEach>
 					<%-- </c:otherwise>
 				</c:choose>
  --%>			</table>
@@ -375,7 +421,7 @@
         <!-- /main-inner -->
     </div>
     <!-- /main -->
-  
+  <div id="xy"></div>
     <div class="footer">
         <div class="footer-inner">
             <div class="container">
