@@ -16,12 +16,12 @@
 	
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO member (memberno, memname, memgender, memphone, membrith, memaddress, memroute, mememail, memvisitdate, centerno, age) 
-		VALUES (member_sequence.nextval, #{ memName }, #{ memGender }, #{ memPhone }, #{ memBrith}, #{ memAddress}, #{ memRoute }, #{ memEail}, #{ memVisitDate }, #{ centerNo }, #{ age })
+		VALUES (member_sequence.nextval, #{ memName }, #{ memGender }, #{ memPhone }, #{ memBrith}, #{ memAddress}, #{ memRoute }, #{ memEmail}, #{ memVisitDate }, #{ centerNo }, #{ age })
 	</insert>
 	
 	<!-- <insert id="insertMember" parameterType="Member">
       INSERT INTO member (memberno, memname, memgender, memphone, membrith, memaddress, memroute, mememail, memvisitdate, centerno, age) 
-      VALUES (member_sequence.nextval, #{ memName }, #{ memGender }, #{ memPhone }, NVL(#{ memBrith}, '정보없음'), NVL(#{ memAddress}, '정보없음'), #{ memRoute }, NVL(#{ memEail}, '정보없음'), #{ memVisitDate }, #{ centerNo }, NVL(#{ age }, 0))
+      VALUES (member_sequence.nextval, #{ memName }, #{ memGender }, #{ memPhone }, NVL(#{ memBrith}, '정보없음'), NVL(#{ memAddress}, '정보없음'), #{ memRoute }, NVL(#{ memEmail}, '정보없음'), #{ memVisitDate }, #{ centerNo }, NVL(#{ age }, 0))
    </insert> -->
 	
 	
@@ -33,7 +33,7 @@
 		<result column="membrith" property="memBrith" />
 		<result column="memaddress" property="memAddress" />
 		<result column="memroute" property="memRoute" /> <!-- not null -->
-		<result column="mememail" property="memEail" /> 
+		<result column="mememail" property="memEmail" /> 
 		<result column="memvisitdate" property="memVisitDate" /><!-- not null -->
 		<result column="centerno" property="centerNo" /><!-- not null -->
 		<result column="deleted" property="deleted" />
@@ -64,9 +64,10 @@
 	<select id="selectMember" parameterType="int"
 										   resultType="Member">
 										   
-		SELECT memberno, memname, memphone 
+		SELECT memberno, memname, memgender, memphone, 
+		membrith, memaddress, memroute, mememail, memvisitdate, age
 		FROM member
-		WHERE memberno = #{ memberNo } ORDER BY memberno desc
+		WHERE memberno = #{ memberNo }
 		
 	</select>
 	
@@ -77,6 +78,14 @@
 	<select id="selectSignupMember" parameterType="int" resultType="int">
 		select a.memberno from (select * from member member where centerno = #{ centerNo } ORDER by memberno desc) a where rownum = 1
 	</select>
+	
+	<update id="updateMember" parameterType="Member">
+		update member
+		set memname = #{memName}, memgender = #{memGender}, memphone = #{memPhone}, membrith = #{memBrith}, 
+		memaddress = #{memAddress}, memroute = #{memRoute}, mememail = #{memEmail}, memvisitdate = #{memVisitDate}, 
+		age = #{age}
+		where memberno = #{ memberNo }
+	</update>
 	
 	<delete id="deleteMember" parameterType="int">
 		DELETE FROM member WHERE memberno = #{ deletNum }

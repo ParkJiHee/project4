@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -130,5 +131,14 @@ public class MemberController {
 		model.addAttribute("member", member);
 		
 		return "member/memberdetail";
+	}
+	
+	@RequestMapping(value = "/memberupdate.action", method = RequestMethod.POST)
+	@ResponseBody
+	public String memberUpdate(MemberVo memberVo) {
+		
+		memberService.updateMember(memberVo);
+		
+		return "success";
 	}
 }

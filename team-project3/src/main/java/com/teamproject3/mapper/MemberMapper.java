@@ -14,4 +14,5 @@ public interface MemberMapper {
 	int selectAllMemberCount(int centerNo);
 	void deleteMember(int deletNum);
 	int selectSignupMember(int centerNo);
+	void updateMember(MemberVo member);
 }
