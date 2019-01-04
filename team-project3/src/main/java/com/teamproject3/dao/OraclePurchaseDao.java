@@ -1,6 +1,7 @@
 package com.teamproject3.dao;
 
 import com.teamproject3.mapper.PurchaseMapper;
+import com.teamproject3.vo.MemberVo;
 import com.teamproject3.vo.PurchaseVo;
 
 public class OraclePurchaseDao implements PurchaseDao{
@@ -15,6 +16,12 @@ public class OraclePurchaseDao implements PurchaseDao{
 	@Override
 	public void insertPurchase(PurchaseVo purchaseVo) {
 		purchaseMapper.insertPurchase(purchaseVo);
+	}
+
+
+	@Override
+	public void updatePurchase(MemberVo member) {
+		purchaseMapper.updatePurchase(member);
 	}
 	
 }

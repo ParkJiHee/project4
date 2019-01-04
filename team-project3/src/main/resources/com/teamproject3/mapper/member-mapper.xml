@@ -19,6 +19,10 @@
 		VALUES (member_sequence.nextval, #{ memName }, #{ memGender }, #{ memPhone }, #{ memBrith}, #{ memAddress}, #{ memRoute }, #{ memEail}, #{ memVisitDate }, #{ centerNo }, #{ age })
 	</insert>
 	
+	<!-- <insert id="insertMember" parameterType="Member">
+      INSERT INTO member (memberno, memname, memgender, memphone, membrith, memaddress, memroute, mememail, memvisitdate, centerno, age) 
+      VALUES (member_sequence.nextval, #{ memName }, #{ memGender }, #{ memPhone }, NVL(#{ memBrith}, '정보없음'), NVL(#{ memAddress}, '정보없음'), #{ memRoute }, NVL(#{ memEail}, '정보없음'), #{ memVisitDate }, #{ centerNo }, NVL(#{ age }, 0))
+   </insert> -->
 	
 	
 	 <resultMap type="Member" id="memberMap">
@@ -66,6 +70,17 @@
 		
 	</select>
 	
+	<select id="selectAllMemberCount" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM member WHERE centerno = #{ centerNo }
+	</select>
+	
+	<select id="selectSignupMember" parameterType="int" resultType="int">
+		select a.memberno from (select * from member member where centerno = #{ centerNo } ORDER by memberno desc) a where rownum = 1
+	</select>
+	
+	<delete id="deleteMember" parameterType="int">
+		DELETE FROM member WHERE memberno = #{ deletNum }
+	</delete>
 </mapper>
 
 

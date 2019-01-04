@@ -100,6 +100,44 @@
 		<!-- /subnavbar -->
 
 	</c:when>
+	
+	<c:when test='${ not empty param.bgcolor and param.bgcolor eq "memberdetail" }'>
+		<div class="subnavbar">
+		  <div class="subnavbar-inner">
+		    <div class="container">
+		      <ul class="mainnav">
+		        <li><a href="/team-project3/home.action"><i class="icon-dashboard"></i><span>Home</span> </a> </li>
+		        <li class="active"><a href="/team-project3/member/memberlist.action"><i class="icon-list-alt"></i><span>고객관리</span> </a> </li>
+		        <li><a href="#"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
+		        <li><a href="#"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
+		        <li><a href="#"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
+		      </ul>
+				<script type="text/javascript">
+					window.addEventListener('load', function(event) {
+						$('#show-register-modal').on('click', function(event) {
+							var register_modal = $('#myModify');
+							register_modal.css({'z-index': '1050'});
+							register_modal.modal('show');
+						});
+						
+					});
+				</script>		      
+		      <ul class="nav pull-right">
+		      	<li><a href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }&centerno=${ loginuser.centerNo }" class="btn btn-success" style="text-align: center; color: white;">
+		      		<i class="icon-shopping-cart"></i><span>상품 판매</span></a></li>
+		      	<li><a class="btn btn-primary" style="text-align: center; color: white;" id="show-register-modal">
+		      		<i class="icon-edit"></i><span>정보 수정</span></a></li>
+		      	<li><a class="btn btn-danger" style="text-align: center; color: white;" id="memberdelete">
+		      		<i class="icon-minus"></i><span>회원 삭제</span></a></li>
+		      </ul>
+		    </div>
+		    <!-- /container --> 
+		  </div>
+		  <!-- /subnavbar-inner --> 
+		</div>
+		<!-- /subnavbar -->
+
+	</c:when>
 
 	<c:otherwise>
 		<div class="subnavbar">

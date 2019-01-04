@@ -1,6 +1,7 @@
 package com.teamproject3.service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -47,6 +48,24 @@ public class MemberServiceImpl implements MemberService{
 		
 		return member;
 	}
-	
-	
+
+	@Override
+	public int findAllMemberCount(int centerNo) {
+		int count = memberDao.selectAllMemberCount(centerNo);
+		return count;
+	}
+
+	@Override
+	public void deleteMembers(ArrayList<Integer> deleteArray) {
+		for(int i = 0; i < deleteArray.size(); i++) {
+			int deletNum = deleteArray.get(i);
+			memberDao.deleteMember(deletNum);
+		}
+	}
+
+	@Override
+	public int findSingupMemberNo(int centerNo) {
+		int memberNo = memberDao.selectSignupMember(centerNo);
+		return memberNo;
+	}
 }

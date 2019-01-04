@@ -19,6 +19,8 @@
     <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet">
     
     <link href="/team-project3/resources/assets/css/pages/reports.css" rel="stylesheet">
+    <link href="/team-project3/resources/assets/css/pages/signin.css" rel="stylesheet">
+	<link href="/team-project3/resources/assets/css/pages/dashboard.css" rel="stylesheet">
     <style type="text/css">
     	.stats-box-all-info{
     		font-size: 15px;
@@ -44,10 +46,131 @@
 
 <!-- header.jsp -->
 	<jsp:include page="/WEB-INF/views/include/header.jsp">
-		<jsp:param value="memberlist" name="bgcolor" />
+		<jsp:param value="memberdetail" name="bgcolor" />
 	</jsp:include>
 <!-- end header.jsp -->
-    
+
+<!-- Modal -->
+  <div class="modal fade" id="myModify" role="dialog" style="top: 30%; z-index: -100;">
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header" style="background-color: #00ba8b;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title" style="color: white;">회원 정보 수정</h3>
+  </div>
+    <div class="content clearfix">
+		
+		<form id="membersignupform" enctype="multipart/form-data">			
+			<input type="hidden" name="centerNo" value="${ loginuser.centerNo }">
+			<div class="form-horizontal">
+			
+			<img src="/team-project3/resources/assets/img/user.png"/>
+						
+				<p>Create your free account:</p>
+				<div class="control-group">
+					<label class="control-label" for="file">첨부파일</label>
+					<div class="controls">
+						<input type="file" name="attach"/>
+					</div>
+				</div>
+				
+				<fieldset>
+				<div class="control-group">											
+					<label class="control-label" for="memName">*회원명</label>
+					<div class="controls">
+						<input type="text" name="memName" id="memName" placeholder="이름 입력"/>
+						
+						<label class="radio inline">
+                            <input type="radio" name="memGender" value="m" checked="checked"/> 남성
+                       </label>
+                       
+                       <label class="radio inline">
+                            <input type="radio" name="memGender" value="w"/> 여성
+                       </label>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="memPhone">*휴대전화번호</label>
+					<div class="controls">
+						<input type="text" id="phone1" class="span1 m-wrap"/>
+						<input type="text" id="phone2" class="span1 m-wrap"/>
+						<input type="text" id="phone3" class="span1 m-wrap"/>
+						<label class="checkbox inline">
+                           <input type="checkbox" checked="checked"> SNS 수신 동의
+                        </label>
+                        <input type="hidden" name="memPhone" id="memPhone"/>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="memRoute">*유입 상태</label>
+					<div class="controls">
+						<label class="radio inline">
+                            <input type="radio" name="memRoute" value="방문" checked="checked"/> 방문
+                       </label>
+                       
+                       <label class="radio inline">
+                            <input type="radio" name="memRoute" value="전화"/> 전화
+                       </label>
+                       
+                       <label class="radio inline">
+                            <input type="radio" name="memRoute" value="온라인"/> 온라인
+                       </label>
+                       
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="memVisitDate">*방문일</label>
+					<div class="controls">
+						<input type="date" name="memVisitDate" id="memVisitDate"/>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<hr>
+				
+				<div class="control-group">											
+					<label class="control-label" for="memBrith">생년월일</label>
+					<div class="controls">
+						<input type="date" name="memBrith" id="memBrith"/>
+						<input type="text" name="age" id="age" class="span1 m-wrap" placeholder="나이">
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="memAddress">주소</label>
+					<div class="controls">
+						<input type="text" id="address1" class="span3 m-wrap" placeholder="주소를 입력하세요">
+						<input type="text" id="address2" class="span3 m-wrap" placeholder="상세주소 입력">
+						<input type="hidden" name="memAddress" id="memAddress"/>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+			
+				<div class="control-group">											
+					<label class="control-label" for="memEail">이메일</label>
+					<div class="controls">
+						<input type="text" name="memEail" id="memEail" value="" class="span3 m-wrap">
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+			</fieldset>
+			</div>
+			
+		</form>		
+		
+		<div class="modal-footer form-actions">
+				
+				<button class="btn btn-default" data-dismiss="modal">닫기</button>
+				<button id="signup" class="btn btn-primary" data-dismiss="modal">잠재고객 등록</button>
+				<button id="signupsell" class="btn btn-default" data-dismiss="modal">등록후 상품 판매</button>
+				
+			</div> <!-- .actions -->
+	</div> <!-- /content -->
+	</div>
+	</div>
+  </div>
+  <!-- end Modal -->
+
     
 <div class="main">
 	
@@ -382,9 +505,45 @@
 <script src="/team-project3/resources/assets/js/bootstrap.js"></script>
 <script src="/team-project3/resources/assets/js/base.js"></script>
 
-<script>
-
-	</script>
+<script type="text/javascript">
+$(function() {
+	$('#memberdelete').on('click',function(event){
+		var memberArray = new Array();
+		
+		memberArray.push(${ member.memberNo });
+		
+		if(memberArray.length == 0){
+			alert("회원 번호가 없습니다.");
+		}else{
+			alert(memberArray);
+			//alert("삭제할 회원이 있다!!.");
+			if(confirm("삭제하시겠습니까?")==true){ //확인
+				$.ajax({
+					"url": "memberdelete.action",
+					"type": "POST",
+					"data": {0:0, memberArray:memberArray},
+					"success": function(data, status, xhr) {
+						if (data === "success") {
+							alert('회원을 삭제했습니다.');
+						} else {
+							alert('회원 삭제 실패');
+						}
+						
+						location.href="/team-project3/member/memberlist.action"
+					},
+					"error": function(xhr, status, err) {
+						alert('회원 등록 실패');
+					}
+				});
+				
+				memberArray = new Array();
+			}else{ //취소
+				location.reload(true);
+			}
+		}
+	});
+});
+</script>
 
 
   </body>

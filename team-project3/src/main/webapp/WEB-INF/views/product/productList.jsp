@@ -24,10 +24,19 @@
     
     <link href="/team-project3/resources/assets/css/pages/plans.css" rel="stylesheet"> 
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		 $("#keyword").on('keyup',function() {
+	            var k = $(this).val();
+	            $(".plan-container").hide();
+	            
+	           var temp = $("div.plan-title:contains('" + k + "')");
+
+	            $(temp).parents(".plan-container").show();
+	        })
+	})
+	</script>
 
   </head>
 
@@ -48,7 +57,8 @@
 	      	<div class="span12">
 	      		
 	      		<div class="widget">
-						
+					<input type="text" width="5px" placeholder="검색" id="keyword">
+					<button type="submit" class="btn btn-small btn-success">검색</button>
 					<div class="widget-header">
 						<i class="icon-th-large"></i>
 						<h3>상품관리</h3>
@@ -73,8 +83,6 @@
 									
 						        </div> <!-- /plan-header -->	        
 						        
-						        
-								
 								<div class="plan-actions">				
 									<a href="/team-project3/product/productUpdate.action?productno=${ product.productNo }" class="btn btn-success">수정</a>
 									<a href="/team-project3/product/productDelete.action?centerno=${ loginuser.centerNo }&productno=${ product.productNo }" class="btn btn-danger">삭제</a>				

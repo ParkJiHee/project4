@@ -50,8 +50,8 @@
 		<mapper resource="com/teamproject3/mapper/member-mapper.xml" />
 		<mapper resource="com/teamproject3/mapper/product-mapper.xml" />
 		<mapper resource="com/teamproject3/mapper/possible-mapper.xml" />
+		<mapper resource="com/teamproject3/mapper/purchase-mapper.xml" />
 		<mapper resource="com/teamproject3/mapper/schedule-mapper.xml" />
-		
 	</mappers>
 	
 
