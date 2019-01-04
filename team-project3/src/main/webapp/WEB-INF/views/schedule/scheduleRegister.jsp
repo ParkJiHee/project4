@@ -58,7 +58,7 @@
 							<div class="tab-content">
 								<div class="tab-pane active" id="formcontrols">
 								<form id="edit-profile" class="form-horizontal" 
-									action="/team-project3/shcedule/scheduleRegister.action" method="post">
+									action="/team-project3/schedule/scheduleRegister.action" method="post">
 									<fieldset>
 										
 										<div class="control-group">											

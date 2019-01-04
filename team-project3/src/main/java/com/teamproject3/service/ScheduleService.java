@@ -1,22 +1,15 @@
 package com.teamproject3.service;
 
+import java.util.List;
+
 import com.teamproject3.vo.ScheduleVo;
 
 public interface ScheduleService {
 
+	List<ScheduleVo> HealthShow(int centerNo);
+	
 	void writeSchedule(ScheduleVo schedule);
-/*
+
+//	List<ScheduleVo> findAllSchedule(int centerNo);
 	
-	List<ProductVo> findAllProduct();
-
-	ProductVo findProductByProductNo(int ProductNo);
-
-	//List<ProductVo> findAllProductByPage(int from, int to);
-
-	int findProductCount();
-	
-	void deleteProduct(int productNo);
-
-	void updateProduct(ProductVo product);
-	
-*/}
+}

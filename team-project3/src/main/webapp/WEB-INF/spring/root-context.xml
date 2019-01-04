@@ -72,6 +72,7 @@
 	</bean>
 	
 	<bean id="scheduleDao" class="com.teamproject3.dao.OracleScheduleDao">
+		<property name="scheduleMapper" ref="scheduleMapper"/>
 		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
 		<!-- <property name="productMapper" ref="productMapper"/> -->
 	</bean>

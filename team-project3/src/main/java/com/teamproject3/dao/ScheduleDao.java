@@ -1,10 +1,14 @@
 package com.teamproject3.dao;
 
+import java.util.List;
+
 import com.teamproject3.vo.ScheduleVo;
 
 public interface ScheduleDao {
 
 	void insertSchedule(ScheduleVo schedule);
+
+	List<ScheduleVo> healthShow(int centerNo);
 
 //	void insertProduct(ProductVo hobby);
 //

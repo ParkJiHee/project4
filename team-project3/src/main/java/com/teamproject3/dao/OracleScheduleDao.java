@@ -1,56 +1,41 @@
 package com.teamproject3.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-
-import com.teamproject3.vo.ProductVo;
+import com.teamproject3.mapper.ScheduleMapper;
 import com.teamproject3.vo.ScheduleVo;
 
 public class OracleScheduleDao implements ScheduleDao{
 
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
+//	Connection conn = null;
+//	PreparedStatement pstmt = null;
+//	ResultSet rs = null;
+//	
+//	private JdbcTemplate jdbcTemplate;
+//	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+//		this.jdbcTemplate = jdbcTemplate;
+//	}
 	
-	private JdbcTemplate jdbcTemplate;
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
+	private ScheduleMapper scheduleMapper;
+
+	public void setScheduleMapper(ScheduleMapper scheduleMapper) {
+		this.scheduleMapper = scheduleMapper;
 	}
+
+
 	@Override
 	public void insertSchedule(ScheduleVo schedule) {
-		// TODO Auto-generated method stub
+		
+		scheduleMapper.insertSchedule(schedule);
 		
 	}
-//	@Override
-//	public List<ProductVo> selectAllProduct() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//	@Override
-//	public int selectProductCount() {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-//	@Override
-//	public ProductVo selectProductByProductNo(int hobbyNo) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//	@Override
-//	public void deleteProduct(int productNo) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//	@Override
-//	public void updateProduct(ProductVo product) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//	
-	
+
+	@Override
+	public List<ScheduleVo> healthShow(int centerNo) {
+		
+		List<ScheduleVo> schedules = scheduleMapper.healthShow(centerNo);
+		
+		return schedules;
+	}
 	
 }

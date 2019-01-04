@@ -132,9 +132,9 @@ var calendar = $('#calendar').fullCalendar({
     calendar.fullCalendar('unselect');
   }, */
   editable: true,
-  events: [
+  events: 
 	  ${healthinfo}
-  ]
+  
 });
 });
 </script>  
