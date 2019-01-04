@@ -105,13 +105,14 @@ public class MemberController {
 	@ResponseBody
 	public String memberDelete(@RequestParam(value="memberArray[]") List<Integer> deleteList) {
 		
+		System.out.println(deleteList.size());
 		ArrayList<Integer> deleteArray = new ArrayList<>();
 		for(int i = 0; i < deleteList.size(); i++) {
 			deleteArray.add(deleteList.get(i));
 		}
 		
 		memberService.deleteMembers(deleteArray);
-		
+		System.out.println("End");
 		return "success";
 	}
 	
