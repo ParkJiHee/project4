@@ -27,7 +27,7 @@
 
 	<select id="selectPurposeByMemberNo" parameterType="int"
 		resultType="Posvisit">	<!-- 등록목적 --> 
-		SELECT  purpose from purpose where memberno = #{ memberNo } 
+		SELECT purpose from purpose where memberno = #{ memberNo } 
 	</select>
 	
 		<select id="selectMemberList" parameterType="hashmap"
@@ -42,7 +42,7 @@
 		(
 		SELECT
 		memberno, memname, age,
-		memgender, memphone
+		memgender, memphone, MEMVISITDATE, memroute
 		FROM
 		member
 		ORDER BY memberno DESC

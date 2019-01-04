@@ -37,8 +37,8 @@ public class OraclePossibleDao implements PossibleDao {
 		
 	}
 	@Override
-	public ArrayList<VisitPurposeVo> selectPurposeByMemberNo(int memberNo) {
-		ArrayList<VisitPurposeVo> purpose = possibleMapper.selectPurposeByMemberNo(memberNo);
+	public VisitPurposeVo selectPurposeByMemberNo(int memberNo) {
+		VisitPurposeVo purpose = possibleMapper.selectPurposeByMemberNo(memberNo);
 			
 		return purpose;
 	}

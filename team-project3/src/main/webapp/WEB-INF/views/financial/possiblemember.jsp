@@ -125,7 +125,7 @@
         					alert('저장했습니다');
         					$('#purposelist').load(
         						"get-input-list.action", 
-        						{ "memberNo" : 66 },
+        						{ "memberNo" : ${membervo.memberNo} },
         						function (a,b,c) {
         							alert('확인ㄴ')
 									
@@ -330,12 +330,13 @@
 						<tbody>
 							<tr>
 								<td><input type="checkbox" name="checkRow" id="checkRow"/></td>
-								<td>d</td><%-- ${ member.memVisitDate } --%>
-								<td>d</td>
-								<td>d</td>
-								<td>${member.memName} / ${member.age}세 /${member.memGender} <br>
+								<td> ${member.memVisitDate} </td><%-- --%>
+								<td></td>
+								<td></td>
+								<td>${member.memName} / ${member.age}세 / ${member.memGender} <br>
 								${member.memPhone} </td>
 								
+								<td></td>
 								<c:choose>
 								<c:when test="${ not empty visitpurposevo.purpose }">	
 								<td id="purposelist">
@@ -377,7 +378,7 @@
 								</c:choose>
 												
 								<c:choose>
-								<c:when test="${ member.statement eq false }">
+								<c:when test="${ member.statement eq '0' }">
 								<td style="color:orange">미결제</td>
 								</c:when>
 								
@@ -386,8 +387,8 @@
 								</c:otherwise>
 								</c:choose>
 								
-								<td>d</td>
-								<td>d</td>
+								<td></td>
+								<td></td>
 							</tr>
 
 
@@ -403,6 +404,7 @@
 					<%-- </c:otherwise>
 				</c:choose>
  --%>			</table>
+ ${ pager }
 		</div>
 	
 	<jsp:include page="/WEB-INF/views/financial/registerpurpose.jsp"/>

@@ -14,7 +14,7 @@ public interface PossibleDao {
 
 	void registerpurpose(List<VisitPurposeVo> vpv);
 
-	ArrayList<VisitPurposeVo> selectPurposeByMemberNo(int memberNo);
+	VisitPurposeVo selectPurposeByMemberNo(int memberNo);
 
 	List<MemberVo> selectAllMemberByPage(int from, int to);
 
