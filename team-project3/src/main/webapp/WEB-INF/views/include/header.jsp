@@ -123,7 +123,7 @@
 					});
 				</script>		      
 		      <ul class="nav pull-right">
-		      	<li><a class="btn btn-success" style="text-align: center; color: white;">
+		      	<li><a href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }&centerno=${ loginuser.centerNo }" class="btn btn-success" style="text-align: center; color: white;">
 		      		<i class="icon-shopping-cart"></i><span>상품 판매</span></a></li>
 		      	<li><a class="btn btn-primary" style="text-align: center; color: white;" id="show-register-modal">
 		      		<i class="icon-edit"></i><span>정보 수정</span></a></li>

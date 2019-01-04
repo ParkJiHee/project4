@@ -56,7 +56,7 @@
   <div class="modal-content">
   <div class="modal-header" style="background-color: #00ba8b;">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h3 class="modal-title" style="color: white;">회원 등록</h3>
+        <h3 class="modal-title" style="color: white;">회원 정보 수정</h3>
   </div>
     <div class="content clearfix">
 		

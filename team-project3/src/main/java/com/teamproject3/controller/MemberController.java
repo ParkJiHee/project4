@@ -95,10 +95,8 @@ public class MemberController {
 		center = (CenterVo)session.getAttribute("loginuser");
 		
 		int memberNo = memberService.findSingupMemberNo(center.getCenterNo());
-		
-		model.addAttribute("memberno", memberNo);
 
-		return "success";
+		return String.valueOf(memberNo);
 
 	}
 	
