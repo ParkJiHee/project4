@@ -130,7 +130,7 @@ public class PossibleController {
 		
 		
 		possibleService.insertMember(member);
-		return "financial/possiblemember";
+		return "redirect:possiblemember.action";
 	}
 	
 	// 댓글 메서드
