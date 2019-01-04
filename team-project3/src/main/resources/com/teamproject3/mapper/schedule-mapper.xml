@@ -15,15 +15,21 @@
 	<!-- <insert id="insertMember" parameterType="com.demoweb.vo.Member"> -->
 	
 	<insert id="insertSchedule" parameterType="Schedule">
-		INSERT INTO class (centerno, classno, claname, clatime) 
+		INSERT INTO class (centerno, classno scheduleNo, claname scheduleName, clatime scheduleDate) 
 		VALUES (#{ centerNo }, class_sequence.nextval, #{ scheduleName }, #{ scheduleDate })
 	</insert>
 	
 	<resultMap type="Schedule" id="scheduleMap">
-		<id column="classno" property="scheduleNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
+		<id column="classno" property="classNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
 		<result column="claname" property="scheduleName" />
 		<result column="clatime" property="scheduleDate" />
 	</resultMap>
+	
+	<select id="healthShow" parameterType="int" resultType="Schedule">
+	select classno scheduleNo, claname scheduleName, clatime scheduleDate 
+	from class
+	where centerno=#{ centerNo }
+	</select>
 	
 	
 	<!-- <select id="selectAllProduct" resultMap="productMap">
