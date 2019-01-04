@@ -14,6 +14,8 @@ public interface PossibleService {
 
 	ArrayList<VisitPurposeVo> findPurposeListByMemberNo(int memberNo);
 
+	List<MemberVo> findAllMemberByPage(int from, int to);
+
 	
 
 }

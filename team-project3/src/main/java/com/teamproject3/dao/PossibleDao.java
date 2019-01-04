@@ -16,6 +16,8 @@ public interface PossibleDao {
 
 	ArrayList<VisitPurposeVo> selectPurposeByMemberNo(int memberNo);
 
+	List<MemberVo> selectAllMemberByPage(int from, int to);
+
 
 //	void insertMemberAttach(MemberAttachVo attach);
 

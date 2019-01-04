@@ -304,7 +304,6 @@
 						<th style="width: 6%">고객관리담당자</th>
 						<th style="width: 8%">고객정보</th>
 
-						<th style="width: 5%">고객정보</th>
 						<th style="width: 7%">유입경로</th>
 						<th style="width: 6%">등록목적</th>
 						<th style="width: 8%">유입상태</th>
@@ -327,20 +326,20 @@
 					<c:otherwise> --%>
 					
 					
-					<c:forEach var="member" items="membervo.memberno">
+					<c:forEach var="member" items="${ members }"> <%-- 컨트롤러에서 저장하기 --%>
 						<tbody>
 							<tr>
 								<td><input type="checkbox" name="checkRow" id="checkRow"/></td>
+								<td>d</td><%-- ${ member.memVisitDate } --%>
 								<td>d</td>
 								<td>d</td>
-								<td>d</td>
-								<td>d</td>
-								<td>d</td>
+								<td>${member.memName} / ${member.age}세 /${member.memGender} <br>
+								${member.memPhone} </td>
 								
 								<c:choose>
 								<c:when test="${ not empty visitpurposevo.purpose }">	
 								<td id="purposelist">
-								 ${ visitpurposevo.purpose }
+								 ${visitpurposevo.purpose}
 								</td>
 								
 								</c:when>
@@ -358,7 +357,7 @@
 								</c:otherwise>
 								</c:choose>
 								
-								<td>d</td>
+								<td>${member.memRoute}</td>
 								
 								<c:choose>
 								<c:when test="${ empty data }">
@@ -371,16 +370,14 @@
 								
 								<c:otherwise>
 								<td id="schsuccess">
-								${ scheduleddatevo.visit } / ${ scheduleddatevo.hourfrom } : ${ scheduleddatevo.minuetfrom } ~ ${ scheduleddatevo.hourto } : ${ scheduleddatevo.minuetto } <br>
+								${scheduleddatevo.visit} / ${scheduleddatevo.hourfrom} : ${scheduleddatevo.minuetfrom} ~ ${scheduleddatevo.hourto} : ${scheduleddatevo.minuetto} <br>
 								<a data-toggle="modal" data-target="#reserve">예약일수정</a><%-- update --%>
 								</td>
 								</c:otherwise>
 								</c:choose>
 												
-								<td>d</td>
-								
 								<c:choose>
-								<c:when test="${ purchasevo.purStatement eq false }">
+								<c:when test="${ member.statement eq false }">
 								<td style="color:orange">미결제</td>
 								</c:when>
 								
