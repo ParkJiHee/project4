@@ -88,7 +88,7 @@
             <!-- /widget-header -->
             <div class="widget-content">
 				<div class="shortcuts">
-					<a href="/team-project3/schedule/schedule.action" class="shortcut"> 
+					<a href="/team-project3/schedule/schedule.action?centerno=${ loginuser.centerNo }" class="shortcut"> 
 						<i class="shortcut-icon icon-list-alt"></i> 
 						<span class="shortcut-label">스케줄</span>
 					</a>

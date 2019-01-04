@@ -77,7 +77,7 @@
 						        
 								
 								<div class="plan-actions">				
-									<a href="/team-project3/purchase/purRegister.action?productno=${ product.productNo }&memberno=${ member.memberNo } " class="btn btn-success">결제</a>
+									<a href="/team-project3/purchase/purRegister.action?productno=${ product.productNo }&memberno=${ member.memberNo } " class="btn btn-success"><i class="icon-shopping-cart"></i>결제</a>
 								</div> <!-- /plan-actions -->
 					
 							</div> <!-- /plan -->
