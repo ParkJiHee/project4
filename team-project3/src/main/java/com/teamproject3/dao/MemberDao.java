@@ -23,4 +23,6 @@ public interface MemberDao {
 
 	int selectSignupMember(int centerNo);
 
+	void updateMember(MemberVo memberVo);
+
 }

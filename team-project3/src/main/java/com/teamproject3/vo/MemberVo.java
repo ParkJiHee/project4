@@ -26,7 +26,7 @@ public class MemberVo {
 	
 	@NotEmpty(message = "{route.required}") //유입상태를 체크해주세요
 	private String memRoute;
-	private String memEail;
+	private String memEmail;
 	private Date memVisitDate;
 	private String centerNo;
 	private char deleted;
@@ -93,12 +93,13 @@ public class MemberVo {
 	public void setMemRoute(String memRoute) {
 		this.memRoute = memRoute;
 	}
-	public String getMemEail() {
-		return memEail;
+	public String getMemEmail() {
+		return memEmail;
 	}
-	public void setMemEail(String memEail) {
-		this.memEail = memEail;
+	public void setMemEmail(String memEmail) {
+		this.memEmail = memEmail;
 	}
+
 	public Date getMemVisitDate() {
 		return memVisitDate;
 	}
