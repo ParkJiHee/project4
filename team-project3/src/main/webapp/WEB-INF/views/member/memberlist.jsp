@@ -165,9 +165,9 @@
 				</div> <!-- /control-group -->
 			
 				<div class="control-group">											
-					<label class="control-label" for="memEail">이메일</label>
+					<label class="control-label" for="memEmail">이메일</label>
 					<div class="controls">
-						<input type="text" name="memEail" id="memEail" value="" class="span3 m-wrap">
+						<input type="text" name="memEmail" id="memEmail" value="" class="span3 m-wrap">
 					</div> <!-- /controls -->				
 				</div> <!-- /control-group -->
 			</fieldset>
@@ -1305,12 +1305,8 @@ $(function() {
 			"type": "POST",
 			"data": data,
 			"success": function(data, status, xhr) {
-				if (data === "success") {
-					alert('회원을 등록했습니다.');
-				} else {
-					alert('회원 등록 실패');
-				}
-				
+				alert('회원을 등록했습니다.');
+					
 				location.href="/team-project3/member/memberlist.action"
 			},
 			"error": function(xhr, status, err) {

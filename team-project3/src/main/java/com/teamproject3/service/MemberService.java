@@ -21,4 +21,6 @@ public interface MemberService {
 
 	int findSingupMemberNo(int centerNo);
 
+	void updateMember(MemberVo memberVo);
+
 }

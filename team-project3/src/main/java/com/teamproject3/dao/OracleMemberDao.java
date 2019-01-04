@@ -63,6 +63,11 @@ public class OracleMemberDao implements MemberDao{
 		int memberNo = memberMapper.selectSignupMember(centerNo);
 		return memberNo;
 	}
+
+	@Override
+	public void updateMember(MemberVo memberVo) {
+		memberMapper.updateMember(memberVo);
+	}
 	
 
 }
