@@ -1,6 +1,7 @@
 package com.teamproject3.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -61,7 +62,8 @@ public class MemberController {
 	
 	@RequestMapping(value = "/membersignup.action", method = RequestMethod.POST)
 	@ResponseBody
-	public String memberSignup(MemberVo member) {
+	public String memberSignup(MemberVo member, Model model, 
+			HttpSession session, HttpServletRequest req, CenterVo center) {
 		
 		/*MultipartFile attach = req.getFile("attach");
 
@@ -90,8 +92,28 @@ public class MemberController {
 		
 		memberService.SignupMember(member);
 		
+		center = (CenterVo)session.getAttribute("loginuser");
+		
+		int memberNo = memberService.findSingupMemberNo(center.getCenterNo());
+		
+		model.addAttribute("memberno", memberNo);
+
 		return "success";
 
+	}
+	
+	@RequestMapping(value = "/memberdelete.action", method = RequestMethod.POST)
+	@ResponseBody
+	public String memberDelete(@RequestParam(value="memberArray[]") List<Integer> deleteList) {
+		
+		ArrayList<Integer> deleteArray = new ArrayList<>();
+		for(int i = 0; i < deleteList.size(); i++) {
+			deleteArray.add(deleteList.get(i));
+		}
+		
+		memberService.deleteMembers(deleteArray);
+		
+		return "success";
 	}
 	
 	@RequestMapping(value = "/memberdetail.action", method = RequestMethod.GET)

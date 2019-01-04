@@ -276,8 +276,10 @@
 									      		<h3 id="membercount" class="control-label" style="margin: 10px; width: 65%; text-align: left;">${ countno }명의 회원 중 0명이 선택되었습니다.</h3>
 									      		<div class="controls">
 										      		<input type="checkbox" id ="allcheck"> 전체 선택
-										      		<button class="btn btn-primary" style="margin: 10px">SMS 보내기</button>
-										      		<button class="btn btn-danger">회원 삭제</button>
+										      		<a href="#" class="btn btn-primary" style="margin: 10px">SMS 보내기</a>
+										      		<!-- <button class="btn btn-primary" style="margin: 10px">SMS 보내기</button> -->
+										      		<!-- <button id="memberdelete" class="btn btn-danger">회원 삭제</button> -->
+										      		<a id="memberdelete" class="btn btn-danger">회원 삭제</a>
 										      	</div>
 									      	</div>
 									      	<br>
@@ -1318,7 +1320,12 @@ $(function() {
 	}); 
 	
 	$('#signupsell').on('click', function(event) {
-			
+		var content = $('#age').val();
+		var num = 0;
+		if(content.length == 0){
+			$('#age').val(num);
+		}	
+		
 			//event.preventDefault(); //이벤트를 발생시킨 객체의 기본 동작 수행 차단
 			//event.stopPropagation(); //상위 객체로의 이벤트 전달 차단
 			
@@ -1334,9 +1341,8 @@ $(function() {
 					} else {
 						alert('회원 등록 실패');
 					}
-					
-					var memberNo = parseInt($('#memberNo').val());
-					location.href="/team-project3/purchase/purSelect.action?memberno="+(memberNo+1)+"&centerno=${ loginuser.centerNo }";
+
+					location.href="/team-project3/purchase/purSelect.action?memberno=${ memberno }&centerno=${ loginuser.centerNo }";
 				},
 				"error": function(xhr, status, err) {
 					alert('회원 등록 실패');
@@ -1373,6 +1379,45 @@ $(function() {
 			$('#membercount').text(message);
 			$('.overlay2').css('opacity','0');
 			$('.membercheck').prop('checked', false);
+		}
+	});
+	
+	$('#memberdelete').on('click',function(event){
+		var memberArray = new Array();
+		$('.membercheck').each(function(){
+			if($(this).is(':checked')){
+				memberArray.push($(this).attr('data-memberno'));
+			}
+		});
+		
+		if(memberArray.length == 0){
+			alert("선택된 회원이 없습니다.");
+		}else{
+			alert(memberArray);
+			//alert("삭제할 회원이 있다!!.");
+			if(confirm("삭제하시겠습니까?")==true){ //확인
+				$.ajax({
+					"url": "memberdelete.action",
+					"type": "POST",
+					"data": {0:0, memberArray:memberArray},
+					"success": function(data, status, xhr) {
+						if (data === "success") {
+							alert('회원을 삭제했습니다.');
+						} else {
+							alert('회원 삭제 실패');
+						}
+						
+						location.href="/team-project3/member/memberlist.action"
+					},
+					"error": function(xhr, status, err) {
+						alert('회원 등록 실패');
+					}
+				});
+				
+				memberArray = new Array();
+			}else{ //취소
+				location.reload(true);
+			}
 		}
 	});
 	

@@ -19,4 +19,8 @@ public interface MemberDao {
 
 	int selectAllMemberCount(int centerNo);
 
+	void deleteMember(int deletNum);
+
+	int selectSignupMember(int centerNo);
+
 }

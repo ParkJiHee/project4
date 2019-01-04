@@ -1,5 +1,6 @@
 package com.teamproject3.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,5 +16,9 @@ public interface MemberService {
 	MemberVo findMember(int memberNo);
 
 	int findAllMemberCount(int centerNo);
+
+	void deleteMembers(ArrayList<Integer> deleteArray);
+
+	int findSingupMemberNo(int centerNo);
 
 }
