@@ -1,6 +1,10 @@
 package com.teamproject3.dao;
 
+import com.teamproject3.vo.ScheduleVo;
+
 public interface ScheduleDao {
+
+	void insertSchedule(ScheduleVo schedule);
 
 //	void insertProduct(ProductVo hobby);
 //

@@ -1,6 +1,7 @@
 package com.teamproject3.service;
 
 import com.teamproject3.dao.ScheduleDao;
+import com.teamproject3.vo.ScheduleVo;
 
 public class ScheduleServiceImpl implements ScheduleService {
 
@@ -8,16 +9,16 @@ public class ScheduleServiceImpl implements ScheduleService {
 	public void setScheduleDao(ScheduleDao scheduleDao) {
 		this.scheduleDao = scheduleDao;
 	}
-//	
-//	@Override
-//	public void writeProduct(ProductVo product) {
-//		
-//		System.out.println("productno : " + product.getProductNo());//여기서 board.getBoardNo()를 호출하면 --> 0
-//		productDao.insertProduct(product);
-//		System.out.println("productno : " + product.getProductNo());//여기서 board.getBoardNo()를 호출하면 --> 삽입된 게시글의 글번호
-//		
-//		
-//	}
+	
+	@Override
+	public void writeSchedule(ScheduleVo schedule) {
+		
+		System.out.println("scheduleno : " + schedule.getScheduleNo());//여기서 board.getBoardNo()를 호출하면 --> 0
+		scheduleDao.insertSchedule(schedule);
+		System.out.println("scheduleno : " + schedule.getScheduleNo());//여기서 board.getBoardNo()를 호출하면 --> 삽입된 게시글의 글번호
+		
+		
+	}
 
 //	@Override
 //	public List<ProductVo> findAllProduct() {
