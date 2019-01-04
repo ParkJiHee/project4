@@ -200,7 +200,7 @@
 						
 					<div class="tabbable">
 						<ul class="nav nav-tabs">
-						  <li class="active"><a href="#allmembers" data-toggle="tab">전체 회원</a></li>
+						  <li class="active"><a href="#allmembers" data-toggle="tab">전체 회원(${ countno })</a></li>
 						  <li><a href="#nopaymembers" data-toggle="tab">미결제 회원</a></li>
 						  <li><a href="#uesmembers" data-toggle="tab">이용 회원</a></li>
 						  <li><a href="#finishmembers" data-toggle="tab">만료 회원</a></li>
@@ -1336,13 +1336,8 @@ $(function() {
 				"type": "POST",
 				"data": data,
 				"success": function(data, status, xhr) {
-					if (data === "success") {
-						alert('회원을 등록했습니다.');
-					} else {
-						alert('회원 등록 실패');
-					}
-
-					location.href="/team-project3/purchase/purSelect.action?memberno=${ memberno }&centerno=${ loginuser.centerNo }";
+					alert('회원을 등록했습니다.');
+					location.href="/team-project3/purchase/purSelect.action?memberno="+data+"&centerno=${ loginuser.centerNo }";
 				},
 				"error": function(xhr, status, err) {
 					alert('회원 등록 실패');

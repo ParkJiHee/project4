@@ -1,12 +1,9 @@
 package com.teamproject3.service;
 
-import com.teamproject3.vo.ScheduleVo;
-
 public interface ScheduleService {
-
-	void writeSchedule(ScheduleVo schedule);
 /*
-	
+	void writeSchedule(ProductVo product);
+
 	List<ProductVo> findAllProduct();
 
 	ProductVo findProductByProductNo(int ProductNo);

@@ -59,8 +59,50 @@
 <link href="/team-project3/resources/assets/css/pages/dashboard.css" rel="stylesheet">
  
 <script language="javascript" type="text/javascript" src="/team-project3/resources/assets/js/full-calendar/fullcalendar.min.js"></script>
+<!-- 
+ <script type="text/javascript">
+ $(function(){
+ calendarEvent();
+});
 
- <script>
+function calendarEvent(eventData){
+ $("#calender").html("");
+ var date = new Date();
+ var d = date.getDate();
+ var m = date.getMonth();
+ var y = date.getFullYear();
+ var calendar = $('#calender').fullCalendar({
+  header: {
+   left: "",
+   center: "title",
+//    right: "month,basicWeek,basicDay"
+   right: "today prev,next"
+   },
+   editable: true,
+   titleFormat: {
+   month: "yyyy년 MMMM",
+   week: "[yyyy] MMM dd일{ [yyyy] MMM dd일}",
+   day: "yyyy년 MMM d일 dddd"
+   },
+   allDayDefault: false,
+   defaultView: "month",
+   editable: false,
+   monthNames: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+   monthNamesShort: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+   dayNames: ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],
+   dayNamesShort: ["일","월","화","수","목","금","토"],
+   buttonText: {
+   today : "오늘",
+   month : "월별",
+   week : "주별",
+   day : "일별",
+   },
+   events : eventData,
+   timeFormat : "HH:mm",
+ });
+} 
+</script>   -->
+   <script>
 var lineChartData = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
@@ -114,10 +156,10 @@ var calendar = $('#calendar').fullCalendar({
     right: 'agendaWeek'  /* month,agendaWeek,agendaDay  */
   },
   defaultView: "agendaWeek",
- // selectable: true,
+  selectable: true,
   selectHelper: true,
-/*   select: function(start, end, allDay) {
-     var title = prompt('Event Title:');
+  select: function(start, end, allDay) {
+    var title = prompt('Event Title:');
     if (title) {
       calendar.fullCalendar('renderEvent',
         {
@@ -125,20 +167,62 @@ var calendar = $('#calendar').fullCalendar({
           start: start,
           end: end,
           allDay: allDay
-        }, 
+        },
         true // make the event "stick"
       );
     }
     calendar.fullCalendar('unselect');
-  }, */
+  },
   editable: true,
   events: [
-	  ${healthinfo}
+    {
+      title: 'All Day Event',
+      start: new Date(y, m, 1)
+    },
+    {
+      title: 'Long Event',
+      start: new Date(y, m, d+5),
+      end: new Date(y, m, d+7)
+    },
+    {
+      id: 999,
+      title: 'Repeating Event',
+      start: new Date(y, m, d-3, 16, 0),
+      allDay: false
+    },
+    {
+      id: 999,
+      title: 'Repeating Event',
+      start: new Date(y, m, d+4, 16, 0),
+      allDay: false
+    },
+    {
+      title: 'Meeting',
+      start: new Date(y, m, d, 10, 30),
+      allDay: false
+    },
+    {
+      title: 'Lunch',
+      start: new Date(y, m, d, 12, 0),
+      end: new Date(y, m, d, 14, 0),
+      allDay: false
+    },
+    {
+      title: 'Birthday Party',
+      start: new Date(y, m, d+1, 19, 0),
+      end: new Date(y, m, d+1, 22, 30),
+      allDay: false
+    },
+    {
+      title: 'EGrappler.com',
+      start: new Date(y, m, 28),
+      end: new Date(y, m, 29),
+      url: 'http://EGrappler.com/'
+    }
   ]
 });
 });
-</script>  
-
+</script> 
 
 </head>
 <body>
@@ -149,10 +233,6 @@ var calendar = $('#calendar').fullCalendar({
 <!-- end header.jsp -->
 
 <div id="calendar"></div>
-<div style= margin-top:20px;margin-right:60px>
-<a href="/team-project3/schedule/scheduleRegister.action" class="button btn btn-primary" style=" margin-left:80%">스케줄등록</a>
-</div>
-
 
 </body>
 </html>

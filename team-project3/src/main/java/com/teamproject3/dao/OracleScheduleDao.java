@@ -8,7 +8,6 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.teamproject3.vo.ProductVo;
-import com.teamproject3.vo.ScheduleVo;
 
 public class OracleScheduleDao implements ScheduleDao{
 
@@ -20,11 +19,11 @@ public class OracleScheduleDao implements ScheduleDao{
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-	@Override
-	public void insertSchedule(ScheduleVo schedule) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void insertProduct(ProductVo hobby) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 //	@Override
 //	public List<ProductVo> selectAllProduct() {
 //		// TODO Auto-generated method stub

@@ -1,59 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE mapper
-   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-   
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
 <!-- namespace : package-name.class-name -->
 <mapper namespace="com.teamproject3.mapper.ProductMapper">
-   
-   <!-- SQL과 Object 매핑 -->
-   <!-- 
-      SQL    : #{ propertyName }, #{ propertyName } ... propertyName : 클래스.getPropertyName()
-      Object : 클래스
-   -->
-   <!-- id : MethodName -->
-   <!-- <insert id="insertMember" parameterType="com.demoweb.vo.Member"> -->
-   
-   <insert id="insertProduct" parameterType="Product">
-      INSERT INTO product (centerno, productno, proname, proexplain, proprice) 
-      VALUES (#{ centerNo }, product_sequence.nextval, #{ productName }, #{ productExplain }, #{ productPrice })
-   </insert>
-   
-   <resultMap type="Product" id="productMap">
-      <id column="productno" property="productNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
-      <result column="proname" property="productName" />
-      <result column="proprice" property="productPrice" />
-   </resultMap>
-   <select id="selectAllProduct" resultMap="productMap">
-      SELECT productno, proname, proprice
-      FROM product
-      WHERE centerno = #{ centerNo }
-   </select>
-   
-   <resultMap type="Product" id="productnoMap">
-      <id column="productno" property="productNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
-      <result column="proname" property="productName" />
-      <result column="proexplain" property="productExplain" />
-      <result column="proprice" property="productPrice" />
-   </resultMap>
-   <select id="selectProductByProductNo" parameterType="int" resultMap="productnoMap">
-      SELECT productno, proname, proexplain, proprice
-      FROM product
-      WHERE productno = #{ productNo } AND deleted = '0'
-   </select>
-   
-   <update id="updateProduct" parameterType="Product">
-      UPDATE product
-      SET proname = #{ productName }, proexplain = #{ productExplain }, proprice = #{ productPrice }
-      WHERE productno = #{ productNo }
-   </update>
-   
-   <delete id="deleteProduct" parameterType="int">
-      DELETE FROM product
-      WHERE productno = #{ productNo }
-   </delete>
-   
+	
+	<!-- SQL과 Object 매핑 -->
+	<!-- 
+		SQL    : #{ propertyName }, #{ propertyName } ... propertyName : 클래스.getPropertyName()
+		Object : 클래스
+	-->
+	<!-- id : MethodName -->
+	<!-- <insert id="insertMember" parameterType="com.demoweb.vo.Member"> -->
+	
+	<insert id="insertProduct" parameterType="Product">
+		INSERT INTO product (centerno, productno, proname, proexplain, proprice) 
+		VALUES (#{ centerNo }, product_sequence.nextval, #{ productName }, #{ productExplain }, #{ productPrice })
+	</insert>
+	
+	<resultMap type="Product" id="productMap">
+		<id column="productno" property="productNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
+		<result column="proname" property="productName" />
+		<result column="proprice" property="productPrice" />
+	</resultMap>
+	<select id="selectAllProduct" resultMap="productMap">
+		SELECT productno, proname, proprice
+		FROM product
+		WHERE centerno = #{ centerNo }
+	</select>
+	
+	<resultMap type="Product" id="productnoMap">
+		<id column="productno" property="productNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
+		<result column="proname" property="productName" />
+		<result column="proexplain" property="productExplain" />
+		<result column="proprice" property="productPrice" />
+	</resultMap>
+	<select id="selectProductByProductNo" parameterType="int" resultMap="productnoMap">
+		SELECT productno, proname, proexplain, proprice
+		FROM product
+		WHERE productno = #{ productNo } AND deleted = '0'
+	</select>
+	
+	<update id="updateProduct" parameterType="Product">
+		UPDATE product
+		SET proname = #{ productName }, proexplain = #{ productExplain }, proprice = #{ productPrice }
+		WHERE productno = #{ productNo }
+	</update>
+	
+	<delete id="deleteProduct" parameterType="int">
+		DELETE FROM product
+		WHERE productno = #{ productNo }
+	</delete>
+	
 </mapper>
+
 
 
 
