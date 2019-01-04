@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,15 +16,35 @@
 	});
 
 	<%-- 주소입력 연결하기--%>
-	    
- 
+	
+	$('.form-actions > button').on('click', function (event) {
+		
+		event.preventDefault();
+		event.stopPropagation();
+		
+		var id= $(this).attr('id');
+		var frm = $('#newregister-form');
+		
+		var age = $('#age');
+		age.val(age.val().length == 0 ? '0' : age.val());
+		
+		if (id === 'new') { 
+		 frm.attr("action", "/team-project3/financial/possiblemember.action");
+		} else {
+			//frm.attr("action", "/team-project3/financial/possiblemember.action");
+			return;
+		}
+		 frm.submit();
+	})
+		
  })
+ 
  
  function btn_click(btn) {
 	
 	 if(btn == "possible"){
-		 
-		 newregister.action = "/team-project3/financial/possiblemember.action";
+		 $('#newregister').attr("action", "/team-project3/financial/possiblemember.action");
+		 $('#newregister').submit();
 	 
 	 }else if(btn == "product"){
 		 
@@ -44,7 +66,7 @@
         <button type="button" class="close" data-dismiss="modal">취소</button>
       </div> --%>
       <div class="modal-body">
-        	<form name="newregister" method="post" 
+        	<form name="newregister" id="newregister-form" method="post" 
         	enctype="multipart/form-data" modelAttribute="member" >			
 			
 			<div class="form-horizontal">
@@ -155,7 +177,8 @@
 				<div class="control-group">											
 					<label class="control-label" for="memBrith">생년월일</label>
 					<div class="controls">
-						<input type="date" name="memBrith" id="memBrith">
+						<input type="date" name="memBrith" id="memBrith"><br>
+						<input type="text" name="age" placeholder="나이" id="age"/>
 					</div> <!-- /controls -->				
 				</div> <!-- /control-group -->
 				
@@ -188,8 +211,8 @@
 			</div>
 			
 			<div class="form-actions">				 	
-				<button type="submit" class="btn btn-primary" onclick='btn_click("possible")'>잠재고객 등록</button>
-				<button type="submit" class="btn btn-default" onclick='btn_click("product")'>등록후 상품 판매</button>
+				<button type="submit" class="btn btn-primary" id="new">잠재고객 등록</button>
+				<button type="submit" class="btn btn-default" id="prod">등록후 상품 판매</button>
 				
 			</div> <!-- .actions -->
 			

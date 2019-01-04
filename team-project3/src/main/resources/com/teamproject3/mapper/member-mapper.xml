@@ -16,7 +16,7 @@
 	
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO member (memberno, memname, memgender, memphone, membrith, memaddress, memroute, mememail, memvisitdate, centerno, age) 
-		VALUES (member_sequence.nextval, #{ memName }, #{ memGender }, #{ memPhone }, #{ memBrith }, #{ memAddress }, #{ memRoute }, #{ memEail }, #{ memVisitDate }, #{ centerNo }, #{ age })
+		VALUES (member_sequence.nextval, #{ memName }, #{ memGender }, #{ memPhone }, #{ memBrith}, #{ memAddress}, #{ memRoute }, #{ memEail}, #{ memVisitDate }, #{ centerNo }, #{ age })
 	</insert>
 	
 	
@@ -60,8 +60,7 @@
 	<select id="selectMember" parameterType="int"
 										   resultType="Member">
 										   
-		SELECT memberno, memname, memgender, memphone, 
-		membrith, memaddress, memroute, mememail, memvisitdate, age
+		SELECT memberno, memname, memphone 
 		FROM member
 		WHERE memberno = #{ memberNo } ORDER BY memberno desc
 		
