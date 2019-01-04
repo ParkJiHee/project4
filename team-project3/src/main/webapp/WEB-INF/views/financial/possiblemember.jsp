@@ -110,7 +110,7 @@
     	 
     	 
     	 
-    	 $('#saved').on('click', function (event) {
+  <%--   	 $('#saved').on('click', function (event) {
     			var data = $("#register-frm").serialize();
         		
         		jQuery.ajaxSettings.traditional = true;
@@ -133,14 +133,14 @@
         					);
         				}else{ alert('저장 실패'); }
         				
-        				<%-- 화면갱신 --%>
+        				화면갱신
         				
         			},
         			"error": function(xhr, status, err) {
         				
         			}
         		});
-		})
+		}) --%>
 		
     });<%-- end script --%>   
 	   
