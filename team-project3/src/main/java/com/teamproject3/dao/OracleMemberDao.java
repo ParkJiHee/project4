@@ -46,6 +46,23 @@ public class OracleMemberDao implements MemberDao{
 		
 		return member;
 	}
+
+	@Override
+	public int selectAllMemberCount(int centerNo) {
+		int count = memberMapper.selectAllMemberCount(centerNo);
+		return count;
+	}
+
+	@Override
+	public void deleteMember(int deletNum) {
+		memberMapper.deleteMember(deletNum);
+	}
+
+	@Override
+	public int selectSignupMember(int centerNo) {
+		int memberNo = memberMapper.selectSignupMember(centerNo);
+		return memberNo;
+	}
 	
 
 }
