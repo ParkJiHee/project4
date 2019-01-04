@@ -3,12 +3,13 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
   
 <head>
     <meta charset="utf-8">
-    <title>Prouduct List</title>
+    <title>schedule Register</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">    
@@ -20,32 +21,14 @@
     <link href="/team-project3/resources/assets/css/font-awesome.css" rel="stylesheet">
     
     <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet">
-    
-    
-    <link href="/team-project3/resources/assets/css/pages/plans.css" rel="stylesheet"> 
-
-	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script type="text/javascript">
-	$(function(){
-		 $("#keyword").on('keyup',function() {
-	            var k = $(this).val();
-	            $(".plan-container").hide();
-	            
-	           var temp = $("div.plan-title:contains('" + k + "')");
-
-	            $(temp).parents(".plan-container").show();
-	        })
-	})
-	</script>
+   
 
   </head>
 
 <body>
 
-
 <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
-    
-    
+
 <div class="main">
 	
 	<div class="main-inner">
@@ -54,51 +37,94 @@
 	
 	      <div class="row">
 	      	
-	      	<div class="span12">
+	      	<div class="span12">      		
 	      		
-	      		<div class="widget">
-					<input type="text" width="5px" placeholder="검색" id="keyword">
-					<button type="submit" class="btn btn-small btn-success">검색</button>
-					<div class="widget-header">
-						<i class="icon-th-large"></i>
-						<h3>상품관리</h3>
-						<a href="/team-project3/product/productRegister.action" class="btn btn-primary" style="margin-left:80%;position:relative">상품등록</a>
-					</div> <!-- /widget-header -->
+	      		<div class="widget ">
+	      			
+	      			<div class="widget-header">
+	      				<i class="icon-edit"></i>
+	      				<h3>상품 등록</h3>
+	  				</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
 						
-						<div class="pricing-plans plans-3">
 						
-						<c:forEach var="product" items="${ products }">
-						<div class="plan-container">
-					        <div class="plan">
-						        <div class="plan-header">
-					                
-						        	<div class="plan-title">
-						        		${ product.productName }	        		
-					        		</div> <!-- /plan-title -->
-						            <div class="plan-price">
-					                	<h3>${ product.productPrice } 원</h3>
-									</div> <!-- /plan-price -->
-									
-						        </div> <!-- /plan-header -->	        
-						        
-								<div class="plan-actions">				
-									<a href="/team-project3/product/productUpdate.action?productno=${ product.productNo }" class="btn btn-success">수정</a>
-									<a href="/team-project3/product/productDelete.action?centerno=${ loginuser.centerNo }&productno=${ product.productNo }" class="btn btn-danger">삭제</a>				
-								</div> <!-- /plan-actions -->
-					
-							</div> <!-- /plan -->
-					    </div> <!-- /plan-container -->
-					    </c:forEach>
-					    
-					</div> <!-- /pricing-plans -->
+						
+						<div class="tabbable">
+						
+						
+						<br>
+						
+							<div class="tab-content">
+								<div class="tab-pane active" id="formcontrols">
+								<form id="edit-profile" class="form-horizontal" 
+									action="/team-project3/shcedule/scheduleRegister.action" method="post">
+									<fieldset>
+										
+										<div class="control-group">											
+											<label class="control-label">센터 번호</label>
+											<div class="controls">
+												<input type="text" readonly="readonly" class="span6" name="centerNo" value="${ loginuser.centerNo }">
+												<p class="help-block">센터 번호는 로그인과 동시에 저장됩니다. 바꿀 수 없습니다.</p>
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										
+										<div class="control-group">											
+											<label class="control-label">센터 이름</label>
+											<div class="controls">
+												<input type="text" class="span6 disabled" name="cenId" value="${ loginuser.cenId }" disabled>
+												<p class="help-block">센터 이름은 로그인과 동시에 저장됩니다. 바꿀 수 없습니다.</p>
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										
+										
+										<div class="control-group">											
+											<label class="control-label">스케줄 이름</label>
+											<div class="controls">
+												<input type="text" class="span6" name="scheduleName">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										
+										
+										
+										
+										<div class="control-group">											
+											<label class="control-label">날짜,시간</label>
+											<div class="controls">
+												<input type="datetime-local" 
+												class="sapn6" name="scheduleDate">
+											
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										
+										 <br />
+										
+											
+										<div class="form-actions">
+											<button type="submit" class="btn btn-primary">스케줄 등록</button> 
+											<a href="/team-project3/schedule/schedule.action?centerno=${ loginuser.centerNo }" class="btn">취소</a>
+										</div> <!-- /form-actions -->
+									</fieldset>
+								</form>
+								</div>
+								
+								
+							</div>
+						  
+						  
+						</div>
+						
+						
+						
+						
 						
 					</div> <!-- /widget-content -->
 						
-				</div> <!-- /widget -->					
-				
-		    </div> <!-- /span12 -->     	
+				</div> <!-- /widget -->
+	      		
+		    </div> <!-- /span8 -->
+	      	
+	      	
 	      	
 	      	
 	      </div> <!-- /row -->
@@ -109,8 +135,9 @@
     
 </div> <!-- /main -->
     
-
-
+    
+    
+ 
 <div class="extra">
 
 	<div class="extra-inner">
@@ -193,13 +220,12 @@
 </div> <!-- /footer -->
     
 
-<!-- Le javascript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="/team-project3/resources/assets/js/jquery-1.7.2.min.js"></script>
 
+<script src="/team-project3/resources/assets/js/jquery-1.7.2.min.js"></script>
+	
 <script src="/team-project3/resources/assets/js/bootstrap.js"></script>
 <script src="/team-project3/resources/assets/js/base.js"></script>
+
 
   </body>
 
