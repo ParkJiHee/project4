@@ -90,6 +90,7 @@
 	
 	<bean id="possibleDao" class="com.teamproject3.dao.OraclePossibleDao">
 		<property name="possibleMapper" ref="possibleMapper"/>
+		<property name="memberMapper" ref="memberMapper"/>
 	</bean>
 	
 	

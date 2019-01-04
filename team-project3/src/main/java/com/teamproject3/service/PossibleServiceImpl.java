@@ -27,6 +27,7 @@ public class PossibleServiceImpl implements PossibleService {
 //		}
 	}
 
+	//체크박스 INPUT
 	@Override
 	public void registerpurpose(String[] purpose, int memberNo) {
 		

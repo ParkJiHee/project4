@@ -1,5 +1,7 @@
 package com.teamproject3.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,7 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.format.number.NumberFormatter;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,9 +34,19 @@ import com.teamproject3.vo.VisitPurposeVo;
 @RequestMapping(value="/financial/")
 public class PossibleController {
 	
+	@InitBinder    
+    public void customizeBinding (WebDataBinder binder) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormatter.setLenient(false);
+        binder.registerCustomEditor(Date.class,
+                                    new CustomDateEditor(dateFormatter, true));
+    }
+	
+	
 	@Autowired
 	@Qualifier("possibleService")
 	private PossibleService possibleService;
+
 	
 	@RequestMapping(value= {"/", "/possiblemember.action"},  method = RequestMethod.GET )
 	public String view() {//@ModelAttribute("membervo") MemberVo member,) {
@@ -76,6 +92,7 @@ public class PossibleController {
 		studyService.writeStudy(studyvo);
 		System.out.println("2======"+studyvo);
 		*/
+		
 		
 		possibleService.insertMember(member);
 		return "financial/possiblemember";

@@ -107,7 +107,6 @@
     			    return false;
     		}
 		});
-    	 		
 		
     });<%-- end script --%>   
 	   

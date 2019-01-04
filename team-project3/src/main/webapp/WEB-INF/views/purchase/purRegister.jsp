@@ -14,6 +14,18 @@
 <link href="/team-project3/resources/assets/css/font-awesome.css" rel="stylesheet">
 <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet">
 <link href="/team-project3/resources/assets/css/pages/dashboard.css" rel="stylesheet">
+<script type="text/javascript">
+	$(document).ready( function() {
+	    $('#card').click(function(){
+	    	alert('카드선택');
+	    	/* $('#purMethod').val('카드'); */
+	    });
+	    $('#cash').click(function(){
+	    	$(this).val('현금선택을 하셨습니다.');
+	    	/* $('#purMethod').val('현금'); */
+	    });
+	});
+</script>
 </head>
 <body>
 
@@ -37,6 +49,7 @@
                     <div class="stat"> 
                     	<h3 class="bigstats">회원 정보</h3>
                         <div class="stats">
+                        	<input type="hidden" name="memberNo" value="${ member.memberNo }">
 	                        <span class="label_title">이름</span>
 	                        <span>${ member.memName }</span><br>
 	                        <span class="label_title">번호</span>
@@ -45,6 +58,7 @@
                         
                         <h3 class="bigstats">결제 상품 정보</h3>
                         <div class="stats">
+                        	<input type="hidden" name="productNo" value="${ product.productNo }">
                        		<span class="label_title">상품명</span>&nbsp;&nbsp;&nbsp;
                        		<input type="hidden" name="purName" value="${ product.productName }">
                         	<span>${ product.productName }</span><br>
@@ -159,8 +173,9 @@
                     	<h3 class="bigstats">상품결제 수단 선택</h3>
                         <div class="stats">
                         <div class="Method">
-                            <input type="button" name="purMethod" id="card" value="카드">&nbsp;
-                            <input type="button" name="purMethod" id="cash" value="현금">
+                            <input type="button" id="card" value="카드">&nbsp;
+                            <input type="button" id="cash" value="현금">&nbsp;
+                            <input type="hidden" name="purMethod" id="purMethod" value="카드">
                         </div>
                         <p>
                             <span class="label_title">결제 메모</span><br>
@@ -171,7 +186,7 @@
                     </div>
                     <!-- .stat -->
                     <div class="stat">
-                    	<input type="hidden" name="purStatement" value="1">
+                    	<input type="hidden" name="statement" value="1">
                     </div>
                   </div>
                 </div>
