@@ -30,6 +30,7 @@ public class MemberVo {
 	private Date memVisitDate;
 	private String centerNo;
 	private char deleted;
+	private char statement;
 	
 	// 첨부파일
 	private List<MemberAttachVo> attachments;
@@ -115,5 +116,11 @@ public class MemberVo {
 	}
 	public void setDeleted(char deleted) {
 		this.deleted = deleted;
+	}
+	public char getStatement() {
+		return statement;
+	}
+	public void setStatement(char statement) {
+		this.statement = statement;
 	}
 }

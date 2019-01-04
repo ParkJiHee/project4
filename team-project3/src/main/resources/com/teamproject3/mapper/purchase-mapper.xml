@@ -16,10 +16,16 @@
 	
 	<insert id="insertPurchase" parameterType="Purchase">
 		INSERT INTO purchase (purchaseno, productno, memberno, purname, purregdate, 
-				purmemo, purprice, purdateto, purdatefrom, purmethod, purstatement) 
+				purmemo, purprice, purdateto, purdatefrom, purmethod) 
 		VALUES (purchase_sequence.nextval, #{ productNo }, #{ memberNo }, #{ purName }, #{ purRegdate }, 
-				#{ purMemo }, #{ purPrice }, #{ purDateto }, #{ purDatefrom }, #{ purMethod }, #{ purStatement })				
+				#{ purMemo }, #{ purPrice }, #{ purDateto }, #{ purDatefrom }, #{ purMethod })				
 	</insert>
+	
+	<update id="updatePurchase" parameterType="Member">
+		UPDATE member 
+		SET statement = #{ statement } 
+		WHERE memberno = #{ memberNo }
+	</update>
 	
 </mapper>
 
