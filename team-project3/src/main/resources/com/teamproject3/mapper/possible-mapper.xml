@@ -5,6 +5,7 @@
 	
 <!-- namespace : package-name.class-name -->
 <mapper namespace="com.teamproject3.mapper.PossibleMapper">
+
 	
 <!--  	<insert id="insertPurpose" parameterType="java.util.list">
 		INSERT INTO registerpurpose ( purpose )
@@ -18,5 +19,38 @@
 		</foreach>
 	</insert>
  
+ 
+ 	<resultMap type="Posvisit" id="registerpurposeMap">
+ 		<id column="memberno" property="memberNo" />
+ 		<result column="purpose" property="purpose" />
+ 	</resultMap>
+
+	<select id="selectPurposeByMemberNo" parameterType="int"
+		resultType="Posvisit">	<!-- 등록목적 --> 
+		SELECT  purpose from purpose where memberno = #{ memberNo } 
+	</select>
+	
+		<select id="selectMemberList" parameterType="hashmap"
+		resultType="Member"><!-- 목록보기 -->
+		SELECT *
+		FROM
+		(
+		SELECT
+		rownum idx, s.*
+		FROM
+
+		(
+		SELECT
+		memberno, memname, age,
+		memgender, memphone
+		FROM
+		member
+		ORDER BY memberno DESC
+		) s
+		)
+
+		WHERE idx >= #{ from } AND idx <![CDATA[<]]>
+		#{ to }	<!-- 부등호두개?를 XML에서는 지원안하기때문에 CDATA로 문자열처리해줌 -->
+	</select>
 
 </mapper>

@@ -107,6 +107,40 @@
     			    return false;
     		}
 		});
+    	 
+    	 
+    	 
+    	 $('#saved').on('click', function (event) {
+    			var data = $("#register-frm").serialize();
+        		
+        		jQuery.ajaxSettings.traditional = true;
+        		
+        		$.ajax({
+        			"url": "registerpurpose.action",
+        			"method": "POST",
+        			"data": data,
+        			"success": function(data, status, xhr) {
+        	
+        				if(data == "success"){
+        					alert('저장했습니다');
+        					$('#purposelist').load(
+        						"get-input-list.action", 
+        						{ "memberNo" : 66 },
+        						function (a,b,c) {
+        							alert('확인ㄴ')
+									
+								}
+        					);
+        				}else{ alert('저장 실패'); }
+        				
+        				<%-- 화면갱신 --%>
+        				
+        			},
+        			"error": function(xhr, status, err) {
+        				
+        			}
+        		});
+		})
 		
     });<%-- end script --%>   
 	   
@@ -161,7 +195,7 @@
         <%-- 우편번호 끝--%>
       
         
-        function checkboxarr() {
+    <%--     function checkboxarr() {
     		/* var checkarr = [];
     		$("input[name='purpose']:checked").each(function(i){
     			checkarr.push($(this).val());
@@ -182,12 +216,15 @@
     				if(valueArrTest == success){
     					alert('저장했습니다');
     				}else{ alert('저장 실패'); }
+    				
+    				화면갱신
+    				$('#purposelist').load("get-input-list.action", { "memberNo" : ${meber.memberNo} });
     			},
     			"error": function(xhr, status, err) {
     				
     			}
     		});
-    	}
+    	} --%>
     
  	</script>
 </head>
@@ -267,7 +304,6 @@
 						<th style="width: 6%">고객관리담당자</th>
 						<th style="width: 8%">고객정보</th>
 
-						<th style="width: 5%">고객정보</th>
 						<th style="width: 7%">유입경로</th>
 						<th style="width: 6%">등록목적</th>
 						<th style="width: 8%">유입상태</th>
@@ -288,32 +324,40 @@
 						</tbody>
 					</c:when>
 					<c:otherwise> --%>
+					
+					
+					<c:forEach var="member" items="${ members }"> <%-- 컨트롤러에서 저장하기 --%>
 						<tbody>
 							<tr>
 								<td><input type="checkbox" name="checkRow" id="checkRow"/></td>
+								<td>d</td><%-- ${ member.memVisitDate } --%>
 								<td>d</td>
 								<td>d</td>
-								<td>d</td>
-								<td>d</td>
-								<td>d</td>
+								<td>${member.memName} / ${member.age}세 /${member.memGender} <br>
+								${member.memPhone} </td>
 								
 								<c:choose>
-								<c:when test="${ empty data }">	
+								<c:when test="${ not empty visitpurposevo.purpose }">	
+								<td id="purposelist">
+								 ${visitpurposevo.purpose}
+								</td>
+								
+								</c:when>
+								
+								<c:otherwise>
+							<%-- 	<c:forEach var="purpose" items="visitpurposevo.purpose" > --%>
+								
 								<td>
 								<button type="button" class="btn btn-small btn-success" 
 								data-toggle="modal" data-target="#input">입력하기
 								</button>
 								</td>
-								</c:when>
+								<%-- </c:forEach> --%>
 								
-								<c:otherwise>
-								<td id="registerpurpose">
-								
-								</td>
 								</c:otherwise>
 								</c:choose>
 								
-								<td>d</td>
+								<td>${member.memRoute}</td>
 								
 								<c:choose>
 								<c:when test="${ empty data }">
@@ -326,16 +370,14 @@
 								
 								<c:otherwise>
 								<td id="schsuccess">
-								${ scheduleddatevo.visit } / ${ scheduleddatevo.hourfrom } : ${ scheduleddatevo.minuetfrom } ~ ${ scheduleddatevo.hourto } : ${ scheduleddatevo.minuetto } <br>
+								${scheduleddatevo.visit} / ${scheduleddatevo.hourfrom} : ${scheduleddatevo.minuetfrom} ~ ${scheduleddatevo.hourto} : ${scheduleddatevo.minuetto} <br>
 								<a data-toggle="modal" data-target="#reserve">예약일수정</a><%-- update --%>
 								</td>
 								</c:otherwise>
 								</c:choose>
 												
-								<td>d</td>
-								
 								<c:choose>
-								<c:when test="${ purchasevo.purStatement eq false }">
+								<c:when test="${ member.statement eq false }">
 								<td style="color:orange">미결제</td>
 								</c:when>
 								
@@ -357,6 +399,7 @@
 							?: ${ date } ${ 담당자 }
 							--%>
 						</tbody>
+					</c:forEach>
 					<%-- </c:otherwise>
 				</c:choose>
  --%>			</table>
@@ -375,7 +418,7 @@
         <!-- /main-inner -->
     </div>
     <!-- /main -->
-  
+  <div id="xy"></div>
     <div class="footer">
         <div class="footer-inner">
             <div class="container">
