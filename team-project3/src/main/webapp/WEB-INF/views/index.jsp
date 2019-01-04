@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Dashboard - Bootstrap Admin Template</title>
+<title>Health Me</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="/team-project3/resources/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +26,6 @@
 		<jsp:param value="#f9f6f1" name="bgcolor" />
 	</jsp:include>
 <!-- end header.jsp -->
-
 
 <div class="main">
   <div class="main-inner">

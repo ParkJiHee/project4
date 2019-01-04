@@ -18,6 +18,7 @@
     
 <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet" type="text/css">
 <link href="/team-project3/resources/assets/css/pages/signin.css" rel="stylesheet" type="text/css">
+<link href="/team-project3/resources/assets/css/pages/dashboard.css" rel="stylesheet">
 
 <script type="text/javascript">
 	<% if (request.getAttribute("loginfail") != null) { %>
@@ -31,8 +32,33 @@
 	<!-- navbar.jsp -->
 	<jsp:include page="/WEB-INF/views/include/navbar.jsp"></jsp:include>
 	<!-- navbar.jsp -->
+	
+	<!-- <img src="/team-project3/resources/assets/img/move.gif"/> -->
+	
+<!-- <div>
+	<img src="/team-project3/resources/assets/img/exercise.jpg"/>
+</div> -->
 
-<div class="account-container">
+<div class="main">
+  <div class="main-inner">
+    <div class="container">
+      <div class="row">
+        <div class="span6">
+          <div class="widget">
+            
+            <div class="widget-content">
+              	<img src="/team-project3/resources/assets/img/exercise.jpg" style="width: auto; height: 500px"/>
+            </div>
+            <!-- /widget-content --> 
+          </div>
+          <!-- /widget --> 
+        </div>
+        <!-- /span6 -->
+        <div class="span6">
+          <div class="widget">
+            
+            <div class="widget-content">
+             	<!-- <div class="account-container"> -->
 	
 	<div class="content clearfix">
 		
@@ -73,13 +99,25 @@
 		
 	</div> <!-- /content -->
 	
-</div> <!-- /account-container -->
+<!-- </div> --> <!-- /account-container -->
+             </div>
+            <!-- /widget-content --> 
+          </div>
+          <!-- /widget --> 
+        </div>
+        <!-- /span6 --> 
+      </div>
+      <!-- /row --> 
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /main-inner --> 
+</div>
+<!-- /main -->
 
-
-
-<div class="login-extra">
+<!-- <div class="login-extra">
 	<a href="#">Reset Password</a>
-</div> <!-- /login-extra -->
+</div> /login-extra -->
 
 
 <script src="/team-project3/resources/assets/js/jquery-1.7.2.min.js"></script>

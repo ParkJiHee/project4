@@ -14,7 +14,7 @@ public interface PossibleMapper {
 
 	void insertPurpose(List<VisitPurposeVo> purpose);
 
-	ArrayList<VisitPurposeVo> selectPurposeByMemberNo(int memberNo);
+	VisitPurposeVo selectPurposeByMemberNo(int memberNo);
 
 	List<MemberVo> selectMemberList(HashMap<String, Object> params);
 

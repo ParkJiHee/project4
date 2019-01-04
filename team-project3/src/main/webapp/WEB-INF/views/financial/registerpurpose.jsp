@@ -24,7 +24,7 @@
       </div>
       <div class="modal-body">
       <form id="register-frm" name="chkbox" method="post">
-      	<input type="hidden" name="memberNo" value="66">
+      	<input type="hidden" name="memberNo" value="${member.memberNo}">
        	<input type="checkbox" name="purpose" value="시설이용"/> 시설이용
        	<input type="checkbox" name="purpose" value="개인레슨"/> 개인레슨
        	<input type="checkbox" name="purpose" value="그룹수업"/> 그룹수업

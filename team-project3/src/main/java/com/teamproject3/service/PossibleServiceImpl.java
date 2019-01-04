@@ -49,9 +49,11 @@ public class PossibleServiceImpl implements PossibleService {
 	}
 
 	@Override
-	public ArrayList<VisitPurposeVo> findPurposeListByMemberNo(int memberNo) {
+	public VisitPurposeVo findPurposeListByMemberNo(int memberNo) {
 		
-		ArrayList<VisitPurposeVo> purpose = possibleDao.selectPurposeByMemberNo(memberNo);
+		VisitPurposeVo purpose = possibleDao.selectPurposeByMemberNo(memberNo);
+		
+		
 		return purpose;
 	}
 
