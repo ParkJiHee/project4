@@ -27,7 +27,9 @@
 
 <body>
 
-<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/include/header.jsp">
+		<jsp:param value="schedule" name="bgcolor" />
+	</jsp:include>
 
 <div class="main">
 	

@@ -144,7 +144,7 @@ var calendar = $('#calendar').fullCalendar({
 <body>
 <!-- header.jsp -->
 	<jsp:include page="/WEB-INF/views/include/header.jsp">
-		<jsp:param value="#f9f6f1" name="bgcolor" />
+		<jsp:param value="schedule" name="bgcolor" />
 	</jsp:include>
 <!-- end header.jsp -->
 
