@@ -39,22 +39,27 @@
 	<img src="/team-project3/resources/assets/img/exercise.jpg"/>
 </div> -->
 
-<div class="main">
-  <div class="main-inner">
+	<div class="subnavbar">
+	</div>
+	
     <div class="container">
       <div class="row">
         <div class="span6">
           <div class="widget">
-            
-            <div class="widget-content">
-              	<img src="/team-project3/resources/assets/img/exercise.jpg" style="width: auto; height: 500px"/>
-            </div>
+          <img src="/team-project3/resources/assets/img/exercise.jpg" style="width: 540px; height: 700px"/>
             <!-- /widget-content --> 
           </div>
           <!-- /widget --> 
         </div>
         <!-- /span6 -->
         <div class="span6">
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
           <div class="widget">
             
             <div class="widget-content">
@@ -110,19 +115,10 @@
       <!-- /row --> 
     </div>
     <!-- /container --> 
-  </div>
-  <!-- /main-inner --> 
-</div>
-<!-- /main -->
-
-<!-- <div class="login-extra">
-	<a href="#">Reset Password</a>
-</div> /login-extra -->
-
 
 <script src="/team-project3/resources/assets/js/jquery-1.7.2.min.js"></script>
 <script src="/team-project3/resources/assets/js/bootstrap.js"></script>
-
+<script src="/team-project3/resources/assets/js/base.js"></script>
 <script src="/team-project3/resources/assets/js/signin.js"></script>
 
 </body>

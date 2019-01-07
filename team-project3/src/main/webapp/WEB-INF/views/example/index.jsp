@@ -348,10 +348,10 @@
 <script src="/team-project3/resources/assets/js/excanvas.min.js"></script> 
 <script src="/team-project3/resources/assets/js/chart.min.js" type="text/javascript"></script> 
 <script src="/team-project3/resources/assets/js/bootstrap.js"></script>
-<script language="javascript" type="text/javascript" src="/team-project3/resources/assets/js/full-calendar/fullcalendar.min.js"></script>
+<script type="text/javascript" src="/team-project3/resources/assets/js/full-calendar/fullcalendar.min.js"></script>
  
 <script src="/team-project3/resources/assets/js/base.js"></script> 
-<script>     
+<script type="text/javascript">     
 
         var lineChartData = {
             labels: ["January", "February", "March", "April", "May", "June", "July"],

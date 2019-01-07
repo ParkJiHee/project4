@@ -22,9 +22,7 @@
 <body>
 
 <!-- header.jsp -->
-	<jsp:include page="/WEB-INF/views/include/header.jsp">
-		<jsp:param value="#f9f6f1" name="bgcolor" />
-	</jsp:include>
+	<jsp:include page="/WEB-INF/views/include/header.jsp"/>
 <!-- end header.jsp -->
 
 <div class="main">
@@ -32,48 +30,14 @@
     <div class="container">
       <div class="row">
         <div class="span12">
-        <div class="widget">
-            <div class="widget-header"> 
-            	<i class="icon-bookmark"></i>
-              	<h3>Important Shortcuts</h3>
+        <div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-list-alt"></i>
+              <h3> Recent News</h3>
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
-				<div class="shortcuts">
-					<a href="javascript:;" class="shortcut"> 
-						<i class="shortcut-icon icon-list-alt"></i> 
-						<span class="shortcut-label">Apps</span>
-					</a>
-					<a href="javascript:;" class="shortcut">
-						<i class="shortcut-icon icon-bookmark"></i>
-						<span class="shortcut-label">Bookmarks</span> 
-					</a>
-					<a href="javascript:;" class="shortcut">
-						<i class="shortcut-icon icon-signal"></i>
-						<span class="shortcut-label">Reports</span> 
-					</a>
-					<a href="javascript:;" class="shortcut"> 
-						<i class="shortcut-icon icon-comment"></i>
-						<span class="shortcut-label">Comments</span>
-					</a>
-					<a href="javascript:;" class="shortcut">
-						<i class="shortcut-icon icon-user"></i>
-						<span class="shortcut-label">Users</span> 
-					</a>
-					<a href="javascript:;" class="shortcut">
-						<i class="shortcut-icon icon-file"></i>
-						<span class="shortcut-label">Notes</span> 
-					</a>
-					<a href="javascript:;" class="shortcut">
-						<i class="shortcut-icon icon-picture"></i>
-						<span class="shortcut-label">Photos</span> 
-					</a>
-					<a href="javascript:;" class="shortcut"> 
-						<i class="shortcut-icon icon-tag"></i>
-						<span class="shortcut-label">Tags</span>
-					</a>
-				</div>
-				<!-- /shortcuts --> 
+              <div id='calendar'>
+              </div>
             </div>
             <!-- /widget-content --> 
           </div>
@@ -81,44 +45,39 @@
         
         
           <div class="widget">
-            <div class="widget-header"> 
-            	<i class="icon-bookmark"></i>
-              	<h3>Important Shortcuts</h3>
-            </div>
-            <!-- /widget-header -->
             <div class="widget-content">
 				<div class="shortcuts">
 					<a href="/team-project3/schedule/schedule.action?centerno=${ loginuser.centerNo }" class="shortcut"> 
-						<i class="shortcut-icon icon-list-alt"></i> 
+						<i class="shortcut-icon icon-calendar"></i> 
 						<span class="shortcut-label">스케줄</span>
-					</a>
-					<a href=/team-project3/financial/accountant.action class="shortcut">
-						<i class="shortcut-icon icon-bookmark"></i>
-						<span class="shortcut-label">회계관리</span> 
-					</a>
-					<a href="/team-project3/purchase/purSelect.action?centerno=${ loginuser.centerNo }" class="shortcut">
-						<i class="shortcut-icon icon-signal"></i>
-						<span class="shortcut-label">상품결제</span> 
-					</a>
-					<a href=/team-project3/financial/possiblemember.action class="shortcut"> 
-						<i class="shortcut-icon icon-comment"></i>
-						<span class="shortcut-label">잠재고객관리</span>
 					</a>
 					<a href="/team-project3/member/memberlist.action" class="shortcut">
 						<i class="shortcut-icon icon-user"></i>
-						<span class="shortcut-label">고객관리</span> 
+						<span class="shortcut-label">고객 관리</span> 
+					</a>
+					<a href="/team-project3/financial/possiblemember.action" class="shortcut"> 
+						<i class="shortcut-icon icon-user-md"></i>
+						<span class="shortcut-label">잠재고객 관리</span>
+					</a>
+					<a href="/team-project3/financial/accountant.action" class="shortcut">
+						<i class="shortcut-icon icon-list-alt"></i>
+						<span class="shortcut-label">회계 관리</span> 
 					</a>
 					<a href="/team-project3/product/productList.action?centerno=${ loginuser.centerNo }" class="shortcut">
-						<i class="shortcut-icon icon-file"></i>
-						<span class="shortcut-label">상품관리</span> 
+						<i class="shortcut-icon icon-briefcase"></i>
+						<span class="shortcut-label">상품 관리</span> 
+					</a>
+					<a href="#" class="shortcut">
+						<i class="shortcut-icon icon-signal"></i>
+						<span class="shortcut-label">통계분석</span> 
 					</a>
 					<a href="javascript:;" class="shortcut">
 						<i class="shortcut-icon icon-picture"></i>
-						<span class="shortcut-label">Photos</span> 
+						<span class="shortcut-label">강사 관리</span> 
 					</a>
 					<a href="javascript:;" class="shortcut"> 
 						<i class="shortcut-icon icon-tag"></i>
-						<span class="shortcut-label">Tags</span>
+						<span class="shortcut-label">락커 관리</span>
 					</a>
 				</div>
 				<!-- /shortcuts --> 
@@ -213,51 +172,12 @@
 <script src="/team-project3/resources/assets/js/excanvas.min.js"></script> 
 <script src="/team-project3/resources/assets/js/chart.min.js" type="text/javascript"></script> 
 <script src="/team-project3/resources/assets/js/bootstrap.js"></script>
+<link rel="stylesheet" type="text/css" href="/team-project3/resources/assets/js/full-calendar/fullcalendar.min.css" />
+<script src="/team-project3/resources/assets/js/full-calendar/moment.min.js"></script>
 <script language="javascript" type="text/javascript" src="/team-project3/resources/assets/js/full-calendar/fullcalendar.min.js"></script>
  
 <script src="/team-project3/resources/assets/js/base.js"></script> 
-<!-- <script>     
-
-        var lineChartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [
-				{
-				    fillColor: "rgba(220,220,220,0.5)",
-				    strokeColor: "rgba(220,220,220,1)",
-				    pointColor: "rgba(220,220,220,1)",
-				    pointStrokeColor: "#fff",
-				    data: [65, 59, 90, 81, 56, 55, 40]
-				},
-				{
-				    fillColor: "rgba(151,187,205,0.5)",
-				    strokeColor: "rgba(151,187,205,1)",
-				    pointColor: "rgba(151,187,205,1)",
-				    pointStrokeColor: "#fff",
-				    data: [28, 48, 40, 19, 96, 27, 100]
-				}
-			]
-
-        }
-
-        var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
-
-
-        var barChartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [
-				{
-				    fillColor: "rgba(220,220,220,0.5)",
-				    strokeColor: "rgba(220,220,220,1)",
-				    data: [65, 59, 90, 81, 56, 55, 40]
-				},
-				{
-				    fillColor: "rgba(151,187,205,0.5)",
-				    strokeColor: "rgba(151,187,205,1)",
-				    data: [28, 48, 40, 19, 96, 27, 100]
-				}
-			]
-
-        }    
+<script>     
 
         $(document).ready(function() {
         var date = new Date();
@@ -265,6 +185,7 @@
         var m = date.getMonth();
         var y = date.getFullYear();
         var calendar = $('#calendar').fullCalendar({
+        	height: 500,
           header: {
             left: 'prev,next today',
             center: 'title',
@@ -336,7 +257,7 @@
           ]
         });
       });
-    </script> --><!-- /Calendar -->
+    </script><!-- /Calendar -->
 </body>
 </html>
 

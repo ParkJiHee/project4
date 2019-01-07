@@ -34,4 +34,17 @@ public class HomeController {
 		
 		return "index";
 	}
+	
+	@RequestMapping(value = "/setting.action", method = RequestMethod.GET)
+	public String setting(Locale locale, Model model,
+			HttpSession session, HttpServletRequest req, CenterVo center) {
+		
+		center = (CenterVo)session.getAttribute("loginuser");
+		if (center == null) {
+			session.setAttribute("loginuser", center);
+			return "redirect:/login.action";
+		}
+		
+		return "setting";
+	}
 }

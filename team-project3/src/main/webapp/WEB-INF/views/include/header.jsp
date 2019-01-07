@@ -11,7 +11,7 @@
           <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                             class="icon-cog"></i> Account <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="javascript:;">Settings</a></li>
+              <li><a href="/team-project3/setting.action">센터 정보 수정</a></li>
               <li><a href="javascript:;">Help</a></li>
             </ul>
           </li>
@@ -49,7 +49,7 @@
 
 
 <c:choose>
-	<c:when test='${ not empty param.bgcolor and param.bgcolor eq "#f9f6f1"}'>
+	<c:when test='${ not empty param.bgcolor and param.bgcolor eq "index"}'>
 
 		<div class="subnavbar">
 		  <div class="subnavbar-inner">
@@ -72,11 +72,11 @@
 		  <div class="subnavbar-inner">
 		    <div class="container">
 		      <ul class="mainnav">
-		        <li><a href="/team-project3/home.action"><i class="icon-dashboard"></i><span>Home</span> </a> </li>
+		        <li><a href="/team-project3/home.action"><i class="icon-home"></i><span>Home</span> </a> </li>
+		        <li><a href="/team-project3/schedule/schedule.action?centerno=${ loginuser.centerNo }"><i class="icon-calendar"></i><span>스케줄러</span> </a></li>
 		        <li class="active"><a href="/team-project3/member/memberlist.action"><i class="icon-list-alt"></i><span>고객관리</span> </a> </li>
-		        <li><a href="#"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
-		        <li><a href="#"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
-		        <li><a href="#"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
+		        <li><a href="/team-project3/financial/accountant.action"><i class="icon-list-alt"></i><span>회계관리</span> </a> </li>
+		        <li><a href="/team-project3/product/productList.action?centerno=${ loginuser.centerNo }"><i class="icon-briefcase"></i><span>상품관리</span> </a> </li>
 		      </ul>
 				<script type="text/javascript">
 					window.addEventListener('load', function(event) {
@@ -106,11 +106,11 @@
 		  <div class="subnavbar-inner">
 		    <div class="container">
 		      <ul class="mainnav">
-		        <li><a href="/team-project3/home.action"><i class="icon-dashboard"></i><span>Home</span> </a> </li>
+		        <li><a href="/team-project3/home.action"><i class="icon-home"></i><span>Home</span> </a> </li>
+		        <li><a href="/team-project3/schedule/schedule.action?centerno=${ loginuser.centerNo }"><i class="icon-calendar"></i><span>스케줄러</span> </a></li>
 		        <li class="active"><a href="/team-project3/member/memberlist.action"><i class="icon-list-alt"></i><span>고객관리</span> </a> </li>
-		        <li><a href="#"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
-		        <li><a href="#"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
-		        <li><a href="#"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
+		        <li><a href="/team-project3/financial/accountant.action"><i class="icon-list-alt"></i><span>회계관리</span> </a> </li>
+		        <li><a href="/team-project3/product/productList.action?centerno=${ loginuser.centerNo }"><i class="icon-briefcase"></i><span>상품관리</span> </a> </li>
 		      </ul>
 				<script type="text/javascript">
 					window.addEventListener('load', function(event) {
@@ -138,17 +138,74 @@
 		<!-- /subnavbar -->
 
 	</c:when>
+	
+	<c:when test='${ not empty param.bgcolor and param.bgcolor eq "schedule" }'>
+		<div class="subnavbar">
+		  <div class="subnavbar-inner">
+		    <div class="container">
+		      <ul class="mainnav">
+		        <li><a href="/team-project3/home.action"><i class="icon-home"></i><span>Home</span> </a> </li>
+		        <li class="active"><a href="/team-project3/schedule/schedule.action?centerno=${ loginuser.centerNo }"><i class="icon-calendar"></i><span>스케줄러</span> </a></li>
+		        <li><a href="/team-project3/member/memberlist.action"><i class="icon-list-alt"></i><span>고객관리</span> </a> </li>
+		        <li><a href="/team-project3/financial/accountant.action"><i class="icon-list-alt"></i><span>회계관리</span> </a> </li>
+		        <li><a href="/team-project3/product/productList.action?centerno=${ loginuser.centerNo }"><i class="icon-briefcase"></i><span>상품관리</span> </a> </li>
+		      </ul>
+		    </div>
+		    <!-- /container --> 
+		  </div>
+		  <!-- /subnavbar-inner --> 
+		</div>
+		<!-- /subnavbar -->
+	</c:when>
+	
+	<c:when test='${ not empty param.bgcolor and param.bgcolor eq "product" }'>
+		<div class="subnavbar">
+		  <div class="subnavbar-inner">
+		    <div class="container">
+		      <ul class="mainnav">
+		        <li><a href="/team-project3/home.action"><i class="icon-home"></i><span>Home</span> </a> </li>
+		        <li><a href="/team-project3/schedule/schedule.action?centerno=${ loginuser.centerNo }"><i class="icon-calendar"></i><span>스케줄러</span> </a></li>
+		        <li><a href="/team-project3/member/memberlist.action"><i class="icon-list-alt"></i><span>고객관리</span> </a> </li>
+		        <li><a href="/team-project3/financial/accountant.action"><i class="icon-list-alt"></i><span>회계관리</span> </a> </li>
+		        <li class="active"><a href="/team-project3/product/productList.action?centerno=${ loginuser.centerNo }"><i class="icon-briefcase"></i><span>상품관리</span> </a> </li>
+		      </ul>
+		    </div>
+		    <!-- /container --> 
+		  </div>
+		  <!-- /subnavbar-inner --> 
+		</div>
+		<!-- /subnavbar -->
+	</c:when>
+	
+	<c:when test='${ not empty param.bgcolor and param.bgcolor eq "financial" }'>
+		<div class="subnavbar">
+		  <div class="subnavbar-inner">
+		    <div class="container">
+		      <ul class="mainnav">
+		        <li><a href="/team-project3/home.action"><i class="icon-home"></i><span>Home</span> </a> </li>
+		        <li><a href="/team-project3/schedule/schedule.action?centerno=${ loginuser.centerNo }"><i class="icon-calendar"></i><span>스케줄러</span> </a></li>
+		        <li><a href="/team-project3/member/memberlist.action"><i class="icon-list-alt"></i><span>고객관리</span> </a> </li>
+		        <li class="active"><a href="/team-project3/financial/accountant.action"><i class="icon-list-alt"></i><span>회계관리</span> </a> </li>
+		        <li><a href="/team-project3/product/productList.action?centerno=${ loginuser.centerNo }"><i class="icon-briefcase"></i><span>상품관리</span> </a> </li>
+		      </ul>
+		    </div>
+		    <!-- /container --> 
+		  </div>
+		  <!-- /subnavbar-inner --> 
+		</div>
+		<!-- /subnavbar -->
+	</c:when>
 
 	<c:otherwise>
 		<div class="subnavbar">
 		  <div class="subnavbar-inner">
 		    <div class="container">
 		      <ul class="mainnav">
-		        <li class="active"><a href="/team-project3/home.action"><i class="icon-dashboard"></i><span>Home</span> </a> </li>
+		        <li class="active"><a href="/team-project3/home.action"><i class="icon-home"></i><span>Home</span> </a> </li>
+		        <li><a href="/team-project3/schedule/schedule.action?centerno=${ loginuser.centerNo }"><i class="icon-calendar"></i><span>스케줄러</span> </a></li>
 		        <li><a href="/team-project3/member/memberlist.action"><i class="icon-list-alt"></i><span>고객관리</span> </a> </li>
-		        <li><a href="#"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
-		        <li><a href="#"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
-		        <li><a href="#"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
+		        <li><a href="/team-project3/financial/accountant.action"><i class="icon-list-alt"></i><span>회계관리</span> </a> </li>
+		        <li><a href="/team-project3/product/productList.action?centerno=${ loginuser.centerNo }"><i class="icon-briefcase"></i><span>상품관리</span> </a> </li>
 		      </ul>
 		    </div>
 		    <!-- /container --> 
