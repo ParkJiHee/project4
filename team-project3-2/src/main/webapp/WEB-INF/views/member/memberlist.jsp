@@ -87,7 +87,7 @@
 				<div class="control-group">
 					<label class="control-label" for="file">첨부파일</label>
 					<div class="controls">
-						<input type="file" name="attach"/>
+						<input type="file" name="attach" id="attach"/>
 					</div>
 				</div>
 				
@@ -164,60 +164,62 @@
 						<input type="text" id="sample6_detailAddress" class="span2 m-wrap" placeholder="상세주소">
 						<input type="text" id="sample6_extraAddress" class="span2 m-wrap" placeholder="참고항목">
 						
-						<input type="text" id="address1" class="span3 m-wrap" placeholder="주소를 입력하세요">
-						<input type="text" id="address2" class="span3 m-wrap" placeholder="상세주소 입력">
+						<!-- <input type="text" id="address1" class="span3 m-wrap" placeholder="주소를 입력하세요">
+						<input type="text" id="address2" class="span3 m-wrap" placeholder="상세주소 입력"> -->
 						<input type="hidden" name="memAddress" id="memAddress"/>
 						
 						<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-<script>
-    function sample6_execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var addr = ''; // 주소 변수
-                var extraAddr = ''; // 참고항목 변수
-
-                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    addr = data.roadAddress;
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    addr = data.jibunAddress;
-                }
-
-                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                if(data.userSelectedType === 'R'){
-                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있고, 공동주택일 경우 추가한다.
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if(extraAddr !== ''){
-                        extraAddr = ' (' + extraAddr + ')';
-                    }
-                    // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("sample6_extraAddress").value = extraAddr;
-                
-                } else {
-                    document.getElementById("sample6_extraAddress").value = '';
-                }
-
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("sample6_address").value = addr;
-                // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("sample6_detailAddress").focus();
-            }
-        }).open();
-    }
-</script>
+						<script>
+						    function sample6_execDaumPostcode() {
+						        new daum.Postcode({
+						            oncomplete: function(data) {
+						                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+						
+						                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+						                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						                var addr = ''; // 주소 변수
+						                var extraAddr = ''; // 참고항목 변수
+						
+						                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+						                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+						                    addr = data.roadAddress;
+						                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+						                    addr = data.jibunAddress;
+						                }
+						
+						                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+						                if(data.userSelectedType === 'R'){
+						                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+						                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+						                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+						                        extraAddr += data.bname;
+						                    }
+						                    // 건물명이 있고, 공동주택일 경우 추가한다.
+						                    if(data.buildingName !== '' && data.apartment === 'Y'){
+						                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+						                    }
+						                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+						                    if(extraAddr !== ''){
+						                        extraAddr = ' (' + extraAddr + ')';
+						                    }
+						                    // 조합된 참고항목을 해당 필드에 넣는다.
+						                    document.getElementById("sample6_extraAddress").value = extraAddr;
+						                
+						                } else {
+						                    document.getElementById("sample6_extraAddress").value = '';
+						                }
+						
+						                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+						                document.getElementById('sample6_postcode').value = data.zonecode;
+						                document.getElementById("sample6_address").value = addr;
+						                // 커서를 상세주소 필드로 이동한다.
+						                document.getElementById("sample6_detailAddress").focus();
+						                
+						                document.getElementById("memAddress").value = data.zonecode+" "+addr+','+extraAddr;
+						            }
+						        }).open();
+						    }
+						</script>
 						
 					</div> <!-- /controls -->				
 				</div> <!-- /control-group -->
@@ -264,9 +266,8 @@
 						  <li><a href="#finishmembers" data-toggle="tab">만료 회원(${ countno4 })</a></li>
 						  <li><a href="#finish3days" data-toggle="tab">만료 3일전(${ countno5 })</a></li>
 						  <li><a href="#finish7days" data-toggle="tab">만료 7일전(${ countno6 })</a></li>
-						  <li><a href="#defaultmembers" data-toggle="tab">미납 회원()</a></li>
-						  <li><a href="#refundmembers" data-toggle="tab">환불()</a></li>
-						  <li><a href="#stopmembers" data-toggle="tab">중지 회원()</a></li>
+						  <!-- <li><a href="#refundmembers" data-toggle="tab">환불()</a></li>
+						  <li><a href="#stopmembers" data-toggle="tab">중지 회원()</a></li> -->
 						</ul>
 						
 						<br>
@@ -360,8 +361,8 @@
 													  <div class="media-body">
 													    <h4 class="media-heading">${ member.memName }</h4>
 													    <p> ${ member.age }세/ ${ member.memGender } / ${ member.memPhone}</p>
-													    <p>등록일 : ${ member.memVisitDate }</p>	
-											      		<p>만료일 : <fmt:formatDate value="${ member.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
+													    <p>상품   : ${ member.purchaseVo.purName }</p>	
+											      		<p>만료일 : <fmt:formatDate value="${ member.purchaseVo.purDatefrom }" pattern="yyyy년 MM월 dd일"/>
 		                								</p>
 													  </div>
 												</div>
@@ -477,8 +478,8 @@
 													  <div class="media-body">
 													    <h4 class="media-heading">${ member2.memName }</h4>
 													    <p> ${ member2.age }세/ ${ member2.memGender } / ${ member2.memPhone}</p>
-													    <p>등록일 : ${ member2.memVisitDate }</p>	
-											      		<p>만료일 : <fmt:formatDate value="${ member2.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
+													    <p>상품   : ${ member2.purchaseVo.purName }</p>	
+											      		<p>만료일 : <fmt:formatDate value="${ member2.purchaseVo.purDatefrom }" pattern="yyyy년 MM월 dd일"/>
 		                								</p>
 													  </div>
 												</div>
@@ -612,7 +613,7 @@
 														</div>
 												</div>
 												
-												<div class="overlay2" id="member${ member3.memberNo }nopaymembers">
+												<div class="overlay2" id="member${ member3.memberNo }uesmembers">
 													<div class = text><i class="icon-ok-circle"></i></div>
 												</div>
 												
@@ -974,124 +975,7 @@
 									</fieldset>
 								</form>
 								</div>
-								
-								<div class="tab-pane" id="defaultmembers">
-									<form id="edit-profile" class="form-horizontal">	
-									<fieldset class="nav pull-right">
-										<div class="input-append">
-											<input type="text" name="search" placeholder="Search by Keyword" id="keyword7">
-											<button class="btn" type="button"><i class="icon-search"></i></button>
-											<!-- <a class="btn btn-small" href="#"><i class="icon-search"></i></a> -->
-										</div>
-									</fieldset>
-									
-									<fieldset>
-										<select name="search_expire" data-function="search" style="width: auto;">
-										<option >검색조건 선택</option>
-										<option value="search_service_expire">이용권 만료일 검색</option>
-										<option value="search_locker_expire">락커 만료일 검색</option>
-										<option value="search_visit_expire">방문 만료일 검색</option>
-										</select>
-										
-										<select name="search_expire" data-function="search" style="width: auto;">
-										<option >검색조건 선택</option>
-										<option value="search_service_expire">이용권 만료일 검색</option>
-										<option value="search_locker_expire">락커 만료일 검색</option>
-										<option value="search_visit_expire">방문 만료일 검색</option>
-										</select>
-										
-										<select name="search_expire" data-function="search" style="width: auto;">
-										<option >검색조건 선택</option>
-										<option value="search_service_expire">이용권 만료일 검색</option>
-										<option value="search_locker_expire">락커 만료일 검색</option>
-										<option value="search_visit_expire">방문 만료일 검색</option>
-										</select>
-										
-										<select name="search_expire" data-function="search" style="width: auto;">
-										<option >검색조건 선택</option>
-										<option value="search_service_expire">이용권 만료일 검색</option>
-										<option value="search_locker_expire">락커 만료일 검색</option>
-										<option value="search_visit_expire">방문 만료일 검색</option>
-										</select>
-										
-										<select name="search_expire" data-function="search" style="width: auto;">
-										<option >검색조건 선택</option>
-										<option value="search_service_expire">이용권 만료일 검색</option>
-										<option value="search_locker_expire">락커 만료일 검색</option>
-										<option value="search_visit_expire">방문 만료일 검색</option>
-										</select>
-										
-										<select name="search_expire" data-function="search" style="width: auto;">
-										<option >검색조건 선택</option>
-										<option value="search_service_expire">이용권 만료일 검색</option>
-										<option value="search_locker_expire">락커 만료일 검색</option>
-										<option value="search_visit_expire">방문 만료일 검색</option>
-										</select>
-									</fieldset>
-									
-									<hr>
-									
-									<fieldset>
-									
-									<div class="control-group" style="margin: 0px;">
-									      		<h3 id="membercount7" class="control-label" style="margin: 10px; width: 65%; text-align: left;">${ countno }명의 회원 중 0명이 선택되었습니다.</h3>
-									      		<div class="controls">
-										      		<input type="checkbox" id ="allcheck7"> 전체 선택
-										      		<a href="#" class="btn btn-primary" style="margin: 10px">SMS 보내기</a>
-										      		<!-- <button class="btn btn-primary" style="margin: 10px">SMS 보내기</button> -->
-										      		<!-- <button id="memberdelete" class="btn btn-danger">회원 삭제</button> -->
-										      		<a id="memberdelete7" class="btn btn-danger">회원 삭제</a>
-										      	</div>
-									      	</div>
-									      	<br>
-									
-											<c:forEach var="member" items="${ members }">
-										<div class="span3">
-								      		
-								      		<div class="widget">
-							
-								      			<div class="widget-content">
-								      			<input type="hidden" name="memberNo" value="${ member.memberNo }"/>
-								      			<div class="media">
-													  <div class="media-left">
-													  
-													  <c:forEach var="attach" items="${ member.attachments }">
-													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
-													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:60px">
-													  </c:forEach>
-													  </div>
-													  <div class="media-body">
-													    <h4 class="media-heading">${ member.memName }</h4>
-													    <p> ${ member.age }세/ ${ member.memGender } / ${ member.memPhone}</p>
-													    <p>등록일 : ${ member.memVisitDate }</p>	
-											      		<p>만료일 : <fmt:formatDate value="${ member.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
-		                								</p>
-													  </div>
-												</div>
-									      		</div> <!-- /widget-content -->
-									      		
-									      		<div class="overlay">
-														<label class="checkbox inline">
-								                           <input type="checkbox" class="membercheck" data-memberno="${ member.memberNo }"> 회원선택
-								                        </label>
-								                        <div class="inline">
-															<a style="margin: 10px;" href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }&centerno=${ loginuser.centerNo }" class="btn btn-primary"><i class="icon-shopping-cart"></i><span>상품판매</span> </a>
-															<a href="/team-project3/member/memberdetail.action?memberno=${ member.memberNo }" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
-														</div>
-												</div>
-												
-												<div class="overlay2" id="member${ member.memberNo }defaultmembers">
-													<div class = text><i class="icon-ok-circle"></i></div>
-												</div>
-												
-								      		</div> <!-- /widget -->
-							      		</div> <!-- /span3 -->
-										</c:forEach>
-									</fieldset>
-								</form>
-								</div>
-								
+
 								<div class="tab-pane" id="refundmembers">
 									<form id="edit-profile" class="form-horizontal">	
 									<fieldset class="nav pull-right">
@@ -1208,6 +1092,7 @@
 									</fieldset>
 								</form>
 								</div>
+								
 								
 								<div class="tab-pane" id="stopmembers">
 									<form id="edit-profile" class="form-horizontal">	
@@ -1430,7 +1315,7 @@ $(function() {
         $('#memPhone').val(phone);
     });
 
-    $("#address1").change(function(){
+    /* $("#address1").change(function(){
     	var address = $(this).val();
         $('#memAddress').val(address);
     });
@@ -1444,6 +1329,24 @@ $(function() {
     	}
     	
         $('#memAddress').val(address);
+    }); */
+    
+    
+    $("#sample6_extraAddress").change(function(){
+    	var address = $('#sample6_postcode').val()+' '+$('#sample6_address').val()+','+$(this).val();
+        $('#memAddress').val(address);
+    });
+	
+    $("#sample6_detailAddress").change(function(){
+    	var address = $('#sample6_postcode').val()+' '+$('#sample6_address').val();
+    	var address2 = $(this).val();
+    	
+    	if(address2.length != 0){
+    		address = address+', '+$(this).val();
+    		$('#memAddress').val(address+$('#sample6_extraAddress').val());
+    	}else{
+    		$('#memAddress').val(address+','+$('#sample6_extraAddress').val());
+    	}
     });
 	
 	$('#signup').on('click', function(event) {
@@ -1499,6 +1402,10 @@ $(function() {
 			});
 		}); 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/* $(document).on('mousedown', function() {
+	  // Code here
+	  alert("우클릭은 기능이 없습니다.");
+	}); */
 	
 	$("#keyword").on('keyup', function() {
 			var k = $(this).val();

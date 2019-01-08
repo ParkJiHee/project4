@@ -10,6 +10,8 @@ public interface ScheduleDao {
 
 	List<ScheduleVo> healthShow(int centerNo);
 
+	void deleteSchedule(int scheduleNo);
+
 //	void insertProduct(ProductVo hobby);
 //
 //	List<ProductVo> selectAllProduct();

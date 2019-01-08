@@ -164,4 +164,10 @@ public class MemberServiceImpl implements MemberService{
 		int count = memberDao.selectFinished7MemberCount(centerNo);
 		return count;
 	}
+
+	@Override
+	public List<MemberVo> findAllMemberProduct(int memberNo) {
+		List<MemberVo> members = memberDao.selectAllMemberProduct(memberNo);
+		return members;
+	}
 }
