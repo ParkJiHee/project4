@@ -5,6 +5,7 @@ import java.util.List;
 import com.teamproject3.mapper.MemberMapper;
 import com.teamproject3.vo.MemberAttachVo;
 import com.teamproject3.vo.MemberVo;
+import com.teamproject3.vo.PurchaseVo;
 
 public class OracleMemberDao implements MemberDao{
 	
@@ -21,14 +22,13 @@ public class OracleMemberDao implements MemberDao{
 
 	@Override
 	public void insertMemberAttach(MemberAttachVo attach) {
-		// TODO Auto-generated method stub
-		
+		memberMapper.insertMemberAttach(attach);
 	}
 
 	@Override
 	public List<MemberAttachVo> selectMemberAttachByMemberNo(int memberNo) {
-		
-		return null;
+		List<MemberAttachVo> attachs = memberMapper.selectMemberAttachByMemberNo(memberNo);
+		return attachs;
 	}
 
 	@Override
@@ -130,9 +130,15 @@ public class OracleMemberDao implements MemberDao{
 	}
 
 	@Override
-	public List<MemberVo> selectAllMemberProduct(int memberNo) {
-		List<MemberVo> members = memberMapper.selectAllMemberProduct(memberNo);
+	public List<PurchaseVo> selectAllMemberProduct(int memberNo) {
+		List<PurchaseVo> members = memberMapper.selectAllMemberProduct(memberNo);
 		return members;
+	}
+
+	@Override
+	public void updateMemberAttach(MemberAttachVo attach) {
+		memberMapper.updateMemberAttach(attach);
+		
 	}
 	
 

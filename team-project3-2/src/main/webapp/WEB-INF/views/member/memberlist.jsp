@@ -77,13 +77,15 @@
   </div>
     <div class="content clearfix">
 		
-		<form id="membersignupform" enctype="multipart/form-data">			
+		<form id="membersignupform" enctype='multipart/form-data'>			
 			<input type="hidden" name="centerNo" value="${ loginuser.centerNo }">
 			<div class="form-horizontal">
 			
-			<img src="/team-project3/resources/assets/img/user.png"/>
+			<div class="img_wrap">
+				<img id="img" src="/team-project3/resources/assets/img/user.png" style="width:64px; height:64px; border-radius: 70px;"/>
+			</div>
 						
-				<p>Create your free account:</p>
+				
 				<div class="control-group">
 					<label class="control-label" for="file">첨부파일</label>
 					<div class="controls">
@@ -353,9 +355,9 @@
 													  <div class="media-left">
 													  
 													  <c:forEach var="attach" items="${ member.attachments }">
-													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    <img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
 													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:60px">
+													    class="media-object" style="width:64px; height:64px;  border-radius: 70px;"/>
 													  </c:forEach>
 													  </div>
 													  <div class="media-body">
@@ -470,9 +472,9 @@
 													  <div class="media-left">
 													  
 													  <c:forEach var="attach" items="${ member2.attachments }">
-													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    <img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
 													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:60px">
+													    class="media-object" style="width:64px; height:64px; border-radius: 70px;">
 													  </c:forEach>
 													  </div>
 													  <div class="media-body">
@@ -587,9 +589,9 @@
 													  <div class="media-left">
 													  
 													  <c:forEach var="attach" items="${ member3.attachments }">
-													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    <img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
 													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:60px">
+													    class="media-object" style="width:64px; height:64px; border-radius: 70px;">
 													  </c:forEach>
 													  </div>
 													  <div class="media-body">
@@ -705,9 +707,9 @@
 													  <div class="media-left">
 													  
 													  <c:forEach var="attach" items="${ member4.attachments }">
-													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    <img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
 													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:60px">
+													    class="media-object" style="width:64px; height:64px; border-radius: 70px;">
 													  </c:forEach>
 													  </div>
 													  <div class="media-body">
@@ -823,9 +825,9 @@
 													  <div class="media-left">
 													  
 													  <c:forEach var="attach" items="${ member5.attachments }">
-													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    <img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
 													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:60px">
+													    class="media-object" style="width:64px; height:64px; border-radius: 70px;">
 													  </c:forEach>
 													  </div>
 													  <div class="media-body">
@@ -940,9 +942,9 @@
 													  <div class="media-left">
 													  
 													  <c:forEach var="attach" items="${ member6.attachments }">
-													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    <img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
 													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:60px">
+													    class="media-object" style="width:64px; height:64px; border-radius: 70px;">
 													  </c:forEach>
 													  </div>
 													  <div class="media-body">
@@ -1057,9 +1059,9 @@
 													  <div class="media-left">
 													  
 													  <c:forEach var="attach" items="${ member.attachments }">
-													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    <img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
 													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:60px">
+													    class="media-object" style="width:64px; height:64px; border-radius: 70px;">
 													  </c:forEach>
 													  </div>
 													  <div class="media-body">
@@ -1175,9 +1177,9 @@
 													  <div class="media-left">
 													  
 													  <c:forEach var="attach" items="${ member.attachments }">
-													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+													    <img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
 													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:60px">
+													    class="media-object" style="width:64px; height:64px; border-radius: 70px;">
 													  </c:forEach>
 													  </div>
 													  <div class="media-body">
@@ -1283,6 +1285,28 @@ $(function() {
     	}
     });
 	
+    var sel_file;
+    
+    $('#attach').on('change', function(event){
+    	var files = event.target.files;
+    	var filesArr = Array.prototype.slice.call(files);
+    	
+    	filesArr.forEach(function(f){
+    		if(!f.type.match("image.*")){
+    			alert("확장자는 이미지 확장자만 가능합니다.");
+    			return;
+    		}
+    		
+    		sel_file = f;
+    		
+    		var reader = new FileReader();
+    		reader.onload = function(e){
+    			$('#img').attr('src',e.target.result);
+    		}
+    		reader.readAsDataURL(f);
+    	});
+    });
+    
 	$('#signup').on('click', function(event) {
 		var content = $('#age').val();
 		var num = 0;
@@ -1293,9 +1317,9 @@ $(function() {
 		//event.preventDefault(); //이벤트를 발생시킨 객체의 기본 동작 수행 차단
 		//event.stopPropagation(); //상위 객체로의 이벤트 전달 차단
 		
-		var data = $('#membersignupform').serializeArray(); // [{boardno:'xxx'}, {writer:'yyy'}, ]
-		//var formData = new FormData($('#membersignupform')[0]);
-		$.ajax({
+		//var data = $('#membersignupform').serializeArray(); // [{boardno:'xxx'}, {writer:'yyy'}, ]
+		var formData = new FormData($('#membersignupform')[0]);		
+		/* $.ajax({
 			"url": "membersignup.action",
 			"type": "POST",
 			"data": data,
@@ -1308,12 +1332,13 @@ $(function() {
 				alert('회원 등록 실패');
 			}
 		});
-	});  
+	});   */
 	
-		/* $.ajax({
+		$.ajax({
 			"url": "membersignup.action",
 			"type": "POST",
 			"data": formData,
+			"enctype": 'multipart/form-data',
 			"processData" : false,
             "contentType" : false,
 			"success": function(formData, status, xhr) {
@@ -1325,7 +1350,7 @@ $(function() {
 				alert('회원 등록 실패');
 			}
 		});
-	}); */
+	});
 	
 	$('#signupsell').on('click', function(event) {
 		var content = $('#age').val();
@@ -1337,15 +1362,33 @@ $(function() {
 			//event.preventDefault(); //이벤트를 발생시킨 객체의 기본 동작 수행 차단
 			//event.stopPropagation(); //상위 객체로의 이벤트 전달 차단
 			
-			var data = $('#membersignupform').serializeArray(); // [{boardno:'xxx'}, {writer:'yyy'}, ]
+			//var data = $('#membersignupform').serializeArray(); // [{boardno:'xxx'}, {writer:'yyy'}, ]
+			var formData = new FormData($('#membersignupform')[0]);
 			
-			$.ajax({
+			/* $.ajax({
 				"url": "membersignup.action",
 				"type": "POST",
 				"data": data,
 				"success": function(data, status, xhr) {
 					alert('회원을 등록했습니다.');
 					location.href="/team-project3/purchase/purSelect.action?memberno="+data+"&centerno=${ loginuser.centerNo }";
+				},
+				"error": function(xhr, status, err) {
+					alert('회원 등록 실패');
+				}
+			}); */
+			
+			$.ajax({
+				"url": "membersignup.action",
+				"type": "POST",
+				"data": formData,
+				"enctype": 'multipart/form-data',
+				"processData" : false,
+	            "contentType" : false,
+				"success": function(formData, status, xhr) {
+					alert('회원을 등록했습니다.');
+						
+					location.href="/team-project3/purchase/purSelect.action?memberno="+formData+"&centerno=${ loginuser.centerNo }";
 				},
 				"error": function(xhr, status, err) {
 					alert('회원 등록 실패');
@@ -1743,7 +1786,7 @@ $(function() {
 		});
 		$('#allcheck5').on('click', function(event) {
 			if ($(this).prop('checked')) {
-				count4 = ${countno5};
+				count4 = ${ countno5 };
 				var message = '${ countno }명의 회원 중 ' + count4 + '명이 선택되었습니다.';
 				$('#membercount5').text(message);
 				$('#finish3days').find('.overlay2').css('opacity', '1');

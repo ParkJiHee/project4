@@ -1,9 +1,9 @@
 package com.teamproject3.vo;
 
-public class MemberAttachVo {
+public class CenterAttachVo {
 
 	private int attachNo;
-	private int memberNo;
+	private int centerNo;
 	private String userFileName;
 	private String savedFileName;
 	
@@ -13,11 +13,11 @@ public class MemberAttachVo {
 	public void setAttachNo(int attachNo) {
 		this.attachNo = attachNo;
 	}
-	public int getMemberNo() {
-		return memberNo;
+	public int getCenterNo() {
+		return centerNo;
 	}
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
+	public void setCenterNo(int centerNo) {
+		this.centerNo = centerNo;
 	}
 	public String getUserFileName() {
 		return userFileName;

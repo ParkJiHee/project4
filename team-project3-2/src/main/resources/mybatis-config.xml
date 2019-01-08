@@ -10,6 +10,7 @@
 	
 	<typeAliases>
 		<typeAlias type="com.teamproject3.vo.CenterVo" alias="Center"/>
+		<typeAlias type="com.teamproject3.vo.CenterAttachVo" alias="CenterAttach"/>
 		<typeAlias type="com.teamproject3.vo.MemberVo" alias="Member"/>
 		<typeAlias type="com.teamproject3.vo.MemberAttachVo" alias="MemberAttach"/>
 		<typeAlias type="com.teamproject3.vo.ProductVo" alias="Product"/>

@@ -14,9 +14,14 @@
 	<!-- id : MethodName -->
 	<!-- <insert id="insertMember" parameterType="com.demoweb.vo.Member"> -->
 	
-	<insert id="insertMember" parameterType="Member" useGeneratedKeys="true" keyColumn="memberno" keyProperty="memberNo">
+	<insert id="insertMember" parameterType="Member" useGeneratedKeys="true" keyColumn="memberno" keyProperty="memberNo">	
 		INSERT INTO member (memberno, memname, memgender, memphone, membrith, memaddress, memroute, mememail, memvisitdate, centerno, age) 
 		VALUES (member_sequence.nextval, #{ memName }, #{ memGender }, #{ memPhone }, #{ memBrith}, #{ memAddress}, #{ memRoute }, #{ memEmail}, #{ memVisitDate }, #{ centerNo }, #{ age })
+	</insert>
+	
+	<insert id="insertMemberAttach"  parameterType="MemberAttach">
+		INSERT INTO  memberattach (attachno, memberno, userfilename, savedfilename) 
+		VALUES (memberattach_sequence.nextval, #{memberNo}, #{userFileName}, #{savedFileName})
 	</insert>
 	
 	<!-- <insert id="insertMember" parameterType="Member">
@@ -34,6 +39,13 @@
 		<result column="purdatefrom" property="purDatefrom" />
 		<result column="productno" property="productNo" />
 	</resultMap> 
+	
+	<resultMap type="Purchase" id="purMap">
+		<result column="productno" property="productNo" />
+		<result column="purdateto" property="purDateto" />
+		<result column="purdatefrom" property="purDatefrom" />
+		<result column="purname" property="purName" />
+	</resultMap>
 	
 	 <resultMap type="Member" id="memberMap">
 		<id column="memberno" property="memberNo" /> <!-- not null --> <!--조회 컬럼과 객체의 set메서드를 매핑-->
@@ -86,6 +98,11 @@
 		FROM center
 		WHERE cenid = #{ cenId } AND cenpasswd = #{ cenPasswd }
 	</select> -->
+	
+	<select id="selectMemberAttachByMemberNo" parameterType="int" resultType="MemberAttach">
+		SELECT attachno, memberno, userfilename, savedfilename
+		FROM memberattach WHERE memberno = #{ memberNo }
+	</select>
 	
 	<select id="selectAllMembers" parameterType="int"
 										   resultType="Member">
@@ -168,9 +185,8 @@
 	
 	
 	<select id="selectAllMemberProduct" parameterType="int"
-										   resultMap="memberPurchaseMap">
-		SELECT m.memberno, m.memname, m.memgender, m.memphone, 
-		m.membrith, m.memaddress, m.memroute, m.mememail, m.memvisitdate, m.age, p.purdatefrom, p.purname, p.purdateto, p.productno
+										   resultMap="purMap">
+		SELECT p.purdatefrom, p.purname, p.purdateto, p.productno
         from member m inner join purchase p
 		on (m.memberno = p.memberno)
 		WHERE m.memberno = #{ memberNo } and m.STATEMENT='1' ORDER BY p.purdatefrom
@@ -223,6 +239,11 @@
 		memaddress = #{memAddress}, memroute = #{memRoute}, mememail = #{memEmail}, memvisitdate = #{memVisitDate}, 
 		age = #{age}
 		where memberno = #{ memberNo }
+	</update>
+	
+	<update id="updateMemberAttach" parameterType="MemberAttach">
+		update memberattach set userfilename=#{userFileName}, savedfilename=#{savedFileName} 
+		where memberno = #{memberNo}
 	</update>
 	
 	<delete id="deleteMember" parameterType="int">

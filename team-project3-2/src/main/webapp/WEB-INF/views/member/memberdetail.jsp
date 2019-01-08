@@ -73,7 +73,7 @@
 			background-color: #BDBDBD;
 			opacity: 0.7;
 		}
-		
+	
 		/* .span5 .text {
 			color: black;
 			font-size: 40px;
@@ -105,13 +105,17 @@
 			<input type="hidden" name="memberNo" value="${ member.memberNo }"/>
 			<div class="form-horizontal">
 			
-			<img src="/team-project3/resources/assets/img/user.png"/>
-						
-				<p>Create your free account:</p>
+			<div class="img_wrap">
+				<c:forEach var="attach" items="${ member.attachments }">
+						<img id="img" src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
+						onerror="this.src = '/team-project3/resources/assets/img/user.png'" class="control-label" style="width:64px; height:64px; border-radius: 70px;"/>
+					</c:forEach>
+			</div>			
+				
 				<div class="control-group">
 					<label class="control-label" for="file">첨부파일</label>
 					<div class="controls">
-						<input type="file" name="attach"/>
+						<input type="file" name="attach" id="attach"/>
 					</div>
 				</div>
 				
@@ -285,8 +289,12 @@
                <div class="row-fluid stats-box" style="margin: 10px 0px;">
                  
                  <div class="span4">
-                    <div class="stats-box-all-info">				
-                    	<img class="control-label" src="/team-project3/resources/assets/img/user.png"/>&emsp;&emsp;이름 : ${ member.memName }
+                    <div class="stats-box-all-info">
+                    <c:forEach var="attach" items="${ member.attachments }">
+						<img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
+						onerror="this.src = '/team-project3/resources/assets/img/user.png'" class="control-label" style="width:64px; height:64px; border-radius: 70px;"/>
+						&emsp;&emsp;이름 : ${ member.memName }
+					</c:forEach>				
 						<div class="controls">
 							<p>${ member.age }세 / ${ member.memBrith }</p>
 						</div>				
@@ -349,7 +357,7 @@
 					</div> <!-- /widget-header -->
 					
 					<div class="widget-content" style="overflow-y: scroll; height:300px;">
-						<c:forEach var="member" items="${ members }">
+						<c:forEach var="purchase" items="${ purchases }">
 										<div class="span5">
 								      		
 								      		<div class="widget">
@@ -360,14 +368,14 @@
 													  <div class="media-left">
 													  </div>
 													  <div class="media-body">
-													    <h4 class="media-heading">상품명 :  ${ member.purchaseVo.purName }</h4>	
-											      		<p>이용 기간 : <fmt:formatDate value="${ member.purchaseVo.purDateto }" pattern="yyyy년 MM월 dd일"/> ~ <fmt:formatDate value="${ member.purchaseVo.purDatefrom }" pattern="yyyy년 MM월 dd일"/></p>
+													    <h4 class="media-heading">상품명 :  ${ purchase.purName }</h4>	
+											      		<p>이용 기간 : <fmt:formatDate value="${ purchase.purDateto }" pattern="yyyy년 MM월 dd일"/> ~ <fmt:formatDate value="${ purchase.purDatefrom }" pattern="yyyy년 MM월 dd일"/></p>
 													  </div>
 												</div>
 									      		</div> <!-- /widget-content -->
 									      		
 									      		<div class="overlay">
-													<a href="/team-project3/product/productDetail.action?productno=${  member.purchaseVo.productNo }" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
+													<a href="/team-project3/product/productDetail.action?productno=${  purchase.productNo }" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
 												</div>
 								      		</div> <!-- /widget -->
 							      		</div> <!-- /span5 -->
@@ -403,7 +411,28 @@
 
 <script type="text/javascript">
 $(function() {
-	
+	var sel_file;
+    
+    $('#attach').on('change', function(event){
+    	var files = event.target.files;
+    	var filesArr = Array.prototype.slice.call(files);
+    	
+    	filesArr.forEach(function(f){
+    		if(!f.type.match("image.*")){
+    			alert("확장자는 이미지 확장자만 가능합니다.");
+    			return;
+    		}
+    		
+    		sel_file = f;
+    		
+    		var reader = new FileReader();
+    		reader.onload = function(e){
+    			$('#img').attr('src',e.target.result);
+    		}
+    		reader.readAsDataURL(f);
+    	});
+    });
+    
 	$("input[name='memGender']").each(function(i){
 		if($("input[name='memGender']").eq(i).attr("value") == "${ member.memGender }"){
 			$("input[name='memGender']").eq(i).prop('checked', true);
@@ -516,9 +545,9 @@ $(function() {
 		//event.preventDefault(); //이벤트를 발생시킨 객체의 기본 동작 수행 차단
 		//event.stopPropagation(); //상위 객체로의 이벤트 전달 차단
 		
-		var data = $('#memberupdateform').serializeArray(); // [{boardno:'xxx'}, {writer:'yyy'}, ]
-		
-		$.ajax({
+		//var data = $('#memberupdateform').serializeArray(); // [{boardno:'xxx'}, {writer:'yyy'}, ]
+		var formData = new FormData($('#memberupdateform')[0]);
+		/* $.ajax({
 			"url": "memberupdate.action",
 			"type": "POST",
 			"data": data,
@@ -530,6 +559,28 @@ $(function() {
 				}
 					
 				location.href="/team-project3/member/memberdetail.action?memberno=${ member.memberNo }"
+			},
+			"error": function(xhr, status, err) {
+				alert('회원 수정 실패');
+				location.reload(true);
+			}
+		}); */
+		
+		$.ajax({
+			"url": "memberupdate.action",
+			"type": "POST",
+			"data": formData,
+			"enctype": 'multipart/form-data',
+			"processData" : false,
+            "contentType" : false,
+			"success": function(formData, status, xhr) {
+				if(formData === "success") {
+					alert('회원 정보를 수정했습니다.');
+				} else {
+					alert('회원 정보 수정 실패');
+				}
+					
+				location.href="/team-project3/member/memberdetail.action?memberno=${ member.memberNo }";
 			},
 			"error": function(xhr, status, err) {
 				alert('회원 수정 실패');

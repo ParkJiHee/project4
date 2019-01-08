@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.teamproject3.common.Util;
 import com.teamproject3.service.CenterService;
+import com.teamproject3.vo.CenterAttachVo;
 import com.teamproject3.vo.CenterVo;
 
 @Controller
@@ -67,7 +69,33 @@ public class CenterController {
 		}
 		
 		@RequestMapping(value="/signup.action", method=RequestMethod.POST)
-		public String register(@Valid@ModelAttribute("center")CenterVo center, BindingResult br) {
+		public String register(@Valid@ModelAttribute("center")CenterVo center, BindingResult br,
+				MultipartHttpServletRequest req) {
+			
+			MultipartFile attach = req.getFile("attach");
+			System.out.println("파일  " + attach);
+
+			ArrayList<CenterAttachVo> attachments = new ArrayList<>();
+			if (attach != null && !attach.isEmpty()) {
+				// 파일저장
+				String savedFileName = Util.makeUniqueFileName(attach.getOriginalFilename());
+				String path = req.getServletContext().getRealPath("/resources/member-upload/" + savedFileName);
+				System.out.printf("저장되냐========\n" + path);
+				try {
+					attach.transferTo(new File(path));
+
+					CenterAttachVo attachment = new CenterAttachVo();
+					attachment.setSavedFileName(savedFileName);
+					attachment.setUserFileName(attach.getOriginalFilename());
+					
+					attachments.add(attachment);
+					System.out.println("파일저장성공" + attachment);
+				} catch (Exception e) {
+
+				}
+			}
+
+			center.setAttachments(attachments);
 			
 			if(br.hasErrors()) {
 				return "account/signup";

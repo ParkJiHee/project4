@@ -26,8 +26,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.teamproject3.common.Util;
 import com.teamproject3.service.MemberService;
 import com.teamproject3.vo.CenterVo;
+import com.teamproject3.vo.MemberAttachVo;
 import com.teamproject3.vo.MemberVo;
 import com.teamproject3.vo.PurchaseVo;
 
@@ -101,7 +103,7 @@ public class MemberController {
 	@RequestMapping(value = "/membersignup.action", method = RequestMethod.POST)
 	@ResponseBody
 	public String memberSignup(MemberVo member, Model model, 
-			HttpSession session, HttpServletRequest req, CenterVo center) {//, MultipartHttpServletRequest multi) {
+			HttpSession session, HttpServletRequest req, CenterVo center, MultipartHttpServletRequest multi) {
 		
 		/*MultipartFile attach = req.getFile("attach");
 
@@ -127,9 +129,11 @@ public class MemberController {
 		member.setAttachments(attachments);
 		memberService.SignupMember(member);*/
 		
+		ArrayList<MemberAttachVo> attachments = new ArrayList<>();
+		
 		// 저장 경로 설정
-        /*String root = multi.getSession().getServletContext().getRealPath("/");
-        String path = root+"resources/upload/member-upload";
+        String root = multi.getSession().getServletContext().getRealPath("/");
+        String path = root+"resources/member-upload/";
          
         String newFileName = ""; // 업로드 되는 파일명
          
@@ -145,23 +149,28 @@ public class MemberController {
             MultipartFile mFile = multi.getFile(uploadFile);
             String fileName = mFile.getOriginalFilename();
             System.out.println("실제 파일 이름 : " +fileName);
-            newFileName = System.currentTimeMillis()+"."
-                    +fileName.substring(fileName.lastIndexOf(".")+1);
+            newFileName = Util.makeUniqueFileName(fileName);
              
             try {
                 mFile.transferTo(new File(path+newFileName));
+                
+                MemberAttachVo attachment = new MemberAttachVo();
+                attachment.setSavedFileName(newFileName);
+                attachment.setUserFileName(fileName);
+                
+                attachments.add(attachment);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }*/
+        }
 		
+        member.setAttachments(attachments);
 		memberService.SignupMember(member);
 		
-		center = (CenterVo)session.getAttribute("loginuser");
-		
-		int memberNo = memberService.findSingupMemberNo(center.getCenterNo());
+		//center = (CenterVo)session.getAttribute("loginuser");
+		//int memberNo = memberService.findSingupMemberNo(center.getCenterNo());
 
-		return String.valueOf(memberNo);
+		return String.valueOf(member.getMemberNo());
 
 	}
 	
@@ -192,18 +201,53 @@ public class MemberController {
 		}
 		
 		MemberVo member = memberService.findMember(memberNo);
-		List<MemberVo> members = memberService.findAllMemberProduct(memberNo);
+		List<PurchaseVo> purchases = memberService.findAllMemberProduct(memberNo);
 		
 		model.addAttribute("member", member);
-		model.addAttribute("members", members);
+		model.addAttribute("purchases", purchases);
 		
 		return "member/memberdetail";
 	}
 	
 	@RequestMapping(value = "/memberupdate.action", method = RequestMethod.POST)
 	@ResponseBody
-	public String memberUpdate(MemberVo memberVo) {
+	public String memberUpdate(MemberVo memberVo, MultipartHttpServletRequest multi) {
+		ArrayList<MemberAttachVo> attachments = new ArrayList<>();
 		
+		// 저장 경로 설정
+        String root = multi.getSession().getServletContext().getRealPath("/");
+        String path = root+"resources/member-upload/";
+         
+        String newFileName = ""; // 업로드 되는 파일명
+         
+        File dir = new File(path);
+        if(!dir.isDirectory()){
+            dir.mkdir();
+        }
+         
+        Iterator<String> files = multi.getFileNames();
+        while(files.hasNext()){
+            String uploadFile = files.next();
+                         
+            MultipartFile mFile = multi.getFile(uploadFile);
+            String fileName = mFile.getOriginalFilename();
+            System.out.println("실제 파일 이름 : " +fileName);
+            newFileName = Util.makeUniqueFileName(fileName);
+             
+            try {
+                mFile.transferTo(new File(path+newFileName));
+                
+                MemberAttachVo attachment = new MemberAttachVo();
+                attachment.setSavedFileName(newFileName);
+                attachment.setUserFileName(fileName);
+                
+                attachments.add(attachment);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+		
+        memberVo.setAttachments(attachments);
 		memberService.updateMember(memberVo);
 		
 		return "success";
