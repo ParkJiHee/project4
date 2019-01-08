@@ -31,6 +31,10 @@
 	where centerno=#{ centerNo }
 	</select>
 	
+	 <delete id="deleteSchedule" parameterType="int">
+      DELETE FROM class
+      WHERE classno = #{ scheduleNo }
+   </delete>
 	
 	<!-- <select id="selectAllProduct" resultMap="productMap">
 		SELECT productno, proname, proprice
