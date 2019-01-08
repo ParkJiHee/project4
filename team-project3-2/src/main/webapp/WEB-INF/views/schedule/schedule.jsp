@@ -111,13 +111,24 @@ var calendar = $('#calendar').fullCalendar({
   header: {
     left: 'prev,next today',
     center: 'title',
-    right: 'agendaWeek'  /* month,agendaWeek,agendaDay  */
+    right: 'agendaWeek,month'  /* month,agendaWeek,agendaDay  */
+  },
+  eventClick: function removeEvents(calEvent, jsEvent, view){
+	//  alert('Event: ' + calEvent.title);
+	//  alert('View: ' + view.name);
+	  alert('삭제하겠습니까?');
+	  if(removeEvents){
+		 location.href="/team-project3/schedule/scheduleDelete.action?centerno=${ loginuser.centerNo }&scheduleno="+calEvent.scheduleNo;
+	  }else{
+		  return false;
+	  } 
   },
   defaultView: "agendaWeek",
  // selectable: true,
-  selectHelper: true,
-
+ // selectHelper: true,
   editable: true,
+	
+
   events: 
 	  ${healthinfo}
 
