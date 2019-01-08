@@ -61,6 +61,21 @@ public class ProductController {
 		}
 		
 		// 게시글의 디테일 페이지로 가는 컨트롤러
+		@RequestMapping(value = "/productDetail.action", method = RequestMethod.GET)
+		public String productdetail(@RequestParam("productno") int productNo, Model model) {
+	
+			ProductVo product = productService.findProductByProductNo(productNo);
+			if (product == null) {
+				return "redirect:productList.action";
+			}
+	
+			model.addAttribute("product", product);
+			model.addAttribute("productno", productNo);
+	
+			return "product/productDetail";
+		}
+		
+		// 게시글의 수정 페이지로 가는 컨트롤러
 		@RequestMapping(value = "/productUpdate.action", method= RequestMethod.GET)
 		public String productupdate(
 				@RequestParam("productno")int productNo, Model model) {

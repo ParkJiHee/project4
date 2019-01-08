@@ -9,7 +9,7 @@
   
 <head>
     <meta charset="utf-8">
-    <title>Product Register</title>
+    <title>Product Detail</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">    
@@ -45,12 +45,10 @@
 	      			
 	      			<div class="widget-header">
 	      				<i class="icon-edit"></i>
-	      				<h3>상품 등록</h3>
+	      				<h3>상품 상세</h3>
 	  				</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
-						
-						
 						
 						<div class="tabbable">
 						
@@ -60,7 +58,7 @@
 							<div class="tab-content">
 								<div class="tab-pane active" id="formcontrols">
 								<form id="edit-profile" class="form-horizontal" 
-									action="/team-project3/product/productRegister.action" method="post">
+									action="/team-project3/product/productDetail.action" method="post">
 									<fieldset>
 										
 										<div class="control-group">											
@@ -79,11 +77,12 @@
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
+										<input type="hidden" class="span6" name="productNo" value="${ product.productNo }">
 										
 										<div class="control-group">											
 											<label class="control-label">상품 이름</label>
 											<div class="controls">
-												<input type="text" class="span6" name="productName">
+												<input type="text" class="span6" name="productName" readonly="readonly">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -92,7 +91,7 @@
 											<label class="control-label">상품 설명</label>
 											<div class="controls">
 												<!-- <input type="text" class="span6" id="productcontent"> -->
-												<textarea rows="5" class="span6" name="productExplain"></textarea>
+												<textarea rows="5" class="span6" name="productExplain" readonly="readonly"></textarea>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
                                         
@@ -104,7 +103,7 @@
 											
                                             <div class="controls">
                                                <div class="input-prepend input-append">
-                                                  <input class="span2" name="productPrice" type="text">
+                                                  <input class="span2" name="productPrice" type="text" readonly="readonly">
                                                   <span class="add-on">원</span>
                                                 </div>
                                               </div>	<!-- /controls -->			
@@ -115,7 +114,6 @@
 										
 											
 										<div class="form-actions">
-											<button type="submit" class="btn btn-primary">상품 등록</button> 
 											<a href="/team-project3/product/productList.action?centerno=${ loginuser.centerNo }" class="btn">취소</a>
 										</div> <!-- /form-actions -->
 									</fieldset>
