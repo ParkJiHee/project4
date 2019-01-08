@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
   
@@ -39,6 +41,44 @@
 		    border-bottom: 1px solid #efefef;
 		    font-size: 12px;
 		}
+		
+		.overlay {
+			transition: .5s ease;
+			opacity: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			text-align: center;
+			z-index: 1;
+		}
+
+		/* .span5 .overlay2 {
+			transition: .5s ease;
+			position: absolute;
+			opacity: 0;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			text-align: center;
+		} */
+		
+		.span5:hover .overlay {
+			opacity: 1;
+		}
+		
+		.span5:hover .widget-content {
+			background-color: #BDBDBD;
+			opacity: 0.7;
+		}
+		
+		/* .span5 .text {
+			color: black;
+			font-size: 40px;
+			padding: 16px 32px; */
+}
     </style>
   </head>
 
@@ -309,69 +349,29 @@
 					</div> <!-- /widget-header -->
 					
 					<div class="widget-content" style="overflow-y: scroll; height:300px;">
-						<div class="span3">
-	      		
-				      		<div class="widget">
-				      			
-				      			<div class="widget-content">
-				      				
-						      		<h1>3 Columns</h1>
-						      		
-						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-						      		
-					      		</div> <!-- /widget-content -->
-					      		
-				      		</div> <!-- /widget -->
-				      		
-			      		</div> <!-- /span3 -->
-			      		
-			      		<div class="span3">
-	      		
-				      		<div class="widget">
-				      			
-				      			<div class="widget-content">
-				      				
-						      		<h1>3 Columns</h1>
-						      		
-						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-						      		
-					      		</div> <!-- /widget-content -->
-					      		
-				      		</div> <!-- /widget -->
-				      		
-			      		</div> <!-- /span3 -->
-			      		
-			      		<div class="span3">
-	      		
-				      		<div class="widget">
-				      			
-				      			<div class="widget-content">
-				      				
-						      		<h1>3 Columns</h1>
-						      		
-						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-						      		
-					      		</div> <!-- /widget-content -->
-					      		
-				      		</div> <!-- /widget -->
-				      		
-			      		</div> <!-- /span3 -->
-			      		
-			      		<div class="span3">
-	      		
-				      		<div class="widget">
-				      			
-				      			<div class="widget-content">
-				      				
-						      		<h1>3 Columns</h1>
-						      		
-						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-						      		
-					      		</div> <!-- /widget-content -->
-					      		
-				      		</div> <!-- /widget -->
-				      		
-			      		</div> <!-- /span3 -->
+						<c:forEach var="member" items="${ members }">
+										<div class="span5">
+								      		
+								      		<div class="widget">
+							
+								      			<div class="widget-content">
+								      			<input type="hidden" name="memberNo" value="${ member.memberNo }"/>
+								      			<div class="media">
+													  <div class="media-left">
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">상품명 :  ${ member.purchaseVo.purName }</h4>	
+											      		<p>이용 기간 : <fmt:formatDate value="${ member.purchaseVo.purDateto }" pattern="yyyy년 MM월 dd일"/> ~ <fmt:formatDate value="${ member.purchaseVo.purDatefrom }" pattern="yyyy년 MM월 dd일"/></p>
+													  </div>
+												</div>
+									      		</div> <!-- /widget-content -->
+									      		
+									      		<div class="overlay">
+													<a href="/team-project3/member/memberdetail.action?memberno=${ member.memberNo }" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
+												</div>
+								      		</div> <!-- /widget -->
+							      		</div> <!-- /span5 -->
+										</c:forEach>
 					</div> <!-- /widget-content -->
 						
 				</div> <!-- /widget -->
