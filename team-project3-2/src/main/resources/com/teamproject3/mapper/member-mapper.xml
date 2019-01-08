@@ -69,6 +69,7 @@
 <!-- 		<result column="deleted" property="deleted" /> -->
 		<result column="age" property="age" />
 		<association property="purchaseVo" resultMap="purchaseMap">
+			<result column="productno" property="productNo" />
 			<result column="purdateto" property="purDateto" />
 			<result column="purdatefrom" property="purDatefrom" />
 			<result column="purname" property="purName" />
@@ -169,7 +170,7 @@
 	<select id="selectAllMemberProduct" parameterType="int"
 										   resultMap="memberPurchaseMap">
 		SELECT m.memberno, m.memname, m.memgender, m.memphone, 
-		m.membrith, m.memaddress, m.memroute, m.mememail, m.memvisitdate, m.age, p.purdatefrom, p.purname, p.purdateto
+		m.membrith, m.memaddress, m.memroute, m.mememail, m.memvisitdate, m.age, p.purdatefrom, p.purname, p.purdateto, p.productno
         from member m inner join purchase p
 		on (m.memberno = p.memberno)
 		WHERE m.memberno = #{ memberNo } and m.STATEMENT='1' ORDER BY p.purdatefrom

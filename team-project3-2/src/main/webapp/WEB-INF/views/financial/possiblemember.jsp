@@ -461,21 +461,7 @@
     </div>
     <!-- /main -->
   <div id="xy"></div>
-    <div class="footer">
-        <div class="footer-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="span12">
-                        &copy; 2018 <a href="#">헬스장 다니자</a>.
-                    </div>
-                    <!-- /span12 -->
-                </div>
-                <!-- /row -->
-            </div>
-            <!-- /container -->
-        </div>
-        <!-- /footer-inner -->
-    </div>
+    <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
     <!-- /footer -->
     <!-- Le javascript
 ================================================== -->

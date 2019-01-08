@@ -1227,74 +1227,8 @@
   <!-- /main-inner --> 
 </div>
 <!-- /main -->
-<div class="extra">
-  <div class="extra-inner">
-    <div class="container">
-      <div class="row">
-                    <div class="span3">
-                        <h4>
-                            About Free Admin Template</h4>
-                        <ul>
-                            <li><a href="javascript:;">EGrappler.com</a></li>
-                            <li><a href="javascript:;">Web Development Resources</a></li>
-                            <li><a href="javascript:;">Responsive HTML5 Portfolio Templates</a></li>
-                            <li><a href="javascript:;">Free Resources and Scripts</a></li>
-                        </ul>
-                    </div>
-                    <!-- /span3 -->
-                    <div class="span3">
-                        <h4>
-                            Support</h4>
-                        <ul>
-                            <li><a href="javascript:;">Frequently Asked Questions</a></li>
-                            <li><a href="javascript:;">Ask a Question</a></li>
-                            <li><a href="javascript:;">Video Tutorial</a></li>
-                            <li><a href="javascript:;">Feedback</a></li>
-                        </ul>
-                    </div>
-                    <!-- /span3 -->
-                    <div class="span3">
-                        <h4>
-                            Something Legal</h4>
-                        <ul>
-                            <li><a href="javascript:;">Read License</a></li>
-                            <li><a href="javascript:;">Terms of Use</a></li>
-                            <li><a href="javascript:;">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                    <!-- /span3 -->
-                    <div class="span3">
-                        <h4>
-                            Open Source jQuery Plugins</h4>
-                        <ul>
-                            <li><a href="">Open Source jQuery Plugins</a></li>
-                            <li><a href="">HTML5 Responsive Tempaltes</a></li>
-                            <li><a href="">Free Contact Form Plugin</a></li>
-                            <li><a href="">Flat UI PSD</a></li>
-                        </ul>
-                    </div>
-                    <!-- /span3 -->
-                </div>
-      <!-- /row --> 
-    </div>
-    <!-- /container --> 
-  </div>
-  <!-- /extra-inner --> 
-</div>
-<!-- /extra -->
-<div class="footer">
-  <div class="footer-inner">
-    <div class="container">
-      <div class="row">
-        <div class="span12"> &copy; 2013 <a href="#">Bootstrap Responsive Admin Template</a>. </div>
-        <!-- /span12 --> 
-      </div>
-      <!-- /row --> 
-    </div>
-    <!-- /container --> 
-  </div>
-  <!-- /footer-inner --> 
-</div>
+
+<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <!-- /footer --> 
 <!-- Le javascript
 ================================================== --> 
@@ -1360,7 +1294,7 @@ $(function() {
 		//event.stopPropagation(); //상위 객체로의 이벤트 전달 차단
 		
 		var data = $('#membersignupform').serializeArray(); // [{boardno:'xxx'}, {writer:'yyy'}, ]
-		
+		//var formData = new FormData($('#membersignupform')[0]);
 		$.ajax({
 			"url": "membersignup.action",
 			"type": "POST",
@@ -1374,7 +1308,24 @@ $(function() {
 				alert('회원 등록 실패');
 			}
 		});
-	}); 
+	});  
+	
+		/* $.ajax({
+			"url": "membersignup.action",
+			"type": "POST",
+			"data": formData,
+			"processData" : false,
+            "contentType" : false,
+			"success": function(formData, status, xhr) {
+				alert('회원을 등록했습니다.');
+					
+				location.href="/team-project3/member/memberlist.action"
+			},
+			"error": function(xhr, status, err) {
+				alert('회원 등록 실패');
+			}
+		});
+	}); */
 	
 	$('#signupsell').on('click', function(event) {
 		var content = $('#age').val();

@@ -82,7 +82,7 @@
 										<div class="control-group">											
 											<label class="control-label">상품 이름</label>
 											<div class="controls">
-												<input type="text" class="span6" name="productName" readonly="readonly">
+												<input type="text" class="span6" name="productName" value="${ product.productName }" readonly="readonly">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -91,7 +91,7 @@
 											<label class="control-label">상품 설명</label>
 											<div class="controls">
 												<!-- <input type="text" class="span6" id="productcontent"> -->
-												<textarea rows="5" class="span6" name="productExplain" readonly="readonly"></textarea>
+												<textarea rows="5" class="span6" name="productExplain"  readonly="readonly">${ product.productExplain }</textarea>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
                                         
@@ -103,7 +103,7 @@
 											
                                             <div class="controls">
                                                <div class="input-prepend input-append">
-                                                  <input class="span2" name="productPrice" type="text" readonly="readonly">
+                                                  <input class="span2" name="productPrice" value="${ product.productPrice }" type="text" readonly="readonly">
                                                   <span class="add-on">원</span>
                                                 </div>
                                               </div>	<!-- /controls -->			
@@ -114,7 +114,7 @@
 										
 											
 										<div class="form-actions">
-											<a href="/team-project3/product/productList.action?centerno=${ loginuser.centerNo }" class="btn">취소</a>
+											<a href="javascript:history.go(-1)" class="btn">취소</a>
 										</div> <!-- /form-actions -->
 									</fieldset>
 								</form>
