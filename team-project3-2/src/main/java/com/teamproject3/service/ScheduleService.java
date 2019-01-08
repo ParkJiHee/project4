@@ -10,6 +10,8 @@ public interface ScheduleService {
 	
 	void writeSchedule(ScheduleVo schedule);
 
+	void deleteSchedule(int scheduleNo);
+
 //	List<ScheduleVo> findAllSchedule(int centerNo);
 	
 }

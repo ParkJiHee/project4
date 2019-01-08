@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
   
@@ -39,6 +41,44 @@
 		    border-bottom: 1px solid #efefef;
 		    font-size: 12px;
 		}
+		
+		.overlay {
+			transition: .5s ease;
+			opacity: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			text-align: center;
+			z-index: 1;
+		}
+
+		/* .span5 .overlay2 {
+			transition: .5s ease;
+			position: absolute;
+			opacity: 0;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			text-align: center;
+		} */
+		
+		.span5:hover .overlay {
+			opacity: 1;
+		}
+		
+		.span5:hover .widget-content {
+			background-color: #BDBDBD;
+			opacity: 0.7;
+		}
+		
+		/* .span5 .text {
+			color: black;
+			font-size: 40px;
+			padding: 16px 32px; */
+}
     </style>
   </head>
 
@@ -142,9 +182,67 @@
 				<div class="control-group">											
 					<label class="control-label" for="memAddress">주소</label>
 					<div class="controls">
-						<input type="text" id="address1" class="span3 m-wrap" placeholder="주소를 입력하세요">
-						<input type="text" id="address2" class="span3 m-wrap" placeholder="상세주소 입력">
+						<!-- <input type="text" id="address1" class="span3 m-wrap" placeholder="주소를 입력하세요">
+						<input type="text" id="address2" class="span3 m-wrap" placeholder="상세주소 입력"> -->
+						<input type="text" id="sample6_postcode" class="span2 m-wrap" placeholder="우편번호">
+						<input type="button" onclick="sample6_execDaumPostcode()" class="btn" value="우편번호 찾기"><br>
+						<input type="text" id="sample6_address" class="span3 m-wrap" placeholder="주소"><br>
+						<input type="text" id="sample6_detailAddress" class="span2 m-wrap" placeholder="상세주소">
+						<input type="text" id="sample6_extraAddress" class="span2 m-wrap" placeholder="참고항목">
+
 						<input type="hidden" name="memAddress" id="memAddress" value="${ member.memAddress }"/>
+						
+						<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+						<script>
+						    function sample6_execDaumPostcode() {
+						        new daum.Postcode({
+						            oncomplete: function(data) {
+						                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+						
+						                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+						                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						                var addr = ''; // 주소 변수
+						                var extraAddr = ''; // 참고항목 변수
+						
+						                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+						                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+						                    addr = data.roadAddress;
+						                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+						                    addr = data.jibunAddress;
+						                }
+						
+						                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+						                if(data.userSelectedType === 'R'){
+						                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+						                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+						                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+						                        extraAddr += data.bname;
+						                    }
+						                    // 건물명이 있고, 공동주택일 경우 추가한다.
+						                    if(data.buildingName !== '' && data.apartment === 'Y'){
+						                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+						                    }
+						                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+						                    if(extraAddr !== ''){
+						                        extraAddr = ' (' + extraAddr + ')';
+						                    }
+						                    // 조합된 참고항목을 해당 필드에 넣는다.
+						                    document.getElementById("sample6_extraAddress").value = extraAddr;
+						                
+						                } else {
+						                    document.getElementById("sample6_extraAddress").value = '';
+						                }
+						
+						                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+						                document.getElementById('sample6_postcode').value = data.zonecode;
+						                document.getElementById("sample6_address").value = addr;
+						                // 커서를 상세주소 필드로 이동한다.
+						                document.getElementById("sample6_detailAddress").focus();
+						                document.getElementById("memAddress").value = data.zonecode+" "+addr+','+extraAddr;
+						            }
+						        }).open();
+						    }
+						</script>
 					</div> <!-- /controls -->				
 				</div> <!-- /control-group -->
 			
@@ -251,69 +349,29 @@
 					</div> <!-- /widget-header -->
 					
 					<div class="widget-content" style="overflow-y: scroll; height:300px;">
-						<div class="span3">
-	      		
-				      		<div class="widget">
-				      			
-				      			<div class="widget-content">
-				      				
-						      		<h1>3 Columns</h1>
-						      		
-						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-						      		
-					      		</div> <!-- /widget-content -->
-					      		
-				      		</div> <!-- /widget -->
-				      		
-			      		</div> <!-- /span3 -->
-			      		
-			      		<div class="span3">
-	      		
-				      		<div class="widget">
-				      			
-				      			<div class="widget-content">
-				      				
-						      		<h1>3 Columns</h1>
-						      		
-						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-						      		
-					      		</div> <!-- /widget-content -->
-					      		
-				      		</div> <!-- /widget -->
-				      		
-			      		</div> <!-- /span3 -->
-			      		
-			      		<div class="span3">
-	      		
-				      		<div class="widget">
-				      			
-				      			<div class="widget-content">
-				      				
-						      		<h1>3 Columns</h1>
-						      		
-						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-						      		
-					      		</div> <!-- /widget-content -->
-					      		
-				      		</div> <!-- /widget -->
-				      		
-			      		</div> <!-- /span3 -->
-			      		
-			      		<div class="span3">
-	      		
-				      		<div class="widget">
-				      			
-				      			<div class="widget-content">
-				      				
-						      		<h1>3 Columns</h1>
-						      		
-						      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>	
-						      		
-					      		</div> <!-- /widget-content -->
-					      		
-				      		</div> <!-- /widget -->
-				      		
-			      		</div> <!-- /span3 -->
+						<c:forEach var="member" items="${ members }">
+										<div class="span5">
+								      		
+								      		<div class="widget">
+							
+								      			<div class="widget-content">
+								      			<input type="hidden" name="memberNo" value="${ member.memberNo }"/>
+								      			<div class="media">
+													  <div class="media-left">
+													  </div>
+													  <div class="media-body">
+													    <h4 class="media-heading">상품명 :  ${ member.purchaseVo.purName }</h4>	
+											      		<p>이용 기간 : <fmt:formatDate value="${ member.purchaseVo.purDateto }" pattern="yyyy년 MM월 dd일"/> ~ <fmt:formatDate value="${ member.purchaseVo.purDatefrom }" pattern="yyyy년 MM월 dd일"/></p>
+													  </div>
+												</div>
+									      		</div> <!-- /widget-content -->
+									      		
+									      		<div class="overlay">
+													<a href="/team-project3/member/memberdetail.action?memberno=${ member.memberNo }" class="btn btn-success"><i class="icon-search"></i><span>상세보기</span> </a>
+												</div>
+								      		</div> <!-- /widget -->
+							      		</div> <!-- /span5 -->
+										</c:forEach>
 					</div> <!-- /widget-content -->
 						
 				</div> <!-- /widget -->
@@ -452,34 +510,44 @@ $(function() {
 	
 	if(address.length != 0){
 		
-		var address1 = address.split("(");
+		/* var address1 = address.split("(");
 		var address2 = address1[1].split(")");
 		
 		$('#address1').val(address1[0]);
-		$('#address2').val(address2[0]);
+		$('#address2').val(address2[0]); */
+		
+		var address1 = address.split("(");
+		var address2 = address1[0].split(", ");
+		$('#sample6_postcode').val(address1[0].substring(0,5));
+		$('#sample6_address').val(address1[0].substring(6,address1[0].length-(address2[1].length+2)));
+		if(address2[1].length != 0){
+			$('#sample6_detailAddress').val(address2[1].substring(0,address2[1].length-1));
+		}
+		$('#sample6_extraAddress').val(' ('+address1[1]);
 	}
 	///////////// end 문자열 자르기
 	
 	// 마지막에 입력 시 입력되게 한다.
     $("#phone3").change(function(){
-    	var phone = $('#phone1').val()+'-'+$('#phone2').val()+'-'+$(this).val();
-        $('#memPhone').val(phone);
+    	var phone2 = $('#phone1').val()+'-'+$('#phone2').val()+'-'+$(this).val();
+        $('#memPhone').val(phone2);
     });
 
-    $("#address1").change(function(){
-    	var address = $(this).val();
-        $('#memAddress').val(address);
+    $("#sample6_extraAddress").change(function(){
+    	var add = $('#sample6_postcode').val()+' '+$('#sample6_address').val()+', '+$(this).val();
+        $('#memAddress').val(add);
     });
 	
-    $("#address2").change(function(){
-    	var address = $('#address1').val();
-    	var address2 = $(this).val();
+    $("#sample6_detailAddress").change(function(){
+    	var add = $('#sample6_postcode').val()+' '+$('#sample6_address').val();
+    	var add2 = $(this).val();
     	
     	if(address2.length != 0){
-    		address = address + '(' + $(this).val() + ')';
+    		add = add+', '+$(this).val();
+    		$('#memAddress').val(add+$('#sample6_extraAddress').val());
+    	}else{
+    		$('#memAddress').val(add+','+$('#sample6_extraAddress').val());
     	}
-    	
-        $('#memAddress').val(address);
     });
 	
 	
@@ -546,7 +614,7 @@ $(function() {
 				location.href="/team-project3/member/memberdetail.action?memberno=${ member.memberNo }"
 			},
 			"error": function(xhr, status, err) {
-				alert('회원 등록 실패');
+				alert('회원 수정 실패');
 				location.reload(true);
 			}
 		});
@@ -578,7 +646,7 @@ $(function() {
 					location.href="/team-project3/purchase/purSelect.action?memberno=${ member.memberNo }&centerno=${ loginuser.centerNo }";
 				},
 				"error": function(xhr, status, err) {
-					alert('회원 등록 실패');
+					alert('회원 수정 실패');
 					location.reload(true);
 				}
 			});

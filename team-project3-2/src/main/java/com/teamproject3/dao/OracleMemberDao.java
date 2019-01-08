@@ -128,6 +128,12 @@ public class OracleMemberDao implements MemberDao{
 		int count = memberMapper.selectFinished7MemberCount(centerNo);
 		return count;
 	}
+
+	@Override
+	public List<MemberVo> selectAllMemberProduct(int memberNo) {
+		List<MemberVo> members = memberMapper.selectAllMemberProduct(memberNo);
+		return members;
+	}
 	
 
 }

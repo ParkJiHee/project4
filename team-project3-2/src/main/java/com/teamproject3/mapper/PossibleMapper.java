@@ -1,7 +1,6 @@
 package com.teamproject3.mapper;
         
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,7 +13,7 @@ public interface PossibleMapper {
 
 	void insertPurpose(List<VisitPurposeVo> purpose);
 
-	VisitPurposeVo selectPurposeByMemberNo(int memberNo);
+	List<VisitPurposeVo> selectPurposeByMemberNo(int centerNo);
 
 	List<MemberVo> selectMemberList(HashMap<String, Object> params);
 

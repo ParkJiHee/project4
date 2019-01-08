@@ -12,7 +12,7 @@ public interface PossibleService {
 
 	void registerpurpose(String[] purpose, int memberNo);
 
-	VisitPurposeVo findPurposeListByMemberNo(int memberNo);
+	List<VisitPurposeVo> findPurposeListByMemberNo(int centerNo);
 
 	List<MemberVo> findAllMemberByPage(int from, int to);
 	

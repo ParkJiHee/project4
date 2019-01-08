@@ -161,8 +161,10 @@ public class MemberController {
 		}
 		
 		MemberVo member = memberService.findMember(memberNo);
+		List<MemberVo> members = memberService.findAllMemberProduct(memberNo);
 		
 		model.addAttribute("member", member);
+		model.addAttribute("members", members);
 		
 		return "member/memberdetail";
 	}

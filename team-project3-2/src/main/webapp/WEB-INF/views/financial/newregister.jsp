@@ -29,8 +29,11 @@
 		age.val(age.val().length == 0 ? '0' : age.val());
 		
 		if (id === 'new') { 
+		 $('#reqType').val('new');
 		 frm.attr("action", "/team-project3/financial/possiblemember.action");
+		 
 		}  else if( id === 'prod'){
+			$('#reqType').val('prod');
 			frm.attr("action", "/team-project3/financial/possiblemember.action");
 
 		} 
@@ -57,7 +60,9 @@
       </div> --%>
       <div class="modal-body">
         	<form name="newregister" id="newregister-form" method="post" 
-        	enctype="multipart/form-data" modelAttribute="member" >			
+        	enctype="multipart/form-data" modelAttribute="member">
+        	
+        	<input type="hidden" name="centerno">		
 			
 			<div class="form-horizontal">
 
@@ -75,6 +80,7 @@
 					<label class="control-label" for="firstname">*회원명</label>
 					<div class="controls">
 						<input type="hidden" name="centerNo" value="${ loginuser.centerNo }"/>
+						<input type="hidden" name="reqType" id="reqType" />
 						<input type="text" name="memName" id="firstname" placeholder="이름 입력">
 						<br>
 						<label class="radio inline">

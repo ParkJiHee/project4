@@ -8,4 +8,6 @@ public interface ScheduleMapper {
 	void insertSchedule(ScheduleVo schedule);
 
 	List<ScheduleVo> healthShow(int centerNo);
+
+	void deleteSchedule(int scheduleNo);
 }
