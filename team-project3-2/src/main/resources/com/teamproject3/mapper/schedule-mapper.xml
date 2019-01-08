@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- namespace : package-name.class-name -->
+<mapper namespace="com.teamproject3.mapper.ScheduleMapper">
+	
+	<!-- SQL과 Object 매핑 -->
+	<!-- 
+		SQL    : #{ propertyName }, #{ propertyName } ... propertyName : 클래스.getPropertyName()
+		Object : 클래스
+	-->
+	<!-- id : MethodName -->
+	<!-- <insert id="insertMember" parameterType="com.demoweb.vo.Member"> -->
+	
+	<insert id="insertSchedule" parameterType="Schedule">
+		INSERT INTO class (centerno, classno, claname, clatime) 
+		VALUES (#{ centerNo }, class_sequence.nextval, #{ scheduleName }, #{ scheduleDate })
+	</insert>
+	
+	<resultMap type="Schedule" id="scheduleMap">
+		<id column="classno" property="classNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
+		<result column="claname" property="scheduleName" />
+		<result column="clatime" property="scheduleDate" />
+	</resultMap>
+	
+	<select id="healthShow" parameterType="int" resultType="Schedule">
+	select classno scheduleNo, claname scheduleName, clatime scheduleDate 
+	from class
+	where centerno=#{ centerNo }
+	</select>
+	
+	
+	<!-- <select id="selectAllProduct" resultMap="productMap">
+		SELECT productno, proname, proprice
+		FROM product
+		WHERE centerno = #{ centerNo }
+	</select>
+	
+	<resultMap type="Product" id="productnoMap">
+		<id column="productno" property="productNo" /> 조회 컬럼과 객체의 set메서드를 매핑
+		<result column="proname" property="productName" />
+		<result column="proexplain" property="productExplain" />
+		<result column="proprice" property="productPrice" />
+	</resultMap>
+	<select id="selectProductByProductNo" parameterType="int" resultMap="productnoMap">
+		SELECT productno, proname, proexplain, proprice
+		FROM product
+		WHERE productno = #{ productNo } AND deleted = '0'
+	</select>
+	 -->
+<!-- 	<update id="updateProduct" parameterType="Product">
+		UPDATE product
+		SET proname = #{ productName }, proexplain = #{ productExplain }, proprice = #{ productPrice }
+		WHERE productno = #{ productNo }
+	</update>
+	
+	<delete id="deleteProduct" parameterType="int">
+		DELETE FROM product
+		WHERE productno = #{ productNo }
+	</delete>
+	 -->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- namespace : package-name.class-name -->
+<mapper namespace="com.teamproject3.mapper.MemberMapper">
+	
+	<!-- SQL과 Object 매핑 -->
+	<!-- 
+		SQL    : #{ propertyName }, #{ propertyName } ... propertyName : 클래스.getPropertyName()
+		Object : 클래스
+	-->
+	<!-- id : MethodName -->
+	<!-- <insert id="insertMember" parameterType="com.demoweb.vo.Member"> -->
+	
+	<insert id="insertMember" parameterType="Member">
+		INSERT INTO member (memberno, memname, memgender, memphone, membrith, memaddress, memroute, mememail, memvisitdate, centerno, age) 
+		VALUES (member_sequence.nextval, #{ memName }, #{ memGender }, #{ memPhone }, #{ memBrith}, #{ memAddress}, #{ memRoute }, #{ memEmail}, #{ memVisitDate }, #{ centerNo }, #{ age })
+	</insert>
+	
+	<!-- <insert id="insertMember" parameterType="Member">
+      INSERT INTO member (memberno, memname, memgender, memphone, membrith, memaddress, memroute, mememail, memvisitdate, centerno, age) 
+      VALUES (member_sequence.nextval, #{ memName }, #{ memGender }, #{ memPhone }, NVL(#{ memBrith}, '정보없음'), NVL(#{ memAddress}, '정보없음'), #{ memRoute }, NVL(#{ memEmail}, '정보없음'), #{ memVisitDate }, #{ centerNo }, NVL(#{ age }, 0))
+   </insert> -->
+	<resultMap type="Purchase" id="purchaseMap">
+		<id column="purchaseno" property="purchaseNo" />
+		<result column="memberno" property="memberNo" />
+		<result column="purname" property="purName" />
+		<result column="purprice" property="purPrice" />	<!-- 정가 -->
+		<result column="purmethod" property="purMethod" />
+		<result column="purprice" property="purPrice" />	<!-- 결제금액 -->
+		<result column="purdateto" property="purDateto" />
+		<result column="purdatefrom" property="purDatefrom" />
+		<result column="productno" property="productNo" />
+	</resultMap> 
+	
+	 <resultMap type="Member" id="memberMap">
+		<id column="memberno" property="memberNo" /> <!-- not null --> <!--조회 컬럼과 객체의 set메서드를 매핑-->
+		<result column="memname" property="memName" /> <!-- not null -->
+		<result column="memgender" property="memGender" /> <!-- not null -->
+		<result column="memphone" property="memPhone" /> <!-- not null -->
+		<result column="membrith" property="memBrith" />
+		<result column="memaddress" property="memAddress" />
+		<result column="memroute" property="memRoute" /> <!-- not null -->
+		<result column="mememail" property="memEmail" /> 
+		<result column="memvisitdate" property="memVisitDate" /><!-- not null -->
+		<!-- <result column="centerno" property="centerNo" /> --><!-- not null -->
+<!-- 		<result column="deleted" property="deleted" /> -->
+		<result column="age" property="age" />
+		<association property="purchaseVo" resultMap="purchaseMap">
+			<result column="purdatefrom" property="purDatefrom" />
+			<result column="purname" property="purName" />
+		</association>
+	</resultMap>
+	
+	<!-- 
+	parameter-type : hashmap => 2개 이상의 데이터를 vo 없이 사용하는 방법
+	-->
+	
+	<!-- <select id="selectCenterByIdAndPasswd" parameterType="hashmap"
+										   resultMap="memberMap">
+		SELECT centerNo, cenid, cenphone
+		FROM center
+		WHERE cenid = #{ cenId } AND cenpasswd = #{ cenPasswd }
+	</select> -->
+	
+	<select id="selectAllMembers" parameterType="int"
+										   resultType="Member">
+										   
+		SELECT memberno, memname, memgender, memphone, 
+		membrith, memaddress, memroute, mememail, memvisitdate, age
+		FROM member
+		WHERE centerno = #{ centerNo } ORDER BY memberno desc
+		
+	</select>
+	
+	<select id="selectAllNoPayMembers" parameterType="int"
+										   resultType="Member">
+										   
+		SELECT memberno, memname, memgender, memphone, 
+		membrith, memaddress, memroute, mememail, memvisitdate, age
+		FROM member
+		WHERE centerno = #{ centerNo } and STATEMENT='0' ORDER BY memberno desc
+		
+	</select>
+	
+	<select id="selectAllPayMembers" parameterType="int"
+										   resultMap="memberMap">
+										   
+		<!-- SELECT memberno, memname, memgender, memphone, 
+		membrith, memaddress, memroute, mememail, memvisitdate, age
+		FROM member
+		WHERE centerno = #{ centerNo } and STATEMENT='1' ORDER BY memberno desc -->
+		
+		SELECT m.memberno, m.memname, m.memgender, m.memphone, 
+		m.membrith, m.memaddress, m.memroute, m.mememail, m.memvisitdate, m.age, p.purdatefrom, p.purname
+        from member m inner join purchase p
+		on (m.memberno = p.memberno)
+		WHERE m.centerno = #{ centerNo } and m.STATEMENT='1' ORDER BY m.memberno desc
+		
+	</select>
+	
+	<select id="selectFinishMembers" parameterType="int"
+										   resultMap="memberMap">
+										   
+		SELECT m.memberno, m.memname, m.memgender, m.memphone, 
+		m.membrith, m.memaddress, m.memroute, m.mememail, m.memvisitdate, m.age, p.purdatefrom, p.purname
+        from member m inner join purchase p
+		on (m.memberno = p.memberno)
+		WHERE m.centerno = 2 and m.STATEMENT='1' and p.purdatefrom <![CDATA[ < ]]> TO_CHAR(SYSDATE, 'YYYY.MM.DD') ORDER BY m.memberno desc
+		
+	</select>
+	
+	<select id="selectFinished3Members" parameterType="int"
+										   resultMap="memberMap">
+										   
+		SELECT m.memberno, m.memname, m.memgender, m.memphone, 
+		m.membrith, m.memaddress, m.memroute, m.mememail, m.memvisitdate, m.age, p.purdatefrom, p.purname
+        from member m inner join purchase p
+		on (m.memberno = p.memberno)
+		WHERE m.centerno = 2 and m.STATEMENT='1' and p.purdatefrom = TO_CHAR(SYSDATE+3, 'YYYY.MM.DD') ORDER BY m.memberno desc
+		
+	</select>
+	
+	<select id="selectFinished7Members" parameterType="int"
+										   resultMap="memberMap">
+										   
+		SELECT m.memberno, m.memname, m.memgender, m.memphone, 
+		m.membrith, m.memaddress, m.memroute, m.mememail, m.memvisitdate, m.age, p.purdatefrom, p.purname
+        from member m inner join purchase p
+		on (m.memberno = p.memberno)
+		WHERE m.centerno = 2 and m.STATEMENT='1' and p.purdatefrom = TO_CHAR(SYSDATE+7, 'YYYY.MM.DD') ORDER BY m.memberno desc
+		
+	</select>
+
+	<select id="selectMember" parameterType="int"
+										   resultType="Member">
+										   
+		SELECT memberno, memname, memgender, memphone, 
+		membrith, memaddress, memroute, mememail, memvisitdate, age
+		FROM member
+		WHERE memberno = #{ memberNo }
+		
+	</select>
+	
+	<select id="selectAllMemberCount" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM member WHERE centerno = #{ centerNo }
+	</select>
+	
+	<select id="selectAllNoPayMemberCount" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM member WHERE centerno = #{ centerNo } and STATEMENT='0'
+	</select>
+	
+	<select id="selectAllPayMemberCount" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM member WHERE centerno = #{ centerNo } and STATEMENT='1'
+	</select>
+	
+	<select id="selectFinishMemberCount" parameterType="int" resultType="int">
+		<!-- SELECT COUNT(*) FROM member WHERE centerno = #{ centerNo } and STATEMENT='1' and finished='1' -->
+		SELECT COUNT(*) from member m inner join purchase p
+		on (m.memberno = p.memberno) <![CDATA[ WHERE m.centerno = #{ centerNo } and m.STATEMENT='1' and p.purdatefrom  < TO_CHAR(SYSDATE, 'YYYY.MM.DD')]]> 
+	</select>
+	
+	<select id="selectFinished3MemberCount" parameterType="int" resultType="int">
+		<!-- SELECT COUNT(*) FROM member WHERE centerno = #{ centerNo } and STATEMENT='1' and finished='1' -->
+		SELECT COUNT(*) from member m inner join purchase p
+		on (m.memberno = p.memberno) WHERE m.centerno = #{ centerNo } and m.STATEMENT='1' and p.purdatefrom = TO_CHAR(SYSDATE+3, 'YYYY.MM.DD')
+	</select>
+	
+	<select id="selectFinished7MemberCount" parameterType="int" resultType="int">
+		<!-- SELECT COUNT(*) FROM member WHERE centerno = #{ centerNo } and STATEMENT='1' and finished='1' -->
+		SELECT COUNT(*) from member m inner join purchase p
+		on (m.memberno = p.memberno) WHERE m.centerno = #{ centerNo } and m.STATEMENT='1' and p.purdatefrom = TO_CHAR(SYSDATE+7, 'YYYY.MM.DD')
+	</select>
+	
+	<select id="selectSignupMember" parameterType="int" resultType="int">
+		select a.memberno from (select * from member member where centerno = #{ centerNo } ORDER by memberno desc) a where rownum = 1
+	</select>
+	
+	<!-- <select id="selectpurdatefrom" parameterType="int" resultType="Purchase">
+	select productno ,purname ,purregdate ,purdateto, purdatefrom from purchase 
+	inner join member on purchase.memberno = member.memberno and member.memberno = #{ memberNo }
+	</select> -->
+	
+	<update id="updateMember" parameterType="Member">
+		update member
+		set memname = #{memName}, memgender = #{memGender}, memphone = #{memPhone}, membrith = #{memBrith}, 
+		memaddress = #{memAddress}, memroute = #{memRoute}, mememail = #{memEmail}, memvisitdate = #{memVisitDate}, 
+		age = #{age}
+		where memberno = #{ memberNo }
+	</update>
+	
+	<delete id="deleteMember" parameterType="int">
+		DELETE FROM member WHERE memberno = #{ deletNum }
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

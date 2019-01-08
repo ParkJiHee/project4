@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- namespace : package-name.class-name -->
+<mapper namespace="com.teamproject3.mapper.PossibleMapper">
+
+	
+<!--  	<insert id="insertPurpose" parameterType="java.util.list">
+		INSERT INTO registerpurpose ( purpose )
+		VALUES ( #{purpose} )
+	
+	</insert> -->
+
+ 	<insert id="insertPurpose" parameterType="java.util.List">
+		<foreach collection="list" item="item" open="INSERT ALL " separator=" " close="SELECT * FROM DUAL" >
+			INTO registerpurpose (memberno, purpose) VALUES (#{item.memberNo}, #{item.purpose})
+		</foreach>
+	</insert>
+ 
+ 
+ 	<resultMap type="Posvisit" id="registerpurposeMap">
+ 		<id column="memberno" property="memberNo" />
+ 		<result column="purpose" property="purpose" />
+ 	</resultMap>
+
+	<select id="selectPurposeByMemberNo" parameterType="int"
+		resultType="Posvisit">	<!-- 등록목적 --> 
+		SELECT purpose from purpose where memberno = #{ memberNo } 
+	</select>
+	
+		<select id="selectMemberList" parameterType="hashmap"
+		resultType="Member"><!-- 목록보기 -->
+		SELECT *
+		FROM
+		(
+		SELECT
+		rownum idx, s.*
+		FROM
+
+		(
+		SELECT
+		memberno, memname, age,
+		memgender, memphone, MEMVISITDATE, memroute
+		FROM
+		member
+		ORDER BY memberno DESC
+		) s
+		)
+
+		WHERE idx >= #{ from } AND idx <![CDATA[<]]>
+		#{ to }	<!-- 부등호두개?를 XML에서는 지원안하기때문에 CDATA로 문자열처리해줌 -->
+	</select>
+
+
+	<!-- <resultMap type="Posvisit" id="PosvisitMap">
+		<id column="memberno" property="memberNo" />
+		<result column="memname" property="memName" />
+		<result column="age" property="age" />
+		<result column="memgender" property="memGender" />
+		<result column="memphone" property="memPhone" />
+		<result column="memvisitdate" property="memVisitDate" />
+		<result column="memroute" property="memRoute" />
+		<collection property="attachments" column="boardno" select="selectBoardAttachByBoardNo" />
+		<collection property="attachments" column="boardno" resultMap="attachMap"/> 
+		<collection property="comments" column="boardno" resultMap="commentMap"/>
+	</resultMap>
+	
+	<resultMap type="BoardAttach" id="attachMap">
+		<id column="attachno" property="attachNo" />
+		<result column="boardno" property="boardNo" />
+		<result column="userfilename" property="userFileName" />
+		<result column="savedfilename" property="savedFileName" />
+	</resultMap> -->
+</mapper>

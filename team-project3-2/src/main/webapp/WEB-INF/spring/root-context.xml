@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	">
+	
+	<!-- env.properties에 저장된 설정 정보를 읽어서 스프링 설정 관리 영역에 저장  -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:env.properties" />
+	</bean>
+	
+	<context:component-scan base-package="com.teamproject3.dao"/>
+	
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${ds.driver}" />
+		<property name="url" value="${ds.url}" />
+		<property name="username" value="${ds.username}" />
+		<property name="password" value="${ds.password}" />
+	</bean>
+	
+	<bean id="jdbcTemplate"
+		  class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="centerService" class="com.teamproject3.service.CenterServiceImpl">
+		<property name="centerDao" ref="centerDao" />
+	</bean>
+	
+	<bean id="centerDao" class="com.teamproject3.dao.OracleCenterDao">
+		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
+		<property name="centerMapper" ref="centerMapper"/>
+	</bean>
+	
+	<bean id="memberService" class="com.teamproject3.service.MemberServiceImpl">
+		<property name="memberDao" ref="memberDao" />
+	</bean>
+	
+	<bean id="memberDao" class="com.teamproject3.dao.OracleMemberDao">
+		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
+		<property name="memberMapper" ref="memberMapper"/>
+	</bean>
+	
+	<bean id="productService" class="com.teamproject3.service.ProductServiceImpl">
+		<property name="productDao" ref="productDao" />
+	</bean>
+	
+	<bean id="productDao" class="com.teamproject3.dao.OracleProductDao">
+		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
+		<property name="productMapper" ref="productMapper"/>
+	</bean>
+	
+	<bean id="purchaseService" class="com.teamproject3.service.PurchaseServiceImpl">
+		<property name="purchaseDao" ref="purchaseDao" />
+	</bean>
+	
+	<bean id="purchaseDao" class="com.teamproject3.dao.OraclePurchaseDao">
+		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
+		 <property name="purchaseMapper" ref="purchaseMapper"/>
+	</bean>
+	
+	
+	<bean id="scheduleService" class="com.teamproject3.service.ScheduleServiceImpl">
+		<property name="scheduleDao" ref="scheduleDao" />
+	</bean>
+	
+	<bean id="scheduleDao" class="com.teamproject3.dao.OracleScheduleDao">
+		<property name="scheduleMapper" ref="scheduleMapper"/>
+		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
+		<!-- <property name="productMapper" ref="productMapper"/> -->
+	</bean>
+	
+	<bean id="accountantService" class="com.teamproject3.service.AccountantServiceImpl">
+		<property name="accountantDao" ref="accountantDao" />
+	</bean>
+	
+	<bean id="accountantDao" class="com.teamproject3.dao.OracleAccountantDao">
+		 <property name="accountantMapper" ref="accountantMapper"/>
+	</bean>
+	
+	<bean id="possibleService" class="com.teamproject3.service.PossibleServiceImpl">
+		<property name="possibleDao" ref="possibleDao"/>
+	</bean>
+	
+	<bean id="possibleDao" class="com.teamproject3.dao.OraclePossibleDao">
+		<property name="possibleMapper" ref="possibleMapper"/>
+		<property name="memberMapper" ref="memberMapper"/>
+	</bean>
+	
+	
+	<!-- MyBatis -->
+	<bean id="sqlSessionFactory" 
+		  class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />	  
+	</bean>
+	
+	<bean id="sqlSessionTemplate"
+		  class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />	  
+	</bean>
+	<!-- end mybatis -->
+	
+	<bean id="centerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.teamproject3.mapper.CenterMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+	
+	<bean id="memberMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.teamproject3.mapper.MemberMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+
+	<bean id="productMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.teamproject3.mapper.ProductMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+	
+	<bean id="accountantMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.teamproject3.mapper.AccountantMapper"/>
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="possibleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.teamproject3.mapper.PossibleMapper"/>
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="purchaseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.teamproject3.mapper.PurchaseMapper"/>
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+		<bean id="scheduleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.teamproject3.mapper.ScheduleMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+	
+	<!-- 트랜잭션 -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="txTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="txManager" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="txManager"/>
+	<!-- end  -->
+</beans>

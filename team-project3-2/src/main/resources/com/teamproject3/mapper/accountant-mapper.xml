@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- namespace : package-name.class-name -->
+<mapper namespace="com.teamproject3.mapper.AccountantMapper">
+
+	 <resultMap type="Member" id="memberMap">
+		<id column="memberno" property="memberNo" />
+		<result column="memname" property="memName" />
+		<result column="age" property="age" />
+		<result column="memgender" property="memGender" />
+		<result column="memphone" property="memPhone" />
+		<result column="memvisitdate" property="memVisitDate" />
+	</resultMap>
+	
+	<resultMap type="Purchase" id="purchaseMap">
+		<id column="purchaseno" property="purchaseNo" />
+		<result column="memberno" property="memberNo" />
+		<result column="purname" property="purName" />
+		<result column="purprice" property="purPrice" />	<!-- 정가 -->
+		<result column="purmethod" property="purMethod" />
+		<result column="purprice" property="purPrice" />	<!-- 결제금액 -->
+		<association property="member" column="memberno" resultMap="memberMap" />
+	</resultMap> 
+	
+<!-- 	<select id="selectMemberByPurchase" parameterType="int" resultMap="MemberMap">
+		select m.memvisitdate, m.memname, m.age, m.memgender, m.memphone 
+		from member m
+		where m.memberno = #{ memberNo }
+	</select>
+	
+	<select id="selectPurchase" parameterType="int" resultType="Purchase">
+		select p.purchaseno, p.purname, p.purprice, p.purmethod, p.purprice
+		from purchase p
+		where p.memberno = #{ memberNo }
+		order by p.purchaseno desc
+	</select>
+	 -->
+	<select id="selectPurchaseByCenterNo" parameterType="int" resultMap="purchaseMap">
+		select 
+			p.purchaseno, p.purname, p.purprice, p.purmethod, p.purprice,
+			m.memvisitdate, m.memname, m.age, m.memgender, m.memphone
+		from purchase p
+		inner join member m
+		on p.memberno = m.memberno
+		where m.centerno = #{ centerNo } 
+		order by p.purchaseno desc
+	</select>
+	
+</mapper>

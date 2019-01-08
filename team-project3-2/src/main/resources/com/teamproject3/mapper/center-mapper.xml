@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- namespace : package-name.class-name -->
+<mapper namespace="com.teamproject3.mapper.CenterMapper">
+	
+	<!-- SQL과 Object 매핑 -->
+	<!-- 
+		SQL    : #{ propertyName }, #{ propertyName } ... propertyName : 클래스.getPropertyName()
+		Object : 클래스
+	-->
+	<!-- id : MethodName -->
+	<!-- <insert id="insertMember" parameterType="com.demoweb.vo.Member"> -->
+	
+	<insert id="insertCenter" parameterType="Center">
+		INSERT INTO center (centerno, cenid, cenpasswd, cenphone) 
+		VALUES (center_sequence.nextval, #{ cenId }, #{ cenPasswd }, #{ cenPhone })
+	</insert>
+	
+	
+	
+	 <resultMap type="Center" id="centerMap">
+		<id column="centerno" property="centerNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
+		<result column="cenid" property="cenId" />
+		<result column="cenpasswd" property="cenPasswd" />
+		<result column="cenphone" property="cenPhone" />
+	</resultMap>
+	
+	<!-- 
+	parameter-type : hashmap => 2개 이상의 데이터를 vo 없이 사용하는 방법
+	-->
+	
+	<select id="selectCenterByIdAndPasswd" parameterType="hashmap"
+										   resultMap="centerMap">
+		SELECT centerNo, cenid, cenphone
+		FROM center
+		WHERE cenid = #{ cenId } AND cenpasswd = #{ cenPasswd }
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
