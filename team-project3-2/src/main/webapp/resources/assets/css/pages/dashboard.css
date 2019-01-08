@@ -209,7 +209,6 @@ Bootstrap Admin Template by EGrappler.com
 	width: 100%; 
 	margin-top: 1.5em;
 	
-	
 }
 
 .big-stats-container .widget-content {
@@ -217,12 +216,11 @@ Bootstrap Admin Template by EGrappler.com
 }
 
 #big_stats .stat
-{
-	width: 33%;
+{	
+	width: 28%;
 	display: table-cell;
 	padding: 0;
 	position: relative;
-	
 	border-right: 1px solid #CCC;
 	border-left: 1px solid #FFF;
 }
@@ -287,7 +285,7 @@ h3.bigstats{
 		width: 49%;
 		display: block;
 		margin-bottom: 3em;
-		float: left;
+		float: center;
 	}	
 	
 	#big_stats .stat:nth-child(2) {
