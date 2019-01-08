@@ -45,4 +45,6 @@ public interface MemberDao {
 
 	int selectFinished7MemberCount(int centerNo);
 
+	List<MemberVo> selectAllMemberProduct(int memberNo);
+
 }

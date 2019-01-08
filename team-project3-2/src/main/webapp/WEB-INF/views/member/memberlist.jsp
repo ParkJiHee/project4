@@ -87,7 +87,7 @@
 				<div class="control-group">
 					<label class="control-label" for="file">첨부파일</label>
 					<div class="controls">
-						<input type="file" name="attach"/>
+						<input type="file" name="attach" id="attach"/>
 					</div>
 				</div>
 				
@@ -266,8 +266,8 @@
 						  <li><a href="#finishmembers" data-toggle="tab">만료 회원(${ countno4 })</a></li>
 						  <li><a href="#finish3days" data-toggle="tab">만료 3일전(${ countno5 })</a></li>
 						  <li><a href="#finish7days" data-toggle="tab">만료 7일전(${ countno6 })</a></li>
-						  <li><a href="#refundmembers" data-toggle="tab">환불()</a></li>
-						  <li><a href="#stopmembers" data-toggle="tab">중지 회원()</a></li>
+						  <!-- <li><a href="#refundmembers" data-toggle="tab">환불()</a></li>
+						  <li><a href="#stopmembers" data-toggle="tab">중지 회원()</a></li> -->
 						</ul>
 						
 						<br>
@@ -361,8 +361,8 @@
 													  <div class="media-body">
 													    <h4 class="media-heading">${ member.memName }</h4>
 													    <p> ${ member.age }세/ ${ member.memGender } / ${ member.memPhone}</p>
-													    <p>등록일 : ${ member.memVisitDate }</p>	
-											      		<p>만료일 : <fmt:formatDate value="${ member.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
+													    <p>상품   : ${ member.purchaseVo.purName }</p>	
+											      		<p>만료일 : <fmt:formatDate value="${ member.purchaseVo.purDatefrom }" pattern="yyyy년 MM월 dd일"/>
 		                								</p>
 													  </div>
 												</div>
@@ -478,8 +478,8 @@
 													  <div class="media-body">
 													    <h4 class="media-heading">${ member2.memName }</h4>
 													    <p> ${ member2.age }세/ ${ member2.memGender } / ${ member2.memPhone}</p>
-													    <p>등록일 : ${ member2.memVisitDate }</p>	
-											      		<p>만료일 : <fmt:formatDate value="${ member2.memVisitDate }" pattern="yyyy년 MM월 dd일"/>
+													    <p>상품   : ${ member2.purchaseVo.purName }</p>	
+											      		<p>만료일 : <fmt:formatDate value="${ member2.purchaseVo.purDatefrom }" pattern="yyyy년 MM월 dd일"/>
 		                								</p>
 													  </div>
 												</div>
@@ -1093,6 +1093,7 @@
 								</form>
 								</div>
 								
+								
 								<div class="tab-pane" id="stopmembers">
 									<form id="edit-profile" class="form-horizontal">	
 									<fieldset class="nav pull-right">
@@ -1401,9 +1402,10 @@ $(function() {
 			});
 		}); 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
-	$(document).on('mousedown', function() {
+	/* $(document).on('mousedown', function() {
 	  // Code here
-	});
+	  alert("우클릭은 기능이 없습니다.");
+	}); */
 	
 	$("#keyword").on('keyup', function() {
 			var k = $(this).val();

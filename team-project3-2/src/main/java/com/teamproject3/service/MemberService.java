@@ -43,4 +43,6 @@ public interface MemberService {
 
 	int findFinished7MemberCount(int centerNo);
 
+	List<MemberVo> findAllMemberProduct(int memberNo);
+
 }
