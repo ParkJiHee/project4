@@ -80,7 +80,7 @@
     	 
     	 
     	 <%--테이블 --%>
-    	 $('#listdel').on('click', function (event) {
+/*     	 $('#listdel').on('click', function (event) {
 
     		 if ($("#memberlist > input[type=checkbox]").prop("checked",false)){
     			    alert("제거할 대상을 선택하세요.");
@@ -95,7 +95,7 @@
     		         }
     		     });
  			} 
-         });    
+         }); */    
     			 
     		      //삭제처리 후 다시 불러올 리스트 url      
 /*     		      var url = document.location.href;
@@ -121,6 +121,15 @@
     			    return false;
     		}
 		});
+    	 
+    	 $("#membersearch").on('keyup',function() {
+	            var k = $(this).val();
+	            $(".memberlist").hide();
+	            
+	           var temp = $("td.namesearch:contains('" + k + "')");
+
+	            $(temp).parents(".memberlist").show();
+	        })
     	 
              
     	 
@@ -159,16 +168,7 @@
 		
     });<%-- end script --%>   
 	   
-    
-    $(document).ready(function() {
-        $("#membersearch").keyup(function() {
-            var search = $(this).val();
-            $("#memberList > tbody > tr").hide();
-            var temp = $("#memberList > tbody > tr > td:nth-child(5n+2):contains('" + search + "')");
-
-            $(temp).parent().show();
-        })
-    })
+  
     
     <%-- 우편번호 --%>
     function sample6_execDaumPostcode() {
@@ -256,7 +256,7 @@
 </head>
 <body>
 
-  <jsp:include page="/WEB-INF/views/include/header.jsp">
+<jsp:include page="/WEB-INF/views/include/header.jsp">
       <jsp:param value="financial" name="bgcolor" />
    </jsp:include>
 
@@ -368,12 +368,12 @@
 					
 					<c:forEach var="member" items="${ members }"> <%-- 컨트롤러에서 저장하기 --%> 
 						<tbody style="text-align:center">
-							<tr>
+							<tr class="memberlist">
 								<td><input type="checkbox" name="checkRow" id="checkRow"/></td>
 								<td> ${member.memVisitDate} </td>
 								<td></td>
 								<td></td>
-								<td>${member.memName} / ${member.age}세 / ${member.memGender} <br>
+								<td class="namesearch">${member.memName} / ${member.age}세 / ${member.memGender} <br>
 								${member.memPhone} </td>
 								
 								<td></td>

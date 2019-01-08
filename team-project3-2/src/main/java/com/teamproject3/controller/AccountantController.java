@@ -1,5 +1,6 @@
 package com.teamproject3.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -33,40 +34,34 @@ public class AccountantController {
 //		int to = from + pageSize; 
 //		int pagerSize = 5; 
 //		String linkUrl = "accountant.action";		
-		CenterVo center = (CenterVo)session.getAttribute("loginuser");
+		
 //		int studyCount = studyService.findStudyCount();
 //
 //		ThePager pager = new ThePager(studyCount, pageNo, pageSize, pagerSize, linkUrl);
 //
-
 		//model.addAttribute("member", member);
 		//model.addAttribute("memberNo", memberNo);
 //		model.addAttribute("pageno", pageNo);
 		
-		List<PurchaseVo> purchases =  accountantService.findPurchaseByCenterNo(center.getCenterNo());
-
+		
+		CenterVo center = (CenterVo)session.getAttribute("loginuser");
+		List<PurchaseVo> purchases =  accountantService.findPurchaseByCenterNo(center.getCenterNo()); //회원정보 리스트조회
+		
+		int purprice = accountantService.findPurmethodByCenterNo(center.getCenterNo());	//총 매출 조회
+		
+		List<HashMap<String,Object>> salesstat = accountantService.findSalesStat(center.getCenterNo());
+		
+		List<HashMap<String, Object>> salestotal = accountantService.findSalesTotal(center.getCenterNo());
+				
 		//System.out.println(purchases.size());
 		model.addAttribute("purchases", purchases);
+		model.addAttribute("totalsales", purprice);
+		model.addAttribute("salesstat", salesstat);
+		model.addAttribute("alltotal", salestotal);
+		
 		
 		return "financial/accountant";
 	}
 
-/*	@RequestMapping(value = { "/", "/accountant.action" }, method = RequestMethod.POST)
-	public String selected(@RequestParam(value="product", required = false, defaultValue="empty") String product,
-			@RequestParam(value="salesvalue", required = false, defaultValue="empty") String salesvalue,
-			@RequestParam(value="manager", required = false, defaultValue="empty") String manager,
-			@RequestParam(value="payment", required = false, defaultValue="empty") String payment) {
-		
-		//select
-		
-		return "financial/accountant";
-	}
-	
-	
-	@RequestMapping(value = { "/", "/possiblemember.action" }, method = RequestMethod.GET)
-	public String viewmember() {
-		
-		return "financial/possiblemember";
-	}
-*/
+
 }

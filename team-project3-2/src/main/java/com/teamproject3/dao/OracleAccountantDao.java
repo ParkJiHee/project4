@@ -19,5 +19,26 @@ public class OracleAccountantDao implements AccountantDao{
 		List<PurchaseVo> purchases = accountantMapper.selectPurchaseByCenterNo(centerNo);
 		return purchases;
 	}
+	@Override
+	public int selectPurmethodByCenterNo(int centerNo) {
+		Integer purmethod = accountantMapper.selectPurmethodByCenterNo(centerNo);
+		if(purmethod == null) {
+			return 0;
+		}else { 
+			return purmethod;
+		}
+		 
+	}
+	@Override
+	public List<HashMap<String, Object>> selectSalesStat(int centerNo) {
+		List<HashMap<String,Object>> salesstat = accountantMapper.selectSalesStat(centerNo);
+		return salesstat;
+	}
+	@Override
+	public List<HashMap<String, Object>> selectSalesTotal(int centerNo) {
+		
+		List<HashMap<String, Object>> alltotal = accountantMapper.selectSalesTotal(centerNo);
+		return alltotal;
+	}
 
 }

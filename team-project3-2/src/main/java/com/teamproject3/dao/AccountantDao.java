@@ -1,5 +1,6 @@
 package com.teamproject3.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.teamproject3.vo.MemberVo;
@@ -10,6 +11,11 @@ public interface AccountantDao {
 	//MemberVo selectMemberByPurchase(int memberNo);
 
 	List<PurchaseVo> selectPurchaseByCenterNo(int centerNo);
+
+	int selectPurmethodByCenterNo(int centerNo);
 	
+	List<HashMap<String, Object>> selectSalesStat(int centerNo);
+
+	List<HashMap<String, Object>> selectSalesTotal(int centerNo);
 
 }
