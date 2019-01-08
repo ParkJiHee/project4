@@ -14,7 +14,7 @@
 	<!-- id : MethodName -->
 	<!-- <insert id="insertMember" parameterType="com.demoweb.vo.Member"> -->
 	
-	<insert id="insertMember" parameterType="Member">
+	<insert id="insertMember" parameterType="Member" useGeneratedKeys="true" keyColumn="memberno" keyProperty="memberNo">
 		INSERT INTO member (memberno, memname, memgender, memphone, membrith, memaddress, memroute, mememail, memvisitdate, centerno, age) 
 		VALUES (member_sequence.nextval, #{ memName }, #{ memGender }, #{ memPhone }, #{ memBrith}, #{ memAddress}, #{ memRoute }, #{ memEmail}, #{ memVisitDate }, #{ centerNo }, #{ age })
 	</insert>

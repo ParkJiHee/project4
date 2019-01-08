@@ -27,7 +27,7 @@
 
 	<select id="selectPurposeByMemberNo" parameterType="int"
 		resultType="Posvisit">	<!-- 등록목적 --> 
-		SELECT purpose from purpose where memberno = #{ memberNo } 
+		SELECT purpose from registerpurpose where centerno = #{ centerNo } 
 	</select>
 	
 		<select id="selectMemberList" parameterType="hashmap"
@@ -42,15 +42,14 @@
 		(
 		SELECT
 		memberno, memname, age,
-		memgender, memphone, MEMVISITDATE, memroute
+		memgender, memphone, MEMVISITDATE, memroute, statement
 		FROM
 		member
 		ORDER BY memberno DESC
 		) s
 		)
 
-		WHERE idx >= #{ from } AND idx <![CDATA[<]]>
-		#{ to }	<!-- 부등호두개?를 XML에서는 지원안하기때문에 CDATA로 문자열처리해줌 -->
+		WHERE idx >= #{ from } AND idx <![CDATA[<]]> #{ to }	<!-- 부등호두개?를 XML에서는 지원안하기때문에 CDATA로 문자열처리해줌 -->
 	</select>
 
 

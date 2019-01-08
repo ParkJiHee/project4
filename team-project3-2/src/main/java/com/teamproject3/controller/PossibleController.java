@@ -2,9 +2,6 @@ package com.teamproject3.controller;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,26 +10,21 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.format.number.NumberFormatter;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.teamproject3.service.MemberService;
 import com.teamproject3.service.PossibleService;
-import com.teamproject3.service.ProductService;
-import com.teamproject3.ui.ThePager;
 import com.teamproject3.vo.CenterVo;
 import com.teamproject3.vo.MemberVo;
+import com.teamproject3.vo.PurchaseVo;
 import com.teamproject3.vo.VisitPurposeVo;
 
 //잠재고객
@@ -60,7 +52,7 @@ public class PossibleController {
 	@RequestMapping(value= {"/", "/possiblemember.action"},  method = RequestMethod.GET )
 	public String view( //@ModelAttribute("membervo") MemberVo member,)
 			@RequestParam(value = "pageno", required = false, defaultValue = "1") Integer pageNo,
-			Model model ) {	//int memberNo
+			Model model, HttpSession session ) {	//int memberNo
 			
 	int pageSize = 30; // 한 페이지에 표시되는 데이터 개수
 	int from = (pageNo - 1) * pageSize + 1; // 해당 페이지에 포함된 시작 글번호
@@ -69,7 +61,9 @@ public class PossibleController {
 //	String linkUrl = "possiblemember.action"; // 페이지 번호를 눌렀을 때 이동할 경로
 
 	List<MemberVo> members = possibleService.findAllMemberByPage(from, to);
-	//VisitPurposeVo purpose = possibleService.findPurposeListByMemberNo(memberNo);
+	
+	CenterVo center = (CenterVo)session.getAttribute("loginuser");
+	List<VisitPurposeVo> purpose = possibleService.findPurposeListByMemberNo(center.getCenterNo());
 	
 //	int purposeCount = possibleService.findMemberCount();
 
@@ -94,8 +88,7 @@ public class PossibleController {
 	}
 	
 	@RequestMapping(value= "/possiblemember.action", method = RequestMethod.POST)
-	public String newregister(MemberVo member, 
-			CenterVo center, HttpSession session, HttpServletRequest req) {
+	public String newregister(MemberVo member, String reqType) {
 			//int centerNo) { //, MultipartFile file) {
 		
 /*		MultipartFile attach = req.getFile("file");
@@ -128,6 +121,15 @@ public class PossibleController {
 		
 //		if(){
 		possibleService.insertMember(member);
+		
+		
+		if (reqType.equals("prod")) {
+			return String.format("redirect:/purchase/purSelect.action?centerno=%d&memberno=%d", 
+					member.getCenterNo(), member.getMemberNo());
+		}
+		
+		
+		
 		return "redirect:possiblemember.action";
 //		}
 		

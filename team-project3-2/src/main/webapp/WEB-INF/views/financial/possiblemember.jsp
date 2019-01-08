@@ -80,7 +80,7 @@
     	 
     	 
     	 <%--테이블 --%>
-/*     	 $('#listdel').on('click', function (event) {
+ /*    	 $('#listdel').on('click', function (event) {
 
     		 if ($("#memberlist > input[type=checkbox]").prop("checked",false)){
     			    alert("제거할 대상을 선택하세요.");
@@ -95,7 +95,7 @@
     		         }
     		     });
  			} 
-         }); */    
+         });    */ 
     			 
     		      //삭제처리 후 다시 불러올 리스트 url      
 /*     		      var url = document.location.href;
@@ -126,12 +126,10 @@
 	            var k = $(this).val();
 	            $(".memberlist").hide();
 	            
-	           var temp = $("td.namesearch:contains('" + k + "')");
+	           var temp = $("td.search:contains('" + k + "')");
 
 	            $(temp).parents(".memberlist").show();
 	        })
-    	 
-             
     	 
     	 
   <%--   	 $('#saved').on('click', function (event) {
@@ -168,7 +166,7 @@
 		
     });<%-- end script --%>   
 	   
-  
+
     
     <%-- 우편번호 --%>
     function sample6_execDaumPostcode() {
@@ -256,7 +254,7 @@
 </head>
 <body>
 
-<jsp:include page="/WEB-INF/views/include/header.jsp">
+  <jsp:include page="/WEB-INF/views/include/header.jsp">
       <jsp:param value="financial" name="bgcolor" />
    </jsp:include>
 
@@ -373,7 +371,7 @@
 								<td> ${member.memVisitDate} </td>
 								<td></td>
 								<td></td>
-								<td class="namesearch">${member.memName} / ${member.age}세 / ${member.memGender} <br>
+								<td class="search">${member.memName} / ${member.age}세 / ${member.memGender} <br>
 								${member.memPhone} </td>
 								
 								<td></td>
@@ -416,9 +414,9 @@
 								</td>
 								</c:otherwise>
 								</c:choose>
-												
+								
 								<c:choose>
-								<c:when test="${ member.statement eq '0' }">
+								<c:when test="${ member.statement == 48 }">
 								<td style="color:orange">미결제</td>
 								</c:when>
 								
