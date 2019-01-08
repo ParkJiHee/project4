@@ -1,5 +1,6 @@
 package com.teamproject3.mapper;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface AccountantMapper {
 	List<HashMap<String,Object>> selectSalesStat(int centerNo);
 
 	List<HashMap<String, Object>> selectSalesTotal(int centerNo);
+
+	List<PurchaseVo> selectDateSearch(int centerNo, Date from, Date to);
 }

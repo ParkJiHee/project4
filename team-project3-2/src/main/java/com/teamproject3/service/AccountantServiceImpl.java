@@ -1,5 +1,6 @@
 package com.teamproject3.service;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,6 +37,12 @@ public class AccountantServiceImpl implements AccountantService{
 		
 		List<HashMap<String, Object>> alltotal =  accountantDao.selectSalesTotal(centerNo);
 		return alltotal;
+	}
+
+	@Override
+	public List<PurchaseVo> findDateSearch(int centerNo, Date from, Date to) {
+		List<PurchaseVo> datesearch = accountantDao.findDateSearch(centerNo, from, to);
+		return null;
 	}
 
 

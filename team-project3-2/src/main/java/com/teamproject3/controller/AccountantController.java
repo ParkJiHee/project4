@@ -1,10 +1,12 @@
 package com.teamproject3.controller;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -25,7 +27,8 @@ public class AccountantController {
 	private AccountantService accountantService;
 	
 	@RequestMapping(value = { "/", "/accountant.action" }, method = RequestMethod.GET)
-	public String viewaccount(HttpSession session, Model model) {
+	public String viewaccount(HttpSession session, Model model 
+			) {	//multi param Date from, Date to, String redi
 		
 //		int pageSize = 3; 
 //		int from = (pageNo - 1) * pageSize + 1;
@@ -50,12 +53,19 @@ public class AccountantController {
 		List<HashMap<String,Object>> salesstat = accountantService.findSalesStat(center.getCenterNo());
 		
 		List<HashMap<String, Object>> salestotal = accountantService.findSalesTotal(center.getCenterNo());
-				
+		
+//		List<PurchaseVo> datesearch = accountantService.findDateSearch(center.getCenterNo(), from, to);
+//		
+//		if(redi.equals("search")) {
+//		return "redirect:accountant.action";
+//		}
+		
 		//System.out.println(purchases.size());
 		model.addAttribute("purchases", purchases);
 		model.addAttribute("totalsales", purprice);
 		model.addAttribute("salesstat", salesstat);
 		model.addAttribute("alltotal", salestotal);
+//		model.addAttribute("datesearch", datesearch);
 		
 		
 		return "financial/accountant";

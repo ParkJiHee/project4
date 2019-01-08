@@ -1,5 +1,6 @@
 package com.teamproject3.service;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,5 +17,7 @@ public interface AccountantService {
 	List<HashMap<String,Object>> findSalesStat(int centerNo);
 
 	List<HashMap<String, Object>> findSalesTotal(int centerNo);
+
+	List<PurchaseVo> findDateSearch(int centerNo, Date from, Date to);
 
 }

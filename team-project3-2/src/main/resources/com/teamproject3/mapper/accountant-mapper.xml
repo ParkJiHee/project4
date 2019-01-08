@@ -64,4 +64,35 @@
 		select sum(purprice) as methodtotal, count(purmethod) as methodcount from purchase where centerno = #{ centerNo }
 	</select>
 	
+	
+	 <resultMap type="Member" id="memberMap2">
+		<id column="memberno" property="memberNo" />
+		<result column="memname" property="memName" />
+		<result column="age" property="age" />
+		<result column="memgender" property="memGender" />
+		<result column="memphone" property="memPhone" />
+		<result column="memvisitdate" property="memVisitDate" />
+	</resultMap>
+	
+	<resultMap type="Purchase" id="purdateMap">
+		<id column="purchaseno" property="purchaseNo" />
+		<result column="memberno" property="memberNo" />
+		<result column="purname" property="purName" />
+		<result column="purprice" property="purPrice" />	<!-- 정가 -->
+		<result column="purmethod" property="purMethod" />
+		<result column="purprice" property="purPrice" />	<!-- 결제금액 -->
+		<result column="purdateto" property="purDateto" />
+		<result column="purdatefrom" property="purDatefrom" />
+		<association property="member" column="memberno" resultMap="memberMap2" />
+	</resultMap>
+	
+	<select id="selectDateSearch" parameterType="map" resultMap="purdateMap">
+	
+	select p.purchaseno, p.purname, p.purprice, p.purmethod, p.purprice,
+			m.memvisitdate, m.memname, m.age, m.memgender, m.memphone
+	from member m inner join purchase p
+	on m.memberno = p.memberno
+	where m.centerno= #{ centerNo } and p.purdateto &gt;= #{purDateTo} and p.purdatefrom &lt;= #{purDatefrom}  <!--  &gt=; [>=] // &lt [<=] -->
+	</select> 
+	
 </mapper>

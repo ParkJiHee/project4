@@ -1,5 +1,6 @@
 package com.teamproject3.dao;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,5 +18,7 @@ public interface AccountantDao {
 	List<HashMap<String, Object>> selectSalesStat(int centerNo);
 
 	List<HashMap<String, Object>> selectSalesTotal(int centerNo);
+
+	List<PurchaseVo> findDateSearch(int centerNo, Date from, Date to);
 
 }

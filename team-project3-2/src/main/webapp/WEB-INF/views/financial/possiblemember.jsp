@@ -355,14 +355,14 @@
 					</tr>
 				</thead>
 
-		<%-- 		<c:choose>
-					<c:when test="${ empty ${ members }">
+		 		<c:choose>
+					<c:when test="${ empty members }">
 						<tbody>
 							<td colspan="15" style="text-align:center">목록이 없습니다
 							</td>
 						</tbody>
 					</c:when>
-					<c:otherwise> --%>
+					<c:otherwise> 
 					
 					<c:forEach var="member" items="${ members }"> <%-- 컨트롤러에서 저장하기 --%> 
 						<tbody style="text-align:center">
@@ -439,8 +439,8 @@
 							--%>
 						</tbody>
 					</c:forEach>
-					<%-- </c:otherwise>
-				</c:choose> --%>
+					</c:otherwise>
+				</c:choose>
 			</table>
 		 ${ pager }
 		</div>

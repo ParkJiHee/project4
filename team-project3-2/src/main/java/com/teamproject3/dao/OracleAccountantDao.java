@@ -1,6 +1,7 @@
 package com.teamproject3.dao;
 
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,6 +40,11 @@ public class OracleAccountantDao implements AccountantDao{
 		
 		List<HashMap<String, Object>> alltotal = accountantMapper.selectSalesTotal(centerNo);
 		return alltotal;
+	}
+	@Override
+	public List<PurchaseVo> findDateSearch(int centerNo, Date from, Date to) {
+		List<PurchaseVo> datesearch =  accountantMapper.selectDateSearch(centerNo, from, to);
+		return datesearch;
 	}
 
 }
