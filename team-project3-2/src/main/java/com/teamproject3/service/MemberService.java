@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.teamproject3.vo.MemberVo;
+import com.teamproject3.vo.PurchaseVo;
 
 public interface MemberService {
 
@@ -43,6 +44,6 @@ public interface MemberService {
 
 	int findFinished7MemberCount(int centerNo);
 
-	List<MemberVo> findAllMemberProduct(int memberNo);
+	List<PurchaseVo> findAllMemberProduct(int memberNo);
 
 }

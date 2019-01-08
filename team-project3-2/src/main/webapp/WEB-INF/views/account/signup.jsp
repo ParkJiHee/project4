@@ -35,13 +35,21 @@
 	
 	<div class="content clearfix">
 		
-		<form:form action="signup.action" method="post" modelAttribute="center">
+		<form:form action="signup.action" method="post" modelAttribute="center" enctype="multipart/form-data">
 		
 			<h1>Signup for Free Account</h1>			
 			
 			<div class="login-fields">
+				<div class="img_wrap">
+					<img id="img" src="/team-project3/resources/assets/img/user.png" style="width:64px; height:64px; border-radius: 70px;"/>
+				</div>
 				
-				<p>Create your free account:</p>
+				<div class="control-group">
+					<label class="control-label" for="file">첨부파일</label>
+					<div class="controls">
+						<input type="file" name="attach" id="attach"/>
+					</div>
+				</div>
 				
 				<div class="field">
 					<label for="cenId">ID:</label>	
@@ -89,7 +97,33 @@
 <script src="/team-project3/resources/assets/js/bootstrap.js"></script>
 
 <script src="/team-project3/resources/assets/js/signin.js"></script>
+<script type="text/javascript">
 
+$(function() {
+var sel_file;
+    
+    $('#attach').on('change', function(event){
+    	var files = event.target.files;
+    	var filesArr = Array.prototype.slice.call(files);
+    	
+    	filesArr.forEach(function(f){
+    		if(!f.type.match("image.*")){
+    			alert("확장자는 이미지 확장자만 가능합니다.");
+    			return;
+    		}
+    		
+    		sel_file = f;
+    		
+    		var reader = new FileReader();
+    		reader.onload = function(e){
+    			$('#img').attr('src',e.target.result);
+    		}
+    		reader.readAsDataURL(f);
+    	});
+    });
+});
+
+</script>
 </body>
 
  </html>

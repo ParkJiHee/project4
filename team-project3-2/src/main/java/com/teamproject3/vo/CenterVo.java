@@ -1,5 +1,7 @@
 package com.teamproject3.vo;
 
+import java.util.List;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
@@ -17,6 +19,14 @@ public class CenterVo {
 																					// 형식을 표현 및 검증하는 구문 -> 정규 표현식
 	private String cenPhone;
 	
+	private List<CenterAttachVo> attachments;
+	
+	public List<CenterAttachVo> getAttachments() {
+		return attachments;
+	}
+	public void setAttachments(List<CenterAttachVo> attachments) {
+		this.attachments = attachments;
+	}
 	public int getCenterNo() {
 		return centerNo;
 	}

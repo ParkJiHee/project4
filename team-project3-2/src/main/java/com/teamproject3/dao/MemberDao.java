@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.teamproject3.vo.MemberAttachVo;
 import com.teamproject3.vo.MemberVo;
+import com.teamproject3.vo.PurchaseVo;
 
 public interface MemberDao {
 
@@ -45,6 +46,8 @@ public interface MemberDao {
 
 	int selectFinished7MemberCount(int centerNo);
 
-	List<MemberVo> selectAllMemberProduct(int memberNo);
+	List<PurchaseVo> selectAllMemberProduct(int memberNo);
+
+	void updateMemberAttach(MemberAttachVo attach);
 
 }

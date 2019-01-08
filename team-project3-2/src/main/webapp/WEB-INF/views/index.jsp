@@ -13,6 +13,7 @@
         rel="stylesheet">
 <link href="/team-project3/resources/assets/css/font-awesome.css" rel="stylesheet">
 <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet"> 
+<link href="/team-project3/resources/assets/css/pages/signin.css" rel="stylesheet" type="text/css">
 <link href="/team-project3/resources/assets/css/pages/dashboard.css" rel="stylesheet">
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -100,6 +101,9 @@
 <div class="main">
   <div class="main-inner">
     <div class="container">
+    
+    <jsp:include page="/WEB-INF/views/setting.jsp"/>
+    
       <div class="row">
         <div class="span6">
           <div class="widget widget-nopad">
@@ -455,6 +459,79 @@ $(document).ready(function() {
     } 
        
     </script><!-- /Calendar -->
+    
+    <script type="text/javascript">
+
+$(function() {
+var sel_file;
+    
+    $('#attach').on('change', function(event){
+    	var files = event.target.files;
+    	var filesArr = Array.prototype.slice.call(files);
+    	
+    	filesArr.forEach(function(f){
+    		if(!f.type.match("image.*")){
+    			alert("확장자는 이미지 확장자만 가능합니다.");
+    			return;
+    		}
+    		
+    		sel_file = f;
+    		
+    		var reader = new FileReader();
+    		reader.onload = function(e){
+    			$('#img').attr('src',e.target.result);
+    		}
+    		reader.readAsDataURL(f);
+    	});
+    });
+    
+/////////////문자열 자르기
+	var phone = "${ loginuser.cenPhone }";
+	var tmpPhone = phone.split("-");
+	
+	$('#phone1').val(tmpPhone[0]);
+	$('#phone2').val(tmpPhone[1]);
+	$('#phone3').val(tmpPhone[2]);
+	
+	// 마지막에 입력 시 입력되게 한다.
+    $("#phone3").change(function(){
+    	var phone2 = $('#phone1').val()+'-'+$('#phone2').val()+'-'+$(this).val();
+        $('#cenPhone').val(phone2);
+    });
+	
+    $('#centermodify').on('click', function(event) {
+		//event.preventDefault(); //이벤트를 발생시킨 객체의 기본 동작 수행 차단
+		//event.stopPropagation(); //상위 객체로의 이벤트 전달 차단
+		
+		//var data = $('#memberupdateform').serializeArray(); // [{boardno:'xxx'}, {writer:'yyy'}, ]
+		var formData = new FormData($('#centermodifyform')[0]);
+		
+		$.ajax({
+			"url": "setting.action",
+			"type": "POST",
+			"data": formData,
+			"enctype": 'multipart/form-data',
+			"processData" : false,
+            "contentType" : false,
+			"success": function(formData, status, xhr) {
+				if(formData === "success") {
+					alert('센터 정보를 수정했습니다.');
+				} else {
+					alert('센터 정보 수정 실패');
+				}
+					
+				location.href="/team-project3/home.action";
+				location.reload(true);
+			},
+			"error": function(xhr, status, err) {
+				alert('센터 정보 수정 실패');
+				location.reload(true);
+			}
+		});
+	}); 
+});
+
+</script>
 </body>
 </html>
 

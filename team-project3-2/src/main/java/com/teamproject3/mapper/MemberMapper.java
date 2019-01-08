@@ -26,6 +26,7 @@ public interface MemberMapper {
 	int selectFinished3MemberCount(int centerNo);
 	List<MemberVo> selectFinished7Members(int centerNo);
 	int selectFinished7MemberCount(int centerNo);
-	List<MemberVo> selectAllMemberProduct(int memberNo);
+	List<PurchaseVo> selectAllMemberProduct(int memberNo);
 	List<MemberAttachVo> selectMemberAttachByMemberNo(int memberNo);
+	void updateMemberAttach(MemberAttachVo attach);
 }

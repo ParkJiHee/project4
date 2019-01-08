@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import com.teamproject3.dao.MemberDao;
 import com.teamproject3.vo.MemberAttachVo;
 import com.teamproject3.vo.MemberVo;
+import com.teamproject3.vo.PurchaseVo;
 
 public class MemberServiceImpl implements MemberService{
 	private MemberDao memberDao;
@@ -78,6 +79,10 @@ public class MemberServiceImpl implements MemberService{
 	public void updateMember(MemberVo memberVo) {
 		memberDao.updateMember(memberVo);
 		
+		for(MemberAttachVo attach : memberVo.getAttachments()) {
+			attach.setMemberNo(memberVo.getMemberNo());
+			memberDao.updateMemberAttach(attach);
+		}
 	}
 
 	@Override
@@ -171,8 +176,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<MemberVo> findAllMemberProduct(int memberNo) {
-		List<MemberVo> members = memberDao.selectAllMemberProduct(memberNo);
+	public List<PurchaseVo> findAllMemberProduct(int memberNo) {
+		List<PurchaseVo> members = memberDao.selectAllMemberProduct(memberNo);
 		return members;
 	}
 }

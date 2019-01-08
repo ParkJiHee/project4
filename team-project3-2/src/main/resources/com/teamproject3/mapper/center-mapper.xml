@@ -14,12 +14,15 @@
 	<!-- id : MethodName -->
 	<!-- <insert id="insertMember" parameterType="com.demoweb.vo.Member"> -->
 	
-	<insert id="insertCenter" parameterType="Center">
+	<insert id="insertCenter" parameterType="Center" useGeneratedKeys="true" keyColumn="centerno" keyProperty="centerNo">
 		INSERT INTO center (centerno, cenid, cenpasswd, cenphone) 
 		VALUES (center_sequence.nextval, #{ cenId }, #{ cenPasswd }, #{ cenPhone })
 	</insert>
 	
-	
+	<insert id="insertCenterAttach"  parameterType="CenterAttach">
+		INSERT INTO  centerattach (attachno, centerno, userfilename, savedfilename) 
+		VALUES (centerattach_sequence.nextval, #{centerNo}, #{userFileName}, #{savedFileName})
+	</insert>
 	
 	 <resultMap type="Center" id="centerMap">
 		<id column="centerno" property="centerNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
@@ -39,6 +42,21 @@
 		WHERE cenid = #{ cenId } AND cenpasswd = #{ cenPasswd }
 	</select>
 	
+	<select id="selectCenterAttach" parameterType="int" resultType="CenterAttach">
+		SELECT attachno, centerno, userfilename, savedfilename
+		FROM centerattach WHERE centerno = #{centerNo}
+	</select>
+	
+	<update id="updateCenter" parameterType="Center">
+		update center
+		set cenid=#{ cenId }, cenpasswd=#{ cenPasswd }, cenphone=#{ cenPhone }
+		where centerno = #{centerNo}
+	</update>
+	
+	<update id="updateCenterAttach" parameterType="CenterAttach">
+		update centerattach set userfilename=#{userFileName}, savedfilename=#{savedFileName} 
+		where centerno = #{centerNo}
+	</update>
 </mapper>
 
 

@@ -40,6 +40,13 @@
 		<result column="productno" property="productNo" />
 	</resultMap> 
 	
+	<resultMap type="Purchase" id="purMap">
+		<result column="productno" property="productNo" />
+		<result column="purdateto" property="purDateto" />
+		<result column="purdatefrom" property="purDatefrom" />
+		<result column="purname" property="purName" />
+	</resultMap>
+	
 	 <resultMap type="Member" id="memberMap">
 		<id column="memberno" property="memberNo" /> <!-- not null --> <!--조회 컬럼과 객체의 set메서드를 매핑-->
 		<result column="memname" property="memName" /> <!-- not null -->
@@ -178,9 +185,8 @@
 	
 	
 	<select id="selectAllMemberProduct" parameterType="int"
-										   resultMap="memberPurchaseMap">
-		SELECT m.memberno, m.memname, m.memgender, m.memphone, 
-		m.membrith, m.memaddress, m.memroute, m.mememail, m.memvisitdate, m.age, p.purdatefrom, p.purname, p.purdateto, p.productno
+										   resultMap="purMap">
+		SELECT p.purdatefrom, p.purname, p.purdateto, p.productno
         from member m inner join purchase p
 		on (m.memberno = p.memberno)
 		WHERE m.memberno = #{ memberNo } and m.STATEMENT='1' ORDER BY p.purdatefrom
@@ -233,6 +239,11 @@
 		memaddress = #{memAddress}, memroute = #{memRoute}, mememail = #{memEmail}, memvisitdate = #{memVisitDate}, 
 		age = #{age}
 		where memberno = #{ memberNo }
+	</update>
+	
+	<update id="updateMemberAttach" parameterType="MemberAttach">
+		update memberattach set userfilename=#{userFileName}, savedfilename=#{savedFileName} 
+		where memberno = #{memberNo}
 	</update>
 	
 	<delete id="deleteMember" parameterType="int">

@@ -201,18 +201,53 @@ public class MemberController {
 		}
 		
 		MemberVo member = memberService.findMember(memberNo);
-		List<MemberVo> members = memberService.findAllMemberProduct(memberNo);
+		List<PurchaseVo> purchases = memberService.findAllMemberProduct(memberNo);
 		
 		model.addAttribute("member", member);
-		model.addAttribute("members", members);
+		model.addAttribute("purchases", purchases);
 		
 		return "member/memberdetail";
 	}
 	
 	@RequestMapping(value = "/memberupdate.action", method = RequestMethod.POST)
 	@ResponseBody
-	public String memberUpdate(MemberVo memberVo) {
+	public String memberUpdate(MemberVo memberVo, MultipartHttpServletRequest multi) {
+		ArrayList<MemberAttachVo> attachments = new ArrayList<>();
 		
+		// 저장 경로 설정
+        String root = multi.getSession().getServletContext().getRealPath("/");
+        String path = root+"resources/member-upload/";
+         
+        String newFileName = ""; // 업로드 되는 파일명
+         
+        File dir = new File(path);
+        if(!dir.isDirectory()){
+            dir.mkdir();
+        }
+         
+        Iterator<String> files = multi.getFileNames();
+        while(files.hasNext()){
+            String uploadFile = files.next();
+                         
+            MultipartFile mFile = multi.getFile(uploadFile);
+            String fileName = mFile.getOriginalFilename();
+            System.out.println("실제 파일 이름 : " +fileName);
+            newFileName = Util.makeUniqueFileName(fileName);
+             
+            try {
+                mFile.transferTo(new File(path+newFileName));
+                
+                MemberAttachVo attachment = new MemberAttachVo();
+                attachment.setSavedFileName(newFileName);
+                attachment.setUserFileName(fileName);
+                
+                attachments.add(attachment);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+		
+        memberVo.setAttachments(attachments);
 		memberService.updateMember(memberVo);
 		
 		return "success";
