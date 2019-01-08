@@ -27,7 +27,7 @@
    <select id="selectAllProduct" resultMap="productMap">
       SELECT productno, proname, proprice
       FROM product
-      WHERE centerno = #{ centerNo }
+      WHERE centerno = #{ centerNo } ORDER BY productno desc
    </select>
    
    <resultMap type="Product" id="productnoMap">
