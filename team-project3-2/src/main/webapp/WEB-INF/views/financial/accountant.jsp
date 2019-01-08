@@ -1,6 +1,7 @@
 <%@page import="com.teamproject3.vo.CenterVo" %>
 <%@page import="com.teamproject3.vo.MemberVo" %>
 <%@page import="com.teamproject3.vo.PurchaseVo" %>
+<%@page import="com.teamproject3.vo.ProductVo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -24,6 +25,21 @@
 <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet">
 <link href="/team-project3/resources/assets/js/guidely/guidely.css" rel="stylesheet">
 
+
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		 $("#keyword").on('keyup',function() {
+	            var k = $(this).val();
+	            $(".purchaselist").hide();
+	            
+	           var temp = $("td.namesearch:contains('" + k + "')");
+
+	            $(temp).parents(".purchaselist").show();
+	        })
+	})
+	
+	</script>
 </head>
 
 <body>
@@ -31,7 +47,6 @@
  <jsp:include page="/WEB-INF/views/include/header.jsp">
       <jsp:param value="financial" name="bgcolor" />
    </jsp:include>
-
 
 	<div class="main">
 
@@ -42,8 +57,9 @@
     	<div class="dropdown">
 			<select name="product" size="1" style="width: 95px">
 				<option value="ironman">상품명선택</option>
-				<option value="deadpool" name="deadpool">데드풀</option>
-				<option value="spiderman">스파이더맨</option>
+				<c:forEach var="product" items="${ product }">
+				<option value="deadpool" name="deadpool">${ product.productName }</option>
+				</c:forEach>
 				
 			</select> <select name="salesvalue" size="1" style="width: 90px">
 				<option value="salesvalue">매출분류</option>
@@ -83,24 +99,18 @@
 	      			
 	      			<table style="margin: 0 auto">
     	    	 <tr style="height:50px; text-align:center" > 
-					<th style="color:orange; font-size: 28px">총 이용 상품 매출</th>
-					<th></th>
-					<th style="color:navy; font-size: 28px;">총 이용권상품 결제금액</th>
-					<th></th>
-					<th style="color:navy; font-size: 28px">총 이용권상품 환불(현금)</th><th></th>
+					<th style="color:orange; font-size: 28px">센터 ${loginuser.centerNo }의 총 이용 상품 매출은 </th>
 				</tr>
 				<tr style="text-align:center">
-					<td style="color: red; font-size: 30px; font-weight: 20px">540,000 원</td>
-					<td><img src="/team-project3/resources/assets/img/equal.png" style="height:70px"></td>
-					<td style="font-size: 30px; font-weight: 20px">750,000 원 &nbsp;</td>
-					<td><img src="/team-project3/resources/assets/img/Minus.png" style="height:70px"></td>
-					<td style="font-size: 30px; font-weight: 20px">210,000 원</td>
+					<td style="color: red; font-size: 30px; font-weight: 20px">${totalsales}원 입니다</td>
+
 
               </table>
 					
               		</div>
 				</div>
 			</div>
+			<br><br><br><br>
 		
 
 
@@ -118,23 +128,18 @@
 				</tr>
 				<tr>
 					<td>신용카드</td>
-					<td>0건</td>
-					<td>0원</td>
+					<td>${salesstat[1].PURCOUNT}건</td>
+					<td>${salesstat[1].PURTOTAL}원</td>
 				</tr>
 				<tr>
 					<td>현금</td>
-					<td>0건</td>
-					<td>0원</td>
-				</tr>
-				<tr>
-					<td style="color: orange">현금 환불</td>
-					<td>0건</td>
-					<td>0원</td>
+					<td>${salesstat[0].PURCOUNT}건</td>
+					<td>${salesstat[0].PURTOTAL}원</td>
 				</tr>
 				<tr>
 					<th>합계</th>
-					<td>0건</td>
-					<td>0원</td>
+					<td>${alltotal[0].METHODCOUNT}건</td>
+					<td>${alltotal[0].METHODTOTAL}원</td>
 				</tr>
                 
               </table>
@@ -152,30 +157,11 @@
 					<th style="text-align: left" colspan="3">매출분류</th>
 				</tr>
 				<tr>
-					<td>신규결제</td>
-					<td>0건</td>
-					<td>0원</td>
+					<td>결제</td>
+					<td>${alltotal[0].METHODCOUNT}건</td>
+					<td>${alltotal[0].METHODTOTAL}원</td>
 				</tr>
-				<tr>
-					<td>재 결제</td>
-					<td>0건</td>
-					<td>0원</td>
-				</tr>
-				<tr>
-					<td>카드취소</td>
-					<td>0건</td>
-					<td>0원</td>
-				</tr>
-				<tr>
-					<td style="color: orange">현금 환불</td>
-					<td>0건</td>
-					<td>0원</td>
-				</tr>
-				<tr>
-					<th>합계</th>
-					<td>0건</td>
-					<td>0원</td>
-				</tr>
+
               </table>
               </div>
               </div>
@@ -187,6 +173,7 @@
 
 		<%-- 전체 월별 리스트 --%>
 		<div id="list">
+		회원검색: &nbsp;&nbsp;<input type="text" width="5px" placeholder="검색" id="keyword">
 			<table class="table table-bordered table-condensed table-hover"
 				id="reservationList">
 				<thead>
@@ -205,7 +192,6 @@
 
 						<th style="width: 6%">미수금</th>
 						<!-- <th style="width: 6%">예상 환불금액</th> -->
-						<th style="width: 8%">환불금액</th>
 						<!-- 2.0v 2017-08-07 수정 -->
 						<th style="width: 5%">포인트 적립</th>
 						<th style="width: 4%">결제담당</th>
@@ -252,51 +238,35 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="purchase" items="${ purchases }">
-								<tr>
+								<tr class="purchaselist"> <%-- 검색용 class --%>
 									<td>${ purchase.purchaseNo }</td>
-								</tr>
-								<tr>
+		
 									<td>${ purchase.member.memVisitDate }</td>
-								</tr>
-								<tr>
-									<td><input type="hidden" name="memberNo" value="${ purchase.member.memberNo }"/>
+			
+									<td class="namesearch"><input type="hidden" name="memberNo" value="${ purchase.member.memberNo }"/><%-- 검색용 class --%>
 										${ purchase.member.memName } (${ purchase.member.age }/ ${ purchase.member.memGender })
 									</td>
-								</tr>
-								<tr>
+								
 									<td>${ purchase.member.memPhone }</td>
-								</tr>
-								<tr>
+								
 									<td>${ purchase.purName }</td>
-								</tr>
-								<tr>
+								
 									<td></td>
-								</tr>
-								<tr>
+								
 									<td>${ purchase.purPrice }</td>
-								</tr>
-								<tr>
+								
 									<td></td>
-								</tr>
-								<tr>
-									<td>${ purchase.purMethod}: ${ purchase.purPrice }</td>
-								</tr>
-								<tr>
+								
+									<td style="color: blue">${ purchase.purMethod}: ${ purchase.purPrice }</td>
+								
 									<td></td>
-								</tr>
-								<tr>
+								
 									<td></td>
-								</tr>
-								<tr>
+							
+					
 									<td></td>
-								</tr>
-								<tr>
-									<td></td>
-								</tr>
-								<tr>
+		
 									<td>${ loginuser.cenId }</td>
-								</tr>
-								<tr>
 									<td></td>
 								</tr>		
 							</c:forEach>

@@ -45,8 +45,23 @@
 		from purchase p
 		inner join member m
 		on p.memberno = m.memberno
-		where m.centerno = #{ centerNo } 
+		where p.centerno = #{ centerNo } 
 		order by p.purchaseno desc
+	</select>
+	
+	<select id="selectPurmethodByCenterNo" resultType="int">	<!-- 총매출 -->
+	
+	select sum(purprice) from purchase where centerno = #{ centerNo }
+	
+	</select>
+	
+	<select id="selectSalesStat" parameterType="int" resultType="HashMap">
+	
+	select purmethod, sum(purprice) as purtotal, count(purmethod) as purcount from purchase where centerno = #{ centerNo } group by purmethod 
+	</select>
+	
+	<select id="selectSalesTotal" parameterType="int" resultType="HashMap">
+		select sum(purprice) as methodtotal, count(purmethod) as methodcount from purchase where centerno = #{ centerNo }
 	</select>
 	
 </mapper>

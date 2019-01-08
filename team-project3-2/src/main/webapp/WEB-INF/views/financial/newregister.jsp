@@ -31,7 +31,8 @@
 		if (id === 'new') { 
 		 frm.attr("action", "/team-project3/financial/possiblemember.action");
 		}  else if( id === 'prod'){
-			frm.attr("action", "/team-project3/financial/possiblemember.action");
+			var data = $('#newregister-form').serializeArray();
+			frm.attr("action", "/team-project3/purchase/purSelect.action?memberno="+data+"&centerno=${ loginuser.centerNo }");
 
 		} 
 		 frm.submit();
