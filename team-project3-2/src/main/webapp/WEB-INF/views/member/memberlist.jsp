@@ -77,7 +77,7 @@
   </div>
     <div class="content clearfix">
 		
-		<form id="membersignupform" enctype="multipart/form-data">			
+		<form id="membersignupform" enctype='multipart/form-data'>			
 			<input type="hidden" name="centerNo" value="${ loginuser.centerNo }">
 			<div class="form-horizontal">
 			
@@ -355,7 +355,7 @@
 													  <c:forEach var="attach" items="${ member.attachments }">
 													    <img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
 													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:60px">
+													    class="media-object" style="width:70px">
 													  </c:forEach>
 													  </div>
 													  <div class="media-body">
@@ -1293,9 +1293,9 @@ $(function() {
 		//event.preventDefault(); //이벤트를 발생시킨 객체의 기본 동작 수행 차단
 		//event.stopPropagation(); //상위 객체로의 이벤트 전달 차단
 		
-		var data = $('#membersignupform').serializeArray(); // [{boardno:'xxx'}, {writer:'yyy'}, ]
-		//var formData = new FormData($('#membersignupform')[0]);
-		$.ajax({
+		//var data = $('#membersignupform').serializeArray(); // [{boardno:'xxx'}, {writer:'yyy'}, ]
+		var formData = new FormData($('#membersignupform')[0]);		
+		/* $.ajax({
 			"url": "membersignup.action",
 			"type": "POST",
 			"data": data,
@@ -1308,12 +1308,13 @@ $(function() {
 				alert('회원 등록 실패');
 			}
 		});
-	});  
+	});   */
 	
-		/* $.ajax({
+		$.ajax({
 			"url": "membersignup.action",
 			"type": "POST",
 			"data": formData,
+			"enctype": 'multipart/form-data',
 			"processData" : false,
             "contentType" : false,
 			"success": function(formData, status, xhr) {
@@ -1325,7 +1326,7 @@ $(function() {
 				alert('회원 등록 실패');
 			}
 		});
-	}); */
+	});
 	
 	$('#signupsell').on('click', function(event) {
 		var content = $('#age').val();

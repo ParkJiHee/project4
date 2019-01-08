@@ -21,12 +21,12 @@ public class MemberServiceImpl implements MemberService{
 		
 		memberDao.insertMember(member);
 		
-		if (member.getAttachments() != null) {
+		
 			for(MemberAttachVo attach : member.getAttachments()) {
-				attach.setAttachNo(member.getMemberNo());
+				attach.setMemberNo(member.getMemberNo());
 				memberDao.insertMemberAttach(attach);
 			}
-		}
+		
 		
 	}
 
@@ -45,6 +45,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVo findMember(int memberNo) {
 		MemberVo member = memberDao.selectMember(memberNo);
+		
+		if(member != null) {
+			List<MemberAttachVo> attachments = memberDao.selectMemberAttachByMemberNo(memberNo);
+			member.setAttachments(attachments);
+		}
 		
 		return member;
 	}

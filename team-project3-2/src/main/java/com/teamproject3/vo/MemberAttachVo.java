@@ -3,7 +3,7 @@ package com.teamproject3.vo;
 public class MemberAttachVo {
 
 	private int attachNo;
-	private String memberId;
+	private int memberNo;
 	private String userFileName;
 	private String savedFileName;
 	
@@ -13,11 +13,11 @@ public class MemberAttachVo {
 	public void setAttachNo(int attachNo) {
 		this.attachNo = attachNo;
 	}
-	public String getMemberId() {
-		return memberId;
+	public int getMemberNo() {
+		return memberNo;
 	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 	public String getUserFileName() {
 		return userFileName;

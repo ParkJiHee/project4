@@ -285,8 +285,12 @@
                <div class="row-fluid stats-box" style="margin: 10px 0px;">
                  
                  <div class="span4">
-                    <div class="stats-box-all-info">				
-                    	<img class="control-label" src="/team-project3/resources/assets/img/user.png"/>&emsp;&emsp;이름 : ${ member.memName }
+                    <div class="stats-box-all-info">
+                    <c:forEach var="attach" items="${ member.attachments }">
+						<img src="/team-project3/resources//member-upload/${ attach.savedFileName }" alt="" 
+						onerror="this.src = '/team-project3/resources/assets/img/user.png'" class="control-label" style="width:70px"/>
+						&emsp;&emsp;이름 : ${ member.memName }
+					</c:forEach>				
 						<div class="controls">
 							<p>${ member.age }세 / ${ member.memBrith }</p>
 						</div>				

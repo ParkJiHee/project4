@@ -14,9 +14,14 @@
 	<!-- id : MethodName -->
 	<!-- <insert id="insertMember" parameterType="com.demoweb.vo.Member"> -->
 	
-	<insert id="insertMember" parameterType="Member" useGeneratedKeys="true" keyColumn="memberno" keyProperty="memberNo">
+	<insert id="insertMember" parameterType="Member" useGeneratedKeys="true" keyColumn="memberno" keyProperty="memberNo">	
 		INSERT INTO member (memberno, memname, memgender, memphone, membrith, memaddress, memroute, mememail, memvisitdate, centerno, age) 
 		VALUES (member_sequence.nextval, #{ memName }, #{ memGender }, #{ memPhone }, #{ memBrith}, #{ memAddress}, #{ memRoute }, #{ memEmail}, #{ memVisitDate }, #{ centerNo }, #{ age })
+	</insert>
+	
+	<insert id="insertMemberAttach"  parameterType="MemberAttach">
+		INSERT INTO  memberattach (attachno, memberno, userfilename, savedfilename) 
+		VALUES (memberattach_sequence.nextval, #{memberNo}, #{userFileName}, #{savedFileName})
 	</insert>
 	
 	<!-- <insert id="insertMember" parameterType="Member">
@@ -86,6 +91,11 @@
 		FROM center
 		WHERE cenid = #{ cenId } AND cenpasswd = #{ cenPasswd }
 	</select> -->
+	
+	<select id="selectMemberAttachByMemberNo" parameterType="int" resultType="MemberAttach">
+		SELECT attachno, memberno, userfilename, savedfilename
+		FROM memberattach WHERE memberno = #{ memberNo }
+	</select>
 	
 	<select id="selectAllMembers" parameterType="int"
 										   resultType="Member">

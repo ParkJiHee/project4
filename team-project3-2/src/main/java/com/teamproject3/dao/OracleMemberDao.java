@@ -21,14 +21,13 @@ public class OracleMemberDao implements MemberDao{
 
 	@Override
 	public void insertMemberAttach(MemberAttachVo attach) {
-		// TODO Auto-generated method stub
-		
+		memberMapper.insertMemberAttach(attach);
 	}
 
 	@Override
 	public List<MemberAttachVo> selectMemberAttachByMemberNo(int memberNo) {
-		
-		return null;
+		List<MemberAttachVo> attachs = memberMapper.selectMemberAttachByMemberNo(memberNo);
+		return attachs;
 	}
 
 	@Override
