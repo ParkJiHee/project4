@@ -37,5 +37,13 @@ public class OracleScheduleDao implements ScheduleDao{
 		
 		return schedules;
 	}
+
+
+	@Override
+	public void deleteSchedule(int scheduleNo) {
+
+		scheduleMapper.deleteSchedule(scheduleNo);
+		
+	}
 	
 }
