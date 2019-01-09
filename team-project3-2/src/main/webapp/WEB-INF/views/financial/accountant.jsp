@@ -119,28 +119,28 @@
 						
 						<table style="margin: 0 auto;text-align: center">
 								<tr style="height: 50px; ">
-									<th style=" font-size: 25px;">
+									<th style=" font-size: 25px; padding-right: 50px">
 										${loginuser.cenId }의 <br><br>총 이용 상품 매출</th>
 									<th></th>
 									<th></th>
-									<th style=" font-size: 25px; color:grey">카드 이용</th>
-									<th></th>
+									<th style=" font-size: 25px; color:grey; padding-right: 50px">카드 이용</th>
+									<th style="padding-right: 50px"></th>
 									<th></th>
 									<th style=" font-size: 25px; color:grey">현금 이용</th>
 								
 							
 								</tr>
 								<tr style="text-align: center;">
-									<td style="color: red; font-size: 30px; font-weight: 20px; padding-top: 20px; padding-bottom: 20px"><%-- ${totalsales}원 --%>
+									<td style="color: red; font-size: 30px; font-weight: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 50px"><%-- ${totalsales}원 --%>
 									<fmt:formatNumber value="${totalsales}" pattern="#,###.##"/>원</td>
 									
-									<td><img src="/team-project3/resources/assets/img/equal.png" style="height: 90px"></td>
+									<td></td>
 									<td></td>
 								
-									<td style="color: orange; font-size: 30px; font-weight: 20px; padding-top: 20px; padding-bottom: 20px"><%-- ${totalsales}원 --%>
+									<td style="color: orange; font-size: 30px; font-weight: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 50px"><%-- ${totalsales}원 --%>
 									<fmt:formatNumber value="${salesstat[1].PURTOTAL}" pattern="#,###.##"/>원</td>
 				
-									<td><img src="/team-project3/resources/assets/img/plus.png" style="height: 90px"></td>
+									<td><i class="icon-large icon-plus" style="height: 1000px; padding-right: 50px"></i></td>
 									<td></td>
 									<td style="color: blue; font-size: 30px; font-weight: 20px; padding-top: 20px; padding-bottom: 20px"><%-- ${totalsales}원 --%>
 									<fmt:formatNumber value="${salesstat[0].PURTOTAL}" pattern="#,###.##"/>원</td></tr>
