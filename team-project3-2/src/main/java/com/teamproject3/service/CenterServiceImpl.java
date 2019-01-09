@@ -55,9 +55,11 @@ public class CenterServiceImpl implements CenterService{
 		
 		centerDao.updateCenter(centerVo);
 		
-		for (CenterAttachVo attach : centerVo.getAttachments()) {
-			attach.setCenterNo(centerVo.getCenterNo());
-			centerDao.updateCenterAttach(attach);
+		if(centerVo.getAttachments().size() > 0) {
+			for (CenterAttachVo attach : centerVo.getAttachments()) {
+				attach.setCenterNo(centerVo.getCenterNo());
+				centerDao.updateCenterAttach(attach);
+			}
 		}
 	}
 

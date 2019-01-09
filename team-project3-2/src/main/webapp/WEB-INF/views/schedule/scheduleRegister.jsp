@@ -45,7 +45,7 @@
 	      			
 	      			<div class="widget-header">
 	      				<i class="icon-edit"></i>
-	      				<h3>상품 등록</h3>
+	      				<h3>스케줄 등록</h3>
 	  				</div> <!-- /widget-header -->
 					
 					<div class="widget-content">

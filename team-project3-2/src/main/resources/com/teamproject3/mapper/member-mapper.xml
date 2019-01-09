@@ -105,12 +105,18 @@
 	</select>
 	
 	<select id="selectAllMembers" parameterType="int"
-										   resultType="Member">
+										   resultMap="memberMap">
 										   
-		SELECT memberno, memname, memgender, memphone, 
+		<!-- SELECT memberno, memname, memgender, memphone, 
 		membrith, memaddress, memroute, mememail, memvisitdate, age
 		FROM member
-		WHERE centerno = #{ centerNo } ORDER BY memberno desc
+		WHERE centerno = #{ centerNo } ORDER BY memberno desc -->
+		
+		SELECT m.memberno, m.memname, m.memgender, m.memphone, 
+		m.membrith, m.memaddress, m.memroute, m.mememail, m.memvisitdate, m.age, p.purdatefrom, p.purname
+        from member m inner join purchase p
+		on (m.memberno = p.memberno)
+		WHERE m.centerno = #{ centerNo } ORDER BY m.memberno desc
 		
 	</select>
 	

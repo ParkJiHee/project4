@@ -354,11 +354,18 @@
 								      			<div class="media">
 													  <div class="media-left">
 													  
-													  <c:forEach var="attach" items="${ member.attachments }">
-													    <img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
-													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:64px; height:64px;  border-radius: 70px;"/>
-													  </c:forEach>
+													  <c:choose>
+														<c:when test="${ not empty member.attachments }">
+															<c:forEach var="attach" items="${ member.attachments }">
+																	<img id="img" src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
+																	onerror="this.src = '/team-project3/resources/assets/img/user.png'" class="media-object" style="width:64px; height:64px; border-radius: 70px;"/>
+															</c:forEach>
+														</c:when>
+														<c:otherwise>
+															<img id="img" src="/team-project3/resources/assets/img/user.png" class="media-object" style="width:64px; height:64px; border-radius: 70px;"/>
+														</c:otherwise>
+														</c:choose>
+													  
 													  </div>
 													  <div class="media-body">
 													    <h4 class="media-heading">${ member.memName }</h4>
@@ -471,11 +478,17 @@
 								      			<div class="media">
 													  <div class="media-left">
 													  
-													  <c:forEach var="attach" items="${ member2.attachments }">
-													    <img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
-													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:64px; height:64px; border-radius: 70px;">
-													  </c:forEach>
+													  <c:choose>
+														<c:when test="${ not empty member2.attachments }">
+															<c:forEach var="attach" items="${ member2.attachments }">
+																	<img id="img" src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
+																	onerror="this.src = '/team-project3/resources/assets/img/user.png'" class="media-object" style="width:64px; height:64px; border-radius: 70px;"/>
+															</c:forEach>
+														</c:when>
+														<c:otherwise>
+															<img id="img" src="/team-project3/resources/assets/img/user.png" class="media-object" style="width:64px; height:64px; border-radius: 70px;"/>
+														</c:otherwise>
+														</c:choose>
 													  </div>
 													  <div class="media-body">
 													    <h4 class="media-heading">${ member2.memName }</h4>
@@ -588,11 +601,17 @@
 								      			<div class="media">
 													  <div class="media-left">
 													  
-													  <c:forEach var="attach" items="${ member3.attachments }">
-													    <img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
-													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:64px; height:64px; border-radius: 70px;">
-													  </c:forEach>
+													  <c:choose>
+														<c:when test="${ not empty member3.attachments }">
+															<c:forEach var="attach" items="${ member3.attachments }">
+																	<img id="img" src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
+																	onerror="this.src = '/team-project3/resources/assets/img/user.png'" class="media-object" style="width:64px; height:64px; border-radius: 70px;"/>
+															</c:forEach>
+														</c:when>
+														<c:otherwise>
+															<img id="img" src="/team-project3/resources/assets/img/user.png" class="media-object" style="width:64px; height:64px; border-radius: 70px;"/>
+														</c:otherwise>
+														</c:choose>
 													  </div>
 													  <div class="media-body">
 													    <h4 class="media-heading">${ member3.memName }</h4>
@@ -706,11 +725,17 @@
 								      			<div class="media">
 													  <div class="media-left">
 													  
-													  <c:forEach var="attach" items="${ member4.attachments }">
-													    <img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
-													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:64px; height:64px; border-radius: 70px;">
-													  </c:forEach>
+													  <c:choose>
+														<c:when test="${ not empty member4.attachments }">
+															<c:forEach var="attach" items="${ member4.attachments }">
+																	<img id="img" src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
+																	onerror="this.src = '/team-project3/resources/assets/img/user.png'" class="media-object" style="width:64px; height:64px; border-radius: 70px;"/>
+															</c:forEach>
+														</c:when>
+														<c:otherwise>
+															<img id="img" src="/team-project3/resources/assets/img/user.png" class="media-object" style="width:64px; height:64px; border-radius: 70px;"/>
+														</c:otherwise>
+														</c:choose>
 													  </div>
 													  <div class="media-body">
 													    <h4 class="media-heading">${ member4.memName }</h4>
@@ -824,11 +849,17 @@
 								      			<div class="media">
 													  <div class="media-left">
 													  
-													  <c:forEach var="attach" items="${ member5.attachments }">
-													    <img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
-													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:64px; height:64px; border-radius: 70px;">
-													  </c:forEach>
+													  <c:choose>
+														<c:when test="${ not empty member5.attachments }">
+															<c:forEach var="attach" items="${ member5.attachments }">
+																	<img id="img" src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
+																	onerror="this.src = '/team-project3/resources/assets/img/user.png'" class="media-object" style="width:64px; height:64px; border-radius: 70px;"/>
+															</c:forEach>
+														</c:when>
+														<c:otherwise>
+															<img id="img" src="/team-project3/resources/assets/img/user.png" class="media-object" style="width:64px; height:64px; border-radius: 70px;"/>
+														</c:otherwise>
+														</c:choose>
 													  </div>
 													  <div class="media-body">
 													    <h4 class="media-heading">${ member5.memName }</h4>
@@ -941,11 +972,17 @@
 								      			<div class="media">
 													  <div class="media-left">
 													  
-													  <c:forEach var="attach" items="${ member6.attachments }">
-													    <img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
-													    onerror="this.src = '/team-project3/resources/assets/img/user.png'"
-													    class="media-object" style="width:64px; height:64px; border-radius: 70px;">
-													  </c:forEach>
+													  <c:choose>
+														<c:when test="${ not empty member6.attachments }">
+															<c:forEach var="attach" items="${ member6.attachments }">
+																	<img id="img" src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
+																	onerror="this.src = '/team-project3/resources/assets/img/user.png'" class="media-object" style="width:64px; height:64px; border-radius: 70px;"/>
+															</c:forEach>
+														</c:when>
+														<c:otherwise>
+															<img id="img" src="/team-project3/resources/assets/img/user.png" class="media-object" style="width:64px; height:64px; border-radius: 70px;"/>
+														</c:otherwise>
+														</c:choose>
 													  </div>
 													  <div class="media-body">
 													    <h4 class="media-heading">${ member6.memName }</h4>

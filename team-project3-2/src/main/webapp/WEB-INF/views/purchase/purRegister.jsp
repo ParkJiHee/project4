@@ -161,7 +161,7 @@
                 </div>
 
                 <div class="form-actions" align="center">
-                	<button type="submit" class="btn btn-success">상품 등록</button>
+                	<button type="submit" class="btn btn-success">상품 결제</button>
                 	<input type="button" value="취소"  class="btn btn-warning" onclick="history.back(-1);">
                 	<input type="reset" class="btn btn-danger" onclick="reset_pay" value="초기화">
                 </div>

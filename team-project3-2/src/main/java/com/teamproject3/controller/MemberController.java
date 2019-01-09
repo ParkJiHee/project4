@@ -148,19 +148,22 @@ public class MemberController {
                          
             MultipartFile mFile = multi.getFile(uploadFile);
             String fileName = mFile.getOriginalFilename();
-            System.out.println("실제 파일 이름 : " +fileName);
-            newFileName = Util.makeUniqueFileName(fileName);
-             
-            try {
-                mFile.transferTo(new File(path+newFileName));
-                
-                MemberAttachVo attachment = new MemberAttachVo();
-                attachment.setSavedFileName(newFileName);
-                attachment.setUserFileName(fileName);
-                
-                attachments.add(attachment);
-            } catch (Exception e) {
-                e.printStackTrace();
+            
+            if (!mFile.isEmpty() && fileName.length() != 0) {
+                System.out.println("실제 파일 이름 : " +fileName);
+	            newFileName = Util.makeUniqueFileName(fileName);
+	             
+	            try {
+	                mFile.transferTo(new File(path+newFileName));
+	                
+	                MemberAttachVo attachment = new MemberAttachVo();
+	                attachment.setSavedFileName(newFileName);
+	                attachment.setUserFileName(fileName);
+	                
+	                attachments.add(attachment);
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
             }
         }
 		
@@ -230,20 +233,24 @@ public class MemberController {
             String uploadFile = files.next();
                          
             MultipartFile mFile = multi.getFile(uploadFile);
+            
             String fileName = mFile.getOriginalFilename();
-            System.out.println("실제 파일 이름 : " +fileName);
-            newFileName = Util.makeUniqueFileName(fileName);
-             
-            try {
-                mFile.transferTo(new File(path+newFileName));
-                
-                MemberAttachVo attachment = new MemberAttachVo();
-                attachment.setSavedFileName(newFileName);
-                attachment.setUserFileName(fileName);
-                
-                attachments.add(attachment);
-            } catch (Exception e) {
-                e.printStackTrace();
+            
+            if (!mFile.isEmpty() && fileName.length() != 0) {
+                System.out.println("실제 파일 이름 : " +fileName);
+	            newFileName = Util.makeUniqueFileName(fileName);
+	             
+	            try {
+	                mFile.transferTo(new File(path+newFileName));
+	                
+	                MemberAttachVo attachment = new MemberAttachVo();
+	                attachment.setSavedFileName(newFileName);
+	                attachment.setUserFileName(fileName);
+	                
+	                attachments.add(attachment);
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
             }
         }
 		

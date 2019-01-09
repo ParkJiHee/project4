@@ -106,10 +106,17 @@
 			<div class="form-horizontal">
 			
 			<div class="img_wrap">
+			<c:choose>
+			<c:when test="${ not empty member.attachments }">
 				<c:forEach var="attach" items="${ member.attachments }">
 						<img id="img" src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
 						onerror="this.src = '/team-project3/resources/assets/img/user.png'" class="control-label" style="width:64px; height:64px; border-radius: 70px;"/>
-					</c:forEach>
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<img id="img" src="/team-project3/resources/assets/img/user.png" style="width:64px; height:64px; border-radius: 70px;"/>
+			</c:otherwise>
+			</c:choose>
 			</div>			
 				
 				<div class="control-group">
@@ -290,11 +297,19 @@
                  
                  <div class="span4">
                     <div class="stats-box-all-info">
-                    <c:forEach var="attach" items="${ member.attachments }">
-						<img src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
-						onerror="this.src = '/team-project3/resources/assets/img/user.png'" class="control-label" style="width:64px; height:64px; border-radius: 70px;"/>
-						&emsp;&emsp;이름 : ${ member.memName }
-					</c:forEach>				
+                    <c:choose>
+					<c:when test="${ not empty member.attachments }">
+						<c:forEach var="attach" items="${ member.attachments }">
+								<img id="img" src="/team-project3/resources/member-upload/${ attach.savedFileName }" alt="" 
+								onerror="this.src = '/team-project3/resources/assets/img/user.png'" class="control-label" style="width:64px; height:64px; border-radius: 70px;"/>
+								&emsp;&emsp;이름 : ${ member.memName }
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<img id="img" src="/team-project3/resources/assets/img/user.png" style="width:64px; height:64px; border-radius: 70px;"/>
+					</c:otherwise>
+					</c:choose>
+                   		
 						<div class="controls">
 							<p>${ member.age }세 / ${ member.memBrith }</p>
 						</div>				

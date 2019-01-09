@@ -22,12 +22,12 @@ public class MemberServiceImpl implements MemberService{
 		
 		memberDao.insertMember(member);
 		
-		
+		if(member.getAttachments().size() > 0) {
 			for(MemberAttachVo attach : member.getAttachments()) {
 				attach.setMemberNo(member.getMemberNo());
 				memberDao.insertMemberAttach(attach);
 			}
-		
+		}
 		
 	}
 
@@ -79,9 +79,11 @@ public class MemberServiceImpl implements MemberService{
 	public void updateMember(MemberVo memberVo) {
 		memberDao.updateMember(memberVo);
 		
-		for(MemberAttachVo attach : memberVo.getAttachments()) {
-			attach.setMemberNo(memberVo.getMemberNo());
-			memberDao.updateMemberAttach(attach);
+		if(memberVo.getAttachments().size() > 0) {
+			for(MemberAttachVo attach : memberVo.getAttachments()) {
+				attach.setMemberNo(memberVo.getMemberNo());
+				memberDao.updateMemberAttach(attach);
+			}
 		}
 	}
 
