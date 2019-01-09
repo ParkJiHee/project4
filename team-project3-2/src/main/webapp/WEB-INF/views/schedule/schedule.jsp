@@ -144,7 +144,6 @@ var calendar = $('#calendar').fullCalendar({
 		<jsp:param value="schedule" name="bgcolor" />
 	</jsp:include>
 <!-- end header.jsp -->
-
 <div id="calendar"></div>
 <div style= margin-top:20px;margin-right:60px>
 <a href="/team-project3/schedule/scheduleRegister.action" class="button btn btn-primary" style=" margin-left:80%">스케줄등록</a>

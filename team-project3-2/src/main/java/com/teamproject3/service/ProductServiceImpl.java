@@ -15,9 +15,8 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void writeProduct(ProductVo product) {
 		
-		System.out.println("productno : " + product.getProductNo());//여기서 board.getBoardNo()를 호출하면 --> 0
 		productDao.insertProduct(product);
-		System.out.println("productno : " + product.getProductNo());//여기서 board.getBoardNo()를 호출하면 --> 삽입된 게시글의 글번호
+		
 		
 		
 	}

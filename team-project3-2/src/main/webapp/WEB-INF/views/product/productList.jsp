@@ -71,14 +71,21 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript">
 	$(function(){
-		 $("#keyword").on('keyup',function() {
+		$("#keyword").on('keyup', function() {
+			var k = $(this).val();
+			$(".span3").hide();
+			var temp = $("h4.media-heading:contains('" + k + "')");
+			$(temp).parents(".span3").show();
+		})
+		
+		/* $("#keyword").on('keyup',function() {
 	            var k = $(this).val();
 	            $(".plan-container").hide();
 	            
 	           var temp = $("div.plan-title:contains('" + k + "')");
 
 	            $(temp).parents(".plan-container").show();
-	        })
+	        }) */
 	})
 	
 	</script>
@@ -91,7 +98,6 @@
 <jsp:include page="/WEB-INF/views/include/header.jsp">
 		<jsp:param value="product" name="bgcolor" />
 	</jsp:include>
-    
     
 <div class="main">
 	

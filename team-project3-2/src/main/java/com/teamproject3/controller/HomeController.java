@@ -79,6 +79,12 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/popup.action", method = RequestMethod.GET)
+	public String popup(Model model, HttpSession session, CenterVo center) {		
+		
+		return "popup";
+	}
+	
 	@RequestMapping(value = "/setting.action", method = RequestMethod.POST)
 	@ResponseBody
 	public String setting(

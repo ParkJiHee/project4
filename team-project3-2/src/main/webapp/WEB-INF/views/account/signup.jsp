@@ -37,7 +37,7 @@
 		
 		<form:form action="signup.action" method="post" modelAttribute="center" enctype="multipart/form-data">
 		
-			<h1>Signup for Free Account</h1>			
+			<h1>센터 회원가입</h1>			
 			
 			<div class="login-fields">
 				<div class="img_wrap">

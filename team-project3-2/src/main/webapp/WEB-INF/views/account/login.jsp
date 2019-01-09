@@ -120,7 +120,11 @@
 <script src="/team-project3/resources/assets/js/bootstrap.js"></script>
 <script src="/team-project3/resources/assets/js/base.js"></script>
 <script src="/team-project3/resources/assets/js/signin.js"></script>
-
+<script type="text/javascript">
+	$(function(){
+		window.open("popup.action", "pop", "width=400,height=500,history=no,resizable=no,status=no,scrollbars=yes,menubar=no");
+	});
+</script>
 </body>
 
 </html>

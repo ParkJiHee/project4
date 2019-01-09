@@ -30,7 +30,7 @@
 <jsp:include page="/WEB-INF/views/include/header.jsp">
 		<jsp:param value="product" name="bgcolor" />
 	</jsp:include>
-
+	
 <div class="main">
 	
 	<div class="main-inner">
@@ -159,7 +159,6 @@
 	
 <script src="/team-project3/resources/assets/js/bootstrap.js"></script>
 <script src="/team-project3/resources/assets/js/base.js"></script>
-
 
   </body>
 
