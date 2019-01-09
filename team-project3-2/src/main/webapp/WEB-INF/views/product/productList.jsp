@@ -22,9 +22,53 @@
     <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet">
     
     
-    <link href="/team-project3/resources/assets/css/pages/plans.css" rel="stylesheet"> 
+    <link href="/team-project3/resources/assets/css/pages/plans.css" rel="stylesheet">
 
-	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<style type="text/css">
+.error {
+	color: red;
+}
+
+.overlay {
+	transition: .5s ease;
+	opacity: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+	z-index: 1;
+}
+
+.span3 .overlay2 {
+	transition: .5s ease;
+	position: absolute;
+	opacity: 0;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.span3:hover .overlay {
+	opacity: 1;
+}
+
+.span3:hover .widget-content {
+	background-color: #BDBDBD;
+	opacity: 0.7;
+}
+
+.span3 .text {
+	color: black;
+	font-size: 40px;
+	padding: 16px 32px;
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript">
 	$(function(){
 		 $("#keyword").on('keyup',function() {
@@ -68,38 +112,56 @@
 					</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
-						
-						<div class="pricing-plans plans-3">
-						<p align="right" style="margin-right: 5%">
-							<a href="/team-project3/product/productRegister.action"
-							class="button btn btn-primary">상품등록</a>
-						</p>
-						<c:forEach var="product" items="${ products }">
-						<div class="plan-container">
-					        <div class="plan">
-						        <div class="plan-header">
-					                
-						        	<div class="plan-title">
-						        		${ product.productName }	        		
-					        		</div> <!-- /plan-title -->
-						            <div class="plan-price">
-					                	<h3>${ product.productPrice } 원</h3>
-									</div> <!-- /plan-price -->
+
+								<div class="pricing-plans plans-3">
+									<p align="right" style="margin-right: 5%">
+										<a href="/team-project3/product/productRegister.action"
+											class="button btn btn-primary">상품등록</a>
+									</p>
+									<c:forEach var="product" items="${ products }">
+										<div class="span3">
+
+											<div class="widget">
+
+												<div class="widget-content">
+													<input type="hidden" name="productNo"
+														value="${ product.productNo }" />
+													<div class="media">
+														<div class="media-body">
+															<h4 class="media-heading">${ product.productName }</h4>
+															<hr>
+															<p>${ product.productExplain }</p>
+															<h4>가격 : ${ product.productPrice } 원</h4>
+															
+														</div>
+													</div>
+												</div>
+												<!-- /widget-content -->
+
+												<div class="overlay">
+													<div class="inline">
+														<a style="margin: 10px;"
+															href="/team-project3/product/productUpdate.action?productno=${ product.productNo }"
+															class="btn btn-success"><i class="icon-wrench"></i><span> 수정</span>
+														</a> <a
+															href="/team-project3/product/productDelete.action?centerno=${ loginuser.centerNo }&productno=${ product.productNo }"
+															class="btn btn-danger"><i class=" icon-trash"></i><span> 삭제</span>
+														</a>
+													</div>
+												</div>
+												<!-- overlay end -->
+
+											</div>
+											<!-- /widget -->
+										</div>
+										<!-- /span3 -->
+									</c:forEach>
 									
-						        </div> <!-- /plan-header -->	        
-						        
-								<div class="plan-actions">				
-									<a href="/team-project3/product/productUpdate.action?productno=${ product.productNo }" class="btn btn-success">수정</a>
-									<a href="/team-project3/product/productDelete.action?centerno=${ loginuser.centerNo }&productno=${ product.productNo }" class="btn btn-danger">삭제</a>				
-								</div> <!-- /plan-actions -->
-					
-							</div> <!-- /plan -->
-					    </div> <!-- /plan-container -->
-					    </c:forEach>
-					    
-					</div> <!-- /pricing-plans -->
-						
-					</div> <!-- /widget-content -->
+
+								</div>
+								<!-- /pricing-plans -->
+
+							</div> <!-- /widget-content -->
 						
 				</div> <!-- /widget -->					
 				
