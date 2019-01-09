@@ -23,9 +23,10 @@
       <id column="productno" property="productNo" /> <!--조회 컬럼과 객체의 set메서드를 매핑-->
       <result column="proname" property="productName" />
       <result column="proprice" property="productPrice" />
+      <result column="proexplain" property="productExplain" />
    </resultMap>
    <select id="selectAllProduct" resultMap="productMap">
-      SELECT productno, proname, proprice
+      SELECT productno, proname, proprice, proexplain
       FROM product
       WHERE centerno = #{ centerNo } ORDER BY productno desc
    </select>

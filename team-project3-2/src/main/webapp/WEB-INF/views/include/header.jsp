@@ -12,7 +12,7 @@
                             class="icon-cog"></i> Account <b class="caret"></b></a>
                             <script type="text/javascript">
 					window.addEventListener('load', function(event) {
-						$('#show-register-modal').on('click', function(event) {
+						$('#show-center-modal').on('click', function(event) {
 							var register_modal = $('#myCenter');
 							register_modal.css({'z-index': '1050'});
 							register_modal.modal('show');
@@ -21,7 +21,7 @@
 					});
 				</script>
             <ul class="dropdown-menu">
-              <li><a href="#" id="show-register-modal">센터 정보 수정</a></li>
+              <li><a href="#" id="show-center-modal">센터 정보 수정</a></li>
               <li><a href="javascript:;">Help</a></li>
             </ul>
           </li>

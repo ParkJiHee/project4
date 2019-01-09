@@ -15,6 +15,49 @@
 <link href="/team-project3/resources/assets/css/font-awesome.css" rel="stylesheet">
 <link href="/team-project3/resources/assets/css/style.css" rel="stylesheet">
 <link href="/team-project3/resources/assets/css/pages/plans.css" rel="stylesheet">
+<style type="text/css">
+.error {
+	color: red;
+}
+
+.overlay {
+	transition: .5s ease;
+	opacity: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+	z-index: 1;
+}
+
+.span3 .overlay2 {
+	transition: .5s ease;
+	position: absolute;
+	opacity: 0;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.span3:hover .overlay {
+	opacity: 1;
+}
+
+.span3:hover .widget-content {
+	background-color: #BDBDBD;
+	opacity: 0.7;
+}
+
+.span3 .text {
+	color: black;
+	font-size: 40px;
+	padding: 16px 32px;
+}
+</style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp">
@@ -40,7 +83,37 @@
 									class="button btn btn-primary">상품등록</a>
 								</p> 
 								<c:forEach var="product" items="${ products }">
-									<div class="plan-container">
+									<div class="span3">
+										<div class="widget">
+											<div class="widget-content">
+												<input type="hidden" name="productNo"
+													value="${ product.productNo }" />
+												<div class="media">
+													<div class="media-body">
+														<h4 class="media-heading">${ product.productName }</h4>
+														<hr>
+														<p>${ product.productExplain }</p>
+														<h4>가격 : ${ product.productPrice } 원</h4>
+														
+													</div>
+												</div>
+											</div>
+											<!-- /widget-content -->
+
+											<div class="overlay">
+												<div class="inline">
+													<a style="margin: 10px;" href="/team-project3/purchase/purRegister.action?productno=${ product.productNo }&memberno=${ member.memberNo } "
+													class="btn btn-success"><i class="icon-shopping-cart"></i> 결제</a>
+												</div>
+											</div>
+											<!-- overlay end -->
+
+										</div>
+										<!-- /widget -->
+									</div>
+									<!-- /span3 -->
+									
+									<%-- <div class="plan-container">
 										<div class="plan">
 											<div class="plan-header">
 												<div class="plan-title">
@@ -60,7 +133,7 @@
 											<!-- /plan-actions -->
 										</div>
 										<!-- /plan -->
-									</div>
+									</div> --%>
 									<!-- /plan-container -->
 								</c:forEach>
 							</div>
