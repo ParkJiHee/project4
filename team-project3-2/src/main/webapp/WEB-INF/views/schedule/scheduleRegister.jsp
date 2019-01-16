@@ -150,6 +150,18 @@
 <script src="/team-project3/resources/assets/js/bootstrap.js"></script>
 <script src="/team-project3/resources/assets/js/base.js"></script>
 
+<script type="text/javascript">
+$(function() {
+	$('#reg-schedule-btn').on('click', function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		
+		var sd = $('#scheduleDate2').val();
+		$('#scheduleDate').val(sd.replace('T', ' '));
+		$('#reg-schedule-form').submit();
+	});
+});
+</script>
 
   </body>
 
